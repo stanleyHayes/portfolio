@@ -28,12 +28,7 @@ const HomePage = () => {
             profile: {
             },
             card: {
-                transition: 'all 500ms ease-out',
-                '&:hover': {
-                    boxShadow: "0px 2px 4px -1px #ffeb3b,0px 4px 5px 0px #ffeb3b,0px 1px 10px 0px #ffeb3b",
-                    borderRadius: '100%',
-                    borderWidth: 5
-                }
+
             },
             social: {
                 width: 25,

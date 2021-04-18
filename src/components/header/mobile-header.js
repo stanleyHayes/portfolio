@@ -1,4 +1,4 @@
-import {Grid, IconButton, makeStyles, Toolbar, Typography} from "@material-ui/core";
+import {Button, Grid,  makeStyles, Toolbar, Typography} from "@material-ui/core";
 import React from "react";
 import {Link} from "react-router-dom";
 
@@ -20,7 +20,11 @@ const MobileHeader = () => {
             brand: {
                 textTransform: "uppercase",
                 fontWeight: 700,
-                color: "#111111"
+                fontSize: 24
+            },
+            role:{
+                textTransform: "uppercase",
+                fontWeight: 700
             }
         }
     });
@@ -31,20 +35,20 @@ const MobileHeader = () => {
         <Toolbar>
             <Grid container={true} justify="space-between" alignItems="center">
                 <Grid item={true} xs={2}>
-                        <img
-                            className={classes.hamburger}
-                            src="/assets/lightingcolored.svg"
-                            alt="zeus lighting bolt"
-                            title="zeus lighting bolt"/>
+                    <img
+                        className={classes.hamburger}
+                        src="/assets/lightingcolored.svg"
+                        alt="zeus lighting bolt"
+                        title="zeus lighting bolt"/>
                 </Grid>
                 <Grid item={true} xs={4}>
                     <Link to="/" className={classes.link}>
-                        <Typography className={classes.brand} variant="h6">Zeus</Typography>
+                        <Button className={classes.brand} variant="text">Zeus</Button>
                     </Link>
                 </Grid>
                 <Grid item={true} xs={6}>
                     <Link to="/" className={classes.link}>
-                        <Typography className={classes.brand} variant="body2">
+                        <Typography color="textPrimary" className={classes.role} variant="body2">
                             Full Stack &copy;
                         </Typography>
                     </Link>

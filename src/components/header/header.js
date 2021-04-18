@@ -6,7 +6,7 @@ import TabletHeader from "./tablet-header";
 
 const Header = () => {
     return (
-        <AppBar variant="outlined">
+        <AppBar variant="elevation" elevation={0}>
             <Hidden mdDown={true}>
                 <DesktopHeader />
             </Hidden>
