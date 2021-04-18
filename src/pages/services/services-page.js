@@ -20,6 +20,14 @@ const ServicesPage = () => {
             divider: {
                 marginTop: 32,
                 marginBottom: 32
+            },
+            card: {
+                transition: 'all 300ms ease-out',
+                '&:hover': {
+                    boxShadow: "0px 2px 4px -1px #ffeb3b,0px 4px 5px 0px #ffeb3b,0px 1px 10px 0px #ffeb3b",
+                    borderRadius: 4,
+                    borderWidth: 2
+                }
             }
         }
     });
@@ -30,6 +38,7 @@ const ServicesPage = () => {
         <Layout>
             <Container className={classes.container}>
                 <Typography
+                    color="textPrimary"
                     variant="h6"
                     align="center"
                     className={classes.page}
@@ -38,6 +47,7 @@ const ServicesPage = () => {
                 <Typography
                     variant="h3"
                     align="center"
+                    color="textSecondary"
                     className={classes.title}
                     gutterBottom={true}>What I do</Typography>
 

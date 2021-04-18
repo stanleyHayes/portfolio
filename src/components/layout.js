@@ -6,7 +6,10 @@ const Layout = ({children}) => {
 
     const useStyles = makeStyles(() => {
         return {
-            root: {}
+            root: {
+                background: "#212121",
+                minHeight: "100vh"
+            }
         }
     });
 

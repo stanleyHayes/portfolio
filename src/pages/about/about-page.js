@@ -9,7 +9,7 @@ import {
     Divider,
     Grid,
     makeStyles, Tab, Tabs,
-    Typography
+    Typography, useMediaQuery
 } from "@material-ui/core";
 
 
@@ -35,7 +35,15 @@ const AboutPage = () => {
                 height: 25
             },
             buttonContainer: {
-                marginTop: 16
+                marginTop: 8
+            },
+            card: {
+                transition: 'all 500ms ease-out',
+                '&:hover': {
+                    boxShadow: "0px 2px 4px -1px #ffeb3b,0px 4px 5px 0px #ffeb3b,0px 1px 10px 0px #ffeb3b",
+                    borderRadius: 4,
+                    borderWidth: 2
+                }
             }
         }
     });
@@ -47,10 +55,13 @@ const AboutPage = () => {
         setIndex(index);
     }
 
+    const mobile = useMediaQuery('(max-width: 600px)');
+
     return (
         <Layout>
             <Container className={classes.container}>
                 <Typography
+                    color="textPrimary"
                     variant="h6"
                     align="center"
                     className={classes.page}
@@ -58,6 +69,7 @@ const AboutPage = () => {
 
                 <Typography
                     variant="h3"
+                    color="textSecondary"
                     align="center"
                     className={classes.title}
                     gutterBottom={true}>About Me</Typography>
@@ -125,15 +137,15 @@ const AboutPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={9}>
-                        <Typography gutterBottom={true} variant="h6">Profile</Typography>
-                        <Typography gutterBottom={true} variant="body1">
+                        <Typography className={classes.page} color="textPrimary" gutterBottom={true} variant="h4">Profile</Typography>
+                        <Typography color="textSecondary" gutterBottom={true} variant="body1">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
                             cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </Typography>
-                        <Typography gutterBottom={true} variant="body1">
+                        <Typography color="textSecondary" gutterBottom={true} variant="body1">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -141,17 +153,32 @@ const AboutPage = () => {
                         </Typography>
                         <Grid className={classes.buttonContainer} container={true} spacing={4}>
                             <Grid item={true} xs={12} md={4}>
-                                <Button fullWidth={true} className={classes.button} variant="outlined" size="large">
+                                <Button
+                                    fullWidth={true}
+                                    className={classes.button}
+                                    disableElevation={true}
+                                    variant="outlined"
+                                    size="large">
                                     Download Resume
                                 </Button>
                             </Grid>
                             <Grid item={true} xs={12} md={4}>
-                                <Button fullWidth={true} className={classes.button} variant="outlined" size="large">
+                                <Button
+                                    fullWidth={true}
+                                    className={classes.button}
+                                    disableElevation={true}
+                                    variant="outlined"
+                                    size="large">
                                     Download Cover Letter
                                 </Button>
                             </Grid>
                             <Grid item={true} xs={12} md={4}>
-                                <Button fullWidth={true} className={classes.button} variant="outlined" size="large">
+                                <Button
+                                    fullWidth={true}
+                                    className={classes.button}
+                                    disableElevation={true}
+                                    variant="outlined"
+                                    size="large">
                                     Hire Me
                                 </Button>
                             </Grid>
@@ -168,7 +195,7 @@ const AboutPage = () => {
                     defaultValue="skills"
                     centerRipple={true}
                     focusRipple={true}
-                    variant="standard"
+                    variant={mobile ? "scrollable" : "standard"}
                     value={index}
                     onChange={handleTabChange}>
                     <Tab label="Skills"/>
@@ -185,18 +212,18 @@ const AboutPage = () => {
                         </Grid>
 
                     ) : index === 1 ? (
-                            <Grid container={true}>
-                                <Grid item={true}>
-                                    <Typography>Education</Typography>
-                                </Grid>
+                        <Grid container={true}>
+                            <Grid item={true}>
+                                <Typography>Education</Typography>
                             </Grid>
+                        </Grid>
                     ) : index === 2 ? (
                         <Grid container={true}>
                             <Grid item={true}>
                                 <Typography>Experience</Typography>
                             </Grid>
                         </Grid>
-                    ): (
+                    ) : (
                         <Grid container={true}>
                             <Grid item={true}>
                                 <Typography>Certifications</Typography>

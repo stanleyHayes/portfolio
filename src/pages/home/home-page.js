@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout";
-import {Button, Card, CardContent, CardMedia, Container, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Button, Card, CardMedia, Container, Grid, makeStyles, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 
@@ -11,7 +11,9 @@ const HomePage = () => {
                 minHeight: '100vh',
                 display: 'flex',
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                paddingTop: 84,
+                paddingBottom: 84
             },
             page: {
                 textTransform: "uppercase"
@@ -23,8 +25,16 @@ const HomePage = () => {
                 marginTop: 32,
                 marginBottom: 32
             },
-            profile: {},
-            card: {},
+            profile: {
+            },
+            card: {
+                transition: 'all 500ms ease-out',
+                '&:hover': {
+                    boxShadow: "0px 2px 4px -1px #ffeb3b,0px 4px 5px 0px #ffeb3b,0px 1px 10px 0px #ffeb3b",
+                    borderRadius: '100%',
+                    borderWidth: 5
+                }
+            },
             social: {
                 width: 25,
                 height: 25
@@ -38,7 +48,6 @@ const HomePage = () => {
             button: {
                 marginTop: 32,
                 borderWidth: 2,
-                borderColor: "#aaaaaa",
                 borderStyle: "solid",
             }
         }
@@ -59,10 +68,13 @@ const HomePage = () => {
                         </Card>
                     </Grid>
                     <Grid xs={12} md={7} item={true}>
-                        <Typography gutterBottom={true} variant="h4">Hello, World</Typography>
-                        <Typography gutterBottom={true} variant="h5">I am a</Typography>
-                        <Typography gutterBottom={true} variant="h2">Stanley Hayford</Typography>
-                        <Typography gutterBottom={true} variant="h3">Full Stack Web Developer</Typography>
+                        <Typography color="textSecondary" gutterBottom={true} variant="h5">Hello, World</Typography>
+                        <Typography color="textSecondary" gutterBottom={true} variant="h6">I am a</Typography>
+                        <Typography color="textPrimary" gutterBottom={true} variant="h2">Stanley Hayford</Typography>
+                        <Typography color="textSecondary" gutterBottom={true} variant="h4">Full Stack Web Developer</Typography>
+                        <Typography color="textSecondary" gutterBottom={true} variant="body1">
+                            I love to learn programming languages and solve programming problems
+                        </Typography>
                         <Grid className={classes.socialContainer} justify="space-between" container={true}>
                             <Grid xs={1} item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"
@@ -119,7 +131,7 @@ const HomePage = () => {
                             <Button
                                 fullWidth={true}
                                 className={classes.button}
-                                variant="contained"
+                                variant="outlined"
                                 disableElevation={true}
                                 size="large">
                                 Contact Me

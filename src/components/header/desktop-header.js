@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Grid, makeStyles, Toolbar, Typography} from "@material-ui/core";
+import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 const DesktopHeader = () => {
@@ -17,7 +17,8 @@ const DesktopHeader = () => {
                 height: 50
             },
             brand: {
-                textTransform: "uppercase"
+                textTransform: "uppercase",
+                fontSize: 32
             }
         }
     });
@@ -25,14 +26,14 @@ const DesktopHeader = () => {
     const classes = useStyles();
 
     return (
-        <Toolbar>
+        <Toolbar variant="regular" color="primary">
             <Grid container={true} justify="space-around" alignItems="center">
                 <Grid lg={4} item={true} container={true} justify="center" alignItems="center">
                     <Grid item={true}>
                         <Link to="/" className={classes.link}>
                             <img
                                 className={classes.logo}
-                                src="/assets/lighting.svg"
+                                src="/assets/lightingcolored.svg"
                                 alt="lightening bolt zeus"
                                 title="Zeus"
                             />
@@ -40,7 +41,7 @@ const DesktopHeader = () => {
                     </Grid>
                     <Grid item={true}>
                         <Link to="/" className={classes.link}>
-                            <Typography className={classes.brand} variant="h3">Zeus</Typography>
+                            <Button className={classes.brand} variant="text">Zeus</Button>
                         </Link>
                     </Grid>
                 </Grid>
@@ -63,11 +64,6 @@ const DesktopHeader = () => {
                     <Grid item={true}>
                         <Link className={classes.link} to="/services">
                             <Button className={classes.button} variant="text" size="large">Services</Button>
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link className={classes.link} to="/testimonial">
-                            <Button className={classes.button} variant="text" size="large">Testimonial</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>

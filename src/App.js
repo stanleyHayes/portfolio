@@ -5,8 +5,6 @@ import AboutPage from "./pages/about/about-page";
 import ContactPage from "./pages/contact/contact-page";
 import ServicesPage from "./pages/services/services-page";
 import PortfolioPage from "./pages/portfolio/portfolio-page";
-import BlogPage from "./pages/blog/blog-page";
-import TestimonialPage from "./pages/testimonial/testimonial-page";
 
 function App() {
     return (
@@ -26,13 +24,6 @@ function App() {
             <Route path="/portfolio" exact={true}>
                 <PortfolioPage/>
             </Route>
-            <Route path="/blog" exact={true}>
-                <BlogPage />
-            </Route>
-            <Route path="/testimonial" exact={true}>
-                <TestimonialPage />
-            </Route>
-
         </Switch>
     );
 }

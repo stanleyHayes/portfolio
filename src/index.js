@@ -5,50 +5,64 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {createMuiTheme, ThemeProvider} from "@material-ui/core";
-import {grey} from "@material-ui/core/colors";
+import {yellow} from "@material-ui/core/colors";
 
-const light = createMuiTheme({
+const theme = createMuiTheme({
     typography: {
         fontFamily: "Raleway, sans-serif"
     },
     shape: {
-        borderRadius: 32
+        borderRadius: 0
     },
     palette: {
         primary: {
-            main: grey["300"],
-            light: grey["100"],
-            dark: grey["500"]
+            main: "#000000",
+            light: "#000000",
+            dark: "#000000",
+            contrastText: yellow["500"]
         },
-        type: "light"
-    }
-});
-
-
-const dark = createMuiTheme({
-    typography: {
-        fontFamily: "Raleway, sans-serif"
-    },
-    shape: {
-        borderRadius: 32
-    },
-    palette: {
-        primary: {
-            main: grey["900"]
+        secondary:{
+            main: yellow["700"],
+            dark: yellow["900"],
+            light: yellow["500"],
+            contrastText: yellow["500"]
         },
-        type: "dark"
+        text: {
+            primary: yellow["700"],
+            secondary: yellow["500"],
+            hint: yellow["300"],
+            disabled: yellow["100"]
+        },
+        action: {
+            active: yellow["500"],
+            selected: yellow["500"],
+            hover: yellow["700"],
+            focus: yellow["700"],
+            hoverOpacity: 0.8,
+            focusOpacity: 0.8,
+            selectedOpacity: 0.9
+        },
+        background: {
+            paper: "#111111"
+        },
+        divider: yellow["100"],
+        type: "dark",
+        common: {
+            black: "#000000",
+            white: yellow["500"]
+        }
     }
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-      <BrowserRouter>
-          <ThemeProvider theme={light}>
-              <App />
-          </ThemeProvider>
-      </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <BrowserRouter>
+            <ThemeProvider theme={theme}>
+                <App/>
+            </ThemeProvider>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

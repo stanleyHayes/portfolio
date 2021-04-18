@@ -36,8 +36,15 @@ const ContactPage = () => {
             },
             button: {
                 borderWidth: 2,
-                borderColor: "#aaaaaa",
                 borderStyle: "solid",
+            },
+            card: {
+                transition: 'all 500ms ease-out',
+                '&:hover': {
+                    boxShadow: "0px 2px 4px -1px #ffeb3b,0px 4px 5px 0px #ffeb3b,0px 1px 10px 0px #ffeb3b",
+                    borderRadius: 4,
+                    borderWidth: 2
+                }
             }
         }
     });
@@ -68,6 +75,7 @@ const ContactPage = () => {
             <Container className={classes.container}>
                 <Typography
                     variant="h6"
+                    color="textPrimary"
                     align="center"
                     className={classes.page}
                     gutterBottom={true}>Contact</Typography>
@@ -75,6 +83,7 @@ const ContactPage = () => {
                 <Typography
                     variant="h3"
                     align="center"
+                    color="textSecondary"
                     className={classes.title}
                     gutterBottom={true}>Get In Touch</Typography>
 
@@ -198,7 +207,7 @@ const ContactPage = () => {
                         />
                         <Button
                             onClick={handleSubmit}
-                            variant="contained"
+                            variant="outlined"
                             disableElevation={true}
                             fullWidth={true}
                             className={classes.button}
