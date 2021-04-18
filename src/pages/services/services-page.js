@@ -1,13 +1,15 @@
 import React from "react";
 import Layout from "../../components/layout";
-import {Container, Divider, makeStyles, Typography} from "@material-ui/core";
+import {Card, CardContent, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Code} from "@material-ui/icons";
 
 
 const ServicesPage = () => {
     const useStyles = makeStyles(() => {
         return {
             container: {
-                paddingTop: 84
+                paddingTop: 84,
+                paddingBottom: 84
             },
             page: {
                 textTransform: "uppercase"
@@ -41,6 +43,161 @@ const ServicesPage = () => {
 
                 <Divider variant="fullWidth" className={classes.divider}/>
 
+                <Grid container={true} spacing={4}>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={12} md={6} lg={4}>
+                        <Card variant="outlined" className={classes.card}>
+                            <CardContent>
+                                <Grid container={true} justify="center">
+                                    <Grid item={true}>
+                                        <Code/>
+                                    </Grid>
+                                </Grid>
+                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography align="center" gutterBottom={true} variant="body2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
             </Container>
         </Layout>
     )
