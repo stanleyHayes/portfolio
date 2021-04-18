@@ -3,10 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from "react-router-dom";
+import {createMuiTheme, ThemeProvider} from "@material-ui/core";
+
+const light = createMuiTheme({
+    typography: {
+        fontFamily: "Raleway, sans-serif"
+    },
+    shape: {
+        borderRadius: 0
+    }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+          <ThemeProvider theme={light}>
+              <App />
+          </ThemeProvider>
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
