@@ -29,15 +29,19 @@ const DesktopHeader = () => {
             <Grid container={true} justify="space-around" alignItems="center">
                 <Grid lg={4} item={true} container={true} justify="center" alignItems="center">
                     <Grid item={true}>
-                        <img
-                            className={classes.logo}
-                            src="/assets/lighting.svg"
-                            alt="lightening bolt zeus"
-                            title="Zeus"
-                        />
+                        <Link to="/" className={classes.link}>
+                            <img
+                                className={classes.logo}
+                                src="/assets/lighting.svg"
+                                alt="lightening bolt zeus"
+                                title="Zeus"
+                            />
+                        </Link>
                     </Grid>
                     <Grid item={true}>
-                        <Typography className={classes.brand} variant="h3">Zeus</Typography>
+                        <Link to="/" className={classes.link}>
+                            <Typography className={classes.brand} variant="h3">Zeus</Typography>
+                        </Link>
                     </Grid>
                 </Grid>
                 <Grid lg={8} item={true} container={true} justify="center" alignItems="center">
@@ -54,11 +58,6 @@ const DesktopHeader = () => {
                     <Grid item={true}>
                         <Link className={classes.link} to="/portfolio">
                             <Button className={classes.button} variant="text" size="large">Portfolio</Button>
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link className={classes.link} to="/blog">
-                            <Button className={classes.button} variant="text" size="large">Blog</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>

@@ -5,14 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {createMuiTheme, ThemeProvider} from "@material-ui/core";
-import {grey, orange} from "@material-ui/core/colors";
+import {grey} from "@material-ui/core/colors";
 
 const light = createMuiTheme({
     typography: {
         fontFamily: "Raleway, sans-serif"
     },
     shape: {
-        borderRadius: 0
+        borderRadius: 32
     },
     palette: {
         primary: {
@@ -20,7 +20,6 @@ const light = createMuiTheme({
             light: grey["100"],
             dark: grey["500"]
         },
-        background: grey["50"],
         type: "light"
     }
 });
@@ -31,13 +30,11 @@ const dark = createMuiTheme({
         fontFamily: "Raleway, sans-serif"
     },
     shape: {
-        borderRadius: 0
+        borderRadius: 32
     },
     palette: {
         primary: {
-            main: orange["700"],
-            light: orange["500"],
-            dark: orange["900"]
+            main: grey["900"]
         },
         type: "dark"
     }

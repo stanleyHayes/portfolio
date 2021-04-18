@@ -35,7 +35,9 @@ const ContactPage = () => {
                 transition: "all 300ms ease-out"
             },
             button: {
-
+                borderWidth: 2,
+                borderColor: "#aaaaaa",
+                borderStyle: "solid",
             }
         }
     });
@@ -196,7 +198,9 @@ const ContactPage = () => {
                         />
                         <Button
                             onClick={handleSubmit}
-                            variant="outlined"
+                            variant="contained"
+                            disableElevation={true}
+                            fullWidth={true}
                             className={classes.button}
                             size="large">
                             Send Message
