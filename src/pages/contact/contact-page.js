@@ -152,8 +152,8 @@ const ContactPage = () => {
                         />
 
                         <TextField
-                            label="Full name"
-                            placeholder="Enter Subject"
+                            label="Email"
+                            placeholder="Enter Email"
                             fullWidth={true}
                             variant="outlined"
                             margin="normal"

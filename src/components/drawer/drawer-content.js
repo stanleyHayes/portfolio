@@ -1,0 +1,140 @@
+import React from "react";
+import {Avatar, Button, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Link} from "react-router-dom";
+import {Close, ContactMail, Home, Info, School, Work} from "@material-ui/icons";
+
+
+const DrawerContent = ({handleDrawerClose}) => {
+
+    const useStyles = makeStyles(() => {
+        return {
+            link: {
+                textDecoration: "none"
+            },
+            button: {},
+            divider: {
+                marginTop: 16,
+                marginBottom: 16
+            },
+            avatar: {
+                width: 150,
+                height: 150,
+                borderWidth: 2,
+                borderStyle: "solid",
+                padding: 8
+            },
+            name: {},
+            nickname: {},
+            role: {
+                fontWeight: "bold"
+            },
+            subDivider: {
+                marginTop: 8,
+                marginBottom: 8
+            },
+            container: {
+                paddingTop: 32,
+                paddingBottom: 32
+            },
+            closeButton: {}
+        }
+    });
+
+    const classes = useStyles();
+
+
+    return (
+        <Container className={classes.container}>
+            <Grid container={true} justify="center">
+                <Grid container={true} justify="flex-end">
+                    <Grid item={true}>
+                        <Button
+                            className={classes.closeButton}
+                            onClick={handleDrawerClose}
+                            startIcon={<Close/>}
+                            variant="outlined"
+                            size="large">
+                            Close
+                        </Button>
+                    </Grid>
+                </Grid>
+                <Grid container={true} justify="center">
+                    <Grid item={true}>
+                        <Avatar src="/assets/lightingcolored.svg" className={classes.avatar}/>
+                    </Grid>
+                </Grid>
+                <Grid item={true}>
+                    <Typography
+                        gutterBottom={true}
+                        className={classes.name}
+                        variant="h4"
+                        align="center">
+                        Stanley Hayford
+                    </Typography>
+                    <Divider variant="middle" className={classes.subDivider} light={true}/>
+                    <Typography
+                        gutterBottom={true}
+                        className={classes.nickname}
+                        variant="h6"
+                        align="center">
+                        Zeus
+                    </Typography>
+                    <Divider variant="middle" className={classes.subDivider} light={true}/>
+                    <Typography
+                        gutterBottom={true}
+                        className={classes.role}
+                        variant="body2"
+                        align="center">
+                        Full Stack Web Developer
+                    </Typography>
+                </Grid>
+            </Grid>
+
+            <Divider variant="fullWidth" className={classes.divider}/>
+
+            <Grid>
+                <Grid item={true} xs={12}>
+                    <Link to="/" className={classes.link}>
+                        <Button fullWidth={true} variant="text" size="small" startIcon={<Home/>}>
+                            Home
+                        </Button>
+                    </Link>
+
+                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+
+                    <Link to="/about" className={classes.link}>
+                        <Button fullWidth={true} variant="text" size="small" startIcon={<Info/>}>
+                            About
+                        </Button>
+                    </Link>
+
+                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+
+                    <Link to="/portfolio" className={classes.link}>
+                        <Button fullWidth={true} variant="text" size="small" startIcon={<Work/>}>
+                            Portfolio
+                        </Button>
+                    </Link>
+
+                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+
+                    <Link to="/services" className={classes.link}>
+                        <Button fullWidth={true} variant="text" size="small" startIcon={<School/>}>
+                            Services
+                        </Button>
+                    </Link>
+
+                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+
+                    <Link to="/contact" className={classes.link}>
+                        <Button fullWidth={true} variant="text" size="small" startIcon={<ContactMail/>}>
+                            Contact
+                        </Button>
+                    </Link>
+                </Grid>
+            </Grid>
+        </Container>
+    )
+}
+
+export default DrawerContent;

@@ -6,12 +6,7 @@ const Project = ({project}) => {
     const useStyles = makeStyles((theme) => {
         return {
             card: {
-                transition: 'all 300ms ease-out',
-                '&:hover': {
-                    boxShadow: "0px 2px 4px -1px #ffeb3b,0px 4px 5px 0px #ffeb3b,0px 1px 10px 0px #ffeb3b",
-                    borderRadius: 32,
-                    borderWidth: 2
-                }
+
             },
             link: {
                 textDecoration: "none",
@@ -39,7 +34,7 @@ const Project = ({project}) => {
             <CardMedia src={project.image} component="img"/>
             <CardContent>
                 <Typography gutterBottom={true} variant="h5" className={classes.title}>{project.title}</Typography>
-                <Typography color="textSecondary" gutterBottom={true} variant="body1">{project.summary}</Typography>
+                <Typography color="textSecondary" gutterBottom={true} variant="body3">{project.summary}</Typography>
                 <Divider variant="fullWidth" className={classes.divider} />
                 {
                     project.categories.map((category, index) => {

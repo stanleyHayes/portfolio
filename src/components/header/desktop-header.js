@@ -1,6 +1,9 @@
 import React from "react";
-import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
+import {Button, Fab, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import {changeTheme, getUiState} from "../../features/ui/ui-slice";
+import {Brightness4, Brightness7} from "@material-ui/icons";
+import {useDispatch, useSelector} from "react-redux";
 
 const DesktopHeader = () => {
 
@@ -25,10 +28,13 @@ const DesktopHeader = () => {
 
     const classes = useStyles();
 
+    const dispatch = useDispatch();
+    const theme = useSelector(getUiState);
+    
     return (
         <Toolbar variant="regular" color="primary">
             <Grid container={true} justify="space-around" alignItems="center">
-                <Grid lg={4} item={true} container={true} justify="center" alignItems="center">
+                <Grid lg={3} item={true} container={true} justify="center" alignItems="center">
                     <Grid item={true}>
                         <Link to="/" className={classes.link}>
                             <img
@@ -45,7 +51,7 @@ const DesktopHeader = () => {
                         </Link>
                     </Grid>
                 </Grid>
-                <Grid lg={8} item={true} container={true} justify="center" alignItems="center">
+                <Grid lg={7} item={true} container={true} justify="center" alignItems="center">
                     <Grid item={true}>
                         <Link className={classes.link} to="/">
                             <Button className={classes.button} variant="text" size="large">Home</Button>
@@ -71,6 +77,14 @@ const DesktopHeader = () => {
                             <Button className={classes.button} variant="text" size="large">Contact</Button>
                         </Link>
                     </Grid>
+                </Grid>
+                <Grid item={true} xs={2}>
+                    {
+                        theme === "dark" ?
+                            (<Fab onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness7/></Fab>)
+                            :
+                            (<Fab onClick={() => dispatch(changeTheme())}  size="small" color="primary"><Brightness4/></Fab>)
+                    }
                 </Grid>
             </Grid>
         </Toolbar>

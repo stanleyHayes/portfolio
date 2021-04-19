@@ -4,7 +4,7 @@ import DesktopHeader from "./desktop-header";
 import MobileHeader from "./mobile-header";
 import TabletHeader from "./tablet-header";
 
-const Header = () => {
+const Header = ({handleDrawerOpen}) => {
     return (
         <AppBar variant="elevation" elevation={0}>
             <Hidden mdDown={true}>
@@ -12,7 +12,7 @@ const Header = () => {
             </Hidden>
 
             <Hidden mdUp={true}>
-                <MobileHeader />
+                <MobileHeader handleDrawerOpen={handleDrawerOpen} />
             </Hidden>
             <Hidden only={["xs", "sm", "lg", "xl"]}>
                 <TabletHeader />

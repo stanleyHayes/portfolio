@@ -1,15 +1,19 @@
-import React from "react";
-import {Box, makeStyles} from "@material-ui/core";
+import React, {useState} from "react";
+import {Box, makeStyles, SwipeableDrawer, ThemeProvider} from "@material-ui/core";
 import Header from "./header/header";
 import {grey} from "@material-ui/core/colors";
+import DrawerContent from "./drawer/drawer-content";
+import {useSelector} from "react-redux";
+import {getUiState} from "../features/ui/ui-slice";
+import {dark, light} from "../themes/themes";
 
 const Layout = ({children}) => {
 
-    const useStyles = makeStyles(() => {
+    const useStyles = makeStyles(theme => {
+        const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             root: {
-                // background: "#212121",
-                background: grey["100"],
+                background: dark === "dark" ? "#212121" : grey["100"],
                 minHeight: "100vh"
             }
         }
@@ -17,16 +21,36 @@ const Layout = ({children}) => {
 
     const classes = useStyles();
 
+    const [open, setOpen] = useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    }
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    }
+
+    const variant = useSelector(getUiState);
+    let theme = variant === "dark" ? dark : light
 
     return (
-        <Box className={classes.root}>
-            <div>
-                <Header/>
-            </div>
-            <div>
-                {children}
-            </div>
-        </Box>
+        <ThemeProvider theme={theme}>
+            <Box className={classes.root}>
+                <div>
+                    <Header handleDrawerOpen={handleDrawerOpen}/>
+                </div>
+                <div>
+                    {children}
+                </div>
+                <SwipeableDrawer
+                    onClose={handleDrawerClose}
+                    onOpen={handleDrawerOpen}
+                    open={open}>
+                    <DrawerContent handleDrawerClose={handleDrawerClose}/>
+                </SwipeableDrawer>
+            </Box>
+        </ThemeProvider>
     )
 }
 
