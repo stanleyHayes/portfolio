@@ -30,12 +30,12 @@ const Project = ({project}) => {
     const classes = useStyles();
 
     return (
-        <Card variant="outlined" className={classes.card}>
+        <Card variant="elevation" className={classes.card}>
             <CardMedia src={project.image} component="img"/>
             <CardContent>
-                <Typography gutterBottom={true} variant="h5" className={classes.title}>{project.title}</Typography>
-                <Typography color="textSecondary" gutterBottom={true} variant="body3">{project.summary}</Typography>
-                <Divider variant="fullWidth" className={classes.divider} />
+                <Typography color="textSecondary" gutterBottom={true} variant="h5" className={classes.title}>{project.title}</Typography>
+                <Typography color="textSecondary" gutterBottom={true} variant="body2">{project.summary}</Typography>
+                <Divider light={true} variant="fullWidth" className={classes.divider} />
                 {
                     project.categories.map((category, index) => {
                         return (
@@ -49,7 +49,7 @@ const Project = ({project}) => {
                         )
                     })
                 }
-                <Divider variant="fullWidth" className={classes.divider} />
+                <Divider light={true} variant="fullWidth" className={classes.divider} />
                 <Button fullWidth={true} size="large" variant="text" endIcon={<ChevronRight />}>
                     <a
                         className={classes.link}

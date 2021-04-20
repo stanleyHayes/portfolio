@@ -1,7 +1,7 @@
 import React from "react";
 import {Avatar, Button, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
-import {Close, ContactMail, Home, Info, School, Work} from "@material-ui/icons";
+import {Close} from "@material-ui/icons";
 
 
 const DrawerContent = ({handleDrawerClose}) => {
@@ -18,10 +18,7 @@ const DrawerContent = ({handleDrawerClose}) => {
             },
             avatar: {
                 width: 150,
-                height: 150,
-                borderWidth: 2,
-                borderStyle: "solid",
-                padding: 8
+                height: 150
             },
             name: {},
             nickname: {},
@@ -68,11 +65,13 @@ const DrawerContent = ({handleDrawerClose}) => {
                         gutterBottom={true}
                         className={classes.name}
                         variant="h4"
+                        color="textSecondary"
                         align="center">
                         Stanley Hayford
                     </Typography>
                     <Divider variant="middle" className={classes.subDivider} light={true}/>
                     <Typography
+                        color="textSecondary"
                         gutterBottom={true}
                         className={classes.nickname}
                         variant="h6"
@@ -81,6 +80,7 @@ const DrawerContent = ({handleDrawerClose}) => {
                     </Typography>
                     <Divider variant="middle" className={classes.subDivider} light={true}/>
                     <Typography
+                        color="textSecondary"
                         gutterBottom={true}
                         className={classes.role}
                         variant="body2"
@@ -95,39 +95,39 @@ const DrawerContent = ({handleDrawerClose}) => {
             <Grid>
                 <Grid item={true} xs={12}>
                     <Link to="/" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="small" startIcon={<Home/>}>
+                        <Button fullWidth={true} variant="text" size="large">
                             Home
                         </Button>
                     </Link>
 
-                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/about" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="small" startIcon={<Info/>}>
+                        <Button fullWidth={true} variant="text" size="large">
                             About
                         </Button>
                     </Link>
 
-                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/portfolio" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="small" startIcon={<Work/>}>
+                        <Button fullWidth={true} variant="text" size="large">
                             Portfolio
                         </Button>
                     </Link>
 
-                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/services" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="small" startIcon={<School/>}>
+                        <Button fullWidth={true} variant="text" size="large">
                             Services
                         </Button>
                     </Link>
 
-                    <Divider variant="fullWidth" className={classes.subDivider} light={true}/>
+                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/contact" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="small" startIcon={<ContactMail/>}>
+                        <Button fullWidth={true} variant="text" size="large">
                             Contact
                         </Button>
                     </Link>

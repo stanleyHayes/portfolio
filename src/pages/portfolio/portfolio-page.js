@@ -34,7 +34,7 @@ const PortfolioPage = () => {
             <Container className={classes.container}>
                 <Typography
                     variant="h6"
-                    color="textPrimary"
+                    color="textSecondary"
                     align="center"
                     className={classes.page}
                     gutterBottom={true}>Portfolio</Typography>

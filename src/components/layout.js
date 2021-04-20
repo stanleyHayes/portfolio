@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Box, makeStyles, SwipeableDrawer, ThemeProvider} from "@material-ui/core";
 import Header from "./header/header";
-import {grey} from "@material-ui/core/colors";
 import DrawerContent from "./drawer/drawer-content";
 import {useSelector} from "react-redux";
 import {getUiState} from "../features/ui/ui-slice";
@@ -13,7 +12,7 @@ const Layout = ({children}) => {
         const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             root: {
-                background: dark === "dark" ? "#212121" : grey["100"],
+                background: dark === "dark" ? "rgba(11,12,16,0.95)" : "#ffffff",
                 minHeight: "100vh"
             }
         }

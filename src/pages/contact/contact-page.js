@@ -35,12 +35,9 @@ const ContactPage = () => {
                 transition: "all 300ms ease-out"
             },
             button: {
-                borderWidth: 2,
-                borderStyle: "solid",
+               
             },
-            card: {
-
-            }
+            card: {}
         }
     });
 
@@ -70,7 +67,7 @@ const ContactPage = () => {
             <Container className={classes.container}>
                 <Typography
                     variant="h6"
-                    color="textPrimary"
+                    color="textSecondary"
                     align="center"
                     className={classes.page}
                     gutterBottom={true}>Contact</Typography>
@@ -86,7 +83,7 @@ const ContactPage = () => {
 
                 <Grid container={true} spacing={4}>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} variant="outlined">
+                        <Card className={classes.card} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -95,13 +92,13 @@ const ContactPage = () => {
                                         </IconButton>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" variant="h6">Phone</Typography>
-                                <Typography align="center" variant="body2">+233270048319</Typography>
+                                <Typography color="textSecondary" align="center" variant="h6">Phone</Typography>
+                                <Typography color="textSecondary" align="center" variant="body2">+233270048319</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} variant="outlined">
+                        <Card className={classes.card} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -110,13 +107,13 @@ const ContactPage = () => {
                                         </IconButton>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" variant="h6">Email</Typography>
-                                <Typography align="center" variant="body2">dev.stanleyhayford@gmail.com</Typography>
+                                <Typography color="textSecondary" align="center" variant="h6">Email</Typography>
+                                <Typography color="textSecondary" align="center" variant="body2">dev.stanleyhayford@gmail.com</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} variant="outlined">
+                        <Card className={classes.card} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -125,92 +122,95 @@ const ContactPage = () => {
                                         </IconButton>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" variant="h6">Address</Typography>
-                                <Typography align="center" variant="body2">Atakorah Estate 2, Ashomang</Typography>
+                                <Typography color="textSecondary" align="center" variant="h6">Address</Typography>
+                                <Typography color="textSecondary" align="center" variant="body2">Atakorah Estate 2, Ashomang</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                 </Grid>
 
                 <Divider variant="fullWidth" className={classes.divider}/>
+                <Card variant="elevation" elevation={1}>
+                    <CardContent>
+                        <Grid container={true} spacing={4}>
+                            <Grid item={true} xs={12} md={6}>
+                                <TextField
+                                    placeholder="Enter Full name"
+                                    label="Full Name"
+                                    fullWidth={true}
+                                    variant="outlined"
+                                    margin="normal"
+                                    name="name"
+                                    type="text"
+                                    value={name}
+                                    onChange={handleChange}
+                                    error={error.name}
+                                    className={classes.textField}
+                                    required={true}
+                                />
 
-                <Grid container={true} spacing={4}>
-                    <Grid item={true} xs={12} md={6}>
-                        <TextField
-                            placeholder="Enter Full name"
-                            label="Full Name"
-                            fullWidth={true}
-                            variant="outlined"
-                            margin="normal"
-                            name="name"
-                            type="text"
-                            value={name}
-                            onChange={handleChange}
-                            error={error.name}
-                            className={classes.textField}
-                            required={true}
-                        />
-
-                        <TextField
-                            label="Email"
-                            placeholder="Enter Email"
-                            fullWidth={true}
-                            variant="outlined"
-                            margin="normal"
-                            name="email"
-                            type="email"
-                            value={email}
-                            onChange={handleChange}
-                            error={error.email}
-                            className={classes.textField}
-                            required={true}
-                        />
+                                <TextField
+                                    label="Email"
+                                    placeholder="Enter Email"
+                                    fullWidth={true}
+                                    variant="outlined"
+                                    margin="normal"
+                                    name="email"
+                                    type="email"
+                                    value={email}
+                                    onChange={handleChange}
+                                    error={error.email}
+                                    className={classes.textField}
+                                    required={true}
+                                />
 
 
-                        <TextField
-                            label="Subject"
-                            placeholder="Enter subject"
-                            fullWidth={true}
-                            variant="outlined"
-                            margin="normal"
-                            name="subject"
-                            type="text"
-                            value={subject}
-                            onChange={handleChange}
-                            error={error.name}
-                            className={classes.textField}
-                            required={true}
-                        />
-                    </Grid>
-                    <Grid item={true} xs={12} md={6}>
+                                <TextField
+                                    label="Subject"
+                                    placeholder="Enter subject"
+                                    fullWidth={true}
+                                    variant="outlined"
+                                    margin="normal"
+                                    name="subject"
+                                    type="text"
+                                    value={subject}
+                                    onChange={handleChange}
+                                    error={error.name}
+                                    className={classes.textField}
+                                    required={true}
+                                />
+                            </Grid>
+                            <Grid item={true} xs={12} md={6}>
 
-                        <TextField
-                            label="Message"
-                            placeholder="Enter message"
-                            fullWidth={true}
-                            variant="outlined"
-                            margin="normal"
-                            name="message"
-                            rows={7}
-                            multiline={true}
-                            type="text"
-                            value={message}
-                            onChange={handleChange}
-                            error={error.message}
-                            className={classes.textField}
-                            required={true}
-                        />
-                        <Button
-                            onClick={handleSubmit}
-                            variant="outlined"
-                            disableElevation={true}
-                            fullWidth={true}
-                            className={classes.button}
-                            size="large">
-                            Send Message
-                        </Button>
-                    </Grid>
-                </Grid>
+                                <TextField
+                                    label="Message"
+                                    placeholder="Enter message"
+                                    fullWidth={true}
+                                    variant="outlined"
+                                    margin="normal"
+                                    name="message"
+                                    rows={7}
+                                    multiline={true}
+                                    type="text"
+                                    value={message}
+                                    onChange={handleChange}
+                                    error={error.message}
+                                    className={classes.textField}
+                                    required={true}
+                                />
+                                <Button
+                                    onClick={handleSubmit}
+                                    variant="outlined"
+                                    disableElevation={true}
+                                    fullWidth={true}
+                                    className={classes.button}
+                                    size="large">
+                                    Send Message
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
             </Container>
         </Layout>
     )

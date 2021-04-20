@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import Layout from "../../components/layout";
 import {
+    Avatar,
     Button,
     Card,
     CardContent,
-    CardMedia,
     Container,
     Divider,
     Grid,
@@ -37,9 +37,7 @@ const AboutPage = () => {
             buttonContainer: {
                 marginTop: 8
             },
-            card: {
-
-            },
+            card: {},
             secondaryDivider: {
                 marginTop: 8,
                 marginBottom: 8
@@ -55,6 +53,16 @@ const AboutPage = () => {
                     marginRight: 32,
                     marginBottom: 16
                 }
+            },
+            profile: {
+                objectFit: "cover",
+                objectPosition: "center",
+                width: 320,
+                height: 320,
+                borderRadius: '50%'
+            },
+            gridContainer: {
+                marginTop: 32
             }
         }
     });
@@ -72,7 +80,7 @@ const AboutPage = () => {
         <Layout>
             <Container className={classes.container}>
                 <Typography
-                    color="textPrimary"
+                    color="textSecondary"
                     variant="h6"
                     align="center"
                     className={classes.page}
@@ -87,68 +95,67 @@ const AboutPage = () => {
 
                 <Divider variant="fullWidth" className={classes.divider}/>
 
-                <Grid container={true} spacing={4}>
-                    <Grid item={true} xs={12} md={3}>
-                        <Card className={classes.card} variant="outlined">
-                            <CardMedia component="img" src="/assets/lion.jpg"/>
-                            <CardContent>
-                                <Grid justify="space-between" container={true}>
-                                    <Grid xs={1} item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://something.come/whatever">
-                                            <img
-                                                src="/assets/facebook.svg"
-                                                className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
-                                        </a>
-                                    </Grid>
-                                    <Grid xs={1} item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://something.come/whatever">
-                                            <img
-                                                src="/assets/github.svg"
-                                                className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
-                                        </a>
-                                    </Grid>
-                                    <Grid xs={1} item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://something.come/whatever">
-                                            <img
-                                                src="/assets/instagram.svg"
-                                                className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
-                                        </a>
-                                    </Grid>
-                                    <Grid xs={1} item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://something.come/whatever">
-                                            <img
-                                                src="/assets/linkedin.svg"
-                                                className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
-                                        </a>
-                                    </Grid>
-                                    <Grid xs={1} item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://something.come/whatever">
-                                            <img
-                                                src="/assets/twitter.svg"
-                                                className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
-                                        </a>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                        </Card>
+                <Grid container={true} spacing={5}>
+                    <Grid item={true} xs={12} md={4}>
+                        <Avatar
+                            src="/assets/lion.jpg"
+                            className={classes.profile}
+                        />
+                        <Grid className={classes.gridContainer} justify="space-around" container={true}>
+                            <Grid xs={1} item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <img
+                                        src="/assets/facebook.svg"
+                                        className={classes.social}
+                                        alt="something icon"
+                                        title="something icon"/>
+                                </a>
+                            </Grid>
+                            <Grid xs={1} item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <img
+                                        src="/assets/github.svg"
+                                        className={classes.social}
+                                        alt="something icon"
+                                        title="something icon"/>
+                                </a>
+                            </Grid>
+                            <Grid xs={1} item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <img
+                                        src="/assets/instagram.svg"
+                                        className={classes.social}
+                                        alt="something icon"
+                                        title="something icon"/>
+                                </a>
+                            </Grid>
+                            <Grid xs={1} item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <img
+                                        src="/assets/linkedin.svg"
+                                        className={classes.social}
+                                        alt="something icon"
+                                        title="something icon"/>
+                                </a>
+                            </Grid>
+                            <Grid xs={1} item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <img
+                                        src="/assets/twitter.svg"
+                                        className={classes.social}
+                                        alt="something icon"
+                                        title="something icon"/>
+                                </a>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid item={true} xs={12} md={9}>
-                        <Typography className={classes.page} color="textPrimary" gutterBottom={true}
+                    <Grid item={true} xs={12} md={8}>
+                        <Typography className={classes.page} color="textSecondary" gutterBottom={true}
                                     variant="h4">Profile</Typography>
                         <Typography color="textSecondary" gutterBottom={true} variant="body1">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -203,10 +210,8 @@ const AboutPage = () => {
                 <Tabs
                     indicatorColor="secondary"
                     textColor="secondary"
-                    centered={true}
+                    centered={!mobile && true}
                     defaultValue="skills"
-                    centerRipple={true}
-                    focusRipple={true}
                     variant={mobile ? "scrollable" : "standard"}
                     value={index}
                     onChange={handleTabChange}>
@@ -219,9 +224,10 @@ const AboutPage = () => {
                     {index === 0 ? (
                         <Grid container={true} spacing={4} className={classes.buttonContainer}>
                             <Grid item={true} xs={12} md={4}>
-                                <Card variant="outlined" className={classes.card}>
+                                <Card variant="elevation" className={classes.card}>
                                     <CardContent>
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="h6"
                                             className={classes.title}>
@@ -230,7 +236,8 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -240,6 +247,7 @@ const AboutPage = () => {
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="body1"
                                             className={classes.title}>
@@ -248,12 +256,14 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Prototypes, Wireframes, Websites
                                         </Typography>
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="body1"
                                             className={classes.title}>
@@ -262,36 +272,43 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             React JS
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Next JS
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Vue JS
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             WordPress
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Adobe XD
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Figma
                                         </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>
                             <Grid item={true} xs={12} md={4}>
-                                <Card variant="outlined" className={classes.card}>
+                                <Card variant="elevation" className={classes.card}>
                                     <CardContent>
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="h6"
                                             className={classes.title}>
@@ -300,7 +317,8 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -310,6 +328,7 @@ const AboutPage = () => {
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="body1"
                                             className={classes.title}>
@@ -318,12 +337,14 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Web Applications, APIs
                                         </Typography>
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="body1"
                                             className={classes.title}>
@@ -332,36 +353,43 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Node JS
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Express JS
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Mongo DB
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             SQL
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Gorilla MUX
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Postman
                                         </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>
                             <Grid item={true} xs={12} md={4}>
-                                <Card variant="outlined" className={classes.card}>
+                                <Card variant="elevation" className={classes.card}>
                                     <CardContent>
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="h6"
                                             className={classes.title}>
@@ -370,7 +398,8 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -380,6 +409,7 @@ const AboutPage = () => {
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="body1"
                                             className={classes.title}>
@@ -388,12 +418,14 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Solving Programming Problems
                                         </Typography>
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
                                         <Typography
+                                            color="textSecondary"
                                             align="center"
                                             variant="body1"
                                             className={classes.title}>
@@ -402,27 +434,33 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             C / C++
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             C#
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Python
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             JavaScript
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Go Lang
                                         </Typography>
 
-                                        <Typography align="center" gutterBottom={true} variant="body2">
+                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                                    variant="body2">
                                             Java
                                         </Typography>
                                     </CardContent>
@@ -435,21 +473,22 @@ const AboutPage = () => {
                             <Grid item={true}>
                                 <VerticalTimeline animate={true}>
                                     <VerticalTimelineElement
-                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon" title="school icon"/>}
+                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon"
+                                                   title="school icon"/>}
                                         date={
-                                            <Typography color="textPrimary" gutterBottom={true} variant="overline">
+                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2013 - 2017
                                             </Typography>
                                         } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="outlined">
+                                        <Card variant="elevation">
                                             <CardContent>
-                                                <Typography gutterBottom={true} variant="h6">
+                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     BSc. Computer Engineering
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body1">KNUST</Typography>
+                                                <Typography color="textSecondary" variant="body1">KNUST</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body2">
+                                                <Typography color="textSecondary" variant="body2">
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -466,21 +505,22 @@ const AboutPage = () => {
                             <Grid item={true} xs={12}>
                                 <VerticalTimeline animate={true}>
                                     <VerticalTimelineElement
-                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon" title="school icon"/>}
+                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon"
+                                                   title="school icon"/>}
                                         date={
-                                            <Typography color="textPrimary" gutterBottom={true} variant="overline">
+                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2017 - 2018
                                             </Typography>
                                         } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="outlined">
+                                        <Card variant="elevation">
                                             <CardContent>
-                                                <Typography gutterBottom={true} variant="h6">
+                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     Teaching Assistant
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body1">KNUST</Typography>
+                                                <Typography color="textSecondary" variant="body1">KNUST</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body2">
+                                                <Typography color="textSecondary" variant="body2">
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -491,21 +531,23 @@ const AboutPage = () => {
                                     </VerticalTimelineElement>
 
                                     <VerticalTimelineElement
-                                        icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon" title="coding icon"/>}
+                                        icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon"
+                                                   title="coding icon"/>}
                                         date={
-                                            <Typography color="textPrimary" gutterBottom={true} variant="overline">
+                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2018 - 2021
                                             </Typography>
                                         } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="outlined">
+                                        <Card variant="elevation">
                                             <CardContent>
-                                                <Typography gutterBottom={true} variant="h6">
+                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     SORPHISE
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body1">Full Stack Web Developer</Typography>
+                                                <Typography color="textSecondary" variant="body1">Full Stack Web
+                                                    Developer</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body2">
+                                                <Typography color="textSecondary" variant="body2">
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -516,21 +558,22 @@ const AboutPage = () => {
                                     </VerticalTimelineElement>
 
                                     <VerticalTimelineElement
-                                        icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon" title="coding icon"/>}
+                                        icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon"
+                                                   title="coding icon"/>}
                                         date={
-                                            <Typography color="textPrimary" gutterBottom={true} variant="overline">
+                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2020 - Present
                                             </Typography>
                                         } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="outlined">
+                                        <Card variant="elevation">
                                             <CardContent>
-                                                <Typography gutterBottom={true} variant="h6">
+                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     Full Stack Web Developer
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body1">Dev Track</Typography>
+                                                <Typography color="textSecondary" variant="body1">Dev Track</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body2">
+                                                <Typography color="textSecondary" variant="body2">
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -541,21 +584,23 @@ const AboutPage = () => {
                                     </VerticalTimelineElement>
 
                                     <VerticalTimelineElement
-                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon" title="school icon"/>}
+                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon"
+                                                   title="school icon"/>}
                                         date={
-                                            <Typography color="textPrimary" gutterBottom={true} variant="overline">
+                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2018 - Present
                                             </Typography>
                                         } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="outlined">
+                                        <Card variant="elevation">
                                             <CardContent>
-                                                <Typography gutterBottom={true} variant="h6">
+                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     Teaching Assistant
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body1">Academic City College</Typography>
+                                                <Typography color="textSecondary" variant="body1">Academic City
+                                                    College</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography variant="body2">
+                                                <Typography color="textSecondary" variant="body2">
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

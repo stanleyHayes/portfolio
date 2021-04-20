@@ -3,43 +3,43 @@ import {grey, yellow} from "@material-ui/core/colors";
 
 export const dark = createMuiTheme({
     typography: {
-        fontFamily: "Raleway, sans-serif"
+        fontFamily: "IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 0
+        borderRadius: 2
     },
     palette: {
         primary: {
             main: "#000000",
             light: "#000000",
             dark: "#000000",
-            contrastText: yellow["500"]
+            contrastText: "#45a298"
         },
         secondary: {
-            main: yellow["700"],
-            dark: yellow["900"],
-            light: yellow["500"],
-            contrastText: yellow["500"]
+            main: "#45a298",
+            dark: "#45a298",
+            light: "#45a298",
+            contrastText: "#45a298"
         },
         text: {
-            primary: yellow["500"],
-            secondary: yellow["500"],
-            hint: yellow["300"],
-            disabled: yellow["100"]
+            primary: "#45a298",
+            secondary: "#ffffff",
+            hint: "#45a298",
+            disabled: "#45a298"
         },
         action: {
-            active: yellow["500"],
-            selected: yellow["500"],
-            hover: yellow["700"],
-            focus: yellow["700"],
-            hoverOpacity: 0.8,
+            active: "#45a298",
+            selected: "#45a298",
+            hover: "#45a298",
+            focus: "#45a298",
+            hoverOpacity: 0.4,
             focusOpacity: 0.8,
             selectedOpacity: 0.9
         },
         background: {
-            paper: "#111111"
+            paper: "#1f2833"
         },
-        divider: yellow["100"],
+        divider: "#45a298",
         type: "dark",
         common: {
             black: "#000000",
@@ -50,28 +50,28 @@ export const dark = createMuiTheme({
 
 export const light = createMuiTheme({
     typography: {
-        fontFamily: "Raleway, sans-serif"
+        fontFamily: "IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 0
+        borderRadius: 2
     },
     palette: {
         primary: {
-            main: grey["300"],
-            light: grey["100"],
-            dark: grey["500"],
-            contrastText: grey["700"]
+            main: "rgba(0,116,225,0.1)",
+            light: "#ffffff",
+            dark: "#ffffff",
+            contrastText: grey["600"]
         },
         secondary: {
-            main: grey["700"],
-            dark: grey["900"],
-            light: grey["500"],
-            contrastText: grey["500"]
+            main: "#0074e1",
+            dark: "#0074e1",
+            light: "#0074e1",
+            contrastText: "#0074e1"
         },
         text: {
-            primary: grey["900"],
-            secondary: grey["800"],
-            hint: grey["500"],
+            primary: "#0074e1",
+            secondary: grey["600"],
+            hint: grey["400"],
             disabled: grey["300"]
         },
         action: {
@@ -79,7 +79,7 @@ export const light = createMuiTheme({
             selected: grey["500"],
             hover: grey["700"],
             focus: grey["700"],
-            hoverOpacity: 0.5,
+            hoverOpacity: 0.4,
             focusOpacity: 0.8,
             selectedOpacity: 0.9
         },

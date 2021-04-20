@@ -1,11 +1,12 @@
 import React from "react";
 import Layout from "../../components/layout";
-import {Button, Card, CardMedia, Container, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Avatar, Button, Container, Grid, makeStyles, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 
 const HomePage = () => {
-    const useStyles = makeStyles(() => {
+    const useStyles = makeStyles(theme => {
+        const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             container: {
                 minHeight: '100vh',
@@ -26,9 +27,11 @@ const HomePage = () => {
                 marginBottom: 32
             },
             profile: {
-            },
-            card: {
-
+                objectFit: "cover",
+                objectPosition: "center",
+                width: 300,
+                height: 300,
+                borderRadius: '50%'
             },
             social: {
                 width: 25,
@@ -44,6 +47,12 @@ const HomePage = () => {
                 marginTop: 32,
                 borderWidth: 2,
                 borderStyle: "solid",
+            },
+            name: {
+                display: "inline-block",
+                background: dark === "dark" ? "rgba(69,162,152,0.1)" : "rgba(0,116,225,0.1)",
+                paddingLeft: 16,
+                paddingRight: 16
             }
         }
     });
@@ -54,19 +63,19 @@ const HomePage = () => {
         <Layout>
             <Container className={classes.container}>
                 <Grid container={true} spacing={8}>
-                    <Grid item={true} xs={12} md={5}>
-                        <Card className={classes.card} variant="outlined">
-                            <CardMedia
-                                component="img"
-                                src="/assets/lion.jpg"
-                                className={classes.profile}/>
-                        </Card>
+                    <Grid item={true} xs={12} md={4} container={true} justify="center">
+                        <Avatar
+                            src="/assets/lion.jpg"
+                            className={classes.profile}
+                        />
                     </Grid>
-                    <Grid xs={12} md={7} item={true}>
+                    <Grid xs={12} md={8} item={true}>
                         <Typography color="textSecondary" gutterBottom={true} variant="h5">Hello, World</Typography>
                         <Typography color="textSecondary" gutterBottom={true} variant="h6">I am a</Typography>
-                        <Typography color="textPrimary" gutterBottom={true} variant="h2">Stanley Hayford</Typography>
-                        <Typography color="textSecondary" gutterBottom={true} variant="h4">Full Stack Web Developer</Typography>
+                        <Typography className={classes.name} color="textPrimary" gutterBottom={true} variant="h2">Stanley
+                            Hayford</Typography>
+                        <Typography color="textSecondary" gutterBottom={true} variant="h4">Full Stack Web
+                            Developer</Typography>
                         <Typography color="textSecondary" gutterBottom={true} variant="body1">
                             I love to learn programming languages and solve programming problems
                         </Typography>

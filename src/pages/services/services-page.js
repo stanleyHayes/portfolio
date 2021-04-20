@@ -33,7 +33,7 @@ const ServicesPage = () => {
         <Layout>
             <Container className={classes.container}>
                 <Typography
-                    color="textPrimary"
+                    color="textSecondary"
                     variant="h6"
                     align="center"
                     className={classes.page}
@@ -50,15 +50,15 @@ const ServicesPage = () => {
 
                 <Grid container={true} spacing={4}>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -67,15 +67,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -84,15 +84,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -101,15 +101,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -118,15 +118,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -135,15 +135,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -152,15 +152,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -169,15 +169,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -186,15 +186,15 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="outlined" className={classes.card}>
+                        <Card variant="elevation" className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography align="center" gutterBottom={true} variant="body2">
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

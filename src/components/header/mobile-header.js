@@ -27,6 +27,9 @@ const MobileHeader = ({handleDrawerOpen}) => {
             role: {
                 textTransform: "uppercase",
                 fontWeight: 700
+            },
+            fab: {
+                boxShadow: '2px 4px 20px #45a298'
             }
         }
     });
@@ -55,7 +58,7 @@ const MobileHeader = ({handleDrawerOpen}) => {
                 <Grid item={true} xs={2}>
                     {
                         theme === "dark" ?
-                            (<Fab onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness7/></Fab>)
+                            (<Fab className={classes.fab} onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness7/></Fab>)
                             :
                             (<Fab onClick={() => dispatch(changeTheme())}  size="small" color="primary"><Brightness4/></Fab>)
                     }
