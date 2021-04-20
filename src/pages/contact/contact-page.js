@@ -35,7 +35,7 @@ const ContactPage = () => {
                 transition: "all 300ms ease-out"
             },
             button: {
-               
+
             },
             card: {}
         }
@@ -129,7 +129,8 @@ const ContactPage = () => {
                     </Grid>
                 </Grid>
 
-                <Divider variant="fullWidth" className={classes.divider}/>
+                <Divider light={true} variant="fullWidth" className={classes.divider}/>
+
                 <Card variant="elevation" elevation={1}>
                     <CardContent>
                         <Grid container={true} spacing={4}>
