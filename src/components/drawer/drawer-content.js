@@ -6,12 +6,14 @@ import {Close} from "@material-ui/icons";
 
 const DrawerContent = ({handleDrawerClose}) => {
 
-    const useStyles = makeStyles(() => {
+    const useStyles = makeStyles(theme => {
         return {
             link: {
                 textDecoration: "none"
             },
-            button: {},
+            button: {
+                color: theme.palette.text.secondary
+            },
             divider: {
                 marginTop: 16,
                 marginBottom: 16
@@ -95,7 +97,7 @@ const DrawerContent = ({handleDrawerClose}) => {
             <Grid>
                 <Grid item={true} xs={12}>
                     <Link to="/" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="large">
+                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
                             Home
                         </Button>
                     </Link>
@@ -103,7 +105,7 @@ const DrawerContent = ({handleDrawerClose}) => {
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/about" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="large">
+                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
                             About
                         </Button>
                     </Link>
@@ -111,7 +113,7 @@ const DrawerContent = ({handleDrawerClose}) => {
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/portfolio" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="large">
+                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
                             Portfolio
                         </Button>
                     </Link>
@@ -119,7 +121,7 @@ const DrawerContent = ({handleDrawerClose}) => {
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/services" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="large">
+                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
                             Services
                         </Button>
                     </Link>
@@ -127,7 +129,7 @@ const DrawerContent = ({handleDrawerClose}) => {
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
                     <Link to="/contact" className={classes.link}>
-                        <Button fullWidth={true} variant="text" size="large">
+                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
                             Contact
                         </Button>
                     </Link>

@@ -60,7 +60,7 @@ const MobileHeader = ({handleDrawerOpen}) => {
                         theme === "dark" ?
                             (<Fab className={classes.fab} onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness7/></Fab>)
                             :
-                            (<Fab onClick={() => dispatch(changeTheme())}  size="small" color="primary"><Brightness4/></Fab>)
+                            (<Fab onClick={() => dispatch(changeTheme())}  size="small" color="primary"><Brightness4 color="secondary"/></Fab>)
                     }
                 </Grid>
             </Grid>
