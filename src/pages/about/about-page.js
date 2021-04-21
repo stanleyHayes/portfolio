@@ -393,7 +393,7 @@ const AboutPage = () => {
                                             align="center"
                                             variant="h6"
                                             className={classes.title}>
-                                            Frontend
+                                            Languages
                                         </Typography>
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
