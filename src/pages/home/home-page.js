@@ -86,7 +86,7 @@ const HomePage = () => {
                         </Typography>
                         <Typography color="textSecondary" gutterBottom={true} variant="body1">
                             I love to learn programming languages and solve programming problems. I teach young people who
-                            want to learn how to code. I love building websites using React and Material UI. I just love
+                            want to learn how to code. I love building web apps with React and Material UI. I just love
                             to code and help people learn to code.
                         </Typography>
                         <Grid className={classes.socialContainer} justify="space-between" container={true}>
