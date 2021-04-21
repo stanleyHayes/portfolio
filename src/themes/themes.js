@@ -63,13 +63,13 @@ export const light = createMuiTheme({
             contrastText: grey["600"]
         },
         secondary: {
-            main: "#0074e1",
-            dark: "#0074e1",
-            light: "#0074e1",
-            contrastText: "#0074e1"
+            main: "#45a298",
+            dark: "#45a298",
+            light: "#45a298",
+            contrastText: "#45a298"
         },
         text: {
-            primary: "#0074e1",
+            primary: "#45a298",
             secondary: grey["600"],
             hint: grey["400"],
             disabled: grey["300"]
