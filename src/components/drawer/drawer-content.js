@@ -25,6 +25,14 @@ const DrawerContent = ({handleDrawerClose}) => {
             name: {},
             nickname: {},
             role: {
+                background: "rgba(69,162,152,0.25)",
+                paddingLeft: 16,
+                paddingRight: 16,
+                paddingTop: 16,
+                paddingBottom: 16,
+                marginTop: 16,
+                marginBottom: 16,
+                borderRadius: 16,
                 fontWeight: "bold"
             },
             subDivider: {
@@ -45,7 +53,7 @@ const DrawerContent = ({handleDrawerClose}) => {
     return (
         <Container className={classes.container}>
             <Grid container={true} justify="center">
-                <Grid container={true} justify="flex-end">
+                <Grid item={true} xs={12} container={true} justify="flex-end">
                     <Grid item={true}>
                         <Button
                             className={classes.closeButton}
@@ -57,7 +65,7 @@ const DrawerContent = ({handleDrawerClose}) => {
                         </Button>
                     </Grid>
                 </Grid>
-                <Grid container={true} justify="center">
+                <Grid item={true} xs={12} container={true} justify="center">
                     <Grid item={true}>
                         <Avatar src="/assets/lightingcolored.svg" className={classes.avatar}/>
                     </Grid>
@@ -82,10 +90,10 @@ const DrawerContent = ({handleDrawerClose}) => {
                     </Typography>
                     <Divider variant="middle" className={classes.subDivider} light={true}/>
                     <Typography
-                        color="textSecondary"
+                        color="textPrimary"
                         gutterBottom={true}
                         className={classes.role}
-                        variant="body2"
+                        variant="h6"
                         align="center">
                         Full Stack Web Developer
                     </Typography>
@@ -94,7 +102,7 @@ const DrawerContent = ({handleDrawerClose}) => {
 
             <Divider variant="fullWidth" className={classes.divider}/>
 
-            <Grid>
+            <Grid container={true} justify="center">
                 <Grid item={true} xs={12}>
                     <Link to="/" className={classes.link}>
                         <Button className={classes.button} fullWidth={true} variant="text" size="large">

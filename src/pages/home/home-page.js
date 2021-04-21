@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 
 const HomePage = () => {
     const useStyles = makeStyles(theme => {
-        const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             container: {
                 minHeight: '100vh',
@@ -29,9 +28,13 @@ const HomePage = () => {
             profile: {
                 objectFit: "cover",
                 objectPosition: "center",
-                width: 300,
-                height: 300,
-                borderRadius: '50%'
+                width: 350,
+                height: 350,
+                borderRadius: '50%',
+                [theme.breakpoints.down('md')]: {
+                    width: 320,
+                    height: 320,
+                }
             },
             social: {
                 width: 25,
@@ -48,11 +51,16 @@ const HomePage = () => {
                 paddingTop: 16,
                 paddingBottom: 16
             },
-            name: {
+            role: {
                 display: "inline-block",
-                background: dark === "dark" ? "rgba(69,162,152,0.1)" : "rgba(0,116,225,0.1)",
+                background: "rgba(69,162,152,0.25)",
                 paddingLeft: 16,
-                paddingRight: 16
+                paddingRight: 16,
+                paddingTop: 16,
+                paddingBottom: 16,
+                marginTop: 16,
+                marginBottom: 16,
+                borderRadius: 16
             }
         }
     });
@@ -62,7 +70,7 @@ const HomePage = () => {
     return (
         <Layout>
             <Container className={classes.container}>
-                <Grid container={true} spacing={8}>
+                <Grid container={true} spacing={4}>
                     <Grid item={true} xs={12} md={4} container={true} justify="center">
                         <Avatar
                             src="/assets/lion.jpg"
@@ -70,14 +78,16 @@ const HomePage = () => {
                         />
                     </Grid>
                     <Grid xs={12} md={8} item={true}>
-                        <Typography color="textSecondary" gutterBottom={true} variant="h5">Hello, World</Typography>
-                        <Typography color="textSecondary" gutterBottom={true} variant="h6">I am a</Typography>
-                        <Typography className={classes.name} color="textPrimary" gutterBottom={true} variant="h2">Stanley
-                            Hayford</Typography>
-                        <Typography color="textSecondary" gutterBottom={true} variant="h4">Full Stack Web
-                            Developer</Typography>
+                        <Typography color="textSecondary" gutterBottom={true} variant="h5">
+                            Hello, World! I am a Stanley Hayford
+                        </Typography>
+                        <Typography className={classes.role} color="textPrimary" gutterBottom={true} variant="h4">
+                            Full Stack Web Developer
+                        </Typography>
                         <Typography color="textSecondary" gutterBottom={true} variant="body1">
-                            I love to learn programming languages and solve programming problems
+                            I love to learn programming languages and solve programming problems. I teach young people who
+                            want to learn how to code. I love building websites using React and Material UI. I just love
+                            to code and help people learn to code.
                         </Typography>
                         <Grid className={classes.socialContainer} justify="space-between" container={true}>
                             <Grid xs={1} item={true}>
