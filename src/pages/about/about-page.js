@@ -66,6 +66,10 @@ const AboutPage = () => {
             },
             gridContainer: {
                 marginTop: 32
+            },
+            button: {
+                paddingTop: 16,
+                paddingBottom: 16
             }
         }
     });
@@ -101,7 +105,7 @@ const AboutPage = () => {
                 <Divider variant="fullWidth" className={classes.divider}/>
 
                 <Grid container={true} spacing={5}>
-                    <Grid item={true} xs={12} md={4}>
+                    <Grid item={true} xs={12} md={4} justify="center" container={true}>
                         <Avatar
                             src="/assets/lion.jpg"
                             className={classes.profile}
@@ -229,7 +233,7 @@ const AboutPage = () => {
                     {index === 0 ? (
                         <Grid container={true} spacing={4} className={classes.buttonContainer}>
                             <Grid item={true} xs={12} md={4}>
-                                <Card variant="elevation" className={classes.card}>
+                                <Card variant="elevation" elevation={0} className={classes.card}>
                                     <CardContent>
                                         <Typography
                                             color="textSecondary"
@@ -310,7 +314,7 @@ const AboutPage = () => {
                                 </Card>
                             </Grid>
                             <Grid item={true} xs={12} md={4}>
-                                <Card variant="elevation" className={classes.card}>
+                                <Card variant="elevation" elevation={0} className={classes.card}>
                                     <CardContent>
                                         <Typography
                                             color="textSecondary"
@@ -391,7 +395,7 @@ const AboutPage = () => {
                                 </Card>
                             </Grid>
                             <Grid item={true} xs={12} md={4}>
-                                <Card variant="elevation" className={classes.card}>
+                                <Card variant="elevation" elevation={0} className={classes.card}>
                                     <CardContent>
                                         <Typography
                                             color="textSecondary"

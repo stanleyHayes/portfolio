@@ -18,7 +18,8 @@ const ContactPage = () => {
     const useStyles = makeStyles(() => {
         return {
             container: {
-                paddingTop: 84
+                paddingTop: 84,
+                paddingBottom: 84
             },
             page: {
                 textTransform: "uppercase"
@@ -35,7 +36,9 @@ const ContactPage = () => {
                 transition: "all 300ms ease-out"
             },
             button: {
-
+                paddingTop: 16,
+                paddingBottom: 16,
+                marginTop: 4
             },
             card: {}
         }
@@ -83,7 +86,7 @@ const ContactPage = () => {
 
                 <Grid container={true} spacing={4}>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} variant="elevation">
+                        <Card className={classes.card} elevation={0} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -98,7 +101,7 @@ const ContactPage = () => {
                         </Card>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} variant="elevation">
+                        <Card className={classes.card} elevation={0} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -113,7 +116,7 @@ const ContactPage = () => {
                         </Card>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} variant="elevation">
+                        <Card className={classes.card} elevation={0} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -131,7 +134,7 @@ const ContactPage = () => {
 
                 <Divider light={true} variant="fullWidth" className={classes.divider}/>
 
-                <Card variant="elevation" elevation={1}>
+                <Card variant="elevation" elevation={0}>
                     <CardContent>
                         <Grid container={true} spacing={4}>
                             <Grid item={true} xs={12} md={6}>
@@ -190,7 +193,7 @@ const ContactPage = () => {
                                     variant="outlined"
                                     margin="normal"
                                     name="message"
-                                    rows={7}
+                                    rows={6}
                                     multiline={true}
                                     type="text"
                                     value={message}

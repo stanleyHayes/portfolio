@@ -30,7 +30,7 @@ const Project = ({project}) => {
     const classes = useStyles();
 
     return (
-        <Card variant="elevation" className={classes.card}>
+        <Card variant="elevation" elevation={0} className={classes.card}>
             <CardMedia src={project.image} component="img"/>
             <CardContent>
                 <Typography color="textSecondary" gutterBottom={true} variant="h5" className={classes.title}>{project.title}</Typography>

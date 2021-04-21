@@ -50,7 +50,7 @@ const ServicesPage = () => {
 
                 <Grid container={true} spacing={4}>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -67,7 +67,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -84,7 +84,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -101,7 +101,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -118,7 +118,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -135,7 +135,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -152,7 +152,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -169,7 +169,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -186,7 +186,7 @@ const ServicesPage = () => {
                         </Card>
                     </Grid>
                     <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" className={classes.card}>
+                        <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>

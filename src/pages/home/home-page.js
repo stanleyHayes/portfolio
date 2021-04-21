@@ -45,8 +45,8 @@ const HomePage = () => {
             },
             button: {
                 marginTop: 32,
-                borderWidth: 2,
-                borderStyle: "solid",
+                paddingTop: 16,
+                paddingBottom: 16
             },
             name: {
                 display: "inline-block",
