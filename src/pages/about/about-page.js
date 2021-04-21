@@ -12,6 +12,9 @@ import {
     Typography, useMediaQuery
 } from "@material-ui/core";
 import {VerticalTimeline, VerticalTimelineElement} from "react-vertical-timeline-component";
+import {useSelector} from "react-redux";
+import {getUiState} from "../../features/ui/ui-slice";
+import {dark, light} from "../../themes/themes";
 
 const AboutPage = () => {
     const useStyles = makeStyles(theme => {
@@ -75,6 +78,8 @@ const AboutPage = () => {
     }
 
     const mobile = useMediaQuery('(max-width: 600px)');
+    const variant = useSelector(getUiState);
+    let theme = variant === "dark" ? dark : light
 
     return (
         <Layout>
@@ -479,8 +484,8 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2013 - 2017
                                             </Typography>
-                                        } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="elevation">
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     BSc. Computer Engineering
@@ -511,8 +516,8 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2017 - 2018
                                             </Typography>
-                                        } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="elevation">
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     Teaching Assistant
@@ -537,7 +542,7 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2018 - 2021
                                             </Typography>
-                                        } contentStyle={{background: "#303030", borderRadius: 0}}>
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
                                         <Card variant="elevation">
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
@@ -564,8 +569,8 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2020 - Present
                                             </Typography>
-                                        } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="elevation">
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     Full Stack Web Developer
@@ -590,8 +595,11 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2018 - Present
                                             </Typography>
-                                        } contentStyle={{background: "#303030", borderRadius: 0}}>
-                                        <Card variant="elevation">
+                                        } contentStyle={{
+                                        background: theme.palette.background.paper,
+                                        borderRadius: 2
+                                    }}>
+                                        <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     Teaching Assistant
