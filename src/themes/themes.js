@@ -57,7 +57,7 @@ export const light = createMuiTheme({
     },
     palette: {
         primary: {
-            main: "rgba(0,116,225,0.1)",
+            main: "#ffffff",
             light: "#ffffff",
             dark: "#ffffff",
             contrastText: grey["600"]
