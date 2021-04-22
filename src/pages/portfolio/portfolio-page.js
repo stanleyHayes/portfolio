@@ -3,6 +3,7 @@ import Layout from "../../components/layout";
 import {Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
 import {getProjects} from "../../data/data";
 import Project from "../../components/shared/project";
+import {Helmet} from "react-helmet";
 
 
 const PortfolioPage = () => {
@@ -31,6 +32,17 @@ const PortfolioPage = () => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Stanley Hayford | Portfolio</title>
+                <meta
+                    name="description"
+                    content="Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise professional with 4 years of hands-on experience taking charge of front and back-end web development. Skillful creating servers and databases for functionality and designing and developing API's. Hardworking collaborator with a track record of superior results. "
+                />
+                <meta
+                    name="keywords"
+                    content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
+                />
+            </Helmet>
             <Container className={classes.container}>
                 <Typography
                     variant="h6"

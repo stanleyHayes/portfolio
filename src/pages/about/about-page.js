@@ -15,6 +15,7 @@ import {VerticalTimeline, VerticalTimelineElement} from "react-vertical-timeline
 import {useSelector} from "react-redux";
 import {getUiState} from "../../features/ui/ui-slice";
 import {dark, light} from "../../themes/themes";
+import {Helmet} from "react-helmet";
 
 const AboutPage = () => {
     const useStyles = makeStyles(theme => {
@@ -87,6 +88,17 @@ const AboutPage = () => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Stanley Hayford | About</title>
+                <meta
+                    name="description"
+                    content="Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise professional with 4 years of hands-on experience taking charge of front and back-end web development. Skillful creating servers and databases for functionality and designing and developing API's. Hardworking collaborator with a track record of superior results. "
+                />
+                <meta
+                    name="keywords"
+                    content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
+                />
+            </Helmet>
             <Container className={classes.container}>
                 <Typography
                     color="textSecondary"

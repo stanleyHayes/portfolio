@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../components/layout";
 import {Avatar, Button, Container, Grid, makeStyles, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 
 const HomePage = () => {
@@ -69,6 +70,17 @@ const HomePage = () => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Stanley Hayford | Full Stack Web Developer | Home</title>
+                <meta
+                    name="description"
+                    content="Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise professional with 4 years of hands-on experience taking charge of front and back-end web development. Skillful creating servers and databases for functionality and designing and developing API's. Hardworking collaborator with a track record of superior results. "
+                />
+                <meta
+                    name="keywords"
+                    content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
+                />
+            </Helmet>
             <Container className={classes.container}>
                 <Grid container={true} spacing={4}>
                     <Grid item={true} xs={12} md={4} container={true} justify="center">
@@ -85,7 +97,8 @@ const HomePage = () => {
                             Full Stack Web Developer
                         </Typography>
                         <Typography color="textSecondary" gutterBottom={true} variant="body1">
-                            I love to learn programming languages and solve programming problems. I teach young people who
+                            I love to learn programming languages and solve programming problems. I teach young people
+                            who
                             want to learn how to code. I love building web apps with React and Material UI. I just love
                             to code and help people learn to code.
                         </Typography>
