@@ -16,6 +16,8 @@ import {useSelector} from "react-redux";
 import {getUiState} from "../../features/ui/ui-slice";
 import {dark, light} from "../../themes/themes";
 import {Helmet} from "react-helmet";
+import {getCertification} from "../../data/data";
+import Certification from "../../components/shared/certification";
 
 const AboutPage = () => {
     const useStyles = makeStyles(theme => {
@@ -637,10 +639,16 @@ const AboutPage = () => {
                             </Grid>
                         </Grid>
                     ) : (
-                        <Grid container={true}>
-                            <Grid item={true}>
-                                <Typography>Certifications</Typography>
-                            </Grid>
+                        <Grid className={classes.gridContainer} container={true} spacing={4}>
+                            {
+                                getCertification().map((certification, index) => {
+                                    return (
+                                        <Grid item={true} xs={12} md={6} lg={4} key={index}>
+                                            <Certification certification={certification}/>
+                                        </Grid>
+                                    )
+                                })
+                            }
                         </Grid>
                     )}
                 </Container>

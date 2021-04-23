@@ -74,3 +74,50 @@ export const getProjects = () => {
         }
     ];
 }
+
+export const getCertification = () => {
+    return [
+        {
+            image: "/assets/lion.jpg",
+            title: "Mongo DB Basics JavaScript",
+            institution: "Mongo DB",
+            expiry: "No Expiry",
+            link: ""
+        },
+        {
+            image: "/assets/lion.jpg",
+            title: "Mongo DB Basics JavaScript",
+            institution: "Mongo DB",
+            expiry: "No Expiry",
+            link: ""
+        },
+        {
+            image: "/assets/lion.jpg",
+            title: "Mongo DB Basics JavaScript",
+            institution: "Mongo DB",
+            expiry: "No Expiry",
+            link: ""
+        },
+        {
+            image: "/assets/lion.jpg",
+            title: "Mongo DB Basics JavaScript",
+            institution: "Mongo DB",
+            expiry: "No Expiry",
+            link: ""
+        },
+        {
+            image: "/assets/lion.jpg",
+            title: "Mongo DB Basics JavaScript",
+            institution: "Mongo DB",
+            expiry: "No Expiry",
+            link: ""
+        },
+        {
+            image: "/assets/lion.jpg",
+            title: "Mongo DB Basics JavaScript",
+            institution: "Mongo DB",
+            expiry: "No Expiry",
+            link: ""
+        },
+    ]
+}
