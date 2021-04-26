@@ -118,7 +118,7 @@ const AboutPage = () => {
 
                 <Divider variant="fullWidth" className={classes.divider}/>
 
-                <Grid container={true} spacing={5}>
+                <Grid className={classes.buttonContainer} container={true} spacing={5}>
                     <Grid item={true} xs={12} md={4} justify="center" container={true}>
                         <Avatar
                             src="/assets/lion.jpg"
@@ -492,7 +492,7 @@ const AboutPage = () => {
                         </Grid>
 
                     ) : index === 1 ? (
-                        <Grid container={true}>
+                        <Grid container={true} className={classes.buttonContainer}>
                             <Grid item={true}>
                                 <VerticalTimeline animate={true}>
                                     <VerticalTimelineElement
@@ -561,7 +561,7 @@ const AboutPage = () => {
                                                 2018 - 2021
                                             </Typography>
                                         } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
-                                        <Card variant="elevation">
+                                        <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     SORPHISE
