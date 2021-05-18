@@ -1,76 +1,73 @@
 export const getProjects = () => {
     return [
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "GIISDEC",
+            summary: "Ghana Integrated Iron & Steel Development Corporation",
+            categories: ["WordPress"],
+            link: "http://giisdec.com"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Chime Africa",
+            summary: "CHIME is an Advancing Business Education (ABE UK) online training program and opportunity being offered at a SUBSIDIZED RATE to the general public...",
+            categories: ["React", "MySQL", "PHP", "Material UI"],
+            link: "http://chimeafrica.org"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Rotech Academy",
+            summary: "We are a team of able robotics enthusiasts with over five years of experience in building robots and programming for various competitions and coaching national and international robotics teams.",
+            categories: ["React", "Email JS", "Material UI"],
+            link: "https://rotech-academy.site"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Voodoo Wallet",
+            summary: "Buy and Sell Bitcoin at an affordable rate.",
+            categories: ["React", "MongoDB", "Express", "Node JS"],
+            link: "https://voodoo-client.vercel.app"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Stanley Hayford",
+            summary: "Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages.",
+            categories: ["React", "Material UI"],
+            link: "https://hayfordstanley.vercel.app"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Blog Mania",
+            summary: "Reader's favorite place",
+            categories: ["React", "Material UI", "Redux"],
+            link: "https://blogmania.vercel.app"
+        },
+
+        {
+            title: "SIRCLES ORI",
+            summary: "SIRCLES (as in “circle”) is a creative exploit that seeks to give beautiful meanings to images and stories through still photos and video concepts. ",
+            categories: ["React", "Material UI"],
+            link: "https://sircles-ori.vercel.app"
+        },
+
+        {
+            title: "Rodac",
+            summary: "Result-oriented design, architecture, and construction at your service ",
+            categories: ["React", "Material UI"],
+            link: "https://rodac.vercel.app"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Jasey Farms",
+            summary: "Healthy, quality, affordable vegetables for everyday people",
+            categories: ["React", "Material UI"],
+            link: "https://jaseyfarms.vercel.app"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Jasey Mining",
+            summary: "Optimising the blasting experiences for our clients ",
+            categories: ["React", "Material UI"],
+            link: "https://jaseymining.vecel.app"
         },
+
         {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
-        },
-        {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
-        },
-        {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
-        },
-        {
-            image: "/assets/lion.jpg",
-            title: "Lorem Ipsum",
-            summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            categories: ["React", "MongoDB", "Express", "Node JS"]
+            title: "Cristiano Ronaldo",
+            summary: "Cristiano Ronaldo is a Portuguese professional footballer who plays for Juventus and Portugal national team.",
+            categories: ["HTML", "CSS", "JavaScript", "Personal", "GitHub Pages"],
+            link: "https://stanleyHayes.github.io"
         }
     ];
 }

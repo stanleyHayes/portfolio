@@ -317,7 +317,7 @@ const AboutPage = () => {
 
                                         <Typography color="textSecondary" align="center" gutterBottom={true}
                                                     variant="body2">
-                                            Adobe XD
+                                            Svelte
                                         </Typography>
 
                                         <Typography color="textSecondary" align="center" gutterBottom={true}

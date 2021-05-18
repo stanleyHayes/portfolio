@@ -23,7 +23,10 @@ const ServicesPage = () => {
                 marginBottom: 32
             },
             card: {
-
+                minHeight: 250
+            },
+            iconContainer: {
+                marginBottom: 32
             }
         }
     });
@@ -65,15 +68,15 @@ const ServicesPage = () => {
                         <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
-                                    <Grid item={true}>
+                                    <Grid className={classes.iconContainer} item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true}
+                                            variant="h4">Training</Typography>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Training beginner and intermediate programmers in OOP, functional and procedural
+                                    programming
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -82,15 +85,15 @@ const ServicesPage = () => {
                         <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
-                                    <Grid item={true}>
+                                    <Grid className={classes.iconContainer} item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
+                                    WordPress
+                                </Typography>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Corporate and E-Commerce websites using WordPress.
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -99,15 +102,15 @@ const ServicesPage = () => {
                         <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
-                                    <Grid item={true}>
+                                    <Grid className={classes.iconContainer} item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
+                                    Web Apps
+                                </Typography>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Responsive Web Apps using React, Vue, Svelte
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -116,15 +119,15 @@ const ServicesPage = () => {
                         <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
-                                    <Grid item={true}>
+                                    <Grid className={classes.iconContainer} item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
+                                    Web APIs
+                                </Typography>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Scalable Web APIs using NodeJS, GoFibre
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -133,15 +136,15 @@ const ServicesPage = () => {
                         <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
-                                    <Grid item={true}>
+                                    <Grid className={classes.iconContainer} item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
+                                    SQL Database
+                                </Typography>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    SQL Database using MYSQL
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -150,66 +153,15 @@ const ServicesPage = () => {
                         <Card variant="elevation" elevation={0} className={classes.card}>
                             <CardContent>
                                 <Grid container={true} justify="center">
-                                    <Grid item={true}>
+                                    <Grid className={classes.iconContainer} item={true}>
                                         <Code/>
                                     </Grid>
                                 </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
+                                    NoSQL Database
                                 </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid item={true}>
-                                        <Code/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid item={true}>
-                                        <Code/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid item={true}>
-                                        <Code/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">Lorem Ipsum</Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    NoSQL Database using MongoDB
                                 </Typography>
                             </CardContent>
                         </Card>

@@ -1,17 +1,20 @@
 import React from "react";
-import {Card, CardContent, CardMedia, Chip, Divider, makeStyles, Typography, Button} from "@material-ui/core";
+import {Card, CardContent, Chip, Divider, makeStyles, Typography, Button, CardActions} from "@material-ui/core";
 import {ChevronRight} from "@material-ui/icons";
 
 const Project = ({project}) => {
     const useStyles = makeStyles((theme) => {
         return {
             card: {
-
+                minHeight: 350,
+                display: "flex",
+                flexDirection: "column"
             },
             link: {
                 textDecoration: "none",
                 cursor: "pointer",
-                fontWeight: "bold"
+                fontWeight: "bold",
+                color: theme.palette.text.primary
             },
             divider: {
                 marginTop: 16,
@@ -23,6 +26,9 @@ const Project = ({project}) => {
             },
             title: {
                 textTransform: "uppercase"
+            },
+            content: {
+                flexGrow: 1
             }
         }
     });
@@ -31,11 +37,14 @@ const Project = ({project}) => {
 
     return (
         <Card variant="elevation" elevation={0} className={classes.card}>
-            <CardMedia src={project.image} component="img"/>
-            <CardContent>
-                <Typography color="textSecondary" gutterBottom={true} variant="h5" className={classes.title}>{project.title}</Typography>
+            {/*<CardMedia src={project.image} component="img"/>*/}
+            <CardContent className={classes.content}>
+                <Typography color="textSecondary" gutterBottom={true} variant="h5"
+                            className={classes.title}>{project.title}</Typography>
                 <Typography color="textSecondary" gutterBottom={true} variant="body2">{project.summary}</Typography>
-                <Divider light={true} variant="fullWidth" className={classes.divider} />
+            </CardContent>
+            <Divider light={true} variant="fullWidth" className={classes.divider}/>
+            <CardContent>
                 {
                     project.categories.map((category, index) => {
                         return (
@@ -49,15 +58,17 @@ const Project = ({project}) => {
                         )
                     })
                 }
-                <Divider light={true} variant="fullWidth" className={classes.divider} />
-                <Button fullWidth={true} size="large" variant="text" endIcon={<ChevronRight />}>
+            </CardContent>
+            <Divider light={true} variant="fullWidth" className={classes.divider}/>
+            <CardActions>
+                <Button fullWidth={true} size="large" variant="text" endIcon={<ChevronRight/>}>
                     <a
                         className={classes.link}
                         rel="noreferrer noopener"
                         target="_blank"
-                        href={project.url}>View Project</a>
+                        href={project.link}>View Project</a>
                 </Button>
-            </CardContent>
+            </CardActions>
         </Card>
     )
 }
