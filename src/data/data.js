@@ -13,6 +13,12 @@ export const getProjects = () => {
             link: "http://chimeafrica.org"
         },
         {
+            title: "Against Racism",
+            summary: "Together, the tool against hatred has been developed by Tieto against anger in a project to monitor incidents of hatred in Finland.",
+            categories: ["WordPress", "CSS"],
+            link: "https://www.yhdessavihaavastaan.fi/"
+        },
+        {
             title: "Rotech Academy",
             summary: "We are a team of able robotics enthusiasts with over five years of experience in building robots and programming for various competitions and coaching national and international robotics teams.",
             categories: ["React", "Email JS", "Material UI"],
@@ -60,14 +66,13 @@ export const getProjects = () => {
             title: "Jasey Mining",
             summary: "Optimising the blasting experiences for our clients ",
             categories: ["React", "Material UI"],
-            link: "https://jaseymining.vecel.app"
+            link: "https://jaseymining.vercel.app"
         },
-
         {
             title: "Cristiano Ronaldo",
             summary: "Cristiano Ronaldo is a Portuguese professional footballer who plays for Juventus and Portugal national team.",
             categories: ["HTML", "CSS", "JavaScript", "Personal", "GitHub Pages"],
-            link: "https://stanleyHayes.github.io"
+            link: "https://stanleyhayes.github.io/cristianoronaldo/"
         }
     ];
 }

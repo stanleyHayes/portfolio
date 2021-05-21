@@ -6,7 +6,7 @@ const Project = ({project}) => {
     const useStyles = makeStyles((theme) => {
         return {
             card: {
-                minHeight: 350,
+                minHeight: 400,
                 display: "flex",
                 flexDirection: "column"
             },
@@ -16,7 +16,7 @@ const Project = ({project}) => {
                 fontWeight: "bold",
                 color: theme.palette.text.primary
             },
-            divider: {
+            fullWidth: {
                 marginTop: 16,
                 marginBottom: 16
             },
@@ -29,6 +29,10 @@ const Project = ({project}) => {
             },
             content: {
                 flexGrow: 1
+            },
+            divider: {
+                marginTop: 8,
+                marginBottom: 8
             }
         }
     });
@@ -41,6 +45,7 @@ const Project = ({project}) => {
             <CardContent className={classes.content}>
                 <Typography color="textSecondary" gutterBottom={true} variant="h5"
                             className={classes.title}>{project.title}</Typography>
+                <Divider light={true} variant="fullWidth" className={classes.fullWidth}/>
                 <Typography color="textSecondary" gutterBottom={true} variant="body2">{project.summary}</Typography>
             </CardContent>
             <Divider light={true} variant="fullWidth" className={classes.divider}/>
