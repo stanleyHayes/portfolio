@@ -22,7 +22,8 @@ const Project = ({project}) => {
             },
             chip: {
                 marginRight: 8,
-                marginBottom: 8
+                marginBottom: 8,
+                backgroundColor: theme.palette.primary.light
             },
             title: {
                 textTransform: "uppercase"
@@ -56,7 +57,7 @@ const Project = ({project}) => {
                             <Chip
                                 key={index}
                                 className={classes.chip}
-                                variant="outlined"
+                                variant="default"
                                 size="medium"
                                 label={category}
                             />

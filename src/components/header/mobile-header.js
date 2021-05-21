@@ -1,7 +1,7 @@
 import {Button, Fab, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import React from "react";
 import {Link} from "react-router-dom";
-import {Brightness4, Brightness7} from "@material-ui/icons";
+import {Brightness4, Brightness7, Menu} from "@material-ui/icons";
 import {useSelector, useDispatch} from "react-redux";
 import {changeTheme, getUiState} from "../../features/ui/ui-slice";
 
@@ -43,24 +43,28 @@ const MobileHeader = ({handleDrawerOpen}) => {
         <Toolbar>
             <Grid container={true} justify="space-between" alignItems="center">
                 <Grid item={true} xs={2}>
-                    <img
-                        onClick={handleDrawerOpen}
-                        className={classes.hamburger}
-                        src="/assets/lightingcolored.svg"
-                        alt="zeus lighting bolt"
-                        title="zeus lighting bolt"/>
+                    <Menu onClick={handleDrawerOpen} className={classes.hamburger}/>
                 </Grid>
                 <Grid item={true} xs={8}>
                     <Link to="/" className={classes.link}>
-                        <Button className={classes.brand} variant="text">Zeus</Button>
+                        <Button startIcon={
+                            <img
+                                className={classes.hamburger}
+                                src="/assets/lightingcolored.svg"
+                                alt="zeus lighting bolt"
+                                title="zeus lighting bolt"
+                            />
+                        } className={classes.brand} variant="text">Zeus</Button>
                     </Link>
                 </Grid>
                 <Grid item={true} xs={2}>
                     {
                         theme === "dark" ?
-                            (<Fab className={classes.fab} onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness7/></Fab>)
+                            (<Fab className={classes.fab} onClick={() => dispatch(changeTheme())} size="small"
+                                  color="primary"><Brightness7/></Fab>)
                             :
-                            (<Fab onClick={() => dispatch(changeTheme())}  size="small" color="primary"><Brightness4 color="secondary"/></Fab>)
+                            (<Fab onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness4
+                                color="secondary"/></Fab>)
                     }
                 </Grid>
             </Grid>

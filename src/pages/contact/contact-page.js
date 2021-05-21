@@ -123,7 +123,7 @@ const ContactPage = () => {
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" variant="h6">Email</Typography>
-                                <Typography color="textSecondary" align="center" variant="body2">dev.stanleyhayford@gmail.com</Typography>
+                                <Typography color="textSecondary" align="center" variant="body2">dev.stanley.hayford@gmail.com</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
