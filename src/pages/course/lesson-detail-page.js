@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import Layout from "../../components/layout";
-import {Box, Card, Container, makeStyles, Typography} from "@material-ui/core";
+import {Box, Container, List, ListItem, makeStyles, Typography} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import {getCourseLessonBySlug} from "../../data/data";
 
@@ -34,15 +34,36 @@ const LessonDetailPage = () => {
     const classes = useStyles();
     const {cslug, lslug} = useParams();
     const [course, lessons, lesson] = getCourseLessonBySlug(cslug, lslug);
-
+    const [selectedLesson, setSelectedLesson] = useState(lesson);
+    const handleSelectedLesson = lesson => {
+        setSelectedLesson(lesson);
+    }
     return (
         <Layout>
             <Box className={classes.container}>
-              <Box>
+                <Box>
+                    <List>
+                        {lessons && lessons.map((lesson, index) => {
+                            return (
+                                <ListItem key={index} onClick={() => handleSelectedLesson(lesson)}>
 
-              </Box>
+                                </ListItem>
+                            )
+                        })}
+                    </List>
+                </Box>
                 <Container>
-                    <Typography variant="h4">Title</Typography>
+                    <Typography variant="h4">{course.name}</Typography>
+
+                    {selectedLesson ? (
+                        <Box>
+                            <Typography variant="h4" align="center">{selectedLesson.title}</Typography>
+                        </Box>
+                    ) : (
+                        <Box>
+
+                        </Box>
+                    )}
                 </Container>
                 <Box>
 
