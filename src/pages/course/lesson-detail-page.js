@@ -1,6 +1,8 @@
 import React from "react";
 import Layout from "../../components/layout";
-import {Box, Container, makeStyles, Typography} from "@material-ui/core";
+import {Box, Card, Container, makeStyles, Typography} from "@material-ui/core";
+import {useParams} from "react-router-dom";
+import {getCourseLessonBySlug} from "../../data/data";
 
 const LessonDetailPage = () => {
 
@@ -30,6 +32,8 @@ const LessonDetailPage = () => {
     });
 
     const classes = useStyles();
+    const {cslug, lslug} = useParams();
+    const [course, lessons, lesson] = getCourseLessonBySlug(cslug, lslug);
 
     return (
         <Layout>

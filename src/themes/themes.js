@@ -6,7 +6,7 @@ export const dark = createMuiTheme({
         fontFamily: "IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 32
+        borderRadius: 2
     },
     palette: {
         primary: {

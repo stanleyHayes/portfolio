@@ -1,31 +1,32 @@
 import React from "react";
 import {
-    CardContent,
+    Button,
     Card,
-    makeStyles,
-    Grid,
-    Typography,
+    CardActions,
+    CardContent,
     CardMedia,
     Divider,
-    CardActions,
-    Button
+    Grid,
+    makeStyles,
+    Typography
 } from "@material-ui/core";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {ChevronRight} from "@material-ui/icons";
 
 const Course = ({course}) => {
 
     const useStyles = makeStyles(theme => {
         return {
-            card: {},
+            card: {
+                cursor: "pointer"
+            },
             separator: {},
             collection: {},
             lessonCount: {},
             image: {
-                height: 400,
-                objectFit: 'cover',
+                height: 200,
+                objectFit: 'contain',
                 objectPosition: 'center',
-                marginTop: -20,
             },
             name: {
                 textTransform: "uppercase"
@@ -45,9 +46,14 @@ const Course = ({course}) => {
     });
 
     const classes = useStyles();
+    const history = useHistory();
 
     return (
-        <Card variant="elevation" elevation={0} className={classes.card}>
+        <Card
+            onClick={() => history.push(`/blog/${course.slug}/lessons`)}
+            variant="elevation"
+            elevation={0}
+            className={classes.card}>
             <CardContent>
                 <Grid alignItems="center" container={true} justify="flex-start" spacing={2}>
                     <Grid item={true}>
@@ -57,8 +63,10 @@ const Course = ({course}) => {
                         <Typography className={classes.separator} variant="body2">&#8226;</Typography>
                     </Grid>
                     <Grid item={true}>
-                        <Typography className={classes.lessonCount}
-                                    variant="body2">{course.lessons.length} Lessons</Typography>
+                        <Typography
+                            color="textSecondary"
+                            className={classes.lessonCount}
+                            variant="body2">{course.lessons.length} Lessons</Typography>
                     </Grid>
                 </Grid>
 
@@ -68,14 +76,20 @@ const Course = ({course}) => {
 
                 <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
-                <Typography variant="h4" className={classes.name}>{course.name}</Typography>
-                <Typography variant="body2" className={classes.except}>{course.except}</Typography>
+                <Typography
+                    color="textSecondary"
+                    align="center"
+                    variant="h4"
+                    className={classes.name}>{course.name}</Typography>
             </CardContent>
             <Divider variant="fullWidth" className={classes.divider} light={true}/>
             <CardActions>
                 <Link className={classes.link} to={`/blog/${course.slug}/lessons`}>
-                    <Button fullWidth={true} variant="text" size="large"
-                            endIcon={<ChevronRight className={classes.icon}/>}>View Lesson</Button>
+                    <Button
+                        fullWidth={true}
+                        variant="text"
+                        size="large"
+                        endIcon={<ChevronRight className={classes.icon}/>}>View Lessons</Button>
                 </Link>
             </CardActions>
         </Card>

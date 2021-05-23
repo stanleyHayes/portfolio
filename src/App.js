@@ -40,10 +40,10 @@ function App() {
                 <Route path="/blog" exact={true}>
                     <CoursesPage/>
                 </Route>
-                <Route path="/blog/:course/lessons" exact={true}>
+                <Route path="/blog/:slug/lessons" exact={true}>
                     <CourseLessonsPage/>
                 </Route>
-                <Route path="/blog/:course/lessons/:lesson">
+                <Route path="/blog/:cslug/lessons/:lslug" exact={true}>
                     <LessonDetailPage/>
                 </Route>
             </Switch>

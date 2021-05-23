@@ -120,6 +120,14 @@ const DrawerContent = ({handleDrawerClose}) => {
 
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
 
+                    <Link to="/blog" className={classes.link}>
+                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
+                            Blog
+                        </Button>
+                    </Link>
+
+                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
+
                     <Link to="/portfolio" className={classes.link}>
                         <Button className={classes.button} fullWidth={true} variant="text" size="large">
                             Portfolio
