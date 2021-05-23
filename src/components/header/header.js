@@ -15,7 +15,7 @@ const Header = ({handleDrawerOpen}) => {
                 <MobileHeader handleDrawerOpen={handleDrawerOpen} />
             </Hidden>
             <Hidden only={["xs", "sm", "lg", "xl"]}>
-                <TabletHeader />
+                <TabletHeader  handleDrawerOpen={handleDrawerOpen}/>
             </Hidden>
         </AppBar>
     )

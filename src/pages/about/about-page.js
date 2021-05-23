@@ -5,11 +5,15 @@ import {
     Button,
     Card,
     CardContent,
+    Chip,
     Container,
     Divider,
     Grid,
-    makeStyles, Tab, Tabs,
-    Typography, useMediaQuery
+    makeStyles,
+    Tab,
+    Tabs,
+    Typography,
+    useMediaQuery
 } from "@material-ui/core";
 import {VerticalTimeline, VerticalTimelineElement} from "react-vertical-timeline-component";
 import {useSelector} from "react-redux";
@@ -45,8 +49,8 @@ const AboutPage = () => {
             },
             card: {},
             secondaryDivider: {
-                marginTop: 8,
-                marginBottom: 8
+                marginTop: 16,
+                marginBottom: 16
             },
             icon: {
                 width: 45,
@@ -60,15 +64,23 @@ const AboutPage = () => {
                     marginBottom: 16
                 }
             },
-            profile: {
+            image: {
                 objectFit: "cover",
                 objectPosition: "center",
-                width: 320,
-                height: 320,
+                width: '100%',
+                height: 'auto',
                 borderTopLeftRadius: 64,
                 borderTopRightRadius: 32,
                 borderBottomLeftRadius: 32,
                 borderBottomRightRadius: 64,
+                [theme.breakpoints.down('sm')]: {
+                    width: '100%',
+                    height: 'auto',
+                },
+                [theme.breakpoints.down('md')]: {
+                    width: 320,
+                    height: 320,
+                }
             },
             gridContainer: {
                 marginTop: 32
@@ -76,7 +88,18 @@ const AboutPage = () => {
             button: {
                 paddingTop: 16,
                 paddingBottom: 16
-            }
+            },
+            chip: {
+                padding: 8,
+                backgroundColor: theme.palette.primary.dark
+            },
+            profile: {
+                lineHeight: 1.7,
+                letterSpacing: 1.5
+            },
+            link: {
+                textDecoration: "none"
+            },
         }
     });
 
@@ -125,107 +148,106 @@ const AboutPage = () => {
                     <Grid item={true} xs={12} md={4} justify="center" container={true}>
                         <Avatar
                             src="/assets/lion.jpg"
-                            className={classes.profile}
+                            className={classes.image}
                         />
-                        <Grid className={classes.gridContainer} justify="space-around" container={true}>
-                            <Grid xs={1} item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
-                                    <img
-                                        src="/assets/facebook.svg"
-                                        className={classes.social}
-                                        alt="something icon"
-                                        title="something icon"/>
-                                </a>
-                            </Grid>
-                            <Grid xs={1} item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
-                                    <img
-                                        src="/assets/github.svg"
-                                        className={classes.social}
-                                        alt="something icon"
-                                        title="something icon"/>
-                                </a>
-                            </Grid>
-                            <Grid xs={1} item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
-                                    <img
-                                        src="/assets/instagram.svg"
-                                        className={classes.social}
-                                        alt="something icon"
-                                        title="something icon"/>
-                                </a>
-                            </Grid>
-                            <Grid xs={1} item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
-                                    <img
-                                        src="/assets/linkedin.svg"
-                                        className={classes.social}
-                                        alt="something icon"
-                                        title="something icon"/>
-                                </a>
-                            </Grid>
-                            <Grid xs={1} item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
-                                    <img
-                                        src="/assets/twitter.svg"
-                                        className={classes.social}
-                                        alt="something icon"
-                                        title="something icon"/>
-                                </a>
-                            </Grid>
-                        </Grid>
                     </Grid>
                     <Grid item={true} xs={12} md={8}>
                         <Typography className={classes.page} color="textSecondary" gutterBottom={true}
                                     variant="h4">Profile</Typography>
-                        <Typography color="textSecondary" gutterBottom={true} variant="body1">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <Typography className={classes.profile} color="textSecondary" gutterBottom={true}
+                                    variant="body1">
+                            Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and
+                            server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise
+                            professional with 4 years of hands-on experience taking charge of front and back-end web
+                            development. Skillful creating servers and databases for functionality and designing and
+                            developing API's. Hardworking collaborator with a track record of superior results.
                         </Typography>
-                        <Typography color="textSecondary" gutterBottom={true} variant="body1">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        </Typography>
+                        <Grid spacing={2} className={classes.buttonContainer} justify="flex-start" container={true}>
+                            <Grid item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <Chip
+                                        className={classes.chip}
+                                        label="GitHub"
+                                        size="medium"
+                                        title="GitHub"
+                                        avatar={
+                                            <img
+                                                src="/assets/github.svg"
+                                                className={classes.social}
+                                                alt="something icon"
+                                                title="something icon"/>
+                                        }
+                                    />
+                                </a>
+                            </Grid>
+                            <Grid item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <Chip
+                                        className={classes.chip}
+                                        label="LinkedIn"
+                                        size="medium"
+                                        title="LinkedIn"
+                                        avatar={
+                                            <img
+                                                src="/assets/linkedin.svg"
+                                                className={classes.social}
+                                                alt="something icon"
+                                                title="something icon"/>
+                                        }
+                                    />
+                                </a>
+                            </Grid>
+                            <Grid item={true}>
+                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                   href="https://something.come/whatever">
+                                    <Chip
+                                        className={classes.chip}
+                                        label="Twitter"
+                                        size="medium"
+                                        title="Twitter"
+                                        avatar={
+                                            <img
+                                                src="/assets/twitter.svg"
+                                                className={classes.social}
+                                                alt="something icon"
+                                                title="something icon"/>
+                                        }
+                                    />
+                                </a>
+                            </Grid>
+                        </Grid>
                         <Grid className={classes.buttonContainer} container={true} spacing={4}>
-                            <Grid item={true} xs={12} md={4}>
-                                <Button
-                                    fullWidth={true}
-                                    className={classes.button}
-                                    disableElevation={true}
-                                    variant="outlined"
-                                    size="large">
-                                    Download Resume
-                                </Button>
+                            <Grid item={true} xs={12} md={6}>
+                                <a
+                                    className={classes.link}
+                                    href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
+                                    download="Resume-Stanley-Asoku-Hayford.pdf">
+                                    <Button
+                                        fullWidth={true}
+                                        className={classes.button}
+                                        disableElevation={true}
+                                        variant="outlined"
+                                        size="large">
+                                        Download Resume
+                                    </Button>
+                                </a>
                             </Grid>
-                            <Grid item={true} xs={12} md={4}>
-                                <Button
-                                    fullWidth={true}
-                                    className={classes.button}
-                                    disableElevation={true}
-                                    variant="outlined"
-                                    size="large">
-                                    Download Cover Letter
-                                </Button>
-                            </Grid>
-                            <Grid item={true} xs={12} md={4}>
-                                <Button
-                                    fullWidth={true}
-                                    className={classes.button}
-                                    disableElevation={true}
-                                    variant="outlined"
-                                    size="large">
-                                    Hire Me
-                                </Button>
+                            <Grid item={true} xs={12} md={6}>
+                                <a
+                                    className={classes.link}
+                                    href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
+                                    download="Resume-Stanley-Asoku-Hayford.pdf">
+                                    <Button
+                                        fullWidth={true}
+                                        className={classes.button}
+                                        disableElevation={true}
+                                        variant="outlined"
+                                        size="large">
+                                        Download Cover Letter
+                                    </Button>
+                                </a>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -254,7 +276,6 @@ const AboutPage = () => {
                                     <CardContent>
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="h6"
                                             className={classes.title}>
                                             Frontend
@@ -262,7 +283,7 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -274,7 +295,6 @@ const AboutPage = () => {
 
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="body1"
                                             className={classes.title}>
                                             Things I love Designing
@@ -282,7 +302,7 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Prototypes, Wireframes, Websites
                                         </Typography>
@@ -290,7 +310,6 @@ const AboutPage = () => {
 
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="body1"
                                             className={classes.title}>
                                             Design Tools & Languages
@@ -298,32 +317,32 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             React JS
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Next JS
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Vue JS
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             WordPress
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Svelte
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Figma
                                         </Typography>
@@ -335,7 +354,6 @@ const AboutPage = () => {
                                     <CardContent>
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="h6"
                                             className={classes.title}>
                                             Backend
@@ -343,7 +361,7 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -355,7 +373,6 @@ const AboutPage = () => {
 
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="body1"
                                             className={classes.title}>
                                             Things I love Building
@@ -363,7 +380,7 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Web Applications, APIs
                                         </Typography>
@@ -371,7 +388,6 @@ const AboutPage = () => {
 
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="body1"
                                             className={classes.title}>
                                             Dev Tools & Languages
@@ -379,32 +395,32 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Node JS
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Express JS
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Mongo DB
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             SQL
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Gorilla MUX
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Postman
                                         </Typography>
@@ -416,7 +432,6 @@ const AboutPage = () => {
                                     <CardContent>
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="h6"
                                             className={classes.title}>
                                             Languages
@@ -424,7 +439,7 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -436,7 +451,6 @@ const AboutPage = () => {
 
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="body1"
                                             className={classes.title}>
                                             Things I love Doing
@@ -444,7 +458,7 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Solving Programming Problems
                                         </Typography>
@@ -452,7 +466,6 @@ const AboutPage = () => {
 
                                         <Typography
                                             color="textSecondary"
-                                            align="center"
                                             variant="body1"
                                             className={classes.title}>
                                             Languages
@@ -460,34 +473,34 @@ const AboutPage = () => {
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             C / C++
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             C#
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Python
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
-                                            JavaScript
+                                            JavaScript / Typescript
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Go Lang
                                         </Typography>
 
-                                        <Typography color="textSecondary" align="center" gutterBottom={true}
+                                        <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
-                                            Java
+                                            Java / Kotlin
                                         </Typography>
                                     </CardContent>
                                 </Card>
