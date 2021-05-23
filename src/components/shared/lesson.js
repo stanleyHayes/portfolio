@@ -48,7 +48,7 @@ const Lesson = ({lesson, course}) => {
     const history = useHistory();
 
     return (
-        <Card onClick={() => history.push(`/blog/${course.slug}/lessons`)} variant="elevation" elevation={0}
+        <Card onClick={() => history.push(`/blog/${course.slug}/lessons/${lesson.slug}`)} variant="elevation" elevation={0}
               className={classes.card}>
             <CardHeader
                 title={<Typography color="textSecondary" variant="h5">{lesson.author}</Typography>}
