@@ -65,7 +65,10 @@ const AboutPage = () => {
                 objectPosition: "center",
                 width: 320,
                 height: 320,
-                borderRadius: '50%'
+                borderTopLeftRadius: 64,
+                borderTopRightRadius: 32,
+                borderBottomLeftRadius: 32,
+                borderBottomRightRadius: 64,
             },
             gridContainer: {
                 marginTop: 32

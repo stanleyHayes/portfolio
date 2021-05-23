@@ -9,6 +9,9 @@ import {useSelector} from "react-redux";
 import {getUiState} from "./features/ui/ui-slice";
 import {ThemeProvider} from "@material-ui/styles";
 import {dark, light} from "./themes/themes";
+import CoursesPage from "./pages/course/courses-page";
+import CourseLessonsPage from "./pages/course/course-lessons-page";
+import LessonDetailPage from "./pages/course/lesson-detail-page";
 
 function App() {
 
@@ -32,6 +35,16 @@ function App() {
                 </Route>
                 <Route path="/portfolio" exact={true}>
                     <PortfolioPage/>
+                </Route>
+
+                <Route path="/blog" exact={true}>
+                    <CoursesPage/>
+                </Route>
+                <Route path="/blog/:course/lessons" exact={true}>
+                    <CourseLessonsPage/>
+                </Route>
+                <Route path="/blog/:course/lessons/:lesson">
+                    <LessonDetailPage/>
                 </Route>
             </Switch>
         </ThemeProvider>

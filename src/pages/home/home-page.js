@@ -31,7 +31,10 @@ const HomePage = () => {
                 objectPosition: "center",
                 width: 350,
                 height: 350,
-                borderRadius: '50%',
+                borderTopLeftRadius: 64,
+                borderTopRightRadius: 32,
+                borderBottomLeftRadius: 32,
+                borderBottomRightRadius: 64,
                 [theme.breakpoints.down('md')]: {
                     width: 320,
                     height: 320,

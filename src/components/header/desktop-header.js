@@ -22,7 +22,8 @@ const DesktopHeader = () => {
                 paddingRight: 8
             },
             button: {
-                fontWeight: 700
+                fontWeight: 700,
+                letterSpacing: 1.5
             },
             logo: {
                 width: 100,
@@ -101,6 +102,15 @@ const DesktopHeader = () => {
                                 className={`${active === '/about' ? classes.active : classes.inactive} ${classes.button}`}
                                 variant="text"
                                 size="large">About</Button>
+                        </Link>
+                    </Grid>
+                    <Grid item={true}>
+                        <Link className={classes.link} to="/blog">
+                            <Button
+                                onClick={() => handlePathChange('/blog')}
+                                className={`${active.startsWith('/blog') ? classes.active : classes.inactive} ${classes.button}`}
+                                variant="text"
+                                size="large">Blog</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>

@@ -123,3 +123,19 @@ export const getCertification = () => {
         },
     ]
 }
+
+export const getCourses = () => {
+    return [
+        {
+            name: "C Programming",
+            image: "/assets/cprogramming.png",
+            slug: "c-programming",
+            lessons: [
+                {},
+                {},
+                {}
+            ],
+            detailPage: "/blog/c-programming",
+        }
+    ]
+}
