@@ -107,7 +107,7 @@ const HomePage = () => {
                     </Grid>
                     <Grid xs={12} md={8} item={true}>
                         <Typography color="textSecondary" gutterBottom={true} variant="h5">
-                            Hello, World! I am a Stanley Hayford
+                            Hello, World! I am Stanley Hayford
                         </Typography>
                         <Typography className={classes.role} color="textPrimary" gutterBottom={true} variant="h4">
                             Full Stack Web Developer
