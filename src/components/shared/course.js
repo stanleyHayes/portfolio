@@ -1,8 +1,6 @@
 import React from "react";
 import {
-    Button,
     Card,
-    CardActions,
     CardContent,
     CardMedia,
     Divider,
@@ -10,12 +8,12 @@ import {
     makeStyles,
     Typography
 } from "@material-ui/core";
-import {Link, useHistory} from "react-router-dom";
-import {ChevronRight} from "@material-ui/icons";
+import {useHistory} from "react-router-dom";
 
 const Course = ({course}) => {
 
     const useStyles = makeStyles(theme => {
+        const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             card: {
                 cursor: "pointer"
@@ -27,9 +25,15 @@ const Course = ({course}) => {
                 height: 200,
                 objectFit: 'contain',
                 objectPosition: 'center',
+                borderStyle: "solid",
+                borderWidth: 1,
+                borderRadius: 2,
+                borderColor: theme.palette.secondary.main,
+                backgroundColor: dark === "dark" ? "rgba(69,162,152,0.4)" : "rgba(0,116,225,0.1)",
             },
             name: {
-                textTransform: "uppercase"
+                textTransform: "uppercase",
+                marginTop: 16
             },
             divider: {
                 marginTop: 8,
@@ -41,6 +45,10 @@ const Course = ({course}) => {
                 textDecoration: "none",
                 display: "inline-block",
                 width: '100%'
+            },
+            summary: {
+                letterSpacing: 1.5,
+                lineHeight: 1.5
             }
         }
     });
@@ -74,24 +82,16 @@ const Course = ({course}) => {
 
                 <CardMedia component="img" className={classes.image} src={course.image}/>
 
-                <Divider variant="fullWidth" className={classes.divider} light={true}/>
-
                 <Typography
                     color="textSecondary"
-                    align="center"
                     variant="h4"
+                    gutterBottom={true}
                     className={classes.name}>{course.name}</Typography>
+                <Typography
+                    color="textSecondary"
+                    variant="body2"
+                    className={classes.summary}>{course.summary}</Typography>
             </CardContent>
-            <Divider variant="fullWidth" className={classes.divider} light={true}/>
-            <CardActions>
-                <Link className={classes.link} to={`/blog/${course.slug}/lessons`}>
-                    <Button
-                        fullWidth={true}
-                        variant="text"
-                        size="large"
-                        endIcon={<ChevronRight className={classes.icon}/>}>View Lessons</Button>
-                </Link>
-            </CardActions>
         </Card>
     )
 }

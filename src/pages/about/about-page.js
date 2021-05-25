@@ -91,7 +91,7 @@ const AboutPage = () => {
             },
             chip: {
                 padding: 8,
-                backgroundColor: theme.palette.primary.dark
+                backgroundColor: theme.palette.background.paper
             },
             profile: {
                 lineHeight: 1.7,

@@ -72,7 +72,8 @@ const HomePage = () => {
             },
             chip: {
                 padding: 8,
-                backgroundColor: theme.palette.primary.dark
+                backgroundColor: theme.palette.background.paper,
+                cursor: "pointer"
             },
             profile: {
                 lineHeight: 1.7,

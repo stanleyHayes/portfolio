@@ -64,6 +64,24 @@ const ContactPage = () => {
         } else {
             setError({...error, name: null});
         }
+
+        if (!email) {
+            setError({...error, email: "Field required"});
+        } else {
+            setError({...error, email: null});
+        }
+
+        if (!subject) {
+            setError({...error, subject: "Field required"});
+        } else {
+            setError({...error, subject: null});
+        }
+
+        if (!message) {
+            setError({...error, message: "Field required"});
+        } else {
+            setError({...error, message: null});
+        }
     }
 
     return (
