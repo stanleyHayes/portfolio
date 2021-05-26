@@ -43,7 +43,6 @@ const Layout = ({children}) => {
                     {children}
                 </div>
                 <SwipeableDrawer
-                    anchor="top"
                     onClose={handleDrawerClose}
                     onOpen={handleDrawerOpen}
                     open={open}>
