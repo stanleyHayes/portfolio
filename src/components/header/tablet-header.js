@@ -1,4 +1,4 @@
-import {Button, Fab, Grid, makeStyles, Toolbar} from "@material-ui/core";
+import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import React from "react";
 import {Brightness4, Brightness7, Menu} from "@material-ui/icons";
 import {Link} from "react-router-dom";
@@ -29,7 +29,7 @@ const TabletHeader = ({handleDrawerOpen}) => {
                 fontWeight: 700
             },
             fab: {
-                boxShadow: '2px 4px 20px #45a298'
+                cursor: "pointer"
             }
         }
     });
@@ -60,11 +60,10 @@ const TabletHeader = ({handleDrawerOpen}) => {
                 <Grid item={true} xs={1}>
                     {
                         theme === "dark" ?
-                            (<Fab className={classes.fab} onClick={() => dispatch(changeTheme())} size="small"
-                                  color="primary"><Brightness7/></Fab>)
+                            (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
                             :
-                            (<Fab onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness4
-                                color="secondary"/></Fab>)
+                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
+                                          color="secondary"/>)
                     }
                 </Grid>
             </Grid>

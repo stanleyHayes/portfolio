@@ -8,7 +8,11 @@ const Project = ({project}) => {
             card: {
                 minHeight: 400,
                 display: "flex",
-                flexDirection: "column"
+                flexDirection: "column",
+                transition: "all 300ms ease-out 50ms",
+                '&:hover': {
+                    transform: 'translateY(-10px)'
+                }
             },
             link: {
                 textDecoration: "none",

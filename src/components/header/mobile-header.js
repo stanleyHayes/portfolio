@@ -1,8 +1,8 @@
-import {Button, Fab, Grid, makeStyles, Toolbar} from "@material-ui/core";
+import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import React from "react";
 import {Link} from "react-router-dom";
 import {Brightness4, Brightness7, Menu} from "@material-ui/icons";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changeTheme, getUiState} from "../../features/ui/ui-slice";
 
 const MobileHeader = ({handleDrawerOpen}) => {
@@ -29,11 +29,9 @@ const MobileHeader = ({handleDrawerOpen}) => {
                 fontWeight: 700
             },
             fab: {
-                boxShadow: '4px 4px 10px #45a298, -4px -4px 10px #45a298'
+                cursor: "pointer"
             },
-            toolbar: {
-
-            }
+            toolbar: {}
         }
     });
 
@@ -63,11 +61,9 @@ const MobileHeader = ({handleDrawerOpen}) => {
                 <Grid item={true} xs={2}>
                     {
                         theme === "dark" ?
-                            (<Fab className={classes.fab} onClick={() => dispatch(changeTheme())} size="small"
-                                  color="primary"><Brightness7/></Fab>)
+                            (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
                             :
-                            (<Fab onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness4
-                                color="secondary"/></Fab>)
+                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())} color="secondary"/>)
                     }
                 </Grid>
             </Grid>

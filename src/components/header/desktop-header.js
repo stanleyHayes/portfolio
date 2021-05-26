@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Fab, Grid, makeStyles, Toolbar} from "@material-ui/core";
+import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Link, useRouteMatch} from "react-router-dom";
 import {changeTheme, getUiState} from "../../features/ui/ui-slice";
 import {Brightness4, Brightness7} from "@material-ui/icons";
@@ -34,7 +34,7 @@ const DesktopHeader = () => {
                 fontSize: 32
             },
             fab: {
-                boxShadow: '2px 4px 20px #45a298'
+                cursor: "pointer"
             },
             active: {
                 background: dark === "dark" ? "rgba(69,162,152,0.4)" : "rgba(0,116,225,0.1)"
@@ -62,7 +62,7 @@ const DesktopHeader = () => {
     }
 
     return (
-        <Toolbar variant="regular" color="primary">
+        <Toolbar  variant="regular" color="primary">
             <Grid container={true} justify="space-around" alignItems="center">
                 <Grid lg={3} item={true} container={true} justify="center" alignItems="center">
                     <Grid item={true}>
@@ -143,11 +143,10 @@ const DesktopHeader = () => {
                 <Grid item={true} xs={2}>
                     {
                         theme === "dark" ?
-                            (<Fab className={classes.fab} onClick={() => dispatch(changeTheme())} size="small"
-                                  color="primary"><Brightness7/></Fab>)
+                            (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
                             :
-                            (
-                                <Fab onClick={() => dispatch(changeTheme())} size="small" color="primary"><Brightness4 color="secondary"/></Fab>)
+                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
+                                          color="secondary"/>)
                     }
                 </Grid>
             </Grid>

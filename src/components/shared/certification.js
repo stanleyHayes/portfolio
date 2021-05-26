@@ -9,7 +9,12 @@ const Certification = ({certification}) => {
             card: {
                 minHeight: 370,
                 display: "flex",
-                flexDirection: "column"
+                flexDirection: "column",
+                cursor: "pointer",
+                transition: "all 300ms ease-out 50ms",
+                '&:hover': {
+                    transform: 'translateY(-10px)'
+                }
             },
             link: {
                 textDecoration: "none",

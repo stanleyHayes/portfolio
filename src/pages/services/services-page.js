@@ -22,7 +22,11 @@ const ServicesPage = () => {
                 marginBottom: 32
             },
             card: {
-                minHeight: 250
+                minHeight: 250,
+                transition: "all 300ms ease-out 50ms",
+                '&:hover': {
+                    transform: 'translateY(-10px)'
+                }
             },
             iconContainer: {
                 marginBottom: 32

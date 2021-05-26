@@ -8,7 +8,11 @@ const Lesson = ({lesson, course}) => {
     const useStyles = makeStyles(theme => {
         return {
             card: {
-                cursor: "pointer"
+                cursor: "pointer",
+                transition: "all 300ms ease-out 50ms",
+                '&:hover': {
+                    transform: 'translateY(-10px)'
+                }
             },
             separator: {},
             collection: {},

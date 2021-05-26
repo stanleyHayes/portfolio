@@ -41,7 +41,13 @@ const ContactPage = () => {
                 paddingBottom: 16,
                 marginTop: 4
             },
-            card: {}
+            card: {
+                cursor: "pointer",
+                transition: "all 300ms ease-out 50ms",
+                '&:hover': {
+                    transform: 'translateY(-10px)'
+                }
+            }
         }
     });
 
