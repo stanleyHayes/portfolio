@@ -61,7 +61,6 @@ const DesktopHeader = () => {
         setActive(path);
     }
 
-    console.log(active);
     return (
         <Toolbar variant="regular" color="primary">
             <Grid container={true} justify="space-around" alignItems="center">

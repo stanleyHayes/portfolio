@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Avatar, Button, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import {Link, useRouteMatch} from "react-router-dom";
 import {Close} from "@material-ui/icons";
 
 
 const DrawerContent = ({handleDrawerClose}) => {
 
     const useStyles = makeStyles(theme => {
+        const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             link: {
-                textDecoration: "none"
+                textDecoration: "none",
+                display: "inline-block",
+                width: "100%"
             },
             button: {
                 color: theme.palette.text.secondary
@@ -43,12 +46,25 @@ const DrawerContent = ({handleDrawerClose}) => {
                 paddingTop: 32,
                 paddingBottom: 32
             },
-            closeButton: {}
+            closeButton: {},
+            active: {
+                background: dark === "dark" ? "rgba(69,162,152,0.4)" : "rgba(0,116,225,0.1)"
+            },
         }
     });
 
     const classes = useStyles();
 
+    const {path} = useRouteMatch();
+    const [active, setActive] = useState(path);
+
+    useEffect(() => {
+        setActive(path);
+    }, [path]);
+
+    const handlePathChange = path => {
+        setActive(path);
+    }
 
     return (
         <Container className={classes.container}>
@@ -104,50 +120,73 @@ const DrawerContent = ({handleDrawerClose}) => {
 
             <Grid container={true} justify="center">
                 <Grid item={true} xs={12}>
-                    <Link to="/" className={classes.link}>
-                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
-                            Home
-                        </Button>
+                    <Link className={classes.link} to="/">
+                        <Button
+                            onClick={() => handlePathChange('/')}
+                            className={`${active === '/' ? classes.active : classes.inactive} ${classes.button}`}
+                            variant="text"
+                            fullWidth={true}
+                            size="large">Home</Button>
                     </Link>
+                </Grid>
 
+                <Grid xs={12} item={true}>
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
-
-                    <Link to="/about" className={classes.link}>
-                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
-                            About
-                        </Button>
+                    <Link className={classes.link} to="/about">
+                        <Button
+                            fullWidth={true}
+                            onClick={() => handlePathChange('/about')}
+                            className={`${active === '/about' ? classes.active : classes.inactive} ${classes.button}`}
+                            variant="text"
+                            size="large">About</Button>
                     </Link>
+                </Grid>
 
+                <Grid xs={12} item={true}>
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
-
-                    <Link to="/blog" className={classes.link}>
-                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
-                            Blog
-                        </Button>
+                    <Link className={classes.link} to="/blog">
+                        <Button
+                            fullWidth={true}
+                            onClick={() => handlePathChange('/blog')}
+                            className={`${active.startsWith('/blog') ? classes.active : classes.inactive} ${classes.button}`}
+                            variant="text"
+                            size="large">Blog</Button>
                     </Link>
+                </Grid>
 
+                <Grid xs={12} item={true}>
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
-
-                    <Link to="/portfolio" className={classes.link}>
-                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
-                            Portfolio
-                        </Button>
+                    <Link className={classes.link} to="/portfolio">
+                        <Button
+                            fullWidth={true}
+                            onClick={() => handlePathChange('/portfolio')}
+                            className={`${active === '/portfolio' ? classes.active : classes.inactive} ${classes.button}`}
+                            variant="text"
+                            size="large">Portfolio</Button>
                     </Link>
+                </Grid>
 
+                <Grid xs={12} item={true}>
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
-
-                    <Link to="/services" className={classes.link}>
-                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
-                            Services
-                        </Button>
+                    <Link className={classes.link} to="/services">
+                        <Button
+                            fullWidth={true}
+                            onClick={() => handlePathChange('/services')}
+                            className={`${active === '/services' ? classes.active : classes.inactive} ${classes.button}`}
+                            variant="text"
+                            size="large">Services</Button>
                     </Link>
+                </Grid>
 
+                <Grid xs={12} item={true}>
                     <Divider variant="fullWidth" className={classes.divider} light={true}/>
-
                     <Link to="/contact" className={classes.link}>
-                        <Button className={classes.button} fullWidth={true} variant="text" size="large">
-                            Contact
-                        </Button>
+                        <Button
+                            fullWidth={true}
+                            onClick={() => handlePathChange('/contact')}
+                            className={`${active === '/contact' ? classes.active : classes.inactive} ${classes.button}`}
+                            variant="text"
+                            size="large">Contact</Button>
                     </Link>
                 </Grid>
             </Grid>

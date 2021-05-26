@@ -40,7 +40,7 @@ const TabletHeader = ({handleDrawerOpen}) => {
     const theme = useSelector(getUiState);
 
     return (
-        <Toolbar>
+        <Toolbar variant="regular">
             <Grid container={true} justify="space-between" alignItems="center">
                 <Grid item={true} xs={1}>
                     <Menu onClick={handleDrawerOpen} className={classes.hamburger}/>

@@ -29,7 +29,10 @@ const MobileHeader = ({handleDrawerOpen}) => {
                 fontWeight: 700
             },
             fab: {
-                boxShadow: '2px 4px 20px #45a298'
+                boxShadow: '4px 4px 10px #45a298, -4px -4px 10px #45a298'
+            },
+            toolbar: {
+
             }
         }
     });
@@ -40,7 +43,7 @@ const MobileHeader = ({handleDrawerOpen}) => {
     const theme = useSelector(getUiState);
 
     return (
-        <Toolbar>
+        <Toolbar className={classes.toolbar} variant="regular">
             <Grid container={true} justify="space-between" alignItems="center">
                 <Grid item={true} xs={2}>
                     <Menu onClick={handleDrawerOpen} className={classes.hamburger}/>
