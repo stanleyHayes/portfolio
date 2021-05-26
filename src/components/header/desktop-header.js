@@ -36,6 +36,10 @@ const DesktopHeader = () => {
             fab: {
                 cursor: "pointer"
             },
+            flag: {
+                width: 30,
+                height: "auto"
+            },
             active: {
                 background: dark === "dark" ? "rgba(69,162,152,0.4)" : "rgba(0,116,225,0.1)"
             },
@@ -140,7 +144,7 @@ const DesktopHeader = () => {
                         </Link>
                     </Grid>
                 </Grid>
-                <Grid item={true} xs={2}>
+                <Grid item={true} xs={1}>
                     {
                         theme === "dark" ?
                             (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
@@ -148,6 +152,9 @@ const DesktopHeader = () => {
                             (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
                                           color="secondary"/>)
                     }
+                </Grid>
+                <Grid item={true} xs={1}>
+                    <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
                 </Grid>
             </Grid>
         </Toolbar>

@@ -31,7 +31,11 @@ const MobileHeader = ({handleDrawerOpen}) => {
             fab: {
                 cursor: "pointer"
             },
-            toolbar: {}
+            toolbar: {},
+            flag: {
+                width: 30,
+                height: "auto"
+            },
         }
     });
 
@@ -46,7 +50,7 @@ const MobileHeader = ({handleDrawerOpen}) => {
                 <Grid item={true} xs={2}>
                     <Menu onClick={handleDrawerOpen} className={classes.hamburger}/>
                 </Grid>
-                <Grid item={true} xs={8}>
+                <Grid item={true} xs={6}>
                     <Link to="/" className={classes.link}>
                         <Button startIcon={
                             <img
@@ -65,6 +69,9 @@ const MobileHeader = ({handleDrawerOpen}) => {
                             :
                             (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())} color="secondary"/>)
                     }
+                </Grid>
+                <Grid item={true} xs={2}>
+                    <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
                 </Grid>
             </Grid>
         </Toolbar>

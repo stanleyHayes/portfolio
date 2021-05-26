@@ -30,7 +30,11 @@ const TabletHeader = ({handleDrawerOpen}) => {
             },
             fab: {
                 cursor: "pointer"
-            }
+            },
+            flag: {
+                width: 30,
+                height: "auto"
+            },
         }
     });
 
@@ -41,7 +45,7 @@ const TabletHeader = ({handleDrawerOpen}) => {
 
     return (
         <Toolbar variant="regular">
-            <Grid container={true} justify="space-between" alignItems="center">
+            <Grid  spacing={2} container={true} justify="space-between" alignItems="center">
                 <Grid item={true} xs={1}>
                     <Menu onClick={handleDrawerOpen} className={classes.hamburger}/>
                 </Grid>
@@ -65,6 +69,9 @@ const TabletHeader = ({handleDrawerOpen}) => {
                             (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
                                           color="secondary"/>)
                     }
+                </Grid>
+                <Grid item={true} xs={1}>
+                    <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
                 </Grid>
             </Grid>
         </Toolbar>

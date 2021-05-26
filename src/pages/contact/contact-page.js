@@ -132,7 +132,7 @@ const ContactPage = () => {
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" variant="h6">Phone</Typography>
-                                <Typography color="textSecondary" align="center" variant="body2">+233270048319</Typography>
+                                <Typography color="textSecondary" align="center" variant="body2">233(027)004-8319</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
