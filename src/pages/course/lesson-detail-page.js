@@ -185,8 +185,8 @@ const LessonDetailPage = () => {
 
                             <Hidden lgUp={true}>
                                 <Box className={classes.fabContainer}>
-                                    <Fab onClick={() => setOpen(true)} className={classes.fab} size="medium">
-                                        <ViewList className={classes.icon} />
+                                    <Fab color="secondary" onClick={() => setOpen(true)} className={classes.fab} size="medium">
+                                        <ViewList color="primary" className={classes.icon} />
                                     </Fab>
                                 </Box>
                             </Hidden>
