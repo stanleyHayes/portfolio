@@ -1,18 +1,6 @@
 import React, {useState} from "react";
 import Layout from "../../components/layout";
-import {
-    Avatar,
-    Box,
-    Container,
-    Divider, Fab, Hidden,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    makeStyles,
-    Drawer,
-    Typography
-} from "@material-ui/core";
+import {Box, Container, Divider, Drawer, Fab, Hidden, makeStyles, Typography} from "@material-ui/core";
 import {useHistory, useParams} from "react-router-dom";
 import {getCourseLessonBySlug} from "../../data/data";
 import {ViewList} from "@material-ui/icons";
@@ -94,16 +82,17 @@ const LessonDetailPage = () => {
             content: {
                 flexGrow: 1,
                 paddingRight: 64,
-                flexBasis: '80%'
+                flexBasis: '80%',
+                [theme.breakpoints.down("md")]: {
+                    paddingRight: 0
+                }
             },
 
             avatarContainer: {},
             drawerList: {
                 width: '50vw'
             },
-            icon: {
-
-            },
+            icon: {},
             fabContainer: {
                 position: "absolute",
                 right: '0%',
@@ -111,9 +100,7 @@ const LessonDetailPage = () => {
                 paddingRight: 32,
                 paddingBottom: 32
             },
-            fab: {
-
-            }
+            fab: {}
         }
     });
 
@@ -173,7 +160,7 @@ const LessonDetailPage = () => {
                                         variant="body2">
                                         {selectedLesson.summary}
                                     </Typography>
-                                    <Divider light={true}  variant="fullWidth" className={classes.divider}/>
+                                    <Divider light={true} variant="fullWidth" className={classes.divider}/>
                                 </Box>
                             </Box>
 
@@ -185,8 +172,9 @@ const LessonDetailPage = () => {
 
                             <Hidden lgUp={true}>
                                 <Box className={classes.fabContainer}>
-                                    <Fab color="secondary" onClick={() => setOpen(true)} className={classes.fab} size="medium">
-                                        <ViewList color="primary" className={classes.icon} />
+                                    <Fab color="secondary" onClick={() => setOpen(true)} className={classes.fab}
+                                         size="medium">
+                                        <ViewList color="primary" className={classes.icon}/>
                                     </Fab>
                                 </Box>
                             </Hidden>
