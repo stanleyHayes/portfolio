@@ -42,7 +42,10 @@ const LessonDetailPage = () => {
             },
             lessonTableOfContent: {
                 position: 'sticky',
-                top: 100
+                top: 100,
+                [theme.breakpoints.down("md")]: {
+                    position: "static"
+                }
             },
 
             lessonContent: {
@@ -59,7 +62,13 @@ const LessonDetailPage = () => {
                 maxHeight: '100vh',
                 overflow: 'scroll',
                 position: 'sticky',
-                top: 100
+                top: 100,
+                [theme.breakpoints.down("sm")]: {
+                    display: "none"
+                },
+                [theme.breakpoints.down("md")]: {
+                    flexBasis: '30%',
+                }
             },
             tableOfContentTitle: {
                 fontWeight: "bold",
@@ -72,7 +81,10 @@ const LessonDetailPage = () => {
             },
             lessonContainer: {
                 flexGrow: 1,
-                display: "flex"
+                display: "flex",
+                [theme.breakpoints.down("md")]: {
+                    flexDirection: "column-reverse"
+                }
             },
             content: {
                 flexGrow: 1
@@ -117,12 +129,6 @@ const LessonDetailPage = () => {
                                                 {lesson.title}
                                             </Typography>
                                         }
-                                        secondary={
-                                            <Typography
-                                                color="textSecondary"
-                                                variant="body2">
-                                                {lesson.summary}
-                                            </Typography>}
                                     />
                                 </ListItem>
                             )
