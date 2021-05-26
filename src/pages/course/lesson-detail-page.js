@@ -4,6 +4,7 @@ import {
     Avatar,
     Box,
     Container,
+    Divider,
     List,
     ListItem,
     ListItemAvatar,
@@ -20,9 +21,9 @@ const LessonDetailPage = () => {
         return {
             container: {
                 paddingTop: 84,
-                paddingBottom: 84,
                 display: "flex",
-                maxWidth: '100vw'
+                maxWidth: '100vw',
+                height: '93vh'
             },
             page: {
                 textTransform: "uppercase"
@@ -43,8 +44,14 @@ const LessonDetailPage = () => {
             lessonTableOfContent: {
                 position: 'sticky',
                 top: 100,
+                borderLeftColor: theme.palette.secondary.main,
+                borderLeftWidth: 3,
+                paddingLeft: 16,
+                borderLeftStyle: "solid",
+                flexBasis: '20%',
                 [theme.breakpoints.down("md")]: {
-                    position: "static"
+                    position: "static",
+                    marginBottom: 32
                 }
             },
 
@@ -75,8 +82,12 @@ const LessonDetailPage = () => {
                 color: theme.palette.text.primary
             },
             listItem: {
-                ':Mui-selected': {
-                    backgroundColor: 'red'
+                paddingTop: 8,
+                paddingBottom: 8,
+                transition: 'all 300ms ease-out',
+                '&:hover': {
+                    paddingTop: 16,
+                    paddingBottom: 16
                 }
             },
             lessonContainer: {
@@ -87,7 +98,23 @@ const LessonDetailPage = () => {
                 }
             },
             content: {
-                flexGrow: 1
+                flexGrow: 1,
+                paddingRight: 64,
+                flexBasis: '80%'
+            },
+            avatar: {
+                borderWidth: 1,
+                borderColor: theme.palette.secondary.light,
+                backgroundColor: theme.palette.background.paper,
+                borderStyle: "solid"
+            },
+            avatarContainer: {},
+            lessonTitle: {
+                fontWeight: 500
+            },
+            selected: {
+                fontWeight: "bold",
+                textTransform: "uppercase",
             }
         }
     });
@@ -115,17 +142,20 @@ const LessonDetailPage = () => {
                                     button={true}
                                     divider={true}
                                     key={index}
+                                    classes={{selected: classes.selected}}
                                     onClick={() => handleSelectedLesson(lesson)}>
-                                    <ListItemAvatar>
-                                        <Avatar>
-                                            <Typography variant="h6" color="textSecondary">{lesson.number}</Typography>
+                                    <ListItemAvatar className={classes.avatarContainer}>
+                                        <Avatar variant="circular" className={classes.avatar}>
+                                            <Typography variant="body1"
+                                                        color="textSecondary">{lesson.number}</Typography>
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
                                         primary={
                                             <Typography
+                                                className={classes.lessonTitle}
                                                 color="textSecondary"
-                                                variant="h6">
+                                                variant="body2">
                                                 {lesson.title}
                                             </Typography>
                                         }
@@ -139,15 +169,40 @@ const LessonDetailPage = () => {
                     {selectedLesson ? (
                         <Container className={classes.lessonContainer}>
                             <Box className={classes.content} container={true}>
-                                <Typography color="textSecondary" variant="h4">{course.name}</Typography>
-                                <Typography
-                                    color="textSecondary"
-                                    variant="h4"
-                                    align="center">
-                                    {selectedLesson.title}
-                                </Typography>
+                                <Box>
+                                    <Typography
+                                        color="textSecondary"
+                                        gutterBottom={true}
+                                        variant="h4">
+                                        {course.name}
+                                    </Typography>
+                                    <Typography
+                                        color="textSecondary"
+                                        variant="body2">
+                                        {course.summary}
+                                    </Typography>
+                                    <Divider light={true} variant="fullWidth" className={classes.divider}/>
+                                </Box>
+
+                                <Box>
+                                    <Typography
+                                        color="textSecondary"
+                                        variant="h4"
+                                        gutterBottom={true}
+                                        align="center">
+                                        {selectedLesson.title}
+                                    </Typography>
+
+                                    <Typography
+                                        color="textSecondary"
+                                        variant="body2">
+                                        {selectedLesson.summary}
+                                    </Typography>
+                                    <Divider light={true}  variant="fullWidth" className={classes.divider}/>
+                                </Box>
                             </Box>
-                            <Box item={true} className={classes.lessonTableOfContent} xs={12} md={9}>
+
+                            <Box item={true} className={classes.lessonTableOfContent}>
                                 <Typography variant="body2" className={classes.tableOfContentTitle}>
                                     Table of Contents
                                 </Typography>

@@ -10,8 +10,7 @@ const CourseLessonsPage = () => {
     const useStyles = makeStyles(theme => {
         return {
             container: {
-                paddingTop: 84,
-                paddingBottom: 84
+                paddingTop: 32
             },
             page: {
                 textTransform: "uppercase"
@@ -35,6 +34,17 @@ const CourseLessonsPage = () => {
             },
             summary: {
                 lineHeight: 1.5
+            },
+            root: {
+                paddingTop: 84,
+                paddingBottom: 84
+            },
+            header: {
+                minHeight: '25vh',
+                backgroundColor: theme.palette.background.default,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: "center"
             }
         }
     });
@@ -47,43 +57,50 @@ const CourseLessonsPage = () => {
 
     return (
         <Layout>
-            <Container className={classes.container}>
+            <Box className={classes.root}>
                 {
                     course && lessons ? (
                         <Box>
-                            <Typography
-                                color="textSecondary"
-                                variant="h4"
-                                align="center"
-                                className={classes.page}
-                                gutterBottom={true}>{course.name}</Typography>
+                            <Box className={classes.header}>
+                                <Box>
+                                    <Typography
+                                        color="textSecondary"
+                                        variant="h4"
+                                        align="center"
+                                        className={classes.page}
+                                        gutterBottom={true}>{course.name}</Typography>
 
-                            <Typography
-                                variant="body2"
-                                align="center"
-                                color="textSecondary"
-                                className={classes.summary}
-                                gutterBottom={true}>{course.summary}</Typography>
-                            <Divider variant="fullWidth" className={classes.divider}/>
+                                    <Typography
+                                        variant="body2"
+                                        align="center"
+                                        color="textSecondary"
+                                        className={classes.summary}
+                                        gutterBottom={true}>{course.summary}</Typography>
+                                </Box>
+                            </Box>
 
-                            <Grid container={true} spacing={5}>
-                                {lessons.map((lesson, index) => {
-                                    return (
-                                        <Grid xs={12} md={6} lg={4} item={true} key={index}>
-                                            <Lesson lesson={lesson} course={course}/>
-                                        </Grid>
-                                    )
-                                })}
-                            </Grid>
+                            <Container className={classes.container}>
+                                <Grid container={true} spacing={5}>
+                                    {lessons.map((lesson, index) => {
+                                        return (
+                                            <Grid xs={12} md={6} lg={4} item={true} key={index}>
+                                                <Lesson lesson={lesson} course={course}/>
+                                            </Grid>
+                                        )
+                                    })}
+                                </Grid>
+                            </Container>
                         </Box>
                     ) : (
-                        <Box>
-                            <Divider variant="fullWidth" className={classes.divider}/>
-                        </Box>
+                        <Container className={classes.container}>
+                            <Box>
+                                <Divider variant="fullWidth" className={classes.divider}/>
+                            </Box>
+                        </Container>
                     )
                 }
 
-            </Container>
+            </Box>
         </Layout>
     )
 }

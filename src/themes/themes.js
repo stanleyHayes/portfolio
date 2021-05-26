@@ -29,12 +29,12 @@ export const dark = createMuiTheme({
         },
         action: {
             active: "#45a298",
-            selected: "#45a298",
-            hover: "#45a298",
+            selected: "rgba(69,162,152,0.4)",
+            hover: "rgba(69,162,152,0.4)",
             focus: "#45a298",
             hoverOpacity: 0.4,
             focusOpacity: 0.8,
-            selectedOpacity: 0.9
+            selectedOpacity: 0.5
         },
         background: {
             paper: "#1f2833"
@@ -76,12 +76,12 @@ export const light = createMuiTheme({
         },
         action: {
             active: grey["500"],
-            selected: grey["500"],
-            hover: grey["700"],
-            focus: grey["700"],
-            hoverOpacity: 0.4,
-            focusOpacity: 0.8,
-            selectedOpacity: 0.9
+            selected: grey["300"],
+            hover: grey["300"],
+            focus: grey["300"],
+            hoverOpacity: 0.5,
+            focusOpacity: 0.5,
+            selectedOpacity: 0.5
         },
         background: {
             paper: "#ffffff"
