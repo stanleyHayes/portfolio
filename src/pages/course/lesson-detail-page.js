@@ -89,9 +89,6 @@ const LessonDetailPage = () => {
             },
 
             avatarContainer: {},
-            drawerList: {
-                width: '50vw'
-            },
             icon: {},
             fabContainer: {
                 position: "absolute",
@@ -189,7 +186,6 @@ const LessonDetailPage = () => {
             <Drawer
                 anchor="right"
                 variant="temporary"
-                className={classes.drawerList}
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}>

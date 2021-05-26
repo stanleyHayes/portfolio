@@ -5,7 +5,10 @@ const Lessons = ({lessons, handleSelectedLesson, lslug}) => {
     const useStyles = makeStyles(theme => {
         return {
             list: {
-                width: '50vw'
+                width: '50vw',
+                [theme.breakpoints.down("sm")]: {
+                    width: '80vw',
+                }
             },
             listItem: {
                 paddingTop: 8,
