@@ -80,46 +80,52 @@ export const getProjects = () => {
 export const getCertification = () => {
     return [
         {
-            image: "/assets/lion.jpg",
-            title: "Mongo DB Basics JavaScript",
-            institution: "Mongo DB",
+            title: "M001: MongoDB Basics",
+            institution: "Mongo DB University",
             expiry: "No Expiry",
-            link: ""
+            link: "https://university.mongodb.com/course_completion/6087bd04-f46e-4836-8090-3c90e700c49d?utm_source=copy&utm_medium=social&utm_campaign=university_social_sharing"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Mongo DB Basics JavaScript",
-            institution: "Mongo DB",
+            title: "M121: The MongoDB Aggregation Framework",
+            institution: "Mongo DB University",
             expiry: "No Expiry",
-            link: ""
+            link: "https://university.mongodb.com/course_completion/89f4ae36-11c3-4ec2-abb8-7dbecb1f7809?utm_source=copy&utm_medium=social&utm_campaign=university_social_sharing"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Mongo DB Basics JavaScript",
-            institution: "Mongo DB",
+            title: "Responsive Web Design",
+            institution: "freeCodeCamp",
             expiry: "No Expiry",
-            link: ""
+            link: "https://freecodecamp.org/certification/sahayford/responsive-web-design"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Mongo DB Basics JavaScript",
-            institution: "Mongo DB",
+            title: "Docker for absolute beginners - Hands on",
+            institution: "KodeKloud",
             expiry: "No Expiry",
-            link: ""
+            link: "https://kodekloud.com/courses/296044/certificate?utm_source=student_mailer&utm_medium=email&utm_campaign=issued_certificate_notification"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Mongo DB Basics JavaScript",
-            institution: "Mongo DB",
+            title: "Basic Problem Solving Skills",
+            institution: "HackerRank",
             expiry: "No Expiry",
-            link: ""
+            link: "https://www.hackerrank.com/certificates/203a439a8fd8"
         },
         {
-            image: "/assets/lion.jpg",
-            title: "Mongo DB Basics JavaScript",
-            institution: "Mongo DB",
+            title: "Hackerrank Basic Python Certification",
+            institution: "HackerRank",
             expiry: "No Expiry",
-            link: ""
+            link: "https://www.hackerrank.com/certificates/0e5354554497"
+        },
+        {
+            title: "Hackerrank Basic Javascipt Certification",
+            institution: "HackerRank",
+            expiry: "No Expiry",
+            link: "https://www.hackerrank.com/certificates/4f0fb8b9d878"
+        },
+        {
+            title: "Java Basic Certification",
+            institution: "HackerRank",
+            expiry: "No Expiry",
+            link: "https://www.hackerrank.com/certificates/ee771cc3833e"
         },
     ]
 }

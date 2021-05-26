@@ -23,7 +23,7 @@ const Project = ({project}) => {
             chip: {
                 marginRight: 8,
                 marginBottom: 8,
-                backgroundColor: theme.palette.primary.light
+                backgroundColor: theme.palette.background.default,
             },
             title: {
                 textTransform: "uppercase"
@@ -42,7 +42,6 @@ const Project = ({project}) => {
 
     return (
         <Card variant="elevation" elevation={0} className={classes.card}>
-            {/*<CardMedia src={project.image} component="img"/>*/}
             <CardContent className={classes.content}>
                 <Typography color="textSecondary" gutterBottom={true} variant="h5"
                             className={classes.title}>{project.title}</Typography>

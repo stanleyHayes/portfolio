@@ -1,12 +1,16 @@
 import React from "react";
-import {Button, Card, CardContent, CardMedia, Divider, makeStyles, Typography} from "@material-ui/core";
+import {Button, Card, CardActions, CardContent, Divider, makeStyles, Typography} from "@material-ui/core";
 import {ChevronRight} from "@material-ui/icons";
 
 const Certification = ({certification}) => {
 
     const useStyles = makeStyles((theme) => {
         return {
-            card: {},
+            card: {
+                minHeight: 370,
+                display: "flex",
+                flexDirection: "column"
+            },
             link: {
                 textDecoration: "none",
                 cursor: "pointer",
@@ -23,7 +27,15 @@ const Certification = ({certification}) => {
             },
             title: {
                 textTransform: "uppercase"
-            }
+            },
+            caption:{
+                textTransform: "uppercase",
+                fontWeight: 600,
+                fontSize: '0.9em'
+            },
+            content: {
+                flexGrow: 1
+            },
         }
     });
 
@@ -31,21 +43,31 @@ const Certification = ({certification}) => {
 
 
     return (
-        <Card variant="elevation" elevation={0}>
-            <CardMedia src={certification.image} className={classes.image} component="img"/>
-            <CardContent>
+        <Card className={classes.card} variant="elevation" elevation={0}>
+            <CardContent className={classes.content}>
+                <Typography className={classes.caption} color="textPrimary" variant="body2">Title</Typography>
                 <Typography color="textSecondary" variant="h6">{certification.title}</Typography>
                 <Divider variant="fullWidth" light={true} className={classes.divider}/>
+                <Typography className={classes.caption} color="textPrimary" variant="body2">
+                    Issuing Institution
+                </Typography>
                 <Typography color="textSecondary" variant="body1">{certification.institution}</Typography>
                 <Divider variant="fullWidth" light={true} className={classes.divider}/>
+                <Typography className={classes.caption} color="textPrimary" variant="body2">
+                    Expiration
+                </Typography>
                 <Typography color="textSecondary" variant="body1">{certification.expiry}</Typography>
-                <Divider variant="fullWidth" light={true} className={classes.divider}/>
-                <Button size="large" fullWidth={true} endIcon={<ChevronRight/>} variant="text" color="textSecondary">
-                    <a className={classes.link} target="_blank" rel="noreferrer" href={certification.link}>
-                        View Certification
-                    </a>
-                </Button>
             </CardContent>
+            <Divider light={true} variant="fullWidth"/>
+            <CardActions>
+                <Button fullWidth={true} size="large" variant="text" endIcon={<ChevronRight/>}>
+                    <a
+                        className={classes.link}
+                        rel="noreferrer noopener"
+                        target="_blank"
+                        href={certification.link}>View Certification</a>
+                </Button>
+            </CardActions>
         </Card>
     )
 }

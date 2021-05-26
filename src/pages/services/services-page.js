@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout";
 import {Card, CardContent, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
-import {Code} from "@material-ui/icons";
 import {Helmet} from "react-helmet";
 
 
@@ -27,6 +26,10 @@ const ServicesPage = () => {
             },
             iconContainer: {
                 marginBottom: 32
+            },
+            icon: {
+                width: 48,
+                height: 48
             }
         }
     });
@@ -69,7 +72,8 @@ const ServicesPage = () => {
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid className={classes.iconContainer} item={true}>
-                                        <Code/>
+                                        <img className={classes.icon} src="/assets/training.png" alt="training logo"
+                                             title="Training Service"/>
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" gutterBottom={true}
@@ -86,7 +90,8 @@ const ServicesPage = () => {
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid className={classes.iconContainer} item={true}>
-                                        <Code/>
+                                        <img className={classes.icon} src="/assets/wordpress.png" alt="wordpress logo"
+                                             title="WordPress Service"/>
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
@@ -103,7 +108,8 @@ const ServicesPage = () => {
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid className={classes.iconContainer} item={true}>
-                                        <Code/>
+                                        <img className={classes.icon} src="/assets/web-app.png" alt="Web Apps logo"
+                                             title="Web App Dev Service"/>
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
@@ -120,7 +126,8 @@ const ServicesPage = () => {
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid className={classes.iconContainer} item={true}>
-                                        <Code/>
+                                        <img className={classes.icon} src="/assets/rest-api.png" alt="rest api logo"
+                                             title="Rest API Service"/>
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
@@ -137,7 +144,8 @@ const ServicesPage = () => {
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid className={classes.iconContainer} item={true}>
-                                        <Code/>
+                                        <img className={classes.icon} src="/assets/sql.png" alt="sql database logo"
+                                             title="SQL Database Design Service"/>
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
@@ -154,7 +162,8 @@ const ServicesPage = () => {
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid className={classes.iconContainer} item={true}>
-                                        <Code/>
+                                        <img className={classes.icon} src="/assets/nosql.png" alt="nosql logo"
+                                             title="NOSQL database design Service"/>
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">

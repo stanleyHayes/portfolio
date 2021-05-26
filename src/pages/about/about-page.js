@@ -62,12 +62,19 @@ const AboutPage = () => {
                     height: 45,
                     marginRight: 32,
                     marginBottom: 16
+                },
+                [theme.breakpoints.down("sm")]: {
+                    width: 24,
+                    height: 24,
+                    display: "inline-block",
+                    marginTop: 8
                 }
             },
             image: {
                 objectFit: "cover",
                 objectPosition: "center",
                 width: '100%',
+                maxWidth: "100%",
                 height: 'auto',
                 borderTopLeftRadius: 64,
                 borderTopRightRadius: 32,
@@ -147,7 +154,7 @@ const AboutPage = () => {
                 <Grid className={classes.buttonContainer} container={true} spacing={5}>
                     <Grid item={true} xs={12} md={4} justify="center" container={true}>
                         <Avatar
-                            src="/assets/lion.jpg"
+                            src="/assets/stanley.jpeg"
                             className={classes.image}
                         />
                     </Grid>
@@ -165,7 +172,7 @@ const AboutPage = () => {
                         <Grid spacing={2} className={classes.buttonContainer} justify="flex-start" container={true}>
                             <Grid item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
+                                   href="https://github.com/stanleyHayes">
                                     <Chip
                                         className={classes.chip}
                                         label="GitHub"
@@ -183,7 +190,7 @@ const AboutPage = () => {
                             </Grid>
                             <Grid item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
+                                   href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/">
                                     <Chip
                                         className={classes.chip}
                                         label="LinkedIn"
@@ -193,15 +200,15 @@ const AboutPage = () => {
                                             <img
                                                 src="/assets/linkedin.svg"
                                                 className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
+                                                alt="LinkedIn Profile"
+                                                title="LinkedIn Profile"/>
                                         }
                                     />
                                 </a>
                             </Grid>
                             <Grid item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
+                                   href="https://twitter.com/stanley_hayford">
                                     <Chip
                                         className={classes.chip}
                                         label="Twitter"
@@ -211,8 +218,8 @@ const AboutPage = () => {
                                             <img
                                                 src="/assets/twitter.svg"
                                                 className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
+                                                alt="Twitter Profile"
+                                                title="Twitter Profile"/>
                                         }
                                     />
                                 </a>

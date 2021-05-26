@@ -31,6 +31,7 @@ const HomePage = () => {
                 objectPosition: "center",
                 width: '100%',
                 height: 'auto',
+                maxWidth: "100%",
                 borderTopLeftRadius: 64,
                 borderTopRightRadius: 32,
                 borderBottomLeftRadius: 32,
@@ -101,7 +102,7 @@ const HomePage = () => {
                 <Grid container={true} spacing={5} justify="space-between" alignItems="center">
                     <Grid item={true} xs={12} md={4} container={true}>
                         <Avatar
-                            src="/assets/lion.jpg"
+                            src="/assets/profile.jpeg"
                             className={classes.image}
                         />
                     </Grid>
@@ -123,7 +124,7 @@ const HomePage = () => {
                         <Grid spacing={2} className={classes.socialContainer} justify="flex-start" container={true}>
                             <Grid item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
+                                   href="https://github.com/stanleyHayes">
                                     <Chip
                                         className={classes.chip}
                                         label="GitHub"
@@ -133,15 +134,15 @@ const HomePage = () => {
                                             <img
                                                 src="/assets/github.svg"
                                                 className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
+                                                alt="GigHub Profile"
+                                                title="GitHub Profile"/>
                                         }
                                     />
                                 </a>
                             </Grid>
                             <Grid item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
+                                   href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/">
                                     <Chip
                                         className={classes.chip}
                                         label="LinkedIn"
@@ -151,15 +152,15 @@ const HomePage = () => {
                                             <img
                                                 src="/assets/linkedin.svg"
                                                 className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
+                                                alt="LinkedIn Profile"
+                                                title="LinkedIn Profile"/>
                                         }
                                     />
                                 </a>
                             </Grid>
                             <Grid item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://something.come/whatever">
+                                   href="https://twitter.com/stanley_hayford">
                                     <Chip
                                         className={classes.chip}
                                         label="Twitter"
@@ -169,8 +170,8 @@ const HomePage = () => {
                                             <img
                                                 src="/assets/twitter.svg"
                                                 className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
+                                                alt="GitHub Profile"
+                                                title="GitHub Profile"/>
                                         }
                                     />
                                 </a>
