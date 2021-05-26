@@ -36,15 +36,21 @@ const CourseLessonsPage = () => {
                 lineHeight: 1.5
             },
             root: {
-                paddingTop: 84,
-                paddingBottom: 84
+                paddingTop: 80,
+                paddingBottom: 80,
+                [theme.breakpoints.down("md")]: {
+                    paddingTop: 60
+                }
             },
             header: {
                 minHeight: '25vh',
                 backgroundColor: theme.palette.background.default,
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: "center"
+                justifyContent: "center",
+                [theme.breakpoints.down("md")]: {
+                    minHeight: '30vh',
+                }
             }
         }
     });
@@ -62,7 +68,7 @@ const CourseLessonsPage = () => {
                     course && lessons ? (
                         <Box>
                             <Box className={classes.header}>
-                                <Box>
+                                <Container>
                                     <Typography
                                         color="textSecondary"
                                         variant="h4"
@@ -76,7 +82,7 @@ const CourseLessonsPage = () => {
                                         color="textSecondary"
                                         className={classes.summary}
                                         gutterBottom={true}>{course.summary}</Typography>
-                                </Box>
+                                </Container>
                             </Box>
 
                             <Container className={classes.container}>

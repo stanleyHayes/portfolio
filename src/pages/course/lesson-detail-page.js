@@ -20,10 +20,10 @@ const LessonDetailPage = () => {
     const useStyles = makeStyles(theme => {
         return {
             container: {
-                paddingTop: 84,
+                paddingTop: 70,
                 display: "flex",
                 maxWidth: '100vw',
-                height: '93vh'
+                height: '94vh'
             },
             page: {
                 textTransform: "uppercase"
@@ -69,7 +69,7 @@ const LessonDetailPage = () => {
                 maxHeight: '100vh',
                 overflow: 'scroll',
                 position: 'sticky',
-                top: 100,
+                top: 80,
                 [theme.breakpoints.down("sm")]: {
                     display: "none"
                 },
