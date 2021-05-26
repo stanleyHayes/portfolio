@@ -4,16 +4,19 @@ import {
     Avatar,
     Box,
     Container,
-    Divider,
+    Divider, Fab, Hidden,
     List,
     ListItem,
     ListItemAvatar,
     ListItemText,
     makeStyles,
+    Drawer,
     Typography
 } from "@material-ui/core";
 import {useHistory, useParams} from "react-router-dom";
 import {getCourseLessonBySlug} from "../../data/data";
+import {ViewList} from "@material-ui/icons";
+import Lessons from "../../components/shared/lessons";
 
 const LessonDetailPage = () => {
 
@@ -81,15 +84,6 @@ const LessonDetailPage = () => {
                 fontWeight: "bold",
                 color: theme.palette.text.primary
             },
-            listItem: {
-                paddingTop: 8,
-                paddingBottom: 8,
-                transition: 'all 300ms ease-out',
-                '&:hover': {
-                    paddingTop: 16,
-                    paddingBottom: 16
-                }
-            },
             lessonContainer: {
                 flexGrow: 1,
                 display: "flex",
@@ -102,19 +96,23 @@ const LessonDetailPage = () => {
                 paddingRight: 64,
                 flexBasis: '80%'
             },
-            avatar: {
-                borderWidth: 1,
-                borderColor: theme.palette.secondary.light,
-                backgroundColor: theme.palette.background.paper,
-                borderStyle: "solid"
-            },
+
             avatarContainer: {},
-            lessonTitle: {
-                fontWeight: 500
+            drawerList: {
+                width: '50vw'
             },
-            selected: {
-                fontWeight: "bold",
-                textTransform: "uppercase",
+            icon: {
+
+            },
+            fabContainer: {
+                position: "absolute",
+                right: '0%',
+                bottom: '0%',
+                paddingRight: 32,
+                paddingBottom: 32
+            },
+            fab: {
+
             }
         }
     });
@@ -128,42 +126,19 @@ const LessonDetailPage = () => {
     const handleSelectedLesson = lesson => {
         setSelectedLesson(lesson);
         history.push(`/blog/${cslug}/lessons/${lesson.slug}`);
+        setOpen(false);
     }
+
+    const [open, setOpen] = useState(false);
+
     return (
         <Layout>
             <Box className={classes.container}>
                 <Box className={classes.lessonsContainer}>
-                    <List className={classes.lessonsList}>
-                        {lessons && lessons.map((lesson, index) => {
-                            return (
-                                <ListItem
-                                    className={classes.listItem}
-                                    selected={lesson.slug === lslug}
-                                    button={true}
-                                    divider={true}
-                                    key={index}
-                                    classes={{selected: classes.selected}}
-                                    onClick={() => handleSelectedLesson(lesson)}>
-                                    <ListItemAvatar className={classes.avatarContainer}>
-                                        <Avatar variant="circular" className={classes.avatar}>
-                                            <Typography variant="body1"
-                                                        color="textSecondary">{lesson.number}</Typography>
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={
-                                            <Typography
-                                                className={classes.lessonTitle}
-                                                color="textSecondary"
-                                                variant="body2">
-                                                {lesson.title}
-                                            </Typography>
-                                        }
-                                    />
-                                </ListItem>
-                            )
-                        })}
-                    </List>
+                    <Lessons
+                        lessons={lessons}
+                        lslug={lslug}
+                        handleSelectedLesson={handleSelectedLesson}/>
                 </Box>
                 <Box className={classes.lessonContent}>
                     {selectedLesson ? (
@@ -207,6 +182,14 @@ const LessonDetailPage = () => {
                                     Table of Contents
                                 </Typography>
                             </Box>
+
+                            <Hidden lgUp={true}>
+                                <Box className={classes.fabContainer}>
+                                    <Fab onClick={() => setOpen(true)} className={classes.fab} size="medium">
+                                        <ViewList className={classes.icon} />
+                                    </Fab>
+                                </Box>
+                            </Hidden>
                         </Container>
                     ) : (
                         <Box>
@@ -215,6 +198,18 @@ const LessonDetailPage = () => {
                     )}
                 </Box>
             </Box>
+            <Drawer
+                anchor="right"
+                variant="temporary"
+                className={classes.drawerList}
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}>
+                <Lessons
+                    lessons={lessons}
+                    lslug={lslug}
+                    handleSelectedLesson={handleSelectedLesson}/>
+            </Drawer>
         </Layout>
     )
 }
