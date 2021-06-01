@@ -53,10 +53,10 @@ const AboutPage = () => {
                 marginBottom: 16
             },
             icon: {
-                width: 45,
-                height: 45,
-                marginTop: 4,
-                marginLeft: 8,
+                width: 35,
+                height: 35,
+                marginTop: 12,
+                marginLeft: 12,
                 [theme.breakpoints.down("md")]: {
                     width: 45,
                     height: 45,
@@ -292,10 +292,9 @@ const AboutPage = () => {
 
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.
+                                            I love to work actively on the user experience portion of a software
+                                            development lifecycle from wireframe prototyping to frontend development.
+                                            I love Material UI!
                                         </Typography>
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
@@ -370,10 +369,9 @@ const AboutPage = () => {
 
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.
+                                            I love to get down to the dirty stuff and build APIs; websocket
+                                            servers; microservice architectures; and generally full-fledged backend
+                                            apps.
                                         </Typography>
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
@@ -448,10 +446,9 @@ const AboutPage = () => {
 
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.
+                                            I love to analyse and solve algorithmic problems and challenge myself with
+                                            exploring new language features. At gun point, I'll probably use C
+                                            programming to solve any problem I encounter.
                                         </Typography>
 
                                         <Divider variant="fullWidth" className={classes.secondaryDivider} light={true}/>
@@ -551,20 +548,21 @@ const AboutPage = () => {
                             <Grid item={true} xs={12}>
                                 <VerticalTimeline animate={true}>
                                     <VerticalTimelineElement
-                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon"
-                                                   title="school icon"/>}
+                                        icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon"
+                                                   title="coding icon"/>}
                                         date={
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
-                                                2017 - 2018
+                                                2021 - Present
                                             </Typography>
                                         } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
-                                                    Teaching Assistant
+                                                    Vien Health
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body1">KNUST</Typography>
+                                                <Typography color="textSecondary" variant="body1">Backend
+                                                    Engineer</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body2">
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -576,7 +574,9 @@ const AboutPage = () => {
                                         </Card>
                                     </VerticalTimelineElement>
 
+
                                     <VerticalTimelineElement
+                                        animate={true}
                                         icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon"
                                                    title="coding icon"/>}
                                         date={
@@ -658,6 +658,35 @@ const AboutPage = () => {
                                             </CardContent>
                                         </Card>
                                     </VerticalTimelineElement>
+
+
+                                    <VerticalTimelineElement
+                                        icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon"
+                                                   title="school icon"/>}
+                                        date={
+                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                2017 - 2018
+                                            </Typography>
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        <Card variant="elevation" elevation={0}>
+                                            <CardContent>
+                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
+                                                    Teaching Assistant
+                                                </Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" variant="body1">KNUST</Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" variant="body2">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                                    aliquip ex ea commodo consequat.
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </VerticalTimelineElement>
+
+
                                 </VerticalTimeline>
                             </Grid>
                         </Grid>

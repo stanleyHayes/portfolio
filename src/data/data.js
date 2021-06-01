@@ -241,7 +241,16 @@ export const getCourses = () => {
             name: "C++",
             image: "/assets/c++.svg",
             slug: "cplusplus",
-            lessons: [],
+            lessons: [
+                {
+                    title: "Introduction",
+                    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                    number: "001",
+                    date: new Date(),
+                    author: "Stanley Hayford",
+                    slug: "introduction"
+                },
+            ],
             detailPage: "/blog/cplusplus",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
