@@ -9,7 +9,7 @@ import {
     Container,
     Divider,
     Grid,
-    makeStyles,
+    makeStyles, Paper,
     Tab,
     Tabs,
     Typography,
@@ -159,110 +159,119 @@ const AboutPage = () => {
                         />
                     </Grid>
                     <Grid item={true} xs={12} md={8}>
-                        <Typography className={classes.page} color="textSecondary" gutterBottom={true}
-                                    variant="h4">Profile</Typography>
-                        <Typography className={classes.profile} color="textSecondary" gutterBottom={true}
-                                    variant="body1">
-                            Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and
-                            server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise
-                            professional with 4 years of hands-on experience taking charge of front and back-end web
-                            development. Skillful creating servers and databases for functionality and designing and
-                            developing API's. Hardworking collaborator with a track record of superior results.
-                        </Typography>
-                        <Grid spacing={2} className={classes.buttonContainer} justify="flex-start" container={true}>
-                            <Grid item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://github.com/stanleyHayes">
-                                    <Chip
-                                        className={classes.chip}
-                                        label="GitHub"
-                                        size="medium"
-                                        title="GitHub"
-                                        avatar={
-                                            <img
-                                                src="/assets/github.svg"
-                                                className={classes.social}
-                                                alt="something icon"
-                                                title="something icon"/>
-                                        }
-                                    />
-                                </a>
-                            </Grid>
-                            <Grid item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/">
-                                    <Chip
-                                        className={classes.chip}
-                                        label="LinkedIn"
-                                        size="medium"
-                                        title="LinkedIn"
-                                        avatar={
-                                            <img
-                                                src="/assets/linkedin.svg"
-                                                className={classes.social}
-                                                alt="LinkedIn Profile"
-                                                title="LinkedIn Profile"/>
-                                        }
-                                    />
-                                </a>
-                            </Grid>
-                            <Grid item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://twitter.com/stanley_hayford">
-                                    <Chip
-                                        className={classes.chip}
-                                        label="Twitter"
-                                        size="medium"
-                                        title="Twitter"
-                                        avatar={
-                                            <img
-                                                src="/assets/twitter.svg"
-                                                className={classes.social}
-                                                alt="Twitter Profile"
-                                                title="Twitter Profile"/>
-                                        }
-                                    />
-                                </a>
-                            </Grid>
-                        </Grid>
-                        <Grid className={classes.buttonContainer} container={true} spacing={4}>
-                            <Grid item={true} xs={12} md={6}>
-                                <a
-                                    className={classes.link}
-                                    href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
-                                    download="Resume-Stanley-Asoku-Hayford.pdf">
-                                    <Button
-                                        fullWidth={true}
-                                        className={classes.button}
-                                        disableElevation={true}
-                                        variant="outlined"
-                                        size="large">
-                                        Download Resume
-                                    </Button>
-                                </a>
-                            </Grid>
-                            <Grid item={true} xs={12} md={6}>
-                                <a
-                                    className={classes.link}
-                                    href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
-                                    download="Resume-Stanley-Asoku-Hayford.pdf">
-                                    <Button
-                                        fullWidth={true}
-                                        className={classes.button}
-                                        disableElevation={true}
-                                        variant="outlined"
-                                        size="large">
-                                        Download Cover Letter
-                                    </Button>
-                                </a>
-                            </Grid>
-                        </Grid>
+                        <Card variant="elevation" elevation={1}>
+                            <CardContent>
+                                <Typography className={classes.page} color="textSecondary" gutterBottom={true}
+                                            variant="h4">Profile</Typography>
+                                <Typography className={classes.profile} color="textSecondary" gutterBottom={true}
+                                            variant="body1">
+                                    Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages
+                                    and
+                                    server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise
+                                    professional with 4 years of hands-on experience taking charge of front and back-end
+                                    web
+                                    development. Skillful creating servers and databases for functionality and designing
+                                    and
+                                    developing API's. Hardworking collaborator with a track record of superior results.
+                                </Typography>
+                                <Grid spacing={2} className={classes.buttonContainer} justify="flex-start"
+                                      container={true}>
+                                    <Grid item={true}>
+                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                           href="https://github.com/stanleyHayes">
+                                            <Chip
+                                                className={classes.chip}
+                                                label="GitHub"
+                                                size="medium"
+                                                title="GitHub"
+                                                avatar={
+                                                    <img
+                                                        src="/assets/github.svg"
+                                                        className={classes.social}
+                                                        alt="something icon"
+                                                        title="something icon"/>
+                                                }
+                                            />
+                                        </a>
+                                    </Grid>
+                                    <Grid item={true}>
+                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                           href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/">
+                                            <Chip
+                                                className={classes.chip}
+                                                label="LinkedIn"
+                                                size="medium"
+                                                title="LinkedIn"
+                                                avatar={
+                                                    <img
+                                                        src="/assets/linkedin.svg"
+                                                        className={classes.social}
+                                                        alt="LinkedIn Profile"
+                                                        title="LinkedIn Profile"/>
+                                                }
+                                            />
+                                        </a>
+                                    </Grid>
+                                    <Grid item={true}>
+                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                           href="https://twitter.com/stanley_hayford">
+                                            <Chip
+                                                className={classes.chip}
+                                                label="Twitter"
+                                                size="medium"
+                                                title="Twitter"
+                                                avatar={
+                                                    <img
+                                                        src="/assets/twitter.svg"
+                                                        className={classes.social}
+                                                        alt="Twitter Profile"
+                                                        title="Twitter Profile"/>
+                                                }
+                                            />
+                                        </a>
+                                    </Grid>
+                                </Grid>
+                                <Grid className={classes.buttonContainer} container={true} spacing={4}>
+                                    <Grid item={true} xs={12} md={6}>
+                                        <a
+                                            className={classes.link}
+                                            href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
+                                            download="Resume-Stanley-Asoku-Hayford.pdf">
+                                            <Button
+                                                fullWidth={true}
+                                                className={classes.button}
+                                                disableElevation={true}
+                                                variant="outlined"
+                                                size="large">
+                                                Download Resume
+                                            </Button>
+                                        </a>
+                                    </Grid>
+                                    <Grid item={true} xs={12} md={6}>
+                                        <a
+                                            className={classes.link}
+                                            href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
+                                            download="Resume-Stanley-Asoku-Hayford.pdf">
+                                            <Button
+                                                fullWidth={true}
+                                                className={classes.button}
+                                                disableElevation={true}
+                                                variant="outlined"
+                                                size="large">
+                                                Download Cover Letter
+                                            </Button>
+                                        </a>
+                                    </Grid>
+                                </Grid>
+                            </CardContent>
+                        </Card>
                     </Grid>
                 </Grid>
 
                 <Divider light={true} variant="fullWidth" className={classes.divider}/>
 
                 <Tabs
+                    component={Paper}
                     indicatorColor="secondary"
                     textColor="secondary"
                     centered={!mobile && true}
@@ -428,6 +437,10 @@ const AboutPage = () => {
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Postman
+                                        </Typography>
+                                        <Typography color="textSecondary" gutterBottom={true}
+                                                    variant="body2">
+                                            Git / GitHub
                                         </Typography>
                                     </CardContent>
                                 </Card>

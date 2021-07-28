@@ -12,7 +12,7 @@ const Layout = ({children}) => {
         const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             root: {
-                background: dark === "dark" ? "rgba(11,12,16,0.95)" : "#f0f2f5",
+                background: dark === "dark" ? "rgba(11,12,16,0.95)" : theme.palette.background.default,
                 minHeight: "100vh"
             }
         }

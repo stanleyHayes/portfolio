@@ -3,10 +3,10 @@ import {grey, yellow} from "@material-ui/core/colors";
 
 export const dark = createMuiTheme({
     typography: {
-        fontFamily: "IBM Plex Mono, monospace"
+        fontFamily: "Raleway, IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 4
+        borderRadius: 8
     },
     palette: {
         primary: {
@@ -50,10 +50,10 @@ export const dark = createMuiTheme({
 
 export const light = createMuiTheme({
     typography: {
-        fontFamily: "IBM Plex Mono, monospace"
+        fontFamily: "Raleway, IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 4
+        borderRadius: 8
     },
     palette: {
         primary: {
@@ -84,7 +84,8 @@ export const light = createMuiTheme({
             selectedOpacity: 0.5
         },
         background: {
-            paper: "#ffffff"
+            paper: "#ffffff",
+            default: '#e5e5e5'
         },
         divider: grey["500"],
         type: "light",

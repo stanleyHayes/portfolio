@@ -127,6 +127,18 @@ export const getCertification = () => {
             expiry: "No Expiry",
             link: "https://www.hackerrank.com/certificates/ee771cc3833e"
         },
+        {
+            title: "Python for beginners",
+            institution: "Udemy",
+            expiry: "No Expiry",
+            link: "https://www.udemy.com/certificate/UC-700d149d-be1c-4e39-84fd-29621ff0e699/"
+        },
+        {
+            title: "MERN Stack",
+            institution: "Tech Academy",
+            expiry: "No Expiry",
+            link: "https://www.udemy.com/certificate/UC-8288fde9-abdc-435e-b22e-844ecab0553f/"
+        },
     ]
 }
 
