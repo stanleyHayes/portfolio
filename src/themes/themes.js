@@ -70,7 +70,7 @@ export const light = createMuiTheme({
         },
         text: {
             primary: "#45a298",
-            secondary: grey["600"],
+            secondary: grey["800"],
             hint: grey["400"],
             disabled: grey["300"]
         },
