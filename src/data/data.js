@@ -139,6 +139,12 @@ export const getCertification = () => {
             expiry: "No Expiry",
             link: "https://www.udemy.com/certificate/UC-8288fde9-abdc-435e-b22e-844ecab0553f/"
         },
+        {
+            title: "Git & Github",
+            institution: "LevelUp 360 DevOps",
+            expiry: "No Expiry",
+            link: "https://www.udemy.com/certificate/UC-07154b93-3080-4d87-b171-9d3340834be0/"
+        }
     ]
 }
 
