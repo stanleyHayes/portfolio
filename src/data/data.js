@@ -144,6 +144,12 @@ export const getCertification = () => {
             institution: "LevelUp 360 DevOps",
             expiry: "No Expiry",
             link: "https://www.udemy.com/certificate/UC-07154b93-3080-4d87-b171-9d3340834be0/"
+        },
+        {
+            title: "PHP for Beginners",
+            institution: "Web Coding",
+            expiry: "No Expiry",
+            link: "https://www.udemy.com/certificate/UC-fc7df867-0483-4092-a240-adfda16e0546/"
         }
     ]
 }
