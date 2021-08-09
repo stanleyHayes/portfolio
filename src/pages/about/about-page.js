@@ -117,7 +117,7 @@ const AboutPage = () => {
         setIndex(index);
     }
 
-    const mobile = useMediaQuery('(max-width: 600px)');
+    const mobile = useMediaQuery('(max-width: 660px)');
     const variant = useSelector(getUiState);
     let theme = variant === "dark" ? dark : light
 
@@ -534,7 +534,7 @@ const AboutPage = () => {
 
                     ) : index === 1 ? (
                         <Grid container={true} className={classes.buttonContainer}>
-                            <Grid item={true}>
+                            <Grid item={true} xs={12}>
                                 <VerticalTimeline animate={true}>
                                     <VerticalTimelineElement
                                         icon={<img src="/assets/school.svg" className={classes.icon} alt="school icon"
@@ -543,7 +543,7 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2013 - 2017
                                             </Typography>
-                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 16}}>
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
@@ -551,6 +551,10 @@ const AboutPage = () => {
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body1">KNUST</Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                    2013 - 2017
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </VerticalTimelineElement>
@@ -568,7 +572,7 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2021 - Present
                                             </Typography>
-                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 16}}>
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
@@ -577,6 +581,10 @@ const AboutPage = () => {
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body1">Full Stack
                                                     Engineer</Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                    2021 - Present
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </VerticalTimelineElement>
@@ -590,7 +598,7 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2018 - 2021
                                             </Typography>
-                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 16}}>
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
@@ -600,7 +608,8 @@ const AboutPage = () => {
                                                 <Typography color="textSecondary" variant="body1">Full Stack Web
                                                     Developer</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body2">
+                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                    2018 - 2021
                                                 </Typography>
                                             </CardContent>
                                         </Card>
@@ -615,7 +624,7 @@ const AboutPage = () => {
                                             </Typography>
                                         } contentStyle={{
                                         background: theme.palette.background.paper,
-                                        borderRadius: 2
+                                        borderRadius: 16
                                     }}>
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
@@ -625,6 +634,10 @@ const AboutPage = () => {
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body1">
                                                     Teaching Assistant
+                                                </Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                    2018 - Present
                                                 </Typography>
                                             </CardContent>
                                         </Card>
@@ -638,7 +651,7 @@ const AboutPage = () => {
                                             <Typography color="textSecondary" gutterBottom={true} variant="overline">
                                                 2017 - 2018
                                             </Typography>
-                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 16}}>
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
@@ -646,11 +659,13 @@ const AboutPage = () => {
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body1">KNUST</Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                    2017 - 2018
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </VerticalTimelineElement>
-
-
                                 </VerticalTimeline>
                             </Grid>
                         </Grid>
