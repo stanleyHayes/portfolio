@@ -37,7 +37,7 @@ const DesktopHeader = () => {
                 cursor: "pointer"
             },
             flag: {
-                width: 30,
+                width: 25,
                 height: "auto"
             },
             active: {
@@ -66,7 +66,7 @@ const DesktopHeader = () => {
     }
 
     return (
-        <Toolbar  variant="regular" color="primary">
+        <Toolbar variant="regular" color="primary">
             <Grid container={true} justify="space-around" alignItems="center">
                 <Grid lg={3} item={true} container={true} justify="center" alignItems="center">
                     <Grid item={true}>
@@ -95,7 +95,7 @@ const DesktopHeader = () => {
                                 onClick={() => handlePathChange('/')}
                                 className={`${active === '/' ? classes.active : classes.inactive} ${classes.button}`}
                                 variant="text"
-                                size="large">Home</Button>
+                                size="medium">Home</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>
@@ -104,7 +104,7 @@ const DesktopHeader = () => {
                                 onClick={() => handlePathChange('/about')}
                                 className={`${active === '/about' ? classes.active : classes.inactive} ${classes.button}`}
                                 variant="text"
-                                size="large">About</Button>
+                                size="medium">About</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>
@@ -113,7 +113,7 @@ const DesktopHeader = () => {
                                 onClick={() => handlePathChange('/blog')}
                                 className={`${active.startsWith('/blog') ? classes.active : classes.inactive} ${classes.button}`}
                                 variant="text"
-                                size="large">Blog</Button>
+                                size="medium">Blog</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>
@@ -122,7 +122,7 @@ const DesktopHeader = () => {
                                 onClick={() => handlePathChange('/portfolio')}
                                 className={`${active === '/portfolio' ? classes.active : classes.inactive} ${classes.button}`}
                                 variant="text"
-                                size="large">Portfolio</Button>
+                                size="medium">Portfolio</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>
@@ -131,7 +131,7 @@ const DesktopHeader = () => {
                                 onClick={() => handlePathChange('/services')}
                                 className={`${active === '/services' ? classes.active : classes.inactive} ${classes.button}`}
                                 variant="text"
-                                size="large">Services</Button>
+                                size="medium">Services</Button>
                         </Link>
                     </Grid>
                     <Grid item={true}>
@@ -140,21 +140,38 @@ const DesktopHeader = () => {
                                 onClick={() => handlePathChange('/contact')}
                                 className={`${active === '/contact' ? classes.active : classes.inactive} ${classes.button}`}
                                 variant="text"
-                                size="large">Contact</Button>
+                                size="medium">Contact</Button>
                         </Link>
                     </Grid>
                 </Grid>
-                <Grid item={true} xs={1}>
-                    {
-                        theme === "dark" ?
-                            (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
-                            :
-                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
-                                          color="secondary"/>)
-                    }
-                </Grid>
-                <Grid item={true} xs={1}>
-                    <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
+                <Grid lg={2} container={true} item={true} spacing={2} alignItems="center">
+                    <Grid item={true} >
+                        <a href="https://github.com/stanleyHayes" rel="noreferrer" target="_blank">
+                            <img className={classes.flag} src="/assets/github.svg" alt="GitHub logo" title="GitHub Repository"/>
+                        </a>
+                    </Grid>
+                    <Grid item={true}>
+                        <a href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/" rel="noreferrer" target="_blank">
+                            <img className={classes.flag} src="/assets/linkedin.svg" alt="Linkedin Account" title="LinkedIn Account"/>
+                        </a>
+                    </Grid>
+                    <Grid item={true}>
+                        <a href="https://twitter.com/stanley_hayford" rel="noreferrer" target="_blank">
+                            <img className={classes.flag} src="/assets/twitter.svg" alt="Twitter Account" title="Twitter Account"/>
+                        </a>
+                    </Grid>
+                    <Grid item={true}>
+                        <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
+                    </Grid>
+                    <Grid item={true}>
+                        {
+                            theme === "dark" ?
+                                (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
+                                :
+                                (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
+                                              color="secondary"/>)
+                        }
+                    </Grid>
                 </Grid>
             </Grid>
         </Toolbar>

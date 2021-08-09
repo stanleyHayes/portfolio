@@ -33,16 +33,16 @@ const HomePage = () => {
                 height: 'auto',
                 maxWidth: "100%",
                 borderTopLeftRadius: 64,
-                borderTopRightRadius: 32,
-                borderBottomLeftRadius: 32,
+                borderTopRightRadius: 16,
+                borderBottomLeftRadius: 16,
                 borderBottomRightRadius: 64,
                 [theme.breakpoints.down('sm')]: {
                     width: '100%',
                     height: 'auto',
                 },
                 [theme.breakpoints.down('md')]: {
-                    width: 320,
-                    height: 320,
+                    width: '100%',
+                    height: '100%',
                 }
             },
             social: {
@@ -77,8 +77,7 @@ const HomePage = () => {
                 cursor: "pointer"
             },
             profile: {
-                lineHeight: 1.7,
-                letterSpacing: 1.5
+                lineHeight: 1.7
             }
         }
     });

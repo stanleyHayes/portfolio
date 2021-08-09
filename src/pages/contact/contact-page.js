@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import {LocationOn, Mail, Phone} from "@material-ui/icons";
 import {Helmet} from "react-helmet";
+import validator from 'validator';
 
 const ContactPage = () => {
     const useStyles = makeStyles(() => {
@@ -66,28 +67,40 @@ const ContactPage = () => {
         e.preventDefault();
 
         if (!name) {
-            setError({...error, name: "Field required"});
+            setError({error, name: "Full Name field required"});
+            return;
         } else {
-            setError({...error, name: null});
+            setError({error, name: null});
         }
 
         if (!email) {
-            setError({...error, email: "Field required"});
+            setError({error, email: "Email field required"});
+            return;
         } else {
-            setError({...error, email: null});
+            setError({error, email: null});
+        }
+
+        if (!validator.isEmail(email)) {
+            setError({error, email: `Invalid email - ${email}`});
+            return;
+        } else {
+            setError({error, email: null});
         }
 
         if (!subject) {
-            setError({...error, subject: "Field required"});
+            setError({error, subject: "Subject field required"});
+            return;
         } else {
-            setError({...error, subject: null});
+            setError({error, subject: null});
         }
 
         if (!message) {
-            setError({...error, message: "Field required"});
+            setError({error, message: "Message field required"});
+            return;
         } else {
-            setError({...error, message: null});
+            setError({error, message: null});
         }
+        console.log(contact);
     }
 
     return (
@@ -122,7 +135,7 @@ const ContactPage = () => {
 
                 <Grid container={true} spacing={4}>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} elevation={0} variant="elevation">
+                        <Card className={classes.card} elevation={1} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -137,7 +150,7 @@ const ContactPage = () => {
                         </Card>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} elevation={0} variant="elevation">
+                        <Card className={classes.card} elevation={1} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -152,7 +165,7 @@ const ContactPage = () => {
                         </Card>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} elevation={0} variant="elevation">
+                        <Card className={classes.card} elevation={1} variant="elevation">
                             <CardContent>
                                 <Grid container={true} justify="center">
                                     <Grid item={true}>
@@ -170,7 +183,7 @@ const ContactPage = () => {
 
                 <Divider light={true} variant="fullWidth" className={classes.divider}/>
 
-                <Card variant="elevation" elevation={0}>
+                <Card variant="elevation" elevation={1}>
                     <CardContent>
                         <Grid container={true} spacing={4}>
                             <Grid item={true} xs={12} md={6}>
@@ -184,7 +197,8 @@ const ContactPage = () => {
                                     type="text"
                                     value={name}
                                     onChange={handleChange}
-                                    error={error.name}
+                                    error={Boolean(error.name)}
+                                    helperText={error.name}
                                     className={classes.textField}
                                     required={true}
                                 />
@@ -199,7 +213,8 @@ const ContactPage = () => {
                                     type="email"
                                     value={email}
                                     onChange={handleChange}
-                                    error={error.email}
+                                    error={Boolean(error.email)}
+                                    helperText={error.email}
                                     className={classes.textField}
                                     required={true}
                                 />
@@ -215,13 +230,13 @@ const ContactPage = () => {
                                     type="text"
                                     value={subject}
                                     onChange={handleChange}
-                                    error={error.name}
+                                    error={Boolean(error.subject)}
                                     className={classes.textField}
+                                    helperText={error.subject}
                                     required={true}
                                 />
                             </Grid>
                             <Grid item={true} xs={12} md={6}>
-
                                 <TextField
                                     label="Message"
                                     placeholder="Enter message"
@@ -234,7 +249,8 @@ const ContactPage = () => {
                                     type="text"
                                     value={message}
                                     onChange={handleChange}
-                                    error={error.message}
+                                    error={Boolean(error.message)}
+                                    helperText={error.message}
                                     className={classes.textField}
                                     required={true}
                                 />

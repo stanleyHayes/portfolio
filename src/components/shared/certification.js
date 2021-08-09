@@ -65,7 +65,7 @@ const Certification = ({certification}) => {
             </CardContent>
             <Divider light={true} variant="fullWidth"/>
             <CardActions>
-                <Button fullWidth={true} size="large" variant="text" endIcon={<ChevronRight/>}>
+                <Button fullWidth={true} size="small" variant="text" endIcon={<ChevronRight/>}>
                     <a
                         className={classes.link}
                         rel="noreferrer noopener"

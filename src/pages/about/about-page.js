@@ -9,7 +9,8 @@ import {
     Container,
     Divider,
     Grid,
-    makeStyles, Paper,
+    makeStyles,
+    Paper,
     Tab,
     Tabs,
     Typography,
@@ -77,16 +78,16 @@ const AboutPage = () => {
                 maxWidth: "100%",
                 height: 'auto',
                 borderTopLeftRadius: 64,
-                borderTopRightRadius: 32,
-                borderBottomLeftRadius: 32,
+                borderTopRightRadius: 16,
+                borderBottomLeftRadius: 16,
                 borderBottomRightRadius: 64,
                 [theme.breakpoints.down('sm')]: {
                     width: '100%',
                     height: 'auto',
                 },
                 [theme.breakpoints.down('md')]: {
-                    width: 320,
-                    height: 320,
+                    width: '100%',
+                    height: '100%',
                 }
             },
             gridContainer: {
@@ -98,11 +99,10 @@ const AboutPage = () => {
             },
             chip: {
                 padding: 8,
-                backgroundColor: theme.palette.background.paper
+                backgroundColor: theme.palette.background.default
             },
             profile: {
-                lineHeight: 1.7,
-                letterSpacing: 1.5
+                lineHeight: 1.7
             },
             link: {
                 textDecoration: "none"
@@ -151,139 +151,147 @@ const AboutPage = () => {
 
                 <Divider variant="fullWidth" className={classes.divider}/>
 
-                <Grid className={classes.buttonContainer} container={true} spacing={5}>
-                    <Grid item={true} xs={12} md={4} justify="center" container={true}>
-                        <Avatar
-                            src="/assets/stanley.jpeg"
-                            className={classes.image}
-                        />
+                <Container>
+                    <Grid className={classes.buttonContainer} container={true} spacing={5}>
+                        <Grid item={true} xs={12} md={4} justify="center" container={true}>
+                            <Avatar
+                                src="/assets/stanley.jpeg"
+                                className={classes.image}
+                            />
+                        </Grid>
+                        <Grid item={true} xs={12} md={8}>
+                            <Card variant="elevation" elevation={1}>
+                                <CardContent>
+                                    <Typography className={classes.page} color="textSecondary" gutterBottom={true}
+                                                variant="h4">Profile</Typography>
+                                    <Typography className={classes.profile} color="textSecondary" gutterBottom={true}
+                                                variant="body1">
+                                        Tech-savvy Full Stack Web Developer proficient in fundamental front-end
+                                        languages
+                                        and
+                                        server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and
+                                        precise
+                                        professional with 4 years of hands-on experience taking charge of front and
+                                        back-end
+                                        web
+                                        development. Skillful creating servers and databases for functionality and
+                                        designing
+                                        and
+                                        developing API's. Hardworking collaborator with a track record of superior
+                                        results.
+                                    </Typography>
+                                    <Grid spacing={2} className={classes.buttonContainer} justify="flex-start"
+                                          container={true}>
+                                        <Grid item={true}>
+                                            <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                               href="https://github.com/stanleyHayes">
+                                                <Chip
+                                                    className={classes.chip}
+                                                    label="GitHub"
+                                                    size="medium"
+                                                    title="GitHub"
+                                                    avatar={
+                                                        <img
+                                                            src="/assets/github.svg"
+                                                            className={classes.social}
+                                                            alt="something icon"
+                                                            title="something icon"/>
+                                                    }
+                                                />
+                                            </a>
+                                        </Grid>
+                                        <Grid item={true}>
+                                            <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                               href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/">
+                                                <Chip
+                                                    className={classes.chip}
+                                                    label="LinkedIn"
+                                                    size="medium"
+                                                    title="LinkedIn"
+                                                    avatar={
+                                                        <img
+                                                            src="/assets/linkedin.svg"
+                                                            className={classes.social}
+                                                            alt="LinkedIn Profile"
+                                                            title="LinkedIn Profile"/>
+                                                    }
+                                                />
+                                            </a>
+                                        </Grid>
+                                        <Grid item={true}>
+                                            <a rel="noreferrer noopener" className={classes.link} target="_blank"
+                                               href="https://twitter.com/stanley_hayford">
+                                                <Chip
+                                                    className={classes.chip}
+                                                    label="Twitter"
+                                                    size="medium"
+                                                    title="Twitter"
+                                                    avatar={
+                                                        <img
+                                                            src="/assets/twitter.svg"
+                                                            className={classes.social}
+                                                            alt="Twitter Profile"
+                                                            title="Twitter Profile"/>
+                                                    }
+                                                />
+                                            </a>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid className={classes.buttonContainer} container={true} spacing={4}>
+                                        <Grid item={true} xs={12} md={6}>
+                                            <a
+                                                className={classes.link}
+                                                href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
+                                                download="Resume-Stanley-Asoku-Hayford.pdf">
+                                                <Button
+                                                    fullWidth={true}
+                                                    className={classes.button}
+                                                    disableElevation={true}
+                                                    variant="outlined"
+                                                    size="large">
+                                                    Download Resume
+                                                </Button>
+                                            </a>
+                                        </Grid>
+                                        <Grid item={true} xs={12} md={6}>
+                                            <a
+                                                className={classes.link}
+                                                href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
+                                                download="Resume-Stanley-Asoku-Hayford.pdf">
+                                                <Button
+                                                    fullWidth={true}
+                                                    className={classes.button}
+                                                    disableElevation={true}
+                                                    variant="outlined"
+                                                    size="large">
+                                                    Download Cover Letter
+                                                </Button>
+                                            </a>
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
-                    <Grid item={true} xs={12} md={8}>
-                        <Card variant="elevation" elevation={1}>
-                            <CardContent>
-                                <Typography className={classes.page} color="textSecondary" gutterBottom={true}
-                                            variant="h4">Profile</Typography>
-                                <Typography className={classes.profile} color="textSecondary" gutterBottom={true}
-                                            variant="body1">
-                                    Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages
-                                    and
-                                    server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise
-                                    professional with 4 years of hands-on experience taking charge of front and back-end
-                                    web
-                                    development. Skillful creating servers and databases for functionality and designing
-                                    and
-                                    developing API's. Hardworking collaborator with a track record of superior results.
-                                </Typography>
-                                <Grid spacing={2} className={classes.buttonContainer} justify="flex-start"
-                                      container={true}>
-                                    <Grid item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://github.com/stanleyHayes">
-                                            <Chip
-                                                className={classes.chip}
-                                                label="GitHub"
-                                                size="medium"
-                                                title="GitHub"
-                                                avatar={
-                                                    <img
-                                                        src="/assets/github.svg"
-                                                        className={classes.social}
-                                                        alt="something icon"
-                                                        title="something icon"/>
-                                                }
-                                            />
-                                        </a>
-                                    </Grid>
-                                    <Grid item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/">
-                                            <Chip
-                                                className={classes.chip}
-                                                label="LinkedIn"
-                                                size="medium"
-                                                title="LinkedIn"
-                                                avatar={
-                                                    <img
-                                                        src="/assets/linkedin.svg"
-                                                        className={classes.social}
-                                                        alt="LinkedIn Profile"
-                                                        title="LinkedIn Profile"/>
-                                                }
-                                            />
-                                        </a>
-                                    </Grid>
-                                    <Grid item={true}>
-                                        <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                           href="https://twitter.com/stanley_hayford">
-                                            <Chip
-                                                className={classes.chip}
-                                                label="Twitter"
-                                                size="medium"
-                                                title="Twitter"
-                                                avatar={
-                                                    <img
-                                                        src="/assets/twitter.svg"
-                                                        className={classes.social}
-                                                        alt="Twitter Profile"
-                                                        title="Twitter Profile"/>
-                                                }
-                                            />
-                                        </a>
-                                    </Grid>
-                                </Grid>
-                                <Grid className={classes.buttonContainer} container={true} spacing={4}>
-                                    <Grid item={true} xs={12} md={6}>
-                                        <a
-                                            className={classes.link}
-                                            href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
-                                            download="Resume-Stanley-Asoku-Hayford.pdf">
-                                            <Button
-                                                fullWidth={true}
-                                                className={classes.button}
-                                                disableElevation={true}
-                                                variant="outlined"
-                                                size="large">
-                                                Download Resume
-                                            </Button>
-                                        </a>
-                                    </Grid>
-                                    <Grid item={true} xs={12} md={6}>
-                                        <a
-                                            className={classes.link}
-                                            href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
-                                            download="Resume-Stanley-Asoku-Hayford.pdf">
-                                            <Button
-                                                fullWidth={true}
-                                                className={classes.button}
-                                                disableElevation={true}
-                                                variant="outlined"
-                                                size="large">
-                                                Download Cover Letter
-                                            </Button>
-                                        </a>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-
+                </Container>
                 <Divider light={true} variant="fullWidth" className={classes.divider}/>
 
-                <Tabs
-                    component={Paper}
-                    indicatorColor="secondary"
-                    textColor="secondary"
-                    centered={!mobile && true}
-                    defaultValue="skills"
-                    variant={mobile ? "scrollable" : "standard"}
-                    value={index}
-                    onChange={handleTabChange}>
-                    <Tab label="Skills"/>
-                    <Tab label="Education"/>
-                    <Tab label="Experience"/>
-                    <Tab label="Certifications"/>
-                </Tabs>
+                <Container>
+                    <Tabs
+                        component={Paper}
+                        indicatorColor="secondary"
+                        textColor="secondary"
+                        centered={!mobile && true}
+                        defaultValue="skills"
+                        variant={mobile ? "scrollable" : "standard"}
+                        value={index}
+                        onChange={handleTabChange}>
+                        <Tab label="Skills"/>
+                        <Tab label="Education"/>
+                        <Tab label="Experience"/>
+                        <Tab label="Certifications"/>
+                    </Tabs>
+                </Container>
                 <Container>
                     {index === 0 ? (
                         <Grid container={true} spacing={4} className={classes.buttonContainer}>
@@ -543,13 +551,6 @@ const AboutPage = () => {
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body1">KNUST</Typography>
-                                                <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat.
-                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </VerticalTimelineElement>
@@ -574,15 +575,8 @@ const AboutPage = () => {
                                                     Vien Health
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body1">Backend
+                                                <Typography color="textSecondary" variant="body1">Full Stack
                                                     Engineer</Typography>
-                                                <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat.
-                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </VerticalTimelineElement>
@@ -607,36 +601,6 @@ const AboutPage = () => {
                                                     Developer</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat.
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </VerticalTimelineElement>
-
-                                    <VerticalTimelineElement
-                                        icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon"
-                                                   title="coding icon"/>}
-                                        date={
-                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
-                                                2020 - Present
-                                            </Typography>
-                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 2}}>
-                                        <Card variant="elevation" elevation={0}>
-                                            <CardContent>
-                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
-                                                    Full Stack Web Developer
-                                                </Typography>
-                                                <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body1">Dev Track</Typography>
-                                                <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat.
                                                 </Typography>
                                             </CardContent>
                                         </Card>
@@ -656,17 +620,11 @@ const AboutPage = () => {
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
-                                                    Teaching Assistant
+                                                    Academic City College
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body1">Academic City
-                                                    College</Typography>
-                                                <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat.
+                                                <Typography color="textSecondary" variant="body1">
+                                                    Teaching Assistant
                                                 </Typography>
                                             </CardContent>
                                         </Card>
@@ -688,13 +646,6 @@ const AboutPage = () => {
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body1">KNUST</Typography>
-                                                <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat.
-                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </VerticalTimelineElement>

@@ -45,11 +45,11 @@ const TabletHeader = ({handleDrawerOpen}) => {
 
     return (
         <Toolbar variant="regular">
-            <Grid  spacing={2} container={true} justify="space-between" alignItems="center">
+            <Grid container={true} justify="space-between" alignItems="center">
                 <Grid item={true} xs={1}>
                     <Menu onClick={handleDrawerOpen} className={classes.hamburger}/>
                 </Grid>
-                <Grid item={true} xs={8} container={true} justify="flex-start">
+                <Grid item={true} xs={7} container={true} justify="flex-start">
                     <Link to="/" className={classes.link}>
                         <Button startIcon={
                             <img
@@ -61,17 +61,34 @@ const TabletHeader = ({handleDrawerOpen}) => {
                         } className={classes.brand} variant="text">Zeus</Button>
                     </Link>
                 </Grid>
-                <Grid item={true} xs={1}>
-                    {
-                        theme === "dark" ?
-                            (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
-                            :
-                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
-                                          color="secondary"/>)
-                    }
-                </Grid>
-                <Grid item={true} xs={1}>
-                    <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
+                <Grid xs={4} container={true} item={true} spacing={3} alignItems="center">
+                    <Grid item={true} >
+                        <a href="https://github.com/stanleyHayes" rel="noreferrer" target="_blank">
+                            <img className={classes.flag} src="/assets/github.svg" alt="GitHub logo" title="GitHub Repository"/>
+                        </a>
+                    </Grid>
+                    <Grid item={true}>
+                        <a href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/" rel="noreferrer" target="_blank">
+                            <img className={classes.flag} src="/assets/linkedin.svg" alt="Linkedin Account" title="LinkedIn Account"/>
+                        </a>
+                    </Grid>
+                    <Grid item={true}>
+                        <a href="https://twitter.com/stanley_hayford" rel="noreferrer" target="_blank">
+                            <img className={classes.flag} src="/assets/twitter.svg" alt="Twitter Account" title="Twitter Account"/>
+                        </a>
+                    </Grid>
+                    <Grid item={true}>
+                        <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
+                    </Grid>
+                    <Grid item={true}>
+                        {
+                            theme === "dark" ?
+                                (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
+                                :
+                                (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
+                                              color="secondary"/>)
+                        }
+                    </Grid>
                 </Grid>
             </Grid>
         </Toolbar>
