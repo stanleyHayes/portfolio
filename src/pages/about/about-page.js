@@ -552,7 +552,8 @@ const AboutPage = () => {
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" variant="body1">KNUST</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                <Typography color="textSecondary" gutterBottom={true}
+                                                            variant="overline">
                                                     2013 - 2017
                                                 </Typography>
                                             </CardContent>
@@ -582,7 +583,8 @@ const AboutPage = () => {
                                                 <Typography color="textSecondary" variant="body1">Full Stack
                                                     Engineer</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                <Typography color="textSecondary" gutterBottom={true}
+                                                            variant="overline">
                                                     2021 - Present
                                                 </Typography>
                                             </CardContent>
@@ -608,7 +610,8 @@ const AboutPage = () => {
                                                 <Typography color="textSecondary" variant="body1">Full Stack Web
                                                     Developer</Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                <Typography color="textSecondary" gutterBottom={true}
+                                                            variant="overline">
                                                     2018 - 2021
                                                 </Typography>
                                             </CardContent>
@@ -636,7 +639,8 @@ const AboutPage = () => {
                                                     Teaching Assistant
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                <Typography color="textSecondary" gutterBottom={true}
+                                                            variant="overline">
                                                     2018 - Present
                                                 </Typography>
                                             </CardContent>
@@ -655,12 +659,15 @@ const AboutPage = () => {
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
+                                                    KNUST
+                                                </Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" variant="body1">
                                                     Teaching Assistant
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" variant="body1">KNUST</Typography>
-                                                <Divider className={classes.secondaryDivider} light={true}/>
-                                                <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                <Typography color="textSecondary" gutterBottom={true}
+                                                            variant="overline">
                                                     2017 - 2018
                                                 </Typography>
                                             </CardContent>
