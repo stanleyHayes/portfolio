@@ -51,8 +51,7 @@ const Course = ({course}) => {
                 width: '100%'
             },
             summary: {
-                letterSpacing: 1.5,
-                lineHeight: 1.5
+                fontWeight: 500
             }
         }
     });

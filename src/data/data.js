@@ -150,6 +150,12 @@ export const getCertification = () => {
             institution: "Web Coding",
             expiry: "No Expiry",
             link: "https://www.udemy.com/certificate/UC-fc7df867-0483-4092-a240-adfda16e0546/"
+        },
+        {
+            title: "PHP & MySQL for Beginners",
+            institution: "YouAccel Traning",
+            expiry: "No Expiry",
+            link: "https://www.udemy.com/certificate/UC-e1d27ce5-3697-4528-b129-23667b7e901a/"
         }
     ]
 }

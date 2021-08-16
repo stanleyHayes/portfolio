@@ -6,7 +6,7 @@ export const dark = createMuiTheme({
         fontFamily: "Quicksand, Raleway, IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 8
+        borderRadius: 16
     },
     palette: {
         primary: {
@@ -53,7 +53,7 @@ export const light = createMuiTheme({
         fontFamily: "Quicksand, Raleway, IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 8
+        borderRadius: 16
     },
     palette: {
         primary: {
