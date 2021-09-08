@@ -3,35 +3,35 @@ import {grey, yellow} from "@material-ui/core/colors";
 
 export const dark = createMuiTheme({
     typography: {
-        fontFamily: "Quicksand, Raleway, IBM Plex Mono, monospace"
+        fontFamily: "IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 8
+        borderRadius: 16
     },
     palette: {
         primary: {
             main: "#1f2833",
             light: "#000000",
             dark: "#000000",
-            contrastText: "#45a298"
+            contrastText: "#007FFF"
         },
         secondary: {
-            main: "#45a298",
-            dark: "#45a298",
-            light: "#45a298",
-            contrastText: "#45a298"
+            main: "#007FFF",
+            dark: "#007FFF",
+            light: "#007FFF",
+            contrastText: "#007FFF"
         },
         text: {
-            primary: "#45a298",
+            primary: "#007FFF",
             secondary: grey["300"],
-            hint: "#45a298",
-            disabled: "#45a298"
+            hint: "#007FFF",
+            disabled: "#007FFF"
         },
         action: {
-            active: "#45a298",
-            selected: "rgba(69,162,152,0.4)",
-            hover: "rgba(69,162,152,0.4)",
-            focus: "#45a298",
+            active: "#007FFF",
+            selected: "#007FFF",
+            hover: "rgba(0,127,255,0.4)",
+            focus: "rgba(0,127,255,0.4)",
             hoverOpacity: 0.4,
             focusOpacity: 0.8,
             selectedOpacity: 0.5
@@ -39,7 +39,7 @@ export const dark = createMuiTheme({
         background: {
             paper: "#1f2833"
         },
-        divider: "#45a298",
+        divider: "#007FFF",
         type: "dark",
         common: {
             black: "#000000",
@@ -50,10 +50,10 @@ export const dark = createMuiTheme({
 
 export const light = createMuiTheme({
     typography: {
-        fontFamily: "Quicksand, Raleway, IBM Plex Mono, monospace"
+        fontFamily: "IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
     },
     shape: {
-        borderRadius: 8
+        borderRadius: 16
     },
     palette: {
         primary: {
@@ -63,13 +63,13 @@ export const light = createMuiTheme({
             contrastText: grey["600"]
         },
         secondary: {
-            main: "#45a298",
-            dark: "#45a298",
-            light: "#45a298",
-            contrastText: "#45a298"
+            main: "#007FFF",
+            dark: "#007FFF",
+            light: "#007FFF",
+            contrastText: "#007FFF"
         },
         text: {
-            primary: "#45a298",
+            primary: "#007FFF",
             secondary: grey["800"],
             hint: grey["400"],
             disabled: grey["300"]

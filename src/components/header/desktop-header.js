@@ -41,7 +41,7 @@ const DesktopHeader = () => {
                 height: "auto"
             },
             active: {
-                background: dark === "dark" ? "rgba(69,162,152,0.4)" : "rgba(0,116,225,0.1)"
+                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
             },
             inactive: {
                 color: dark === "dark" ? "#ffffff" : grey["500"]

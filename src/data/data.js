@@ -150,6 +150,18 @@ export const getCertification = () => {
             institution: "Web Coding",
             expiry: "No Expiry",
             link: "https://www.udemy.com/certificate/UC-fc7df867-0483-4092-a240-adfda16e0546/"
+        },
+        {
+            title: "Learn Go",
+            institution: "Codecademy",
+            expiry: "No Expiry",
+            link: "https://www.codecademy.com/profiles/sahayford/certificates/60773d2e920679c8e46ff634b9ed2e6e"
+        },
+        {
+            title: "Learn PHP",
+            institution: "Codecademy",
+            expiry: "No Expiry",
+            link: "https://www.codecademy.com/profiles/sahayford/certificates/d24ce3aa4ed99ac04afffec4a78e2e44"
         }
     ]
 }

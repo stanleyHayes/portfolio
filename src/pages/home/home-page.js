@@ -62,7 +62,7 @@ const HomePage = () => {
             },
             role: {
                 display: "inline-block",
-                background: "rgba(69,162,152,0.25)",
+                background: "rgba(0,127,255,0.25)",
                 paddingLeft: 16,
                 paddingRight: 16,
                 paddingTop: 16,
