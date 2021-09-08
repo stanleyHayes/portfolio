@@ -162,6 +162,12 @@ export const getCertification = () => {
             institution: "Codecademy",
             expiry: "No Expiry",
             link: "https://www.codecademy.com/profiles/sahayford/certificates/d24ce3aa4ed99ac04afffec4a78e2e44"
+        },
+        {
+            title: "PHP & MySQL for Beginners",
+            institution: "YouAccel Training",
+            expiry: "No Expiry",
+            link: "https://www.udemy.com/certificate/UC-e1d27ce5-3697-4528-b129-23667b7e901a/"
         }
     ]
 }
@@ -393,10 +399,10 @@ export const getCourseLessonBySlug = (cslug, lslug) => {
     const lessons = getLessonsByCourse(cslug);
     const course = getCourseBySlug(cslug);
     let lesson = null;
-    if(lessons){
+    if (lessons) {
         lesson = lessons.find(lesson => lesson.slug === lslug);
     }
-    if(lesson && course){
+    if (lesson && course) {
         return [course, lessons, lesson];
     }
     return null;
