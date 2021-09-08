@@ -13,6 +13,7 @@ import {
     Paper,
     Tab,
     Tabs,
+    Box,
     Typography,
     useMediaQuery
 } from "@material-ui/core";
@@ -127,7 +128,7 @@ const AboutPage = () => {
                 <title>Stanley Hayford | About</title>
                 <meta
                     name="description"
-                    content="Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise professional with 4 years of hands-on experience taking charge of front and back-end web development. Skillful creating servers and databases for functionality and designing and developing API's. Hardworking collaborator with a track record of superior results. "
+                    content="Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise professional with 6 years of hands-on experience taking charge of front and back-end web development. Skillful creating servers and databases for functionality and designing and developing API's. Hardworking collaborator with a track record of superior results. "
                 />
                 <meta
                     name="keywords"
@@ -151,7 +152,7 @@ const AboutPage = () => {
 
                 <Divider variant="fullWidth" className={classes.divider}/>
 
-                <Container>
+                <Box>
                     <Grid className={classes.buttonContainer} container={true} spacing={5}>
                         <Grid item={true} xs={12} md={4} justify="center" container={true}>
                             <Avatar
@@ -171,7 +172,7 @@ const AboutPage = () => {
                                         and
                                         server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and
                                         precise
-                                        professional with 4 years of hands-on experience taking charge of front and
+                                        professional with 6 years of hands-on experience taking charge of front and
                                         back-end
                                         web
                                         development. Skillful creating servers and databases for functionality and
@@ -273,10 +274,10 @@ const AboutPage = () => {
                             </Card>
                         </Grid>
                     </Grid>
-                </Container>
+                </Box>
                 <Divider light={true} variant="fullWidth" className={classes.divider}/>
 
-                <Container>
+                <Box>
                     <Tabs
                         component={Paper}
                         indicatorColor="secondary"
@@ -291,8 +292,8 @@ const AboutPage = () => {
                         <Tab label="Experience"/>
                         <Tab label="Certifications"/>
                     </Tabs>
-                </Container>
-                <Container>
+                </Box>
+                <Box>
                     {index === 0 ? (
                         <Grid container={true} spacing={4} className={classes.buttonContainer}>
                             <Grid item={true} xs={12} md={4}>
@@ -689,7 +690,7 @@ const AboutPage = () => {
                             }
                         </Grid>
                     )}
-                </Container>
+                </Box>
             </Container>
         </Layout>
     )

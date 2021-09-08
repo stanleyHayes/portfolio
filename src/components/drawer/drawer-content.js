@@ -28,7 +28,7 @@ const DrawerContent = ({handleDrawerClose}) => {
             name: {},
             nickname: {},
             role: {
-                background: "rgba(69,162,152,0.25)",
+                background: "rgba(0,127,255,0.2)",
                 paddingLeft: 16,
                 paddingRight: 16,
                 paddingTop: 16,
@@ -48,7 +48,7 @@ const DrawerContent = ({handleDrawerClose}) => {
             },
             closeButton: {},
             active: {
-                background: dark === "dark" ? "rgba(69,162,152,0.4)" : "rgba(0,116,225,0.1)"
+                background: dark === "dark" ? "rgba(0,127,255,0.2)" : "rgba(0,127,255,0.2)"
             },
         }
     });

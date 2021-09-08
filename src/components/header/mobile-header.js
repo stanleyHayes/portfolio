@@ -7,7 +7,8 @@ import {changeTheme, getUiState} from "../../features/ui/ui-slice";
 
 const MobileHeader = ({handleDrawerOpen}) => {
 
-    const useStyles = makeStyles(() => {
+    const useStyles = makeStyles(theme => {
+        const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             link: {
                 textDecoration: "none"
@@ -17,7 +18,8 @@ const MobileHeader = ({handleDrawerOpen}) => {
             },
             hamburger: {
                 width: 50,
-                height: 30
+                height: 30,
+                color: dark === "dark" ? "rgba(0,127,255)" : "rgba(0,127,255)"
             },
             brand: {
                 textTransform: "uppercase",
