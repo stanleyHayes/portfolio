@@ -109,39 +109,45 @@ export const getProjects = () => {
             title: "Blog Mania",
             summary: "Reader's favorite place",
             categories: ["React", "Material UI", "Redux"],
-            link: "https://blogmania.vercel.app"
+            link: "https://blogmania.vercel.app",
+            status: 'completed'
         },
 
         {
             title: "SIRCLES ORI",
             summary: "SIRCLES (as in “circle”) is a creative exploit that seeks to give beautiful meanings to images and stories through still photos and video concepts. ",
             categories: ["React", "Material UI"],
-            link: "https://sircles-ori.vercel.app"
+            link: "https://sircles-ori.vercel.app",
+            status: 'completed'
         },
 
         {
             title: "Rodac",
             summary: "Result-oriented design, architecture, and construction at your service ",
             categories: ["React", "Material UI"],
-            link: "https://rodac.vercel.app"
+            link: "https://rodac.vercel.app",
+            status: 'completed'
         },
         {
             title: "Jasey Farms",
             summary: "Healthy, quality, affordable vegetables for everyday people",
             categories: ["React", "Material UI"],
-            link: "https://jaseyfarms.vercel.app"
+            link: "https://jaseyfarms.vercel.app",
+            status: 'completed'
         },
         {
             title: "Jasey Mining",
             summary: "Optimising the blasting experiences for our clients ",
             categories: ["React", "Material UI"],
-            link: "https://jaseymining.vercel.app"
+            link: "https://jaseymining.vercel.app",
+            status: 'completed'
         },
         {
             title: "Cristiano Ronaldo",
             summary: "Cristiano Ronaldo is a Portuguese professional footballer who plays for Juventus and Portugal national team.",
             categories: ["HTML", "CSS", "JavaScript", "Personal", "GitHub Pages"],
-            link: "https://stanleyhayes.github.io/cristianoronaldo/"
+            link: "https://stanleyhayes.github.io/cristianoronaldo/",
+            status: 'completed'
         }
     ];
 }
