@@ -34,11 +34,15 @@ const DesktopHeader = () => {
                 fontSize: 32
             },
             fab: {
-                cursor: "pointer"
+                cursor: "pointer",
+                borderRadius: 4,
+                padding: 4,
+                fontSize: 18,
+                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
             },
             flag: {
                 width: 25,
-                height: "auto"
+                height: "auto",
             },
             active: {
                 background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
@@ -145,19 +149,23 @@ const DesktopHeader = () => {
                     </Grid>
                 </Grid>
                 <Grid lg={2} container={true} item={true} spacing={2} alignItems="center">
-                    <Grid item={true} >
+                    <Grid item={true}>
                         <a href="https://github.com/stanleyHayes" rel="noreferrer" target="_blank">
-                            <img className={classes.flag} src="/assets/github.svg" alt="GitHub logo" title="GitHub Repository"/>
+                            <img className={classes.flag} src="/assets/github.svg" alt="GitHub logo"
+                                 title="GitHub Repository"/>
                         </a>
                     </Grid>
                     <Grid item={true}>
-                        <a href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/" rel="noreferrer" target="_blank">
-                            <img className={classes.flag} src="/assets/linkedin.svg" alt="Linkedin Account" title="LinkedIn Account"/>
+                        <a href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/" rel="noreferrer"
+                           target="_blank">
+                            <img className={classes.flag} src="/assets/linkedin.svg" alt="Linkedin Account"
+                                 title="LinkedIn Account"/>
                         </a>
                     </Grid>
                     <Grid item={true}>
                         <a href="https://twitter.com/stanley_hayford" rel="noreferrer" target="_blank">
-                            <img className={classes.flag} src="/assets/twitter.svg" alt="Twitter Account" title="Twitter Account"/>
+                            <img className={classes.flag} src="/assets/twitter.svg" alt="Twitter Account"
+                                 title="Twitter Account"/>
                         </a>
                     </Grid>
                     <Grid item={true}>

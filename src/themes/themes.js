@@ -3,7 +3,7 @@ import {grey, yellow} from "@material-ui/core/colors";
 
 export const dark = createMuiTheme({
     typography: {
-        fontFamily: "IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
+        fontFamily: "EuclidCircularA, IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
     },
     shape: {
         borderRadius: 16
@@ -50,7 +50,7 @@ export const dark = createMuiTheme({
 
 export const light = createMuiTheme({
     typography: {
-        fontFamily: "IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
+        fontFamily: "EuclidCircularA, IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
     },
     shape: {
         borderRadius: 16

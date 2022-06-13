@@ -1,40 +1,109 @@
 export const getProjects = () => {
     return [
         {
+            title: "Dark Docs Shop",
+            summary: "Buy spammed credit cards, bank logs and cheques",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://darkdocs-shop.vercel.app",
+            status: 'completed'
+        },
+        {
             title: "GIISDEC",
             summary: "Ghana Integrated Iron & Steel Development Corporation",
             categories: ["WordPress"],
-            link: "http://giisdec.com"
+            link: "http://giisdec.com",
+            status: 'completed'
         },
         {
             title: "Chime Africa",
             summary: "CHIME is an Advancing Business Education (ABE UK) online training program and opportunity being offered at a SUBSIDIZED RATE to the general public...",
             categories: ["React", "MySQL", "PHP", "Material UI"],
-            link: "http://chimeafrica.org"
+            link: "http://chimeafrica.org",
+            status: 'completed'
         },
         {
             title: "Against Racism",
             summary: "Together, the tool against hatred has been developed by Tieto against anger in a project to monitor incidents of hatred in Finland.",
             categories: ["WordPress", "CSS"],
-            link: "https://www.yhdessavihaavastaan.fi/"
+            link: "https://www.yhdessavihaavastaan.fi/",
+            status: 'completed'
+        },
+        {
+            title: "Susu Plus",
+            summary: "Mobile app for crowd funding.",
+            categories: ["Native Base", 'React Native', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "#",
+            status: 'progress'
+        },
+        {
+            title: "Book Bae",
+            summary: "Mobile app for dating and social connection",
+            categories: ["Native Base", 'React Native', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "#",
+            status: 'progress'
+        },
+        {
+            title: "Supercraft GH",
+            summary: "Marketing website for Supercraft GH. Specialises in metal works.",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://windycraft.vercel.app",
+            status: 'progress'
+        },
+        {
+            title: "Aiden Trust Bank",
+            summary: "Marketing website for fictitious bank.",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://aidentrustbank.vercel.app",
+            status: 'progress'
+        },
+        {
+            title: "Aiden Trust",
+            summary: "Client website for fictitious bank.",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://aidentrust.vercel.app",
+            status: 'progress'
+        },
+        {
+            title: "Floriclean",
+            summary: "Marketing website for Floriclean. Specialises in cleaning carpets, houses etc.",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://floriclean.vercel.app",
+            status: 'progress'
+        },
+        {
+            title: "Smash Sneakers",
+            summary: "E-commerce website for selling shoes.",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://smashsneakers.vercel.app",
+            status: 'progress'
+        },
+        {
+            title: "Ruderalis",
+            summary: "E-commerce website for the buying and selling of marijuana and related products.",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://ruderalis.vercel.app",
+            status: 'progress'
         },
         {
             title: "Rotech Academy",
             summary: "We are a team of able robotics enthusiasts with over five years of experience in building robots and programming for various competitions and coaching national and international robotics teams.",
             categories: ["React", "Email JS", "Material UI"],
-            link: "https://rotech-academy.site"
+            link: "https://rotech-academy.site",
+            status: 'completed'
         },
         {
             title: "Voodoo Wallet",
             summary: "Buy and Sell Bitcoin at an affordable rate.",
             categories: ["React", "MongoDB", "Express", "Node JS"],
-            link: "https://voodoo-client.vercel.app"
+            link: "https://voodoo-client.vercel.app",
+            status: 'completed'
         },
         {
             title: "Stanley Hayford",
             summary: "Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages.",
-            categories: ["React", "Material UI"],
-            link: "https://hayfordstanley.vercel.app"
+            categories: ["React", "Material UI", 'Redux'],
+            link: "https://hayfordstanley.vercel.app",
+            status: 'completed'
         },
         {
             title: "Blog Mania",

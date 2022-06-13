@@ -16,10 +16,15 @@ const MobileHeader = ({handleDrawerOpen}) => {
             button: {
                 fontWeight: 700
             },
-            hamburger: {
+            logo: {
                 width: 50,
                 height: 30,
-                color: dark === "dark" ? "rgba(0,127,255)" : "rgba(0,127,255)"
+            },
+            hamburger: {
+                color: dark === "dark" ? "rgba(0,127,255)" : "rgba(0,127,255)",
+                padding: 4,
+                fontSize: 18,
+                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
             },
             brand: {
                 textTransform: "uppercase",
@@ -31,7 +36,11 @@ const MobileHeader = ({handleDrawerOpen}) => {
                 fontWeight: 700
             },
             fab: {
-                cursor: "pointer"
+                cursor: "pointer",
+                borderRadius: 4,
+                padding: 4,
+                fontSize: 18,
+                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
             },
             toolbar: {},
             flag: {
@@ -56,7 +65,7 @@ const MobileHeader = ({handleDrawerOpen}) => {
                     <Link to="/" className={classes.link}>
                         <Button startIcon={
                             <img
-                                className={classes.hamburger}
+                                className={classes.logo}
                                 src="/assets/lightingcolored.svg"
                                 alt="zeus lighting bolt"
                                 title="zeus lighting bolt"
@@ -69,7 +78,8 @@ const MobileHeader = ({handleDrawerOpen}) => {
                         theme === "dark" ?
                             (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
                             :
-                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())} color="secondary"/>)
+                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
+                                          color="secondary"/>)
                     }
                 </Grid>
                 <Grid item={true} xs={2}>

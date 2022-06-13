@@ -4,6 +4,7 @@ import {ChevronRight} from "@material-ui/icons";
 
 const Project = ({project}) => {
     const useStyles = makeStyles((theme) => {
+        const dark = theme.palette.type === "dark" ? "dark" : "light";
         return {
             card: {
                 minHeight: 400,
@@ -38,7 +39,12 @@ const Project = ({project}) => {
             divider: {
                 marginTop: 8,
                 marginBottom: 8
-            }
+            },
+            completed: {
+                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
+            },
+            pending: {
+            },
         }
     });
 
@@ -50,10 +56,28 @@ const Project = ({project}) => {
                 <Typography color="textSecondary" gutterBottom={true} variant="h5"
                             className={classes.title}>{project.title}</Typography>
                 <Divider light={true} variant="fullWidth" className={classes.fullWidth}/>
-                <Typography color="textSecondary" gutterBottom={true} variant="body2">{project.summary}</Typography>
+                <Typography color="textSecondary" gutterBottom={true} variant="body2">
+                    {project.summary}
+                </Typography>
+                {project.status === 'completed' ? (
+                    <Chip
+                        className={classes.completed}
+                        variant="default"
+                        size="medium"
+                        label={project.status}
+                    />
+                ): (
+                    <Chip
+                        className={classes.pending}
+                        variant="outlined"
+                        size="medium"
+                        label={project.status}
+                    />
+                )}
             </CardContent>
             <Divider light={true} variant="fullWidth" className={classes.divider}/>
             <CardContent>
+
                 {
                     project.categories.map((category, index) => {
                         return (
@@ -67,6 +91,8 @@ const Project = ({project}) => {
                         )
                     })
                 }
+
+
             </CardContent>
             <Divider light={true} variant="fullWidth" className={classes.divider}/>
             <CardActions>

@@ -8,6 +8,7 @@ import {
     Divider,
     Grid,
     IconButton,
+    Link,
     makeStyles,
     TextField,
     Typography
@@ -135,34 +136,40 @@ const ContactPage = () => {
 
                 <Grid container={true} spacing={4}>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} elevation={1} variant="elevation">
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid item={true}>
-                                        <IconButton>
-                                            <Phone/>
-                                        </IconButton>
+                        <Link href={`tel:+233270048319`} underline="none">
+                            <Card className={classes.card} elevation={1} variant="elevation">
+                                <CardContent>
+                                    <Grid container={true} justify="center">
+                                        <Grid item={true}>
+                                            <IconButton>
+                                                <Phone/>
+                                            </IconButton>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" variant="h6">Phone</Typography>
-                                <Typography color="textSecondary" align="center" variant="body2">233(027)004-8319</Typography>
-                            </CardContent>
-                        </Card>
+                                    <Typography color="textSecondary" align="center" variant="h6">Phone</Typography>
+                                    <Typography color="textSecondary" align="center"
+                                                variant="body2">233(027)004-8319</Typography>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} elevation={1} variant="elevation">
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid item={true}>
-                                        <IconButton>
-                                            <Mail/>
-                                        </IconButton>
+                        <Link href={`mailto:dev.stanley.hayford@ghmail.com`} underline="none">
+                            <Card className={classes.card} elevation={1} variant="elevation">
+                                <CardContent>
+                                    <Grid container={true} justify="center">
+                                        <Grid item={true}>
+                                            <IconButton>
+                                                <Mail/>
+                                            </IconButton>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" variant="h6">Email</Typography>
-                                <Typography color="textSecondary" align="center" variant="body2">dev.stanley.hayford@gmail.com</Typography>
-                            </CardContent>
-                        </Card>
+                                    <Typography color="textSecondary" align="center" variant="h6">Email</Typography>
+                                    <Typography color="textSecondary" align="center"
+                                                variant="body2">dev.stanley.hayford@gmail.com</Typography>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     </Grid>
                     <Grid xs={12} md={4} item={true}>
                         <Card className={classes.card} elevation={1} variant="elevation">
@@ -175,7 +182,8 @@ const ContactPage = () => {
                                     </Grid>
                                 </Grid>
                                 <Typography color="textSecondary" align="center" variant="h6">Address</Typography>
-                                <Typography color="textSecondary" align="center" variant="body2">Atakorah Estate 2, Ashomang</Typography>
+                                <Typography color="textSecondary" align="center" variant="body2">Atakorah Estate 2,
+                                    Ashomang</Typography>
                             </CardContent>
                         </Card>
                     </Grid>

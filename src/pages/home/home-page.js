@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout";
-import {Avatar, Button, Chip, Container, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Avatar, Button, Chip, Container, Grid, Link as MUILink, makeStyles, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 
@@ -77,7 +77,7 @@ const HomePage = () => {
                 cursor: "pointer"
             },
             profile: {
-                lineHeight: 1.7
+                // lineHeight: 1.7
             }
         }
     });
@@ -112,8 +112,11 @@ const HomePage = () => {
                         <Typography className={classes.role} color="textPrimary" gutterBottom={true} variant="h4">
                             Full Stack Web Developer
                         </Typography>
-                        <Typography className={classes.profile} color="textSecondary" gutterBottom={true}
-                                    variant="body1">
+                        <Typography
+                            className={classes.profile}
+                            color="textSecondary"
+                            gutterBottom={true}
+                            variant="body1">
                             Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and
                             server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise
                             professional with 6 years of hands-on experience taking charge of front and back-end web
@@ -122,8 +125,12 @@ const HomePage = () => {
                         </Typography>
                         <Grid spacing={2} className={classes.socialContainer} justify="flex-start" container={true}>
                             <Grid item={true}>
-                                <a rel="noreferrer noopener" className={classes.link} target="_blank"
-                                   href="https://github.com/stanleyHayes">
+                                <MUILink
+                                    underline="none"
+                                    rel="noreferrer noopener"
+                                    className={classes.link}
+                                    target="_blank"
+                                    href="https://github.com/stanleyHayes">
                                     <Chip
                                         className={classes.chip}
                                         label="GitHub"
@@ -137,7 +144,7 @@ const HomePage = () => {
                                                 title="GitHub Profile"/>
                                         }
                                     />
-                                </a>
+                                </MUILink>
                             </Grid>
                             <Grid item={true}>
                                 <a rel="noreferrer noopener" className={classes.link} target="_blank"

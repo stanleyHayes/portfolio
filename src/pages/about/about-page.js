@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Layout from "../../components/layout";
 import {
     Avatar,
+    Box,
     Button,
     Card,
     CardContent,
@@ -13,7 +14,6 @@ import {
     Paper,
     Tab,
     Tabs,
-    Box,
     Typography,
     useMediaQuery
 } from "@material-ui/core";
@@ -345,6 +345,10 @@ const AboutPage = () => {
                                                     variant="body2">
                                             React JS
                                         </Typography>
+                                        <Typography color="textSecondary" gutterBottom={true}
+                                                    variant="body2">
+                                            React Native
+                                        </Typography>
 
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
@@ -369,6 +373,10 @@ const AboutPage = () => {
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Figma
+                                        </Typography>
+                                        <Typography color="textSecondary" gutterBottom={true}
+                                                    variant="body2">
+                                            GraphQL Client
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -421,6 +429,16 @@ const AboutPage = () => {
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
                                             Node JS
+                                        </Typography>
+
+                                        <Typography color="textSecondary" gutterBottom={true}
+                                                    variant="body2">
+                                            Nest JS
+                                        </Typography>
+
+                                        <Typography color="textSecondary" gutterBottom={true}
+                                                    variant="body2">
+                                            GraphQL Server
                                         </Typography>
 
                                         <Typography color="textSecondary" gutterBottom={true}
@@ -511,6 +529,16 @@ const AboutPage = () => {
 
                                         <Typography color="textSecondary" gutterBottom={true}
                                                     variant="body2">
+                                            Ruby
+                                        </Typography>
+
+                                        <Typography color="textSecondary" gutterBottom={true}
+                                                    variant="body2">
+                                            Rust
+                                        </Typography>
+
+                                        <Typography color="textSecondary" gutterBottom={true}
+                                                    variant="body2">
                                             Python
                                         </Typography>
 
@@ -578,6 +606,30 @@ const AboutPage = () => {
                                         <Card variant="elevation" elevation={0}>
                                             <CardContent>
                                                 <Typography color="textSecondary" gutterBottom={true} variant="h6">
+                                                    Dev Track
+                                                </Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" variant="body1">Full Stack
+                                                    Mobile & Web Engineer</Typography>
+                                                <Divider className={classes.secondaryDivider} light={true}/>
+                                                <Typography color="textSecondary" gutterBottom={true}
+                                                            variant="overline">
+                                                    2022 - Present
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </VerticalTimelineElement>
+                                    <VerticalTimelineElement
+                                        icon={<img src="/assets/coding.svg" className={classes.icon} alt="coding icon"
+                                                   title="coding icon"/>}
+                                        date={
+                                            <Typography color="textSecondary" gutterBottom={true} variant="overline">
+                                                2021 - Present
+                                            </Typography>
+                                        } contentStyle={{background: theme.palette.background.paper, borderRadius: 16}}>
+                                        <Card variant="elevation" elevation={0}>
+                                            <CardContent>
+                                                <Typography color="textSecondary" gutterBottom={true} variant="h6">
                                                     Vien Health
                                                 </Typography>
                                                 <Divider className={classes.secondaryDivider} light={true}/>
@@ -586,7 +638,7 @@ const AboutPage = () => {
                                                 <Divider className={classes.secondaryDivider} light={true}/>
                                                 <Typography color="textSecondary" gutterBottom={true}
                                                             variant="overline">
-                                                    2021 - Present
+                                                    2021 - 2022
                                                 </Typography>
                                             </CardContent>
                                         </Card>
