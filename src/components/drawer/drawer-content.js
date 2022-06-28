@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Avatar, Button, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
-import {Link, useRouteMatch} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Close} from "@material-ui/icons";
+import {useLocation} from "react-router";
 
 
 const DrawerContent = ({handleDrawerClose}) => {
@@ -55,12 +56,12 @@ const DrawerContent = ({handleDrawerClose}) => {
 
     const classes = useStyles();
 
-    const {path} = useRouteMatch();
-    const [active, setActive] = useState(path);
+    const {pathname} = useLocation();
+    const [active, setActive] = useState(pathname);
 
     useEffect(() => {
-        setActive(path);
-    }, [path]);
+        setActive(pathname);
+    }, [pathname]);
 
     const handlePathChange = path => {
         setActive(path);

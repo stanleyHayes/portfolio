@@ -1,7 +1,7 @@
 import React from "react";
 import {Avatar, Card, CardContent, CardHeader, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
 import moment from "moment";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router";
 
 const Lesson = ({lesson, course}) => {
 
@@ -37,10 +37,10 @@ const Lesson = ({lesson, course}) => {
     });
 
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     return (
-        <Card onClick={() => history.push(`/blog/${course.slug}/lessons/${lesson.slug}`)} variant="elevation"
+        <Card onClick={() => navigate(`/blog/${course.slug}/lessons/${lesson.slug}`)} variant="elevation"
               elevation={0}
               className={classes.card}>
             <CardHeader

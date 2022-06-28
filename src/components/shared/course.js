@@ -8,7 +8,7 @@ import {
     makeStyles,
     Typography
 } from "@material-ui/core";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router";
 
 const Course = ({course}) => {
 
@@ -57,11 +57,11 @@ const Course = ({course}) => {
     });
 
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     return (
         <Card
-            onClick={() => history.push(`/blog/${course.slug}/lessons`)}
+            onClick={() => navigate(`/blog/${course.slug}/lessons`)}
             variant="elevation"
             elevation={0}
             className={classes.card}>

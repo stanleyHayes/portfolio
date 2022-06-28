@@ -1,5 +1,6 @@
 import './App.css';
-import {Route, Switch} from "react-router-dom";
+import {Route} from "react-router-dom";
+import {Routes} from "react-router";
 import HomePage from "./pages/home/home-page";
 import AboutPage from "./pages/about/about-page";
 import ContactPage from "./pages/contact/contact-page";
@@ -12,7 +13,6 @@ import {dark, light} from "./themes/themes";
 import CoursesPage from "./pages/course/courses-page";
 import CourseLessonsPage from "./pages/course/course-lessons-page";
 import LessonDetailPage from "./pages/course/lesson-detail-page";
-import ScrollToTop from "./components/shared/scroll-to-top";
 
 function App() {
 
@@ -20,37 +20,18 @@ function App() {
     let theme = variant === "dark" ? dark : light
 
     return (
-        <ScrollToTop>
-            <ThemeProvider theme={theme}>
-                <Switch>
-                    <Route path="/" exact={true}>
-                        <HomePage/>
-                    </Route>
-                    <Route path="/about" exact={true}>
-                        <AboutPage/>
-                    </Route>
-                    <Route path="/contact" exact={true}>
-                        <ContactPage/>
-                    </Route>
-                    <Route path="/services" exact={true}>
-                        <ServicesPage/>
-                    </Route>
-                    <Route path="/portfolio" exact={true}>
-                        <PortfolioPage/>
-                    </Route>
-
-                    <Route path="/blog" exact={true}>
-                        <CoursesPage/>
-                    </Route>
-                    <Route path="/blog/:slug/lessons" exact={true}>
-                        <CourseLessonsPage/>
-                    </Route>
-                    <Route path="/blog/:cslug/lessons/:lslug" exact={true}>
-                        <LessonDetailPage/>
-                    </Route>
-                </Switch>
-            </ThemeProvider>
-        </ScrollToTop>
+        <ThemeProvider theme={theme}>
+            <Routes>
+                <Route element={<HomePage/>} path="/" exact={true} />
+                <Route element={<AboutPage/>} path="/about" exact={true} />
+                <Route element={<ContactPage/>} path="/contact" exact={true} />
+                <Route element={<ServicesPage/>} path="/services" exact={true} />
+                <Route element={<PortfolioPage/>} path="/portfolio" exact={true} />
+                <Route element={<CoursesPage/>} path="/blog" exact={true} />
+                <Route element={<CourseLessonsPage/>} path="/blog/:slug/lessons" exact={true} />
+                <Route element={<LessonDetailPage/>} path="/blog/:cslug/lessons/:lslug" exact={true} />
+            </Routes>
+        </ThemeProvider>
     );
 }
 

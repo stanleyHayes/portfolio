@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
-import {Link, useRouteMatch} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {changeTheme, getUiState} from "../../features/ui/ui-slice";
 import {Brightness4, Brightness7} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
@@ -58,12 +58,12 @@ const DesktopHeader = () => {
     const dispatch = useDispatch();
     const theme = useSelector(getUiState);
 
-    const {path} = useRouteMatch();
-    const [active, setActive] = useState(path);
+    const {pathname} = useLocation();
+    const [active, setActive] = useState(pathname);
 
     useEffect(() => {
-        setActive(path);
-    }, [path]);
+        setActive(pathname);
+    }, [pathname]);
 
     const handlePathChange = path => {
         setActive(path);
@@ -71,8 +71,8 @@ const DesktopHeader = () => {
 
     return (
         <Toolbar variant="regular" color="primary">
-            <Grid container={true} justify="space-around" alignItems="center">
-                <Grid lg={3} item={true} container={true} justify="center" alignItems="center">
+            <Grid container={true} justifyContent="space-around" alignItems="center">
+                <Grid lg={3} item={true} container={true} justifyContent="center" alignItems="center">
                     <Grid item={true}>
                         <Link to="/" className={classes.link}>
                             <img

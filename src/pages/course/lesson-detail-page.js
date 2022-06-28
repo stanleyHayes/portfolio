@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Layout from "../../components/layout";
 import {Box, Container, Divider, Drawer, Fab, Hidden, makeStyles, Typography} from "@material-ui/core";
-import {useHistory, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router";
 import {getCourseLessonBySlug} from "../../data/data";
 import {ViewList} from "@material-ui/icons";
 import Lessons from "../../components/shared/lessons";
@@ -102,14 +102,14 @@ const LessonDetailPage = () => {
     });
 
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const {cslug, lslug} = useParams();
     const [course, lessons, lesson] = getCourseLessonBySlug(cslug, lslug);
     const [selectedLesson, setSelectedLesson] = useState(lesson);
     const handleSelectedLesson = lesson => {
         setSelectedLesson(lesson);
-        history.push(`/blog/${cslug}/lessons/${lesson.slug}`);
+        navigate(`/blog/${cslug}/lessons/${lesson.slug}`);
         setOpen(false);
     }
 

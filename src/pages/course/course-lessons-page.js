@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout";
 import {Box, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
-import {useParams} from "react-router-dom";
+import {useParams} from "react-router";
 import {getCourseBySlug, getLessonsByCourse} from "../../data/data";
 import Lesson from "../../components/shared/lesson";
 
