@@ -1,6 +1,27 @@
 export const getProjects = () => {
     return [
         {
+            title: "The Book Station",
+            summary: "Upload your book trailer video to get more buys.",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://thebookstation.vercel.app",
+            status: 'progress'
+        },
+        {
+            title: "SmithField",
+            summary: "E-commerce website for selling vegetables, fruits and other items",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://smithfield.vercel.app",
+            status: 'progress'
+        },
+        {
+            title: "MFA",
+            summary: "A redesign of Ministry of Finance Ghana Website",
+            categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
+            link: "https://mfa-eight.vercel.app",
+            status: 'completed'
+        },
+        {
             title: "Dark Docs Shop",
             summary: "Buy spammed credit cards, bank logs and cheques",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
@@ -46,21 +67,21 @@ export const getProjects = () => {
             title: "Supercraft GH",
             summary: "Marketing website for Supercraft GH. Specialises in metal works.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
-            link: "https://windycraft.vercel.app",
+            link: "https://supercraft.com",
             status: 'progress'
         },
         {
             title: "Aiden Trust Bank",
             summary: "Marketing website for fictitious bank.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
-            link: "https://aidentrustbank.vercel.app",
+            link: "https://aideentrust.com",
             status: 'progress'
         },
         {
             title: "Aiden Trust",
             summary: "Client website for fictitious bank.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
-            link: "https://aidentrust.vercel.app",
+            link: "https://client.aideentrust.com",
             status: 'progress'
         },
         {
