@@ -1,99 +1,39 @@
 import React from "react";
-import {
-    Card,
-    CardContent,
-    CardMedia,
-    Divider,
-    Grid,
-    makeStyles,
-    Typography
-} from "@material-ui/core";
+import {Card, CardContent, CardMedia, Divider, Grid, Typography} from "@mui/material";
 import {useNavigate} from "react-router";
 
 const Course = ({course}) => {
 
-    const useStyles = makeStyles(theme => {
-        const dark = theme.palette.type === "dark" ? "dark" : "light";
-        return {
-            card: {
-                cursor: "pointer",
-                transition: "all 300ms ease-out 50ms",
-                '&:hover': {
-                    transform: 'translateY(-10px)'
-                }
-            },
-            separator: {},
-            collection: {},
-            lessonCount: {},
-            image: {
-                height: 200,
-                objectFit: 'contain',
-                objectPosition: 'center',
-                borderStyle: "solid",
-                borderWidth: 1,
-                borderRadius: 2,
-                borderColor: theme.palette.secondary.main,
-                backgroundColor: dark === "dark" ? "rgba(69,162,152,0.4)" : "rgba(0,116,225,0.1)",
-            },
-            name: {
-                textTransform: "uppercase",
-                marginTop: 16
-            },
-            divider: {
-                marginTop: 8,
-                marginBottom: 8
-            },
-            except: {},
-            icon: {},
-            link: {
-                textDecoration: "none",
-                display: "inline-block",
-                width: '100%'
-            },
-            summary: {
-                fontWeight: 500
-            }
-        }
-    });
-
-    const classes = useStyles();
     const navigate = useNavigate();
 
     return (
         <Card
             onClick={() => navigate(`/blog/${course.slug}/lessons`)}
             variant="elevation"
-            elevation={0}
-            className={classes.card}>
+            elevation={0}>
             <CardContent>
                 <Grid alignItems="center" container={true} justify="flex-start" spacing={2}>
                     <Grid item={true}>
-                        <Typography className={classes.collection} variant="body2">Collection</Typography>
+                        <Typography  variant="body2">Collection</Typography>
                     </Grid>
                     <Grid item={true}>
-                        <Typography className={classes.separator} variant="body2">&#8226;</Typography>
+                        <Typography  variant="body2">&#8226;</Typography>
                     </Grid>
                     <Grid item={true}>
                         <Typography
                             color="textSecondary"
-                            className={classes.lessonCount}
                             variant="body2">{course.lessons.length} Lessons</Typography>
                     </Grid>
                 </Grid>
 
-                <Divider variant="fullWidth" className={classes.divider} light={true}/>
+                <Divider variant="fullWidth" sx={{my: 2}}  light={true}/>
 
-                <CardMedia component="img" className={classes.image} src={course.image}/>
+                <CardMedia component="img"  src={course.image}/>
 
+                <Typography variant="h4" sx={{mb: 2, color: ""}}>{course.name}</Typography>
                 <Typography
                     color="textSecondary"
-                    variant="h4"
-                    gutterBottom={true}
-                    className={classes.name}>{course.name}</Typography>
-                <Typography
-                    color="textSecondary"
-                    variant="body2"
-                    className={classes.summary}>{course.summary}</Typography>
+                    variant="body2">{course.summary}</Typography>
             </CardContent>
         </Card>
     )

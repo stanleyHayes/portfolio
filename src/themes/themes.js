@@ -1,97 +1,98 @@
-import {createMuiTheme} from "@material-ui/core";
-import {grey, yellow} from "@material-ui/core/colors";
+import {createTheme} from "@mui/material";
 
-export const dark = createMuiTheme({
+const lightTheme = createTheme({
     typography: {
-        fontFamily: "EuclidCircularA, IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
-    },
-    shape: {
-        borderRadius: 16
+        fontFamily: "Urbanist, UberMoveAR, Manrope, SamsungSans, SamsungSharpSans,  RayleighGlamour, SatrevaNova, OgelicRegular"
     },
     palette: {
         primary: {
-            main: "#1f2833",
-            light: "#000000",
-            dark: "#000000",
-            contrastText: "#007FFF"
+            main: "#FFFFFF"
         },
         secondary: {
-            main: "#007FFF",
-            dark: "#007FFF",
-            light: "#007FFF",
-            contrastText: "#007FFF"
-        },
-        text: {
-            primary: "#007FFF",
-            secondary: grey["300"],
-            hint: "#007FFF",
-            disabled: "#007FFF"
-        },
-        action: {
-            active: "#007FFF",
-            selected: "#007FFF",
-            hover: "rgba(0,127,255,0.4)",
-            focus: "rgba(0,127,255,0.4)",
-            hoverOpacity: 0.4,
-            focusOpacity: 0.8,
-            selectedOpacity: 0.5
+            main: "#FBA024"
         },
         background: {
-            paper: "#1f2833"
-        },
-        divider: "#007FFF",
-        type: "dark",
-        common: {
-            black: "#000000",
-            white: yellow["500"]
-        }
-    }
-});
-
-export const light = createMuiTheme({
-    typography: {
-        fontFamily: "EuclidCircularA, IBM Plex Sans, Quicksand, Raleway, IBM Plex Mono, monospace"
-    },
-    shape: {
-        borderRadius: 16
-    },
-    palette: {
-        primary: {
-            main: "#ffffff",
-            light: "#ffffff",
-            dark: "#ffffff",
-            contrastText: grey["600"]
-        },
-        secondary: {
-            main: "#007FFF",
-            dark: "#007FFF",
-            light: "#007FFF",
-            contrastText: "#007FFF"
-        },
-        text: {
-            primary: "#007FFF",
-            secondary: grey["800"],
-            hint: grey["400"],
-            disabled: grey["300"]
-        },
-        action: {
-            active: grey["500"],
-            selected: grey["300"],
-            hover: grey["300"],
-            focus: grey["300"],
-            hoverOpacity: 0.5,
-            focusOpacity: 0.5,
-            selectedOpacity: 0.5
-        },
-        background: {
+            default: "#f6f7f8",
             paper: "#ffffff",
-            default: '#e5e5e5'
+            accent: "#FFF6E9"
         },
-        divider: grey["500"],
-        type: "light",
-        common: {
-            black: "#000000",
-            white: "#ffffff"
-        }
+        text: {
+            primary: "#0b1d3c",
+            secondary: "#9aa2ae",
+            title: "#3d7df6",
+            accent: "#FFB91F"
+        },
+        light: {
+            primary: "rgba(63,146,103,0.3)",
+            secondary: "rgba(54,105,247,0.3)",
+            accent: "rgba(255,185,31,0.3)",
+            black: "rgba(20,21,33,0.3)",
+            purple: "rgba(101,73,248,0.3)"
+        },
+        colors: {
+            purple: "#6549f8",
+            accent: "#FBA024",
+            footer: "#000137",
+            green: "#3f9267",
+            blue: "#3d7df6",
+            black: "#141521",
+        },
+        icon: {
+            accent: "#FBA024",
+            secondary: "#247FFB",
+            accentBackground: "rgba(200,151,67,0.2)",
+            secondaryBackground: "rgba(36,127,251,0.2)"
+        },
+        mode: "light",
     }
 });
+
+const darkTheme = createTheme({
+    typography: {
+        fontFamily: "Urbanist, SamsungSharpSans,SamsungSans, Manrope, UberMoveAR, RayleighGlamour, SatrevaNova, OgelicRegular"
+    },
+    palette: {
+        primary: {
+            main: "#252729"
+        },
+        secondary: {
+            main: "#FBA024"
+        },
+        background: {
+            default: "#1b1a1a",
+            paper: "#252729",
+            glass: "rgba(37,39,41,0.05)",
+            secondary: "#EDF4FF",
+            accent: "#FFF6E9",
+        },
+        text: {
+            primary: "#fdfdfd",
+            secondary: "#8a8a88",
+            title: "#3d7df6",
+            accent: "#c89743"
+        },
+        light: {
+            primary: "rgba(63,146,103,0.15)",
+            secondary: "rgba(54,105,247,0.01)",
+            accent: "rgba(255,185,31,0.15)",
+            black: "rgba(20,21,33,0.15)",
+            purple: "rgba(101,73,248,0.15)"
+        },
+        colors: {
+            accent: "#FBA024",
+            footer: "#000137",
+            green: "#3f9267",
+            blue: "#3d7df6",
+            black: "#141521",
+        },
+        icon: {
+            accent: "#FBA024",
+            secondary: "#247FFB",
+            accentBackground: "rgba(200,151,67,0.2)",
+            secondaryBackground: "rgba(36,127,251,0.2)"
+        },
+        mode: "dark",
+    }
+});
+
+export const THEMES = {darkTheme, lightTheme};

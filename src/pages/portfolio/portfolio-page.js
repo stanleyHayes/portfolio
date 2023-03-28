@@ -1,32 +1,12 @@
 import React, {useState} from "react";
 import Layout from "../../components/layout";
-import {Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Box, Container, Divider, Grid, Typography} from "@mui/material";
 import {getProjects} from "../../data/data";
 import Project from "../../components/shared/project";
 import {Helmet} from "react-helmet";
 
 
 const PortfolioPage = () => {
-    const useStyles = makeStyles(() => {
-        return {
-            container: {
-                paddingTop: 84,
-                paddingBottom: 84
-            },
-            page: {
-                textTransform: "uppercase"
-            },
-            title: {
-                textTransform: "uppercase"
-            },
-            divider: {
-                marginTop: 32,
-                marginBottom: 32
-            }
-        }
-    });
-
-    const classes = useStyles();
 
     const [projects] = useState(getProjects());
 
@@ -43,22 +23,38 @@ const PortfolioPage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
                 />
             </Helmet>
-            <Container className={classes.container}>
-                <Typography
-                    variant="h6"
-                    color="textSecondary"
-                    align="center"
-                    className={classes.page}
-                    gutterBottom={true}>Portfolio</Typography>
+            <Box sx={{py: 8}}>
+                <Container>
+                    <Typography
+                        variant="h6"
+                        align="center"
+                        sx={{
+                            textTransform: "uppercase",
+                            color: "colors.accent",
+                            fontFamily: "SatrevaNova",
+                            fontWeight: 700,
+                            mb: 2
+                        }}>Portfolio</Typography>
 
-                <Typography
-                    variant="h3"
-                    color="textSecondary"
-                    align="center"
-                    className={classes.title}
-                    gutterBottom={true}>Latest Works</Typography>
+                    <Typography
+                        variant="h3"
+                        align="center"
+                        sx={{
+                            textTransform: "none",
+                            color: "colors.accent",
+                            fontFamily: "RayleighGlamour",
+                            fontWeight: 700
+                        }}
+                        gutterBottom={true}>Latest Works</Typography>
 
-                <Divider variant="fullWidth" className={classes.divider}/>
+                    <Divider
+                        variant="fullWidth"
+                        light={true}
+                        sx={{
+                            marginTop: 3,
+                            marginBottom: 3
+                        }}
+                    />
 
                 <Grid container={true} spacing={5}>
                     {projects.map((project, index) => {
@@ -69,7 +65,9 @@ const PortfolioPage = () => {
                         )
                     })}
                 </Grid>
-            </Container>
+
+                </Container>
+            </Box>
         </Layout>
     )
 }

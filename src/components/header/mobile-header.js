@@ -1,91 +1,105 @@
-import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
+import {CardMedia, Stack, Toolbar, Typography} from "@mui/material";
 import React from "react";
 import {Link} from "react-router-dom";
-import {Brightness4, Brightness7, Menu} from "@material-ui/icons";
+import {DarkModeOutlined, LightModeOutlined, Menu} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
-import {changeTheme, getUiState} from "../../features/ui/ui-slice";
+import {changeTheme, getUiState, toggleDrawer} from "../../features/ui/ui-slice";
+import logo from "../../assets/images/logo/logo.png";
 
-const MobileHeader = ({handleDrawerOpen}) => {
-
-    const useStyles = makeStyles(theme => {
-        const dark = theme.palette.type === "dark" ? "dark" : "light";
-        return {
-            link: {
-                textDecoration: "none"
-            },
-            button: {
-                fontWeight: 700
-            },
-            logo: {
-                width: 50,
-                height: 30,
-            },
-            hamburger: {
-                color: dark === "dark" ? "rgba(0,127,255)" : "rgba(0,127,255)",
-                padding: 4,
-                fontSize: 18,
-                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
-            },
-            brand: {
-                textTransform: "uppercase",
-                fontWeight: 700,
-                fontSize: 24
-            },
-            role: {
-                textTransform: "uppercase",
-                fontWeight: 700
-            },
-            fab: {
-                cursor: "pointer",
-                borderRadius: 4,
-                padding: 4,
-                fontSize: 18,
-                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
-            },
-            toolbar: {},
-            flag: {
-                width: 30,
-                height: "auto"
-            },
-        }
-    });
-
-    const classes = useStyles();
+const MobileHeader = () => {
 
     const dispatch = useDispatch();
     const theme = useSelector(getUiState);
 
     return (
-        <Toolbar className={classes.toolbar} variant="regular">
-            <Grid container={true} justify="space-between" alignItems="center">
-                <Grid item={true} xs={2}>
-                    <Menu onClick={handleDrawerOpen} className={classes.hamburger}/>
-                </Grid>
-                <Grid item={true} xs={6}>
-                    <Link to="/" className={classes.link}>
-                        <Button startIcon={
-                            <img
-                                className={classes.logo}
-                                src="/assets/lightingcolored.svg"
-                                alt="zeus lighting bolt"
-                                title="zeus lighting bolt"
-                            />
-                        } className={classes.brand} variant="text">Zeus</Button>
+        <Toolbar
+            sx={{
+                borderBottomStyle: "solid",
+                borderBottomColor: "divider",
+                borderBottomWidth: 2
+            }}
+            variant="regular">
+            <Stack
+                sx={{width: "100%"}}
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center">
+                <Stack direction="row" spacing={1} alignItems="center">
+                    <Menu
+                        onClick={() => dispatch(toggleDrawer(true))}
+                        sx={{
+                            fontSize: 32,
+                            padding: 0.6,
+                            backgroundColor: "light.accent",
+                            cursor: "pointer",
+                            borderTopLeftRadius: 12,
+                            borderTopRightRadius: 4,
+                            borderBottomRightRadius: 12,
+                            borderBottomLeftRadius: 4,
+                            color: "colors.accent"
+                        }}
+                    />
+                </Stack>
+                <Stack direction="row" spacing={1} alignItems="center">
+                    <Link style={{textDecoration: "none"}} to="/">
+                        <CardMedia
+                            component="img"
+                            sx={{width: 30, height: 30}}
+                            src={logo}
+                            alt="lightening bolt zeus"
+                            title="Zeus"
+                        />
                     </Link>
-                </Grid>
-                <Grid item={true} xs={2}>
+
+                    <Link style={{textDecoration: "none"}} to="/">
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: 700,
+                                color: "colors.accent",
+                                fontFamily: "SatrevaNova"
+                            }}>Zeus</Typography>
+                    </Link>
+                </Stack>
+                <Stack direction="row" spacing={2} justifyContent="center" alignItems="center">
                     {
                         theme === "dark" ?
-                            (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
+                            (
+                                <LightModeOutlined
+                                    sx={{
+                                        fontSize: 32,
+                                        padding: 0.6,
+                                        backgroundColor: "light.accent",
+                                        cursor: "pointer",
+                                        borderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                        color: "colors.accent"
+                                    }}
+                                    onClick={() => dispatch(changeTheme())}
+                                />
+                            )
                             :
-                            (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
-                                          color="secondary"/>)
+                            (
+                                <DarkModeOutlined
+                                    onClick={() => dispatch(changeTheme())}
+                                    sx={{
+                                        fontSize: 32,
+                                        padding: 0.6,
+                                        backgroundColor: "light.accent",
+                                        cursor: "pointer",
+                                        borderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                        color: "colors.accent"
+                                    }}
+                                />
+                            )
                     }
-                </Grid>
-                <Grid item={true} xs={2}>
-                    <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
-                </Grid>
-            </Grid>
+                </Stack>
+            </Stack>
         </Toolbar>
     )
 }

@@ -1,36 +1,43 @@
 import './App.css';
-import {Route} from "react-router-dom";
+import {Route, useLocation} from "react-router-dom";
 import {Routes} from "react-router";
-import HomePage from "./pages/home/home-page";
-import AboutPage from "./pages/about/about-page";
-import ContactPage from "./pages/contact/contact-page";
-import ServicesPage from "./pages/services/services-page";
-import PortfolioPage from "./pages/portfolio/portfolio-page";
 import {useSelector} from "react-redux";
 import {getUiState} from "./features/ui/ui-slice";
-import {ThemeProvider} from "@material-ui/styles";
-import {dark, light} from "./themes/themes";
-import CoursesPage from "./pages/course/courses-page";
-import CourseLessonsPage from "./pages/course/course-lessons-page";
-import LessonDetailPage from "./pages/course/lesson-detail-page";
+import {THEMES} from "./themes/themes";
+import {CssBaseline, ThemeProvider} from "@mui/material";
+import {AnimatePresence} from "framer-motion";
+import {Suspense, lazy} from "react";
+import Splash from "./components/shared/splash";
+
+const HomePage = lazy(() => import("./pages/home/home-page"));
+const AboutPage = lazy(() => import("./pages/about/about-page"));
+const ContactPage = lazy(() => import("./pages/contact/contact-page"));
+const ServicesPage = lazy(() => import("./pages/services/services-page"));
+const PortfolioPage = lazy(() => import("./pages/portfolio/portfolio-page"));
+const CoursesPage = lazy(() => import("./pages/portfolio/portfolio-page"));
+const CourseLessonsPage = lazy(() => import("./pages/portfolio/portfolio-page"));
+const LessonDetailPage = lazy(() => import("./pages/portfolio/portfolio-page"));
 
 function App() {
 
-    const variant = useSelector(getUiState);
-    let theme = variant === "dark" ? dark : light
+    const {theme} = useSelector(getUiState);
+    const location = useLocation();
 
     return (
-        <ThemeProvider theme={theme}>
-            <Routes>
-                <Route element={<HomePage/>} path="/" exact={true} />
-                <Route element={<AboutPage/>} path="/about" exact={true} />
-                <Route element={<ContactPage/>} path="/contact" exact={true} />
-                <Route element={<ServicesPage/>} path="/services" exact={true} />
-                <Route element={<PortfolioPage/>} path="/portfolio" exact={true} />
-                <Route element={<CoursesPage/>} path="/blog" exact={true} />
-                <Route element={<CourseLessonsPage/>} path="/blog/:slug/lessons" exact={true} />
-                <Route element={<LessonDetailPage/>} path="/blog/:cslug/lessons/:lslug" exact={true} />
-            </Routes>
+        <ThemeProvider theme={theme  === "dark" ? THEMES.darkTheme : THEMES.lightTheme}>
+            <CssBaseline enableColorScheme={true}/>
+            <AnimatePresence>
+                <Routes location={location}>
+                    <Route path="/" element={<Suspense fallback={<Splash/>}><HomePage/></Suspense>}/>
+                    <Route path="/about" element={<Suspense fallback={<Splash/>}><AboutPage/></Suspense>}/>
+                    <Route path="/contact" element={<Suspense fallback={<Splash/>}><ContactPage/></Suspense>}/>
+                    <Route path="/services" element={<Suspense fallback={<Splash/>}><ServicesPage/></Suspense>}/>
+                    <Route path="/portfolio" element={<Suspense fallback={<Splash/>}><PortfolioPage/></Suspense>}/>
+                    <Route path="/blog" element={<Suspense fallback={<Splash/>}><CoursesPage/></Suspense>}/>
+                    <Route path="/blog/:slug/lessons" element={<Suspense fallback={<Splash/>}><CourseLessonsPage/></Suspense>}/>
+                    <Route path="/blog/:cslug/lessons/:lslug" element={<Suspense fallback={<Splash/>}><LessonDetailPage/></Suspense>}/>
+                </Routes>
+            </AnimatePresence>
         </ThemeProvider>
     );
 }

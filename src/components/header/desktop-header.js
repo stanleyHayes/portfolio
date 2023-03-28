@@ -1,187 +1,207 @@
-import React, {useEffect, useState} from "react";
-import {Button, Grid, makeStyles, Toolbar} from "@material-ui/core";
-import {Link, useLocation} from "react-router-dom";
+import React from "react";
+import {CardMedia, Link as MUILink, Stack, Toolbar, Typography} from "@mui/material";
+import {Link} from "react-router-dom";
 import {changeTheme, getUiState} from "../../features/ui/ui-slice";
-import {Brightness4, Brightness7} from "@material-ui/icons";
+import {DarkModeOutlined, GitHub, LightModeOutlined, LinkedIn, Twitter} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
-import {grey} from "@material-ui/core/colors";
+import NavigationLink from "../shared/navigation-link";
+import logo from "./../../assets/images/logo/logo.png";
+import {motion} from "framer-motion";
+
+const container = {
+    initial: {opacity: 0},
+    whileInView: {
+        opacity: 1,
+        transition: {
+            delayChildren: 0.5,
+            staggerChildren: 0.2,
+            when: "beforeChildren",
+            duration: 1
+        }
+    },
+    exit: {opacity: 0}
+};
+
+const item = {
+    initial: {opacity: 0},
+    whileInView: {opacity: 1},
+};
+
 
 const DesktopHeader = () => {
-
-    const useStyles = makeStyles(theme => {
-
-        const dark = theme.palette.type === "dark" ? "dark" : "light";
-
-        return {
-            link: {
-                textDecoration: "none",
-                display: 'inline-block',
-                paddingBottom: 4,
-                paddingTop: 4,
-                paddingLeft: 8,
-                paddingRight: 8
-            },
-            button: {
-                fontWeight: 700,
-                letterSpacing: 1.5
-            },
-            logo: {
-                width: 100,
-                height: 50
-            },
-            brand: {
-                textTransform: "uppercase",
-                fontSize: 32
-            },
-            fab: {
-                cursor: "pointer",
-                borderRadius: 4,
-                padding: 4,
-                fontSize: 18,
-                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
-            },
-            flag: {
-                width: 25,
-                height: "auto",
-            },
-            active: {
-                background: dark === "dark" ? "rgba(0,127,255,0.1)" : "rgba(0,116,225,0.1)"
-            },
-            inactive: {
-                color: dark === "dark" ? "#ffffff" : grey["500"]
-            }
-        }
-    });
-
-    const classes = useStyles();
 
     const dispatch = useDispatch();
     const theme = useSelector(getUiState);
 
-    const {pathname} = useLocation();
-    const [active, setActive] = useState(pathname);
-
-    useEffect(() => {
-        setActive(pathname);
-    }, [pathname]);
-
-    const handlePathChange = path => {
-        setActive(path);
-    }
-
     return (
-        <Toolbar variant="regular" color="primary">
-            <Grid container={true} justifyContent="space-around" alignItems="center">
-                <Grid lg={3} item={true} container={true} justifyContent="center" alignItems="center">
-                    <Grid item={true}>
-                        <Link to="/" className={classes.link}>
-                            <img
-                                className={classes.logo}
-                                src="/assets/lightingcolored.svg"
-                                alt="lightening bolt zeus"
-                                title="Zeus"
-                            />
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link to="/" className={classes.link}>
-                            <Button
-                                onClick={() => handlePathChange('')}
-                                className={classes.brand}
-                                variant="text">Zeus</Button>
-                        </Link>
-                    </Grid>
-                </Grid>
-                <Grid lg={7} item={true} container={true} justify="center" alignItems="center">
-                    <Grid item={true}>
-                        <Link className={classes.link} to="/">
-                            <Button
-                                onClick={() => handlePathChange('/')}
-                                className={`${active === '/' ? classes.active : classes.inactive} ${classes.button}`}
-                                variant="text"
-                                size="medium">Home</Button>
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link className={classes.link} to="/about">
-                            <Button
-                                onClick={() => handlePathChange('/about')}
-                                className={`${active === '/about' ? classes.active : classes.inactive} ${classes.button}`}
-                                variant="text"
-                                size="medium">About</Button>
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link className={classes.link} to="/blog">
-                            <Button
-                                onClick={() => handlePathChange('/blog')}
-                                className={`${active.startsWith('/blog') ? classes.active : classes.inactive} ${classes.button}`}
-                                variant="text"
-                                size="medium">Blog</Button>
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link className={classes.link} to="/portfolio">
-                            <Button
-                                onClick={() => handlePathChange('/portfolio')}
-                                className={`${active === '/portfolio' ? classes.active : classes.inactive} ${classes.button}`}
-                                variant="text"
-                                size="medium">Portfolio</Button>
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link className={classes.link} to="/services">
-                            <Button
-                                onClick={() => handlePathChange('/services')}
-                                className={`${active === '/services' ? classes.active : classes.inactive} ${classes.button}`}
-                                variant="text"
-                                size="medium">Services</Button>
-                        </Link>
-                    </Grid>
-                    <Grid item={true}>
-                        <Link to="/contact" className={classes.link}>
-                            <Button
-                                onClick={() => handlePathChange('/contact')}
-                                className={`${active === '/contact' ? classes.active : classes.inactive} ${classes.button}`}
-                                variant="text"
-                                size="medium">Contact</Button>
-                        </Link>
-                    </Grid>
-                </Grid>
-                <Grid lg={2} container={true} item={true} spacing={2} alignItems="center">
-                    <Grid item={true}>
-                        <a href="https://github.com/stanleyHayes" rel="noreferrer" target="_blank">
-                            <img className={classes.flag} src="/assets/github.svg" alt="GitHub logo"
-                                 title="GitHub Repository"/>
-                        </a>
-                    </Grid>
-                    <Grid item={true}>
-                        <a href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/" rel="noreferrer"
-                           target="_blank">
-                            <img className={classes.flag} src="/assets/linkedin.svg" alt="Linkedin Account"
-                                 title="LinkedIn Account"/>
-                        </a>
-                    </Grid>
-                    <Grid item={true}>
-                        <a href="https://twitter.com/stanley_hayford" rel="noreferrer" target="_blank">
-                            <img className={classes.flag} src="/assets/twitter.svg" alt="Twitter Account"
-                                 title="Twitter Account"/>
-                        </a>
-                    </Grid>
-                    <Grid item={true}>
-                        <img className={classes.flag} src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
-                    </Grid>
-                    <Grid item={true}>
-                        {
-                            theme === "dark" ?
-                                (<Brightness7 className={classes.fab} onClick={() => dispatch(changeTheme())}/>)
-                                :
-                                (<Brightness4 className={classes.fab} onClick={() => dispatch(changeTheme())}
-                                              color="secondary"/>)
-                        }
-                    </Grid>
-                </Grid>
-            </Grid>
+        <Toolbar
+            sx={{
+                borderBottomStyle: "solid",
+                borderBottomColor: "divider",
+                borderBottomWidth: 2
+            }}
+            variant="regular">
+            <Stack
+                component={motion.div}
+                variants={container}
+                whileInView="whileInView"
+                initial="initial"
+                exit="exit"
+                sx={{width: "100%"}}
+                direction="row"
+                justifyContent="space-around"
+                alignItems="center">
+                <Stack
+                    component={motion.div}
+                    variants={item}
+                    whileInView="whileInView"
+                    initial="initial"
+                    exit="exit"
+                    direction="row"
+                    spacing={1}
+                    alignItems="center">
+                    <Link style={{textDecoration: "none"}} to="/">
+                        <CardMedia
+                            component="img"
+                            sx={{width: 50, height: 50}}
+                            src={logo}
+                            alt="lightening bolt zeus"
+                            title="Zeus"
+                        />
+                    </Link>
+
+                    <Link style={{textDecoration: "none"}} to="/">
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                fontWeight: 700,
+                                color: "colors.accent",
+                                fontFamily: "SatrevaNova"
+                            }}>Zeus</Typography>
+                    </Link>
+                </Stack>
+                <Stack
+                    component={motion.div}
+                    variants={item}
+                    whileInView="whileInView"
+                    initial="initial"
+                    exit="exit"
+                    direction="row" spacing={3} justifyContent="center" alignItems="center">
+                    <NavigationLink path="/" label="Olympus"/>
+                    <NavigationLink path="/about" label="About"/>
+                    {/*<NavigationLink path="/blog" label="Blog"/>*/}
+                    <NavigationLink path="/portfolio" label="Portfolio"/>
+                    <NavigationLink path="/services" label="Services"/>
+                    <NavigationLink path="/contact" label="Contact"/>
+                </Stack>
+                <Stack
+                    component={motion.div}
+                    variants={item}
+                    whileInView="whileInView"
+                    initial="initial"
+                    exit="exit"
+                    direction="row"
+                    spacing={2}
+                    justifyContent="center"
+                    alignItems="center">
+                    <MUILink
+                        underline="none"
+                        href="https://github.com/stanleyHayes"
+                        rel="noreferrer"
+                        target="_blank">
+                        <GitHub
+                            sx={{
+                                fontSize: 32,
+                                padding: 0.6,
+                                backgroundColor: "light.accent",
+                                cursor: "pointer",
+                                borderTopLeftRadius: 12,
+                                borderTopRightRadius: 4,
+                                borderBottomRightRadius: 12,
+                                borderBottomLeftRadius: 4,
+                                color: "colors.accent"
+                            }}
+                        />
+                    </MUILink>
+
+                    <MUILink
+                        underline="none"
+                        href="https://www.linkedin.com/in/stanley-asoku-hayford-200b67106/"
+                        rel="noreferrer"
+                        target="_blank">
+                        <LinkedIn
+                            sx={{
+                                fontSize: 32,
+                                padding: 0.6,
+                                backgroundColor: "light.accent",
+                                cursor: "pointer",
+                                borderTopLeftRadius: 12,
+                                borderTopRightRadius: 4,
+                                borderBottomRightRadius: 12,
+                                borderBottomLeftRadius: 4,
+                                color: "colors.accent"
+                            }}
+                        />
+                    </MUILink>
+
+                    <MUILink
+                        underline="none"
+                        href="https://twitter.com/stanley_hayford"
+                        rel="noreferrer"
+                        target="_blank">
+                        <Twitter
+                            sx={{
+                                fontSize: 32,
+                                padding: 0.6,
+                                backgroundColor: "light.accent",
+                                cursor: "pointer",
+                                borderTopLeftRadius: 12,
+                                borderTopRightRadius: 4,
+                                borderBottomRightRadius: 12,
+                                borderBottomLeftRadius: 4,
+                                color: "colors.accent"
+                            }}
+                        />
+                    </MUILink>
+
+                    {
+                        theme === "dark" ?
+                            (
+                                <LightModeOutlined
+                                    sx={{
+                                        fontSize: 32,
+                                        padding: 0.6,
+                                        backgroundColor: "light.accent",
+                                        cursor: "pointer",
+                                        borderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                        color: "colors.accent"
+                                    }}
+                                    onClick={() => dispatch(changeTheme())}
+                                />
+                            )
+                            :
+                            (
+                                <DarkModeOutlined
+                                    onClick={() => dispatch(changeTheme())}
+                                    sx={{
+                                        fontSize: 32,
+                                        padding: 0.6,
+                                        backgroundColor: "light.accent",
+                                        cursor: "pointer",
+                                        borderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                        color: "colors.accent"
+                                    }}
+                                />
+                            )
+                    }
+                </Stack>
+            </Stack>
         </Toolbar>
     )
 }

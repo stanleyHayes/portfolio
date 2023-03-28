@@ -1,108 +1,84 @@
-import React, {useState} from "react";
+import React from "react";
 import Layout from "../../components/layout";
 import {
+    Box,
     Button,
     Card,
     CardContent,
     Container,
     Divider,
+    FormControl,
     Grid,
-    IconButton,
+    InputLabel,
     Link,
-    makeStyles,
-    TextField,
+    OutlinedInput,
+    Stack,
     Typography
-} from "@material-ui/core";
-import {LocationOn, Mail, Phone} from "@material-ui/icons";
+} from "@mui/material";
+import {CallOutlined, LocationOnOutlined, MailOutline} from "@mui/icons-material";
 import {Helmet} from "react-helmet";
-import validator from 'validator';
+import {useFormik} from "formik";
+import * as yup from "yup";
+import "yup-phone";
+import {motion} from "framer-motion";
+
+const container = {
+    initial: {
+        opacity: 0,
+        y: "10vh",
+        x: "10vh"
+    },
+    whileInView: {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        transition: {
+            delayChildren: 0.1,
+            staggerChildren: 0.2,
+            when: "beforeChildren",
+            duration:1
+        }
+    },
+    exit: {
+        opacity: 0,
+        y: "10vh",
+        x: "10vh"
+    }
+};
+
+const item = {
+    initial: {
+        opacity: 0,
+        y: '10vh',
+        x: "10vh"
+    },
+    whileInView: {
+        opacity: 1,
+        y: 0,
+        x: 0
+    },
+};
+
 
 const ContactPage = () => {
-    const useStyles = makeStyles(() => {
-        return {
-            container: {
-                paddingTop: 84,
-                paddingBottom: 84
-            },
-            page: {
-                textTransform: "uppercase"
-            },
-            title: {
-                textTransform: "uppercase"
-            },
-            divider: {
-                marginTop: 32,
-                marginBottom: 32
-            },
-            textField: {
-                marginBottom: 16,
-                transition: "all 300ms ease-out"
-            },
-            button: {
-                paddingTop: 16,
-                paddingBottom: 16,
-                marginTop: 4
-            },
-            card: {
-                cursor: "pointer",
-                transition: "all 300ms ease-out 50ms",
-                '&:hover': {
-                    transform: 'translateY(-10px)'
-                }
-            }
-        }
+
+    const formik = useFormik({
+        validateOnChange: true,
+        validateOnBlur: true,
+        initialValues: {
+            name: "", email: "", message: "", subject: ""
+        },
+        onSubmit: (values) => {
+            console.log(values);
+        },
+        validationSchema: yup.object().shape({
+            name: yup.string().required('Name field required'),
+            subject: yup.string().required('Name field required'),
+            message: yup.string().required('Name field required'),
+            email: yup.string().email('Invalid email').required('Email field required'),
+        })
     });
 
-    const classes = useStyles();
-
-    const [contact, setContact] = useState({});
-    const [error, setError] = useState({});
-
-    const {name, email, subject, message} = contact;
-
-    const handleChange = e => {
-        setContact({...contact, [e.target.name]: e.target.value});
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        if (!name) {
-            setError({error, name: "Full Name field required"});
-            return;
-        } else {
-            setError({error, name: null});
-        }
-
-        if (!email) {
-            setError({error, email: "Email field required"});
-            return;
-        } else {
-            setError({error, email: null});
-        }
-
-        if (!validator.isEmail(email)) {
-            setError({error, email: `Invalid email - ${email}`});
-            return;
-        } else {
-            setError({error, email: null});
-        }
-
-        if (!subject) {
-            setError({error, subject: "Subject field required"});
-            return;
-        } else {
-            setError({error, subject: null});
-        }
-
-        if (!message) {
-            setError({error, message: "Message field required"});
-            return;
-        } else {
-            setError({error, message: null});
-        }
-        console.log(contact);
-    }
 
     return (
         <Layout>
@@ -117,165 +93,339 @@ const ContactPage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
                 />
             </Helmet>
-            <Container className={classes.container}>
-                <Typography
-                    variant="h6"
-                    color="textSecondary"
-                    align="center"
-                    className={classes.page}
-                    gutterBottom={true}>Contact</Typography>
+            <Box sx={{py: 4}}>
+                <Container>
+                    <Typography
+                        variant="body2"
+                        align="center"
+                        sx={{
+                            textTransform: "uppercase",
+                            color: "colors.accent",
+                            fontFamily: "SatrevaNova",
+                            fontWeight: 700,
+                            mb: 2
+                        }}>Contact</Typography>
 
-                <Typography
-                    variant="h3"
-                    align="center"
-                    color="textSecondary"
-                    className={classes.title}
-                    gutterBottom={true}>Get In Touch</Typography>
+                    <Typography
+                        variant="h3"
+                        align="center"
+                        sx={{
+                            textTransform: "none",
+                            color: "colors.accent",
+                            fontFamily: "RayleighGlamour",
+                            fontWeight: 700
+                        }}
+                        gutterBottom={true}>Get In Touch</Typography>
 
-                <Divider variant="fullWidth" className={classes.divider}/>
+                    <Divider
+                        variant="fullWidth"
+                        light={true}
+                        sx={{
+                            marginTop: 3,
+                            marginBottom: 3
+                        }}
+                    />
 
-                <Grid container={true} spacing={4}>
-                    <Grid xs={12} md={4} item={true}>
-                        <Link href={`tel:+233270048319`} underline="none">
-                            <Card className={classes.card} elevation={1} variant="elevation">
+                    <Grid
+                        component={motion.div}
+                        variants={container}
+                        whileInView="whileInView"
+                        initial="initial"
+                        exit="exit"
+                        container={true} spacing={4}>
+                        <Grid component={motion.div} variants={item} xs={12} md={4} item={true}>
+                            <Link href={`tel://+231670044319`} underline="none">
+                                <Card
+                                    sx={{
+                                        borderTopLeftRadius: 16,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 16,
+                                        borderBottomLeftRadius: 4,
+                                    }}
+                                    elevation={0}
+                                    variant="elevation">
+                                    <CardContent>
+                                        <Stack spacing={2}>
+                                            <Stack direction="row" justifyContent="center">
+                                                <CallOutlined
+                                                    sx={{
+                                                        color: "colors.accent",
+                                                        padding: 1,
+                                                        fontSize: 32,
+                                                        borderTopLeftRadius: 12,
+                                                        borderTopRightRadius: 4,
+                                                        borderBottomRightRadius: 12,
+                                                        borderBottomLeftRadius: 4,
+                                                        cursor: "pointer",
+                                                        backgroundColor: "icon.accentBackground"
+                                                    }}
+                                                />
+                                            </Stack>
+                                            <Typography
+                                                sx={{
+                                                    color: "colors.accent",
+                                                    fontWeight: 700,
+                                                    fontFamily: "SatrevaNova"
+                                                }}
+                                                align="center" variant="body2">
+                                                Phone
+                                            </Typography>
+                                            <Typography
+                                                sx={{color: "text.secondary"}}
+                                                align="center"
+                                                variant="body1">233(027)004-4319</Typography>
+                                        </Stack>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        </Grid>
+                        <Grid component={motion.div} variants={item} xs={12} md={4} item={true}>
+                            <Link href={`mailto:dev.stanley.hayford@ghmail.com`} underline="none">
+                                <Card
+                                    sx={{
+                                        borderTopLeftRadius: 16,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 16,
+                                        borderBottomLeftRadius: 4,
+                                    }}
+                                    elevation={0}
+                                    variant="elevation">
+                                    <CardContent>
+                                        <Stack spacing={2}>
+                                            <Stack direction="row" justifyContent="center">
+                                                <MailOutline
+                                                    sx={{
+                                                        color: "colors.accent",
+                                                        padding: 1,
+                                                        fontSize: 32,
+                                                        borderTopLeftRadius: 12,
+                                                        borderTopRightRadius: 4,
+                                                        borderBottomRightRadius: 12,
+                                                        borderBottomLeftRadius: 4,
+                                                        cursor: "pointer",
+                                                        backgroundColor: "icon.accentBackground"
+                                                    }}
+                                                />
+                                            </Stack>
+                                            <Typography
+                                                sx={{
+                                                    color: "colors.accent",
+                                                    fontWeight: 700,
+                                                    fontFamily: "SatrevaNova"
+                                                }}
+                                                align="center"
+                                                variant="body2">
+                                                Email
+                                            </Typography>
+                                            <Typography
+                                                sx={{color: "text.secondary"}}
+                                                align="center"
+                                                variant="body1">dev.stanley.hayford@gmail.com</Typography>
+                                        </Stack>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        </Grid>
+                        <Grid component={motion.div} variants={item} xs={12} md={4} item={true}>
+                            <Card
+                                sx={{
+                                    borderTopLeftRadius: 16,
+                                    borderTopRightRadius: 4,
+                                    borderBottomRightRadius: 16,
+                                    borderBottomLeftRadius: 4,
+                                }}
+                                elevation={0} variant="elevation">
                                 <CardContent>
-                                    <Grid container={true} justify="center">
-                                        <Grid item={true}>
-                                            <IconButton>
-                                                <Phone/>
-                                            </IconButton>
-                                        </Grid>
-                                    </Grid>
-                                    <Typography color="textSecondary" align="center" variant="h6">Phone</Typography>
-                                    <Typography color="textSecondary" align="center"
-                                                variant="body2">233(027)004-8319</Typography>
+                                    <Stack spacing={2}>
+                                        <Stack direction="row" justifyContent="center">
+                                            <LocationOnOutlined
+                                                sx={{
+                                                    color: "colors.accent",
+                                                    padding: 1,
+                                                    fontSize: 32,
+                                                    borderTopLeftRadius: 12,
+                                                    borderTopRightRadius: 4,
+                                                    borderBottomRightRadius: 12,
+                                                    borderBottomLeftRadius: 4,
+                                                    cursor: "pointer",
+                                                    backgroundColor: "icon.accentBackground"
+                                                }}
+                                            />
+                                        </Stack>
+                                        <Typography
+                                            sx={{
+                                                color: "colors.accent",
+                                                fontFamily: "SatrevaNova",
+                                                fontWeight: 700
+                                            }}
+                                            align="center"
+                                            variant="body2">
+                                            Address
+                                        </Typography>
+                                        <Typography sx={{color: "text.secondary"}} align="center" variant="body1">
+                                            Atakorah Estate 2, Ashomang
+                                        </Typography>
+                                    </Stack>
                                 </CardContent>
                             </Card>
-                        </Link>
+                        </Grid>
                     </Grid>
-                    <Grid xs={12} md={4} item={true}>
-                        <Link href={`mailto:dev.stanley.hayford@ghmail.com`} underline="none">
-                            <Card className={classes.card} elevation={1} variant="elevation">
-                                <CardContent>
-                                    <Grid container={true} justify="center">
-                                        <Grid item={true}>
-                                            <IconButton>
-                                                <Mail/>
-                                            </IconButton>
-                                        </Grid>
+
+                    <Divider sx={{my: 4}} light={true} variant="fullWidth"/>
+
+                    <Card
+                        sx={{
+                            borderTopLeftRadius: 16,
+                            borderTopRightRadius: 4,
+                            borderBottomRightRadius: 16,
+                            borderBottomLeftRadius: 4
+                        }}
+                        variant="elevation" elevation={0}>
+                        <CardContent>
+                            <form onSubmit={formik.handleSubmit}>
+                                <Grid container={true} spacing={4}>
+                                    <Grid item={true} xs={12} md={6}>
+                                        <Stack direction="column" spacing={2}>
+                                            <FormControl variant="outlined" fullWidth={true}>
+                                                <InputLabel>Full Name</InputLabel>
+                                                <OutlinedInput
+                                                    placeholder="Enter Full name"
+                                                    label="Full Name"
+                                                    fullWidth={true}
+                                                    variant="outlined"
+                                                    margin="normal"
+                                                    name="name"
+                                                    type="text"
+                                                    onBlur={formik.handleBlur}
+                                                    value={formik.values.name}
+                                                    onChange={formik.handleChange}
+                                                    error={Boolean(formik.touched.name && formik.errors.name)}
+                                                    helperText={formik.touched.name && formik.errors.name}
+                                                    required={true}
+                                                    sx={{
+                                                        borderTopLeftRadius: 16,
+                                                        borderTopRightRadius: 4,
+                                                        borderBottomRightRadius: 16,
+                                                        borderBottomLeftRadius: 4
+                                                    }}
+                                                />
+                                            </FormControl>
+
+                                            <FormControl variant="outlined" fullWidth={true}>
+                                                <InputLabel>Email</InputLabel>
+                                                <OutlinedInput
+                                                    placeholder="Enter email"
+                                                    label="Email"
+                                                    fullWidth={true}
+                                                    variant="outlined"
+                                                    margin="normal"
+                                                    name="email"
+                                                    type="email"
+                                                    onBlur={formik.handleBlur}
+                                                    value={formik.values.email}
+                                                    onChange={formik.handleChange}
+                                                    error={Boolean(formik.touched.email && formik.errors.email)}
+                                                    helperText={formik.touched.email && formik.errors.email}
+                                                    required={true}
+                                                    sx={{
+                                                        borderTopLeftRadius: 16,
+                                                        borderTopRightRadius: 4,
+                                                        borderBottomRightRadius: 16,
+                                                        borderBottomLeftRadius: 4
+                                                    }}
+                                                />
+                                            </FormControl>
+
+                                            <FormControl variant="outlined" fullWidth={true}>
+                                                <InputLabel>Subject</InputLabel>
+                                                <OutlinedInput
+                                                    placeholder="Enter subject"
+                                                    label="Subject"
+                                                    fullWidth={true}
+                                                    variant="outlined"
+                                                    margin="normal"
+                                                    name="subject"
+                                                    type="text"
+                                                    onBlur={formik.handleBlur}
+                                                    value={formik.values.subject}
+                                                    onChange={formik.handleChange}
+                                                    error={Boolean(formik.touched.subject && formik.errors.subject)}
+                                                    helperText={formik.touched.subject && formik.errors.subject}
+                                                    required={true}
+                                                    sx={{
+                                                        borderTopLeftRadius: 16,
+                                                        borderTopRightRadius: 4,
+                                                        borderBottomRightRadius: 16,
+                                                        borderBottomLeftRadius: 4
+                                                    }}
+                                                />
+                                            </FormControl>
+                                        </Stack>
                                     </Grid>
-                                    <Typography color="textSecondary" align="center" variant="h6">Email</Typography>
-                                    <Typography color="textSecondary" align="center"
-                                                variant="body2">dev.stanley.hayford@gmail.com</Typography>
-                                </CardContent>
-                            </Card>
-                        </Link>
-                    </Grid>
-                    <Grid xs={12} md={4} item={true}>
-                        <Card className={classes.card} elevation={1} variant="elevation">
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid item={true}>
-                                        <IconButton>
-                                            <LocationOn/>
-                                        </IconButton>
+
+                                    <Grid item={true} xs={12} md={6}>
+                                        <Stack direction="column" spacing={3}>
+                                            <FormControl variant="outlined" fullWidth={true}>
+                                                <InputLabel>Message</InputLabel>
+                                                <OutlinedInput
+                                                    placeholder="Enter message"
+                                                    label="Subject"
+                                                    fullWidth={true}
+                                                    variant="outlined"
+                                                    margin="normal"
+                                                    name="message"
+                                                    rows={4}
+                                                    multiline={true}
+                                                    onBlur={formik.handleBlur}
+                                                    value={formik.values.subject}
+                                                    onChange={formik.handleChange}
+                                                    error={Boolean(formik.touched.message && formik.errors.message)}
+                                                    helperText={formik.touched.message && formik.errors.message}
+                                                    required={true}
+                                                    sx={{
+                                                        borderTopLeftRadius: 16,
+                                                        borderTopRightRadius: 4,
+                                                        borderBottomRightRadius: 16,
+                                                        borderBottomLeftRadius: 4
+                                                    }}
+                                                />
+                                            </FormControl>
+
+                                            <Button
+                                                type="submit"
+                                                sx={{
+                                                    borderTopLeftRadius: 12,
+                                                    borderTopRightRadius: 4,
+                                                    borderBottomRightRadius: 12,
+                                                    borderBottomLeftRadius: 4,
+                                                    backgroundColor: "colors.accent",
+                                                    textTransform: "capitalize",
+                                                    color: "colors.black",
+                                                    fontWeight: "bold",
+                                                    "&:hover": {
+                                                        backgroundColor: "light.accent",
+                                                        color: "colors.black",
+                                                        borderTopLeftRadius: 20,
+                                                        borderTopRightRadius: 0,
+                                                        borderBottomRightRadius: 20,
+                                                        borderBottomLeftRadius: 0,
+                                                        transition: "all 500ms ease-out"
+                                                    }
+                                                }}
+                                                fullWidth={true}
+                                                variant="contained"
+                                                disableElevation={true}
+                                                size="large">
+                                                Send Message
+                                            </Button>
+                                        </Stack>
                                     </Grid>
                                 </Grid>
-                                <Typography color="textSecondary" align="center" variant="h6">Address</Typography>
-                                <Typography color="textSecondary" align="center" variant="body2">Atakorah Estate 2,
-                                    Ashomang</Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-
-                <Divider light={true} variant="fullWidth" className={classes.divider}/>
-
-                <Card variant="elevation" elevation={1}>
-                    <CardContent>
-                        <Grid container={true} spacing={4}>
-                            <Grid item={true} xs={12} md={6}>
-                                <TextField
-                                    placeholder="Enter Full name"
-                                    label="Full Name"
-                                    fullWidth={true}
-                                    variant="outlined"
-                                    margin="normal"
-                                    name="name"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                    error={Boolean(error.name)}
-                                    helperText={error.name}
-                                    className={classes.textField}
-                                    required={true}
-                                />
-
-                                <TextField
-                                    label="Email"
-                                    placeholder="Enter Email"
-                                    fullWidth={true}
-                                    variant="outlined"
-                                    margin="normal"
-                                    name="email"
-                                    type="email"
-                                    value={email}
-                                    onChange={handleChange}
-                                    error={Boolean(error.email)}
-                                    helperText={error.email}
-                                    className={classes.textField}
-                                    required={true}
-                                />
-
-
-                                <TextField
-                                    label="Subject"
-                                    placeholder="Enter subject"
-                                    fullWidth={true}
-                                    variant="outlined"
-                                    margin="normal"
-                                    name="subject"
-                                    type="text"
-                                    value={subject}
-                                    onChange={handleChange}
-                                    error={Boolean(error.subject)}
-                                    className={classes.textField}
-                                    helperText={error.subject}
-                                    required={true}
-                                />
-                            </Grid>
-                            <Grid item={true} xs={12} md={6}>
-                                <TextField
-                                    label="Message"
-                                    placeholder="Enter message"
-                                    fullWidth={true}
-                                    variant="outlined"
-                                    margin="normal"
-                                    name="message"
-                                    rows={6}
-                                    multiline={true}
-                                    type="text"
-                                    value={message}
-                                    onChange={handleChange}
-                                    error={Boolean(error.message)}
-                                    helperText={error.message}
-                                    className={classes.textField}
-                                    required={true}
-                                />
-                                <Button
-                                    onClick={handleSubmit}
-                                    variant="outlined"
-                                    disableElevation={true}
-                                    fullWidth={true}
-                                    className={classes.button}
-                                    size="large">
-                                    Send Message
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
-            </Container>
+                            </form>
+                        </CardContent>
+                    </Card>
+                </Container>
+            </Box>
         </Layout>
     )
 }

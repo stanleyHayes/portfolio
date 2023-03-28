@@ -1,197 +1,179 @@
-import React, {useEffect, useState} from "react";
-import {Avatar, Button, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import React from "react";
+import {Box, Button, Divider, Stack, Typography, Link as MUILink} from "@mui/material";
 import {Link} from "react-router-dom";
-import {Close} from "@material-ui/icons";
-import {useLocation} from "react-router";
+import {CloseOutlined, DarkModeOutlined, LightModeOutlined, WifiCalling3Outlined} from "@mui/icons-material";
+import {changeTheme, getUiState, toggleDrawer} from "../../features/ui/ui-slice";
+import {AnimatePresence, motion} from "framer-motion";
+import {useDispatch, useSelector} from "react-redux";
+import NavigationLink from "../shared/navigation-link";
 
 
-const DrawerContent = ({handleDrawerClose}) => {
-
-    const useStyles = makeStyles(theme => {
-        const dark = theme.palette.type === "dark" ? "dark" : "light";
-        return {
-            link: {
-                textDecoration: "none",
-                display: "inline-block",
-                width: "100%"
-            },
-            button: {
-                color: theme.palette.text.secondary
-            },
-            divider: {
-                marginTop: 16,
-                marginBottom: 16
-            },
-            avatar: {
-                width: 150,
-                height: 150
-            },
-            name: {},
-            nickname: {},
-            role: {
-                background: "rgba(0,127,255,0.2)",
-                paddingLeft: 16,
-                paddingRight: 16,
-                paddingTop: 16,
-                paddingBottom: 16,
-                marginTop: 16,
-                marginBottom: 16,
-                borderRadius: 16,
-                fontWeight: "bold"
-            },
-            subDivider: {
-                marginTop: 8,
-                marginBottom: 8
-            },
-            container: {
-                paddingTop: 32,
-                paddingBottom: 32
-            },
-            closeButton: {},
-            active: {
-                background: dark === "dark" ? "rgba(0,127,255,0.2)" : "rgba(0,127,255,0.2)"
-            },
-        }
-    });
-
-    const classes = useStyles();
-
-    const {pathname} = useLocation();
-    const [active, setActive] = useState(pathname);
-
-    useEffect(() => {
-        setActive(pathname);
-    }, [pathname]);
-
-    const handlePathChange = path => {
-        setActive(path);
-    }
+const DrawerContent = () => {
+    const {theme} = useSelector(getUiState);
+    const dispatch = useDispatch();
 
     return (
-        <Container className={classes.container}>
-            <Grid container={true} justify="center">
-                <Grid item={true} xs={12} container={true} justify="flex-end">
-                    <Grid item={true}>
-                        <Button
-                            className={classes.closeButton}
-                            onClick={handleDrawerClose}
-                            startIcon={<Close/>}
-                            variant="outlined"
-                            size="large">
-                            Close
-                        </Button>
-                    </Grid>
-                </Grid>
-                <Grid item={true} xs={12} container={true} justify="center">
-                    <Grid item={true}>
-                        <Avatar src="/assets/lightingcolored.svg" className={classes.avatar}/>
-                    </Grid>
-                </Grid>
-                <Grid item={true}>
-                    <Typography
-                        gutterBottom={true}
-                        className={classes.name}
-                        variant="h4"
-                        color="textSecondary"
-                        align="center">
-                        Stanley Hayford
-                    </Typography>
-                    <Divider variant="middle" className={classes.subDivider} light={true}/>
-                    <Typography
-                        color="textSecondary"
-                        gutterBottom={true}
-                        className={classes.nickname}
-                        variant="h6"
-                        align="center">
-                        Zeus
-                    </Typography>
-                    <Divider variant="middle" className={classes.subDivider} light={true}/>
-                    <Typography
-                        color="textPrimary"
-                        gutterBottom={true}
-                        className={classes.role}
-                        variant="h6"
-                        align="center">
-                        Full Stack Web Developer
-                    </Typography>
-                </Grid>
-            </Grid>
+        <Box sx={{py: 4}}>
+            <Stack
+                direction="column"
+                divider={<Divider sx={{my: 4}} variant="fullWidth" light={true}/>}>
+                <Stack
+                    sx={{px: 4}}
+                    direction="row"
+                    spacing={4}
+                    alignItems="center"
+                    justifyContent="space-between">
+                    <CloseOutlined
+                        onClick={() => dispatch(toggleDrawer(false))}
+                        sx={{
+                            color: "colors.accent",
+                            padding: 1,
+                            fontSize: 32,
+                            borderTopLeftRadius: 12,
+                            borderTopRightRadius: 4,
+                            borderBottomRightRadius: 12,
+                            borderBottomLeftRadius: 4,
+                            cursor: "pointer",
+                            backgroundColor: "icon.accentBackground"
+                        }}/>
 
-            <Divider variant="fullWidth" className={classes.divider}/>
+                    <AnimatePresence initial={true} mode="sync">
+                        {theme === "dark" && (
+                            <Box component={motion.div} exit={{opacity: 0, transition: {duration: 0.5}}}>
+                                <LightModeOutlined
+                                    onClick={() => dispatch(changeTheme())}
+                                    sx={{
+                                        color: "colors.accent",
+                                        padding: 1,
+                                        fontSize: 32,
+                                        borderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                        cursor: "pointer",
+                                        backgroundColor: "icon.accentBackground"
+                                    }}/>
+                            </Box>
+                        )}
+                    </AnimatePresence>
+                    <AnimatePresence initial={true} mode="sync">
+                        {theme === "light" && (
+                            <Box component={motion.div} exit={{opacity: 0, transition: {duration: 0.5}}}>
+                                <DarkModeOutlined
+                                    onClick={() => dispatch(changeTheme())}
+                                    sx={{
+                                        color: "colors.accent",
+                                        padding: 1,
+                                        fontSize: 32,
+                                        borderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                        cursor: "pointer",
+                                        backgroundColor: "icon.accentBackground"
+                                    }}
+                                />
+                            </Box>
+                        )}
+                    </AnimatePresence>
+                </Stack>
 
-            <Grid container={true} justify="center">
-                <Grid item={true} xs={12}>
-                    <Link className={classes.link} to="/">
-                        <Button
-                            onClick={() => handlePathChange('/')}
-                            className={`${active === '/' ? classes.active : classes.inactive} ${classes.button}`}
-                            variant="text"
-                            fullWidth={true}
-                            size="large">Home</Button>
-                    </Link>
-                </Grid>
+                <Box sx={{px: 4}}>
+                    <Stack spacing={2}>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                textTransform: "uppercase",
+                                color: "colors.accent",
+                                fontWeight: 700,
+                                fontFamily: "SatrevaNova",
+                                letterSpacing: 1.4
+                            }}>
+                            Stanley Hayford
+                        </Typography>
 
-                <Grid xs={12} item={true}>
-                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
-                    <Link className={classes.link} to="/about">
-                        <Button
-                            fullWidth={true}
-                            onClick={() => handlePathChange('/about')}
-                            className={`${active === '/about' ? classes.active : classes.inactive} ${classes.button}`}
-                            variant="text"
-                            size="large">About</Button>
-                    </Link>
-                </Grid>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                textTransform: "uppercase",
+                                color: "text.primary",
+                                fontWeight: 700,
+                                fontFamily: "RayleighGlamour",
+                                letterSpacing: 1.4
+                            }}>
+                            Zeus
+                        </Typography>
+                    </Stack>
 
-                <Grid xs={12} item={true}>
-                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
-                    <Link className={classes.link} to="/blog">
-                        <Button
-                            fullWidth={true}
-                            onClick={() => handlePathChange('/blog')}
-                            className={`${active.startsWith('/blog') ? classes.active : classes.inactive} ${classes.button}`}
-                            variant="text"
-                            size="large">Blog</Button>
-                    </Link>
-                </Grid>
+                </Box>
 
-                <Grid xs={12} item={true}>
-                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
-                    <Link className={classes.link} to="/portfolio">
-                        <Button
-                            fullWidth={true}
-                            onClick={() => handlePathChange('/portfolio')}
-                            className={`${active === '/portfolio' ? classes.active : classes.inactive} ${classes.button}`}
-                            variant="text"
-                            size="large">Portfolio</Button>
-                    </Link>
-                </Grid>
+                <Box sx={{px: 4}}>
+                    <Stack direction="column" spacing={3}>
+                        <NavigationLink path="/" label="Home"/>
+                        <NavigationLink path="/about" label="About"/>
+                        <NavigationLink path="/portfolio" label="Portfolio"/>
+                        {/*<NavigationLink path="/blog" label="Blog"/>*/}
+                        <NavigationLink path="/services" label="Services"/>
+                        <NavigationLink path="/contact" label="Contact"/>
+                    </Stack>
+                </Box>
 
-                <Grid xs={12} item={true}>
-                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
-                    <Link className={classes.link} to="/services">
-                        <Button
-                            fullWidth={true}
-                            onClick={() => handlePathChange('/services')}
-                            className={`${active === '/services' ? classes.active : classes.inactive} ${classes.button}`}
-                            variant="text"
-                            size="large">Services</Button>
-                    </Link>
-                </Grid>
-
-                <Grid xs={12} item={true}>
-                    <Divider variant="fullWidth" className={classes.divider} light={true}/>
-                    <Link to="/contact" className={classes.link}>
-                        <Button
-                            fullWidth={true}
-                            onClick={() => handlePathChange('/contact')}
-                            className={`${active === '/contact' ? classes.active : classes.inactive} ${classes.button}`}
-                            variant="text"
-                            size="large">Contact</Button>
-                    </Link>
-                </Grid>
-            </Grid>
-        </Container>
+                <Box sx={{px: 4}}>
+                    <Stack direction="column" spacing={2} alignItems="center">
+                        <Stack sx={{width: "100%"}} direction="row" justifyContent="flex-start" alignItems="center">
+                            <MUILink href="tel://+233555180048" underline="none">
+                                <WifiCalling3Outlined
+                                    sx={{
+                                        color: "colors.accent",
+                                        padding: 1,
+                                        fontSize: 32,
+                                        borderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                        backgroundColor: "icon.accentBackground"
+                                    }}/>
+                            </MUILink>
+                            <MUILink href="tel://+233555180048" underline="none">
+                                <Button
+                                    variant="text"
+                                    size="large"
+                                    sx={{
+                                        textTransform: "capitalize",
+                                        color: "colors.accent",
+                                        cursor: "pointer",
+                                        orderTopLeftRadius: 12,
+                                        borderTopRightRadius: 4,
+                                        borderBottomRightRadius: 12,
+                                        borderBottomLeftRadius: 4,
+                                    }}>
+                                    +233 555-180 048
+                                </Button>
+                            </MUILink>
+                        </Stack>
+                        <Link to="/contact" style={{textDecoration: "none", width: "100%", display: "block"}}>
+                            <Button
+                                fullWidth={true}
+                                variant="outlined"
+                                size="large"
+                                sx={{
+                                    textTransform: "capitalize",
+                                    color: "colors.accent",
+                                    borderTopLeftRadius: 12,
+                                    borderTopRightRadius: 4,
+                                    borderBottomRightRadius: 12,
+                                    borderBottomLeftRadius: 4,
+                                    borderWidth: 2,
+                                    borderColor: "colors.accent",
+                                    borderStyle: "solid"
+                                }}>
+                                Contact Us
+                            </Button>
+                        </Link>
+                    </Stack>
+                </Box>
+            </Stack>
+        </Box>
     )
 }
 

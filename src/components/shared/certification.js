@@ -1,76 +1,58 @@
 import React from "react";
-import {Button, Card, CardActions, CardContent, Divider, makeStyles, Typography} from "@material-ui/core";
-import {ChevronRight} from "@material-ui/icons";
+import {Button, Card, CardActions, CardContent, Divider, Link as MUILink, Typography} from "@mui/material";
+import {ChevronRight} from "@mui/icons-material";
 
 const Certification = ({certification}) => {
 
-    const useStyles = makeStyles((theme) => {
-        return {
-            card: {
-                minHeight: 370,
-                display: "flex",
-                flexDirection: "column",
-                cursor: "pointer",
-                transition: "all 300ms ease-out 50ms",
-                '&:hover': {
-                    transform: 'translateY(-10px)'
-                }
-            },
-            link: {
-                textDecoration: "none",
-                cursor: "pointer",
-                fontWeight: "bold",
-                color: theme.palette.secondary.main
-            },
-            divider: {
-                marginTop: 16,
-                marginBottom: 16
-            },
-            chip: {
-                marginRight: 8,
-                marginBottom: 8
-            },
-            title: {
-                textTransform: "uppercase"
-            },
-            caption:{
-                textTransform: "uppercase",
-                fontWeight: 600,
-                fontSize: '0.9em'
-            },
-            content: {
-                flexGrow: 1
-            },
-        }
-    });
-
-    const classes = useStyles();
-
 
     return (
-        <Card className={classes.card} variant="elevation" elevation={0}>
-            <CardContent className={classes.content}>
-                <Typography className={classes.caption} color="textPrimary" variant="body2">Title</Typography>
-                <Typography color="textSecondary" variant="h6">{certification.title}</Typography>
-                <Divider variant="fullWidth" light={true} className={classes.divider}/>
-                <Typography className={classes.caption} color="textPrimary" variant="body2">
+        <Card
+            variant="elevation"
+            elevation={0}
+            sx={{
+                height: "100%",
+                borderTopLeftRadius: 32,
+                borderTopRightRadius: 8,
+                borderBottomRightRadius: 32,
+                borderBottomLeftRadius: 8,
+                display: "flex",
+                flexDirection: "column"
+            }}>
+            <CardContent sx={{flexGrow: 1}}>
+                <Typography  sx={{color: "text.primary"}} variant="body2">Title</Typography>
+                <Typography
+                    sx={{
+                        color: "colors.accent",
+                        fontFamily: "SatrevaNova",
+                        fontWeight: 600
+                }} variant="h6">{certification.title}</Typography>
+                <Divider sx={{my: 2}} variant="fullWidth" light={true}/>
+                <Typography sx={{color: "text.primary"}} variant="body2">
                     Issuing Institution
                 </Typography>
                 <Typography color="textSecondary" variant="body1">{certification.institution}</Typography>
-                <Divider variant="fullWidth" light={true} className={classes.divider}/>
-                <Typography className={classes.caption} color="textPrimary" variant="body2">
+                <Divider sx={{my: 2}} variant="fullWidth" light={true}/>
+                <Typography sx={{color: "text.primary"}} variant="body2">
                     Expiration
                 </Typography>
-                <Typography color="textSecondary" variant="body1">{certification.expiry}</Typography>
+                <Typography sx={{color: "text.secondary"}} variant="body2">{certification.expiry}</Typography>
             </CardContent>
             <Divider light={true} variant="fullWidth"/>
             <CardActions>
-                <Button fullWidth={true} size="small" variant="text" endIcon={<ChevronRight/>}>
-                    <a
-                        className={classes.link}
+
+                <Button
+                    fullWidth={true}
+                    size="large"
+                    sx={{color: "colors.accent", textTransform: "none"}}
+                    color="secondary"
+                    variant="text"
+                    endIcon={<ChevronRight color="secondary"/>}>
+                    <MUILink
+                        sx={{color: "colors.accent", textTransform: "none"}}
+                        underline="none"
                         rel="noreferrer noopener"
                         target="_blank"
-                        href={certification.link}>View Certification</a>
+                        href={certification.link}>View Certification</MUILink>
                 </Button>
             </CardActions>
         </Card>

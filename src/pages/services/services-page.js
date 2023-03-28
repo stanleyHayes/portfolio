@@ -1,44 +1,10 @@
 import React from "react";
 import Layout from "../../components/layout";
-import {Card, CardContent, Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Box, Card, CardContent, Container, Divider, Grid, Stack, Typography} from "@mui/material";
 import {Helmet} from "react-helmet";
 
 
 const ServicesPage = () => {
-    const useStyles = makeStyles(() => {
-        return {
-            container: {
-                paddingTop: 84,
-                paddingBottom: 84
-            },
-            page: {
-                textTransform: "uppercase"
-            },
-            title: {
-                textTransform: "uppercase"
-            },
-            divider: {
-                marginTop: 32,
-                marginBottom: 32
-            },
-            card: {
-                minHeight: 250,
-                transition: "all 300ms ease-out 50ms",
-                '&:hover': {
-                    transform: 'translateY(-10px)'
-                }
-            },
-            iconContainer: {
-                marginBottom: 32
-            },
-            icon: {
-                width: 48,
-                height: 48
-            }
-        }
-    });
-
-    const classes = useStyles();
 
     return (
         <Layout>
@@ -53,134 +19,230 @@ const ServicesPage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver, Services"
                 />
             </Helmet>
-            <Container className={classes.container}>
-                <Typography
-                    color="textSecondary"
-                    variant="h6"
-                    align="center"
-                    className={classes.page}
-                    gutterBottom={true}>Services</Typography>
+            <Box sx={{py: 8}}>
+                <Container>
+                    <Typography
+                        variant="h6"
+                        align="center"
+                        sx={{
+                            textTransform: "uppercase",
+                            color: "colors.accent",
+                            fontFamily: "SatrevaNova",
+                            fontWeight: 700,
+                            mb: 2
+                        }}>Services</Typography>
 
-                <Typography
-                    variant="h3"
-                    align="center"
-                    color="textSecondary"
-                    className={classes.title}
-                    gutterBottom={true}>What I do</Typography>
+                    <Typography
+                        variant="h3"
+                        align="center"
+                        sx={{
+                            textTransform: "none",
+                            color: "colors.accent",
+                            fontFamily: "RayleighGlamour",
+                            fontWeight: 700
+                        }}
+                        gutterBottom={true}>What I do</Typography>
 
-                <Divider variant="fullWidth" className={classes.divider}/>
+                    <Divider
+                        variant="fullWidth"
+                        light={true}
+                        sx={{
+                            marginTop: 3,
+                            marginBottom: 3
+                        }}
+                    />
 
-                <Grid container={true} spacing={4}>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid className={classes.iconContainer} item={true}>
-                                        <img className={classes.icon} src="/assets/training.png" alt="training logo"
-                                             title="Training Service"/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true}
-                                            variant="h4">Training</Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Training beginner and intermediate programmers in OOP, functional and procedural
-                                    programming
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid className={classes.iconContainer} item={true}>
-                                        <img className={classes.icon} src="/assets/wordpress.png" alt="wordpress logo"
+                    <Grid container={true} spacing={4}>
+                        <Grid item={true} xs={12} md={6} lg={4}>
+                            <Card
+                                sx={{
+                                    borderTopLeftRadius: 32,
+                                    borderTopRightRadius: 8,
+                                    borderBottomRightRadius: 32,
+                                    borderBottomLeftRadius: 8
+                                }}
+                                variant="elevation" elevation={0}>
+                                <CardContent>
+                                    <Stack direction="row" justifyContent="center">
+                                        <img
+                                            src="/assets/training.png"
+                                            alt="training logo"
+                                            title="Training Service"
+                                        />
+                                    </Stack>
+                                    <Typography sx={{
+                                        fontWeight: 700,
+                                        color: "colors.accent",
+                                        fontFamily: "SatrevaNova",
+                                        mb: 2
+                                    }} align="center" variant="h4">Training</Typography>
+                                    <Typography
+                                        sx={{fontWeight: 500, color: "text.secondary"}}
+                                        align="center" variant="body2">
+                                        Training beginner and intermediate programmers in OOP, functional and procedural
+                                        programming
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item={true} xs={12} md={6} lg={4}>
+                            <Card
+                                sx={{
+                                    borderTopLeftRadius: 32,
+                                    borderTopRightRadius: 8,
+                                    borderBottomRightRadius: 32,
+                                    borderBottomLeftRadius: 8
+                                }}
+                                variant="elevation" elevation={0}>
+                                <CardContent>
+                                    <Stack direction="row" justifyContent="center">
+                                        <img src="/assets/wordpress.png" alt="wordpress logo"
                                              title="WordPress Service"/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
-                                    WordPress
-                                </Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Corporate and E-Commerce websites using WordPress.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid className={classes.iconContainer} item={true}>
-                                        <img className={classes.icon} src="/assets/web-app.png" alt="Web Apps logo"
+                                    </Stack>
+
+                                    <Typography sx={{
+                                        fontWeight: 700,
+                                        color: "colors.accent",
+                                        fontFamily: "SatrevaNova",
+                                        mb: 2
+                                    }} align="center" variant="h4">
+                                        WordPress
+                                    </Typography>
+                                    <Typography
+                                        sx={{fontWeight: 500, color: "text.secondary"}}
+                                        align="center" variant="body2">
+                                        Corporate and E-Commerce websites using WordPress.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item={true} xs={12} md={6} lg={4}>
+                            <Card
+                                sx={{
+                                    borderTopLeftRadius: 32,
+                                    borderTopRightRadius: 8,
+                                    borderBottomRightRadius: 32,
+                                    borderBottomLeftRadius: 8
+                                }}
+                                variant="elevation" elevation={0}>
+                                <CardContent>
+                                    <Stack direction="row" justifyContent="center">
+                                        <img src="/assets/web-app.png" alt="Web Apps logo"
                                              title="Web App Dev Service"/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
-                                    Web Apps
-                                </Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Responsive Web Apps using React, Vue, Svelte
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid className={classes.iconContainer} item={true}>
-                                        <img className={classes.icon} src="/assets/rest-api.png" alt="rest api logo"
+                                    </Stack>
+
+                                    <Typography sx={{
+                                        fontWeight: 700,
+                                        color: "colors.accent",
+                                        fontFamily: "SatrevaNova",
+                                        mb: 2
+                                    }} align="center" variant="h4">
+                                        Web Apps
+                                    </Typography>
+                                    <Typography
+                                        sx={{fontWeight: 500, color: "text.secondary"}}
+                                        align="center" variant="body2">
+                                        Responsive Web Apps using React, Vue, Svelte
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item={true} xs={12} md={6} lg={4}>
+                            <Card
+                                sx={{
+                                    borderTopLeftRadius: 32,
+                                    borderTopRightRadius: 8,
+                                    borderBottomRightRadius: 32,
+                                    borderBottomLeftRadius: 8
+                                }}
+                                variant="elevation"
+                                elevation={0}>
+                                <CardContent>
+                                    <Stack direction="row" justifyContent="center">
+                                        <img src="/assets/rest-api.png" alt="rest api logo"
                                              title="Rest API Service"/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
-                                    Web APIs
-                                </Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    Scalable Web APIs using NodeJS, GoFibre
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid className={classes.iconContainer} item={true}>
-                                        <img className={classes.icon} src="/assets/sql.png" alt="sql database logo"
+                                    </Stack>
+
+                                    <Typography sx={{
+                                        fontWeight: 700,
+                                        color: "colors.accent",
+                                        fontFamily: "SatrevaNova",
+                                        mb: 2
+                                    }} align="center" variant="h4">
+                                        Web APIs
+                                    </Typography>
+                                    <Typography
+                                        sx={{fontWeight: 500, color: "text.secondary"}}
+                                        align="center" variant="body2">
+                                        Scalable Web APIs using NodeJS, GoFibre
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item={true} xs={12} md={6} lg={4}>
+                            <Card
+                                sx={{
+                                    borderTopLeftRadius: 32,
+                                    borderTopRightRadius: 8,
+                                    borderBottomRightRadius: 32,
+                                    borderBottomLeftRadius: 8
+                                }}
+                                variant="elevation" elevation={0}>
+                                <CardContent>
+                                    <Stack direction="row" justifyContent="center">
+                                        <img src="/assets/sql.png" alt="sql database logo"
                                              title="SQL Database Design Service"/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
-                                    SQL Database
-                                </Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    SQL Database using MYSQL
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item={true} xs={12} md={6} lg={4}>
-                        <Card variant="elevation" elevation={0} className={classes.card}>
-                            <CardContent>
-                                <Grid container={true} justify="center">
-                                    <Grid className={classes.iconContainer} item={true}>
-                                        <img className={classes.icon} src="/assets/nosql.png" alt="nosql logo"
+                                    </Stack>
+
+                                    <Typography sx={{
+                                        fontWeight: 700,
+                                        color: "colors.accent",
+                                        fontFamily: "SatrevaNova",
+                                        mb: 2
+                                    }} align="center" variant="h4">
+                                        SQL Database
+                                    </Typography>
+                                    <Typography
+                                        sx={{fontWeight: 500, color: "text.secondary"}}
+                                        align="center" variant="body2">
+                                        SQL Database using MYSQL
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item={true} xs={12} md={6} lg={4}>
+                            <Card
+                                sx={{
+                                    borderTopLeftRadius: 32,
+                                    borderTopRightRadius: 8,
+                                    borderBottomRightRadius: 32,
+                                    borderBottomLeftRadius: 8
+                                }}
+                                variant="elevation" elevation={0}>
+                                <CardContent>
+                                    <Stack direction="row" justifyContent="center">
+                                        <img src="/assets/nosql.png" alt="nosql logo"
                                              title="NOSQL database design Service"/>
-                                    </Grid>
-                                </Grid>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="h4">
-                                    NoSQL Database
-                                </Typography>
-                                <Typography color="textSecondary" align="center" gutterBottom={true} variant="body2">
-                                    NoSQL Database using MongoDB
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                                    </Stack>
+                                    <Typography sx={{
+                                        fontWeight: 700,
+                                        color: "colors.accent",
+                                        fontFamily: "SatrevaNova",
+                                        mb: 2
+                                    }} align="center" variant="h4">
+                                        NoSQL Database
+                                    </Typography>
+                                    <Typography
+                                        sx={{fontWeight: 500, color: "text.secondary"}}
+                                        align="center" variant="body2">
+                                        NoSQL Database using MongoDB
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Container>
+                </Container>
+            </Box>
         </Layout>
     )
 }
