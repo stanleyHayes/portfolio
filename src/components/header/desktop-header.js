@@ -13,10 +13,10 @@ const container = {
     whileInView: {
         opacity: 1,
         transition: {
-            delayChildren: 0.5,
-            staggerChildren: 0.2,
+            delayChildren: 1,
+            staggerChildren: 0.5,
             when: "beforeChildren",
-            duration: 1
+            duration: 1.5
         }
     },
     exit: {opacity: 0}
@@ -24,7 +24,15 @@ const container = {
 
 const item = {
     initial: {opacity: 0},
-    whileInView: {opacity: 1},
+    whileInView: {
+        opacity: 1,
+        transition: {
+            delayChildren: 1,
+            staggerChildren: 0.5,
+            when: "beforeChildren",
+            duration: 1.5
+        }
+    },
 };
 
 
@@ -86,7 +94,10 @@ const DesktopHeader = () => {
                     whileInView="whileInView"
                     initial="initial"
                     exit="exit"
-                    direction="row" spacing={3} justifyContent="center" alignItems="center">
+                    direction="row"
+                    spacing={3}
+                    justifyContent="center"
+                    alignItems="center">
                     <NavigationLink path="/" label="Olympus"/>
                     <NavigationLink path="/about" label="About"/>
                     {/*<NavigationLink path="/blog" label="Blog"/>*/}

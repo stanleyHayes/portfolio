@@ -35,7 +35,7 @@ const AboutPage = () => {
     }
 
     const mobile = useMediaQuery('(max-width: 660px)');
-    const variant = useSelector(getUiState);
+    const {theme: variant} = useSelector(getUiState);
     let theme = variant === "dark" ? THEMES.darkTheme : THEMES.lightTheme
 
     return (
@@ -608,7 +608,6 @@ const AboutPage = () => {
                                                     <Typography
                                                         sx={{
                                                             color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
                                                             fontWeight: 700
                                                         }}
                                                         variant="overline">
@@ -677,7 +676,6 @@ const AboutPage = () => {
                                                     <Typography
                                                         sx={{
                                                             color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
                                                             fontWeight: 700
                                                         }}
                                                         variant="overline">
@@ -738,24 +736,24 @@ const AboutPage = () => {
                                                 />
                                             }
                                             date={
-                                                !mobile &&(
-                                                <Typography
-                                                    sx={{
-                                                        color: "colors.accent",
-                                                        fontFamily: "SatrevaNova",
-                                                        fontWeight: 700
-                                                    }}
-                                                    variant="overline">
-                                                    2022 - 2023
-                                                </Typography>
+                                                !mobile && (
+                                                    <Typography
+                                                        sx={{
+                                                            color: "colors.accent",
+                                                            fontWeight: 700
+                                                        }}
+                                                        variant="overline">
+                                                        2022 - 2023
+                                                    </Typography>
                                                 )
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                        }}>
+                                            }
+                                            contentStyle={{
+                                                background: theme.palette.background.paper,
+                                                borderTopLeftRadius: 32,
+                                                borderTopRightRadius: 8,
+                                                borderBottomRightRadius: 32,
+                                                borderBottomLeftRadius: 8,
+                                            }}>
                                             <Card
                                                 sx={{
                                                     height: "100%",
@@ -802,16 +800,15 @@ const AboutPage = () => {
                                                 />
                                             }
                                             date={
-                                                !mobile &&(
-                                                <Typography
-                                                    sx={{
-                                                        color: "colors.accent",
-                                                        fontFamily: "SatrevaNova",
-                                                        fontWeight: 700
-                                                    }}
-                                                    variant="overline">
-                                                    2021 - Present
-                                                </Typography>
+                                                !mobile && (
+                                                    <Typography
+                                                        sx={{
+                                                            color: "colors.accent",
+                                                            fontWeight: 700
+                                                        }}
+                                                        variant="overline">
+                                                        2021 - Present
+                                                    </Typography>
                                                 )
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
@@ -865,16 +862,15 @@ const AboutPage = () => {
                                                 />
                                             }
                                             date={
-                                                !mobile &&(
-                                                <Typography
-                                                    sx={{
-                                                        color: "colors.accent",
-                                                        fontFamily: "SatrevaNova",
-                                                        fontWeight: 700
-                                                    }}
-                                                    variant="overline">
-                                                    2021 - Present
-                                                </Typography>
+                                                !mobile && (
+                                                    <Typography
+                                                        sx={{
+                                                            color: "colors.accent",
+                                                            fontWeight: 700
+                                                        }}
+                                                        variant="overline">
+                                                        2021 - Present
+                                                    </Typography>
                                                 )
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
@@ -931,16 +927,15 @@ const AboutPage = () => {
                                                 />
                                             }
                                             date={
-                                                !mobile &&(
-                                                <Typography
-                                                    sx={{
-                                                        color: "colors.accent",
-                                                        fontFamily: "SatrevaNova",
-                                                        fontWeight: 700
-                                                    }}
-                                                    variant="overline">
-                                                    2018 - 2021
-                                                </Typography>
+                                                !mobile && (
+                                                    <Typography
+                                                        sx={{
+                                                            color: "colors.accent",
+                                                            fontWeight: 700
+                                                        }}
+                                                        variant="overline">
+                                                        2018 - 2021
+                                                    </Typography>
                                                 )
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
@@ -995,16 +990,15 @@ const AboutPage = () => {
                                                 />
                                             }
                                             date={
-                                                !mobile &&(
-                                                <Typography
-                                                    sx={{
-                                                        color: "colors.accent",
-                                                        fontFamily: "SatrevaNova",
-                                                        fontWeight: 700
-                                                    }}
-                                                    variant="overline">
-                                                    2018 - Present
-                                                </Typography>
+                                                !mobile && (
+                                                    <Typography
+                                                        sx={{
+                                                            color: "colors.accent",
+                                                            fontWeight: 700
+                                                        }}
+                                                        variant="overline">
+                                                        2018 - Present
+                                                    </Typography>
                                                 )
                                             }
                                             contentStyle={{
@@ -1061,11 +1055,10 @@ const AboutPage = () => {
                                                 />
                                             }
                                             date={
-                                            !mobile &&(
+                                                !mobile && (
                                                     <Typography
                                                         sx={{
                                                             color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
                                                             fontWeight: 700
                                                         }}
                                                         variant="overline">
@@ -1080,7 +1073,14 @@ const AboutPage = () => {
                                             borderBottomRightRadius: 32,
                                             borderBottomLeftRadius: 8,
                                         }}>
-                                            <Card variant="elevation" elevation={0}>
+                                            <Card
+                                                sx={{
+                                                    borderTopLeftRadius: 32,
+                                                    borderTopRightRadius: 8,
+                                                    borderBottomRightRadius: 32,
+                                                    borderBottomLeftRadius: 8,
+                                                }}
+                                                variant="elevation" elevation={0}>
                                                 <CardContent>
                                                     <Typography
                                                         sx={{

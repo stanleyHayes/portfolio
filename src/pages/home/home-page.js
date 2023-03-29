@@ -3,6 +3,7 @@ import Layout from "../../components/layout";
 import {Button, CardMedia, Container, Grid, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
+import {motion} from "framer-motion";
 
 
 const HomePage = () => {
@@ -19,8 +20,8 @@ const HomePage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
                 />
             </Helmet>
-            <Container sx={{minHeight: "92vh", alignItems: "center", display: "flex"}}>
-                <Grid container={true} spacing={5} justify="space-between" alignItems="center">
+            <Container sx={{minHeight: "92vh", alignItems: "center", display: "flex", py: {xs: 4, lg: 0}}}>
+                < Grid container={true} spacing={5} justify="space-between" alignItems="center">
                     <Grid item={true} xs={12} md={4} container={true}>
                         <CardMedia
                             component="img"
@@ -55,7 +56,7 @@ const HomePage = () => {
                             {"  "}
                             <Typography
                                 component="span"
-                                sx={{fontFamily: "SatrevaNova",color: "colors.blue", fontWeight: 700}}
+                                sx={{fontFamily: "SatrevaNova", color: "colors.blue", fontWeight: 700}}
                                 gutterBottom={true}
                                 variant="h5">
                                 Hayford
@@ -74,7 +75,7 @@ const HomePage = () => {
                             developing API's. Hardworking collaborator with a track record of superior results.
                         </Typography>
                         <Grid container={true}>
-                            <Grid item={true} xs={12} md="auto">
+                            <Grid item={true} xs={12} md={3}>
                                 <Link style={{textDecoration: "none", width: "100%"}} to="/contact">
                                     <Button
                                         sx={{
@@ -83,9 +84,31 @@ const HomePage = () => {
                                             borderBottomRightRadius: 16,
                                             borderBottomLeftRadius: 4,
                                             backgroundColor: "colors.accent",
-                                            textTransform: "capitalize",
                                             color: "colors.black",
-                                            fontWeight: "bold"
+                                            textTransform: "capitalize",
+                                            fontWeight: "bold",
+                                            "&:hover": {
+                                                backgroundColor: "light.accent",
+                                                color: "colors.accent",
+                                                transition: "all 500ms ease-out"
+                                            }
+                                        }}
+                                        component={motion.button}
+                                        whileInView={{
+                                            scale: 1.05,
+                                            opacity: 1,
+                                            y: 0,
+                                            x: 0,
+                                            transition: {
+                                                duration: 0.5,
+                                                repeat: Infinity,
+                                                repeatType: "reverse"
+                                            }
+                                        }}
+                                        initial={{
+                                            opacity: 0.5,
+                                            y: '1vh',
+                                            x: '1vh'
                                         }}
                                         fullWidth={true}
                                         variant="contained"
