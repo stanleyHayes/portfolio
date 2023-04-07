@@ -12,7 +12,7 @@ const container = {
         x: '-10vw',
         opacity: 0
     },
-    animate: {
+    whileInView: {
         x: 0,
         opacity: 1,
         transition: {
@@ -29,7 +29,7 @@ const item = {
         x: '-10vw',
         opacity: 0
     },
-    animate: {
+    whileInView: {
         x: 0,
         opacity: 1,
         transition: {
@@ -90,7 +90,7 @@ const PortfolioPage = () => {
                 <Grid
                     component={motion.div}
                     variants={container}
-                    animate="animate"
+                    whileInView="whileInView"
                     initial="initial"
                     container={true}
                     spacing={5}>

@@ -11,7 +11,7 @@ const container = {
         x: '-10vw',
         opacity: 0
     },
-    animate: {
+    whileInView: {
         x: 0,
         opacity: 1,
         transition: {
@@ -28,7 +28,7 @@ const item = {
         x: '-10vw',
         opacity: 0
     },
-    animate: {
+    whileInView: {
         x: 0,
         opacity: 1,
         transition: {
@@ -57,7 +57,7 @@ const ServicesPage = () => {
                 <Container
                     component={motion.div}
                     variants={container}
-                    animate="animate"
+                    whileInView="whileInView"
                     initial="initial">
                     <Box
                         component={motion.div}
@@ -101,7 +101,7 @@ const ServicesPage = () => {
                         <Grid
                             component={motion.div}
                             variants={container}
-                            animate="animate"
+                            whileInView="whileInView"
                             initial="initial"
                             container={true} spacing={4}>
                             <Grid
