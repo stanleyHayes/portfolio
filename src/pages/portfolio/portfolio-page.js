@@ -4,7 +4,39 @@ import {Box, Container, Divider, Grid, Typography} from "@mui/material";
 import {getProjects} from "../../data/data";
 import Project from "../../components/shared/project";
 import {Helmet} from "react-helmet";
+import {motion} from "framer-motion";
 
+
+const container = {
+    initial: {
+        x: '-10vw',
+        opacity: 0
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 1,
+            staggerChildren: 0.3,
+            type: "tween",
+
+        }
+    }
+}
+
+const item = {
+    initial: {
+        x: '-10vw',
+        opacity: 0
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.3
+        }
+    }
+}
 
 const PortfolioPage = () => {
 
@@ -51,15 +83,23 @@ const PortfolioPage = () => {
                         variant="fullWidth"
                         light={true}
                         sx={{
-                            marginTop: 3,
-                            marginBottom: 3
+                            my: 8
                         }}
                     />
 
-                <Grid container={true} spacing={5}>
+                <Grid
+                    component={motion.div}
+                    variants={container}
+                    animate="animate"
+                    initial="initial"
+                    container={true}
+                    spacing={5}>
                     {projects.map((project, index) => {
                         return (
-                            <Grid xs={12} md={6} lg={4} item={true} key={index}>
+                            <Grid
+                                component={motion.div}
+                                variants={item}
+                                xs={12} md={6} lg={4} item={true} key={index}>
                                 <Project project={project}/>
                             </Grid>
                         )

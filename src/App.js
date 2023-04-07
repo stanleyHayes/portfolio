@@ -26,7 +26,7 @@ function App() {
     return (
         <ThemeProvider theme={theme  === "dark" ? THEMES.darkTheme : THEMES.lightTheme}>
             <CssBaseline enableColorScheme={true}/>
-            <AnimatePresence>
+            <AnimatePresence mode="sync" initial={true} presenceAffectsLayout={true}>
                 <Routes location={location}>
                     <Route path="/" element={<Suspense fallback={<Splash/>}><HomePage/></Suspense>}/>
                     <Route path="/about" element={<Suspense fallback={<Splash/>}><AboutPage/></Suspense>}/>

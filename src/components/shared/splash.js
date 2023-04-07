@@ -1,5 +1,5 @@
 import {Box, CardMedia, CircularProgress, Container, Stack, Typography} from "@mui/material";
-import logo from "../../assets/images/logo/lightingcolored.svg";
+import logo from "../../assets/images/logo/logo.png";
 
 const Splash = () => {
     return (
@@ -17,7 +17,7 @@ const Splash = () => {
                                 fontFamily: "SatrevaNova",
                                 letterSpacing: 1.4,
                             }}>
-                            Welcome to Olympus
+                            This is Olympus
                         </Typography>
                     </Box>
                     <Box>

@@ -1,4 +1,5 @@
 import {createTheme} from "@mui/material";
+import {red} from "@mui/material/colors";
 
 const lightTheme = createTheme({
     typography: {
@@ -36,6 +37,7 @@ const lightTheme = createTheme({
             green: "#3f9267",
             blue: "#3d7df6",
             black: "#141521",
+            red: "#d50000"
         },
         icon: {
             accent: "#FBA024",

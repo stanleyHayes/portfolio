@@ -14,10 +14,12 @@ const Layout = ({children}) => {
     return (
         <Box
             sx={{
-            minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column"
-        }}>
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                maxWidth: "100vw",
+                overflowX: "hidden"
+            }}>
             <Box>
                 <Header/>
             </Box>
@@ -30,16 +32,16 @@ const Layout = ({children}) => {
                     y: 0,
                     opacity: 1,
                     transition: {
-                        duration: 1
+                        duration: 1.5
                     }
                 }}
                 exit={{
                     y: "-100vh",
                     opacity: 0,
-                    duration: 0.5
+                    duration: 1.5
                 }}
                 component={motion.div}
-                sx={{flexGrow: 1, backgroundColor: "background.default", mt: 8.3}}>
+                sx={{flexGrow: 1, backgroundColor: "background.default", mt: {xs: 7, lg: 8.3}}}>
                 {children}
             </Box>
             <SwipeableDrawer

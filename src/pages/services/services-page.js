@@ -2,6 +2,40 @@ import React from "react";
 import Layout from "../../components/layout";
 import {Box, Card, CardContent, Container, Divider, Grid, Stack, Typography} from "@mui/material";
 import {Helmet} from "react-helmet";
+import {motion} from "framer-motion";
+import {Tilt} from "react-tilt";
+
+
+const container = {
+    initial: {
+        x: '-10vw',
+        opacity: 0
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 1,
+            staggerChildren: 0.3,
+            type: "tween",
+
+        }
+    }
+}
+
+const item = {
+    initial: {
+        x: '-10vw',
+        opacity: 0
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.3
+        }
+    }
+}
 
 
 const ServicesPage = () => {
@@ -20,227 +54,297 @@ const ServicesPage = () => {
                 />
             </Helmet>
             <Box sx={{py: 8}}>
-                <Container>
-                    <Typography
-                        variant="h6"
-                        align="center"
-                        sx={{
-                            textTransform: "uppercase",
-                            color: "colors.accent",
-                            fontFamily: "SatrevaNova",
-                            fontWeight: 700,
-                            mb: 2
-                        }}>Services</Typography>
+                <Container
+                    component={motion.div}
+                    variants={container}
+                    animate="animate"
+                    initial="initial">
+                    <Box
+                        component={motion.div}
+                        variants={item}>
+                        <Typography
+                            variant="h6"
+                            align="center"
+                            sx={{
+                                textTransform: "uppercase",
+                                color: "colors.accent",
+                                fontFamily: "SatrevaNova",
+                                fontWeight: 700,
+                                mb: 2
+                            }}>Services</Typography>
 
-                    <Typography
-                        variant="h3"
-                        align="center"
-                        sx={{
-                            textTransform: "none",
-                            color: "colors.accent",
-                            fontFamily: "RayleighGlamour",
-                            fontWeight: 700
-                        }}
-                        gutterBottom={true}>What I do</Typography>
+                    </Box>
 
-                    <Divider
-                        variant="fullWidth"
-                        light={true}
-                        sx={{
-                            marginTop: 3,
-                            marginBottom: 3
-                        }}
-                    />
+                    <Box
+                        component={motion.div}
+                        variants={item}>
+                        <Typography
+                            variant="h3"
+                            align="center"
+                            sx={{
+                                textTransform: "none",
+                                color: "colors.accent",
+                                fontFamily: "RayleighGlamour",
+                                fontWeight: 700
+                            }}
+                            gutterBottom={true}>What I do</Typography>
+                    </Box>
 
-                    <Grid container={true} spacing={4}>
-                        <Grid item={true} xs={12} md={6} lg={4}>
-                            <Card
-                                sx={{
-                                    borderTopLeftRadius: 32,
-                                    borderTopRightRadius: 8,
-                                    borderBottomRightRadius: 32,
-                                    borderBottomLeftRadius: 8
-                                }}
-                                variant="elevation" elevation={0}>
-                                <CardContent>
-                                    <Stack direction="row" justifyContent="center">
-                                        <img
-                                            src="/assets/training.png"
-                                            alt="training logo"
-                                            title="Training Service"
-                                        />
-                                    </Stack>
-                                    <Typography sx={{
-                                        fontWeight: 700,
-                                        color: "colors.accent",
-                                        fontFamily: "SatrevaNova",
-                                        mb: 2
-                                    }} align="center" variant="h4">Training</Typography>
-                                    <Typography
-                                        sx={{fontWeight: 500, color: "text.secondary"}}
-                                        align="center" variant="body2">
-                                        Training beginner and intermediate programmers in OOP, functional and procedural
-                                        programming
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+                    <Box
+                        component={motion.div}
+                        variants={item}>
+                        <Divider variant="fullWidth" light={true} sx={{my: 8}}/>
+                    </Box>
+                    <Box
+                        component={motion.div}
+                        variants={item}>
+                        <Grid
+                            component={motion.div}
+                            variants={container}
+                            animate="animate"
+                            initial="initial"
+                            container={true} spacing={4}>
+                            <Grid
+                                component={motion.div}
+                                variants={item}
+                                item={true}
+                                xs={12}
+                                md={6}
+                                lg={4}>
+                                <Tilt style={{height: "100%"}}>
+                                    <Card
+                                        sx={{
+                                            borderTopLeftRadius: 32,
+                                            borderTopRightRadius: 8,
+                                            borderBottomRightRadius: 32,
+                                            borderBottomLeftRadius: 8,
+                                            height: "100%"
+                                        }}
+                                        variant="elevation" elevation={0}>
+                                        <CardContent>
+                                            <Stack direction="row" justifyContent="center">
+                                                <img
+                                                    src="/assets/training.png"
+                                                    alt="training logo"
+                                                    title="Training Service"
+                                                />
+                                            </Stack>
+                                            <Typography sx={{
+                                                fontWeight: 700,
+                                                color: "colors.accent",
+                                                fontFamily: "SatrevaNova",
+                                                mb: 2
+                                            }} align="center" variant="h4">Training</Typography>
+                                            <Typography
+                                                sx={{fontWeight: 500, color: "text.secondary"}}
+                                                align="center" variant="body2">
+                                                Training beginner and intermediate programmers in OOP, functional and
+                                                procedural
+                                                programming
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Tilt>
+                            </Grid>
+                            <Grid
+                                component={motion.div}
+                                variants={item}
+                                item={true}
+                                xs={12}
+                                md={6}
+                                lg={4}>
+                                <Tilt style={{height: "100%"}}>
+                                    <Card
+                                        sx={{
+                                            borderTopLeftRadius: 32,
+                                            borderTopRightRadius: 8,
+                                            borderBottomRightRadius: 32,
+                                            borderBottomLeftRadius: 8,
+                                            height: "100%"
+                                        }}
+                                        variant="elevation" elevation={0}>
+                                        <CardContent>
+                                            <Stack direction="row" justifyContent="center">
+                                                <img src="/assets/wordpress.png" alt="wordpress logo"
+                                                     title="WordPress Service"/>
+                                            </Stack>
+
+                                            <Typography sx={{
+                                                fontWeight: 700,
+                                                color: "colors.accent",
+                                                fontFamily: "SatrevaNova",
+                                                mb: 2
+                                            }} align="center" variant="h4">
+                                                WordPress
+                                            </Typography>
+                                            <Typography
+                                                sx={{fontWeight: 500, color: "text.secondary"}}
+                                                align="center" variant="body2">
+                                                Corporate and E-Commerce websites using WordPress.
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Tilt>
+                            </Grid>
+                            <Grid
+                                component={motion.div}
+                                variants={item}
+                                item={true}
+                                xs={12}
+                                md={6}
+                                lg={4}>
+                                <Tilt style={{height: "100%"}}>
+                                    <Card
+                                        sx={{
+                                            borderTopLeftRadius: 32,
+                                            borderTopRightRadius: 8,
+                                            borderBottomRightRadius: 32,
+                                            borderBottomLeftRadius: 8,
+                                            height: "100%"
+                                        }}
+                                        variant="elevation" elevation={0}>
+                                        <CardContent>
+                                            <Stack direction="row" justifyContent="center">
+                                                <img src="/assets/web-app.png" alt="Web Apps logo"
+                                                     title="Web App Dev Service"/>
+                                            </Stack>
+
+                                            <Typography sx={{
+                                                fontWeight: 700,
+                                                color: "colors.accent",
+                                                fontFamily: "SatrevaNova",
+                                                mb: 2
+                                            }} align="center" variant="h4">
+                                                Web Apps
+                                            </Typography>
+                                            <Typography
+                                                sx={{fontWeight: 500, color: "text.secondary"}}
+                                                align="center" variant="body2">
+                                                Responsive Web Apps using React, Vue, Svelte
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Tilt>
+                            </Grid>
+                            <Grid
+                                component={motion.div}
+                                variants={item}
+                                item={true} xs={12} md={6} lg={4}>
+                                <Tilt style={{height: "100%"}}>
+                                    <Card
+                                        sx={{
+                                            borderTopLeftRadius: 32,
+                                            borderTopRightRadius: 8,
+                                            borderBottomRightRadius: 32,
+                                            borderBottomLeftRadius: 8,
+                                            height: "100%"
+                                        }}
+                                        variant="elevation"
+                                        elevation={0}>
+                                        <CardContent>
+                                            <Stack direction="row" justifyContent="center">
+                                                <img src="/assets/rest-api.png" alt="rest api logo"
+                                                     title="Rest API Service"/>
+                                            </Stack>
+
+                                            <Typography sx={{
+                                                fontWeight: 700,
+                                                color: "colors.accent",
+                                                fontFamily: "SatrevaNova",
+                                                mb: 2
+                                            }} align="center" variant="h4">
+                                                Web APIs
+                                            </Typography>
+                                            <Typography
+                                                sx={{fontWeight: 500, color: "text.secondary"}}
+                                                align="center" variant="body2">
+                                                Scalable Web APIs using NodeJS, GoFibre
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Tilt>
+                            </Grid>
+                            <Grid
+                                component={motion.div}
+                                variants={item}
+                                item={true}
+                                xs={12}
+                                md={6}
+                                lg={4}>
+                                <Tilt style={{height: "100%"}}>
+                                    <Card
+                                        sx={{
+                                            borderTopLeftRadius: 32,
+                                            borderTopRightRadius: 8,
+                                            borderBottomRightRadius: 32,
+                                            borderBottomLeftRadius: 8,
+                                            height: "100%"
+                                        }}
+                                        variant="elevation" elevation={0}>
+                                        <CardContent>
+                                            <Stack direction="row" justifyContent="center">
+                                                <img src="/assets/sql.png" alt="sql database logo"
+                                                     title="SQL Database Design Service"/>
+                                            </Stack>
+
+                                            <Typography sx={{
+                                                fontWeight: 700,
+                                                color: "colors.accent",
+                                                fontFamily: "SatrevaNova",
+                                                mb: 2
+                                            }} align="center" variant="h4">
+                                                SQL Database
+                                            </Typography>
+                                            <Typography
+                                                sx={{fontWeight: 500, color: "text.secondary"}}
+                                                align="center" variant="body2">
+                                                SQL Database using MYSQL
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Tilt>
+                            </Grid>
+                            <Grid
+                                component={motion.div}
+                                variants={item}
+                                item={true}
+                                xs={12}
+                                md={6}
+                                lg={4}>
+                                <Tilt style={{height: "100%"}}>
+                                    <Card
+                                        sx={{
+                                            borderTopLeftRadius: 32,
+                                            borderTopRightRadius: 8,
+                                            borderBottomRightRadius: 32,
+                                            borderBottomLeftRadius: 8,
+                                            height: "100%"
+                                        }}
+                                        variant="elevation" elevation={0}>
+                                        <CardContent>
+                                            <Stack direction="row" justifyContent="center">
+                                                <img src="/assets/nosql.png" alt="nosql logo"
+                                                     title="NOSQL database design Service"/>
+                                            </Stack>
+                                            <Typography sx={{
+                                                fontWeight: 700,
+                                                color: "colors.accent",
+                                                fontFamily: "SatrevaNova",
+                                                mb: 2
+                                            }} align="center" variant="h4">
+                                                NoSQL Database
+                                            </Typography>
+                                            <Typography
+                                                sx={{fontWeight: 500, color: "text.secondary"}}
+                                                align="center" variant="body2">
+                                                NoSQL Database using MongoDB
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Tilt>
+                            </Grid>
                         </Grid>
-                        <Grid item={true} xs={12} md={6} lg={4}>
-                            <Card
-                                sx={{
-                                    borderTopLeftRadius: 32,
-                                    borderTopRightRadius: 8,
-                                    borderBottomRightRadius: 32,
-                                    borderBottomLeftRadius: 8
-                                }}
-                                variant="elevation" elevation={0}>
-                                <CardContent>
-                                    <Stack direction="row" justifyContent="center">
-                                        <img src="/assets/wordpress.png" alt="wordpress logo"
-                                             title="WordPress Service"/>
-                                    </Stack>
-
-                                    <Typography sx={{
-                                        fontWeight: 700,
-                                        color: "colors.accent",
-                                        fontFamily: "SatrevaNova",
-                                        mb: 2
-                                    }} align="center" variant="h4">
-                                        WordPress
-                                    </Typography>
-                                    <Typography
-                                        sx={{fontWeight: 500, color: "text.secondary"}}
-                                        align="center" variant="body2">
-                                        Corporate and E-Commerce websites using WordPress.
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid item={true} xs={12} md={6} lg={4}>
-                            <Card
-                                sx={{
-                                    borderTopLeftRadius: 32,
-                                    borderTopRightRadius: 8,
-                                    borderBottomRightRadius: 32,
-                                    borderBottomLeftRadius: 8
-                                }}
-                                variant="elevation" elevation={0}>
-                                <CardContent>
-                                    <Stack direction="row" justifyContent="center">
-                                        <img src="/assets/web-app.png" alt="Web Apps logo"
-                                             title="Web App Dev Service"/>
-                                    </Stack>
-
-                                    <Typography sx={{
-                                        fontWeight: 700,
-                                        color: "colors.accent",
-                                        fontFamily: "SatrevaNova",
-                                        mb: 2
-                                    }} align="center" variant="h4">
-                                        Web Apps
-                                    </Typography>
-                                    <Typography
-                                        sx={{fontWeight: 500, color: "text.secondary"}}
-                                        align="center" variant="body2">
-                                        Responsive Web Apps using React, Vue, Svelte
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid item={true} xs={12} md={6} lg={4}>
-                            <Card
-                                sx={{
-                                    borderTopLeftRadius: 32,
-                                    borderTopRightRadius: 8,
-                                    borderBottomRightRadius: 32,
-                                    borderBottomLeftRadius: 8
-                                }}
-                                variant="elevation"
-                                elevation={0}>
-                                <CardContent>
-                                    <Stack direction="row" justifyContent="center">
-                                        <img src="/assets/rest-api.png" alt="rest api logo"
-                                             title="Rest API Service"/>
-                                    </Stack>
-
-                                    <Typography sx={{
-                                        fontWeight: 700,
-                                        color: "colors.accent",
-                                        fontFamily: "SatrevaNova",
-                                        mb: 2
-                                    }} align="center" variant="h4">
-                                        Web APIs
-                                    </Typography>
-                                    <Typography
-                                        sx={{fontWeight: 500, color: "text.secondary"}}
-                                        align="center" variant="body2">
-                                        Scalable Web APIs using NodeJS, GoFibre
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid item={true} xs={12} md={6} lg={4}>
-                            <Card
-                                sx={{
-                                    borderTopLeftRadius: 32,
-                                    borderTopRightRadius: 8,
-                                    borderBottomRightRadius: 32,
-                                    borderBottomLeftRadius: 8
-                                }}
-                                variant="elevation" elevation={0}>
-                                <CardContent>
-                                    <Stack direction="row" justifyContent="center">
-                                        <img src="/assets/sql.png" alt="sql database logo"
-                                             title="SQL Database Design Service"/>
-                                    </Stack>
-
-                                    <Typography sx={{
-                                        fontWeight: 700,
-                                        color: "colors.accent",
-                                        fontFamily: "SatrevaNova",
-                                        mb: 2
-                                    }} align="center" variant="h4">
-                                        SQL Database
-                                    </Typography>
-                                    <Typography
-                                        sx={{fontWeight: 500, color: "text.secondary"}}
-                                        align="center" variant="body2">
-                                        SQL Database using MYSQL
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid item={true} xs={12} md={6} lg={4}>
-                            <Card
-                                sx={{
-                                    borderTopLeftRadius: 32,
-                                    borderTopRightRadius: 8,
-                                    borderBottomRightRadius: 32,
-                                    borderBottomLeftRadius: 8
-                                }}
-                                variant="elevation" elevation={0}>
-                                <CardContent>
-                                    <Stack direction="row" justifyContent="center">
-                                        <img src="/assets/nosql.png" alt="nosql logo"
-                                             title="NOSQL database design Service"/>
-                                    </Stack>
-                                    <Typography sx={{
-                                        fontWeight: 700,
-                                        color: "colors.accent",
-                                        fontFamily: "SatrevaNova",
-                                        mb: 2
-                                    }} align="center" variant="h4">
-                                        NoSQL Database
-                                    </Typography>
-                                    <Typography
-                                        sx={{fontWeight: 500, color: "text.secondary"}}
-                                        align="center" variant="body2">
-                                        NoSQL Database using MongoDB
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    </Grid>
+                    </Box>
                 </Container>
             </Box>
         </Layout>

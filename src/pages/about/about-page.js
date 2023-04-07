@@ -305,7 +305,7 @@ const AboutPage = () => {
                         </Tabs>
                     </Box>
 
-                    <Divider sx={{my: 4}} light={true} variant="fullWidth"/>
+                    <Divider sx={{my: 8}} light={true} variant="fullWidth"/>
 
                     <Box>
                         {index === 0 ? (
@@ -333,8 +333,9 @@ const AboutPage = () => {
 
                                             <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
 
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
+                                            <Typography
+                                                sx={{color: "text.secondary"}}
+                                                variant="body2">
                                                 I love to work actively on the user experience portion of a software
                                                 development lifecycle from wireframe prototyping to frontend
                                                 development.
@@ -588,8 +589,13 @@ const AboutPage = () => {
                         ) : index === 1 ? (
                             <Grid container={true} sx={{marginTop: 8}}>
                                 <Grid item={true} xs={12}>
-                                    <VerticalTimeline animate={true}>
+                                    <VerticalTimeline
+                                        lineColor={theme.palette.background.paper}
+                                        animate={true}>
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             icon={
                                                 <Avatar
                                                     src="/assets/school.svg"
@@ -656,8 +662,13 @@ const AboutPage = () => {
                         ) : index === 2 ? (
                             <Grid container={true} justifyContent="center">
                                 <Grid item={true} xs={12}>
-                                    <VerticalTimeline animate={true}>
+                                    <VerticalTimeline
+                                        lineColor={theme.palette.background.paper}
+                                        animate={true}>
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             icon={
                                                 <Avatar
                                                     src="/assets/coding.svg"
@@ -722,6 +733,9 @@ const AboutPage = () => {
                                         </VerticalTimelineElement>
 
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             icon={
                                                 <Avatar
                                                     src="/assets/coding.svg"
@@ -786,6 +800,9 @@ const AboutPage = () => {
                                         </VerticalTimelineElement>
 
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             icon={
                                                 <Avatar
                                                     src="/assets/coding.svg"
@@ -848,6 +865,9 @@ const AboutPage = () => {
                                             </Card>
                                         </VerticalTimelineElement>
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             icon={
                                                 <Avatar
                                                     src="/assets/coding.svg"
@@ -912,6 +932,9 @@ const AboutPage = () => {
 
 
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             animate={true}
                                             icon={
                                                 <Avatar
@@ -976,6 +999,9 @@ const AboutPage = () => {
                                         </VerticalTimelineElement>
 
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             icon={
                                                 <Avatar
                                                     src="/assets/school.svg"
@@ -1041,6 +1067,9 @@ const AboutPage = () => {
 
 
                                         <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
                                             icon={
                                                 <Avatar
                                                     src="/assets/school.svg"
