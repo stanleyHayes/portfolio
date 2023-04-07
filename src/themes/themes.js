@@ -1,9 +1,8 @@
 import {createTheme} from "@mui/material";
-import {red} from "@mui/material/colors";
 
 const lightTheme = createTheme({
     typography: {
-        fontFamily: "Urbanist, UberMoveAR, Manrope, SamsungSans, SamsungSharpSans,  RayleighGlamour, SatrevaNova, OgelicRegular"
+        fontFamily: "Outfit, Urbanist, UberMoveAR, Manrope, SamsungSans, SamsungSharpSans,  RayleighGlamour, SatrevaNova, OgelicRegular"
     },
     palette: {
         primary: {
@@ -51,7 +50,7 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
     typography: {
-        fontFamily: "Urbanist, SamsungSharpSans,SamsungSans, Manrope, UberMoveAR, RayleighGlamour, SatrevaNova, OgelicRegular"
+        fontFamily: "Outfit, Urbanist, SamsungSharpSans,SamsungSans, Manrope, UberMoveAR, RayleighGlamour, SatrevaNova, OgelicRegular"
     },
     palette: {
         primary: {
