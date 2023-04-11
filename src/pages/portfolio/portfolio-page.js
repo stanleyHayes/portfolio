@@ -55,8 +55,8 @@ const PortfolioPage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
                 />
             </Helmet>
-            <Box sx={{py: 8}}>
-                <Container>
+            <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
+                <Container maxWidth="xl">
                     <Typography
                         variant="h6"
                         align="center"
@@ -69,12 +69,11 @@ const PortfolioPage = () => {
                         }}>Portfolio</Typography>
 
                     <Typography
-                        variant="h3"
+                        variant="h2"
                         align="center"
                         sx={{
                             textTransform: "none",
                             color: "colors.accent",
-                            fontFamily: "RayleighGlamour",
                             fontWeight: 700
                         }}
                         gutterBottom={true}>Latest Works</Typography>

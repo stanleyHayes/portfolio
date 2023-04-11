@@ -16,9 +16,9 @@ const NavigationLink = ({path, label}) => {
             <Typography
                 variant="body1"
                 sx={{
-                    fontWeight: 600,
-                    fontFamily: pathname === path ? "SatrevaNova": "UberMoveAR",
-                    color: pathname === path ? "colors.accent" : "text.secondary",
+                    fontWeight: pathname === path ? 600: 400,
+                    fontFamily: pathname === path ? "SatrevaNova": "Outfit",
+                    color: pathname === path ? "colors.accent" : "text.primary",
                     "&:hover": {color: "colors.accent", transition: "all 300ms"}
                 }}>
                 {label}

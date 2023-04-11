@@ -11,7 +11,15 @@ const TabletHeader = () => {
     const theme = useSelector(getUiState);
 
     return (
-        <Toolbar variant="regular">
+        <Toolbar
+            sx={{
+                borderBottomStyle: "solid",
+                borderBottomColor: "divider",
+                borderBottomWidth: 2,
+                backgroundColor: "background.glass",
+                backdropFilter: "blur(5px)"
+            }}
+            variant="regular">
             <Grid container={true} justify="space-between" alignItems="center">
                 <Grid item={true} xs={1}>
                     <Menu />

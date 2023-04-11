@@ -9,8 +9,7 @@ const Certification = ({certification}) => {
     return (
         <Tilt style={{height: "100%"}}>
             <Card
-                variant="elevation"
-                elevation={0}
+                variant="outlined"
                 sx={{
                     height: "100%",
                     borderTopLeftRadius: 32,

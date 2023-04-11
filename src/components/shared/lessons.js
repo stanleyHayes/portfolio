@@ -8,8 +8,6 @@ const Lessons = ({lessons, handleSelectedLesson, lslug}) => {
             {lessons && lessons.map((lesson, index) => {
                 return (
                     <ListItem
-                        selected={lesson.slug === lslug}
-                        button={true}
                         divider={true}
                         key={index}
                         onClick={() => handleSelectedLesson(lesson)}>

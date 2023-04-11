@@ -1,9 +1,43 @@
 import React from "react";
 import Layout from "../../components/layout";
-import {Box, Container, Divider, Grid,  Typography} from "@mui/material";
+import {Box, Container, Divider, Grid, Typography} from "@mui/material";
 import {useParams} from "react-router";
 import {getCourseBySlug, getLessonsByCourse} from "../../data/data";
 import Lesson from "../../components/shared/lesson";
+import {motion} from "framer-motion";
+
+
+const container = {
+    initial: {
+        x: '-10vw',
+        opacity: 0
+    },
+    whileInView: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 1,
+            staggerChildren: 0.3,
+            type: "tween",
+
+        }
+    }
+}
+
+const item = {
+    initial: {
+        x: '-10vw',
+        opacity: 0
+    },
+    whileInView: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.3
+        }
+    }
+}
+
 
 const CourseLessonsPage = () => {
 
@@ -13,38 +47,61 @@ const CourseLessonsPage = () => {
 
     return (
         <Layout>
-            <Box >
+            <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
                 {
                     course && lessons ? (
-                        <Box>
-                            <Box >
-                                <Container>
-                                    <Typography
-                                        color="textSecondary"
-                                        variant="h4"
-                                        align="center"
-                                        gutterBottom={true}>{course.name}</Typography>
+                        <Container
+                            maxWidth="xl"
+                            component={motion.div}
+                            variants={container}
+                            whileInView="whileInView"
+                            initial="initial">
+                            <Box
+                                component={motion.div}
+                                variants={item}>
+                                <Typography
+                                    variant="h4"
+                                    align="center"
+                                    sx={{
+                                        textTransform: "uppercase",
+                                        color: "colors.accent",
+                                        fontFamily: "SatrevaNova",
+                                        fontWeight: 700,
+                                        mb: 2
+                                    }}>{course.name}</Typography>
 
-                                    <Typography
-                                        variant="body2"
-                                        align="center"
-                                        color="textSecondary"
-                                        gutterBottom={true}>{course.summary}</Typography>
-                                </Container>
                             </Box>
 
-                            <Container>
-                                <Grid container={true} spacing={5}>
-                                    {lessons.map((lesson, index) => {
-                                        return (
-                                            <Grid xs={12} md={6} lg={4} item={true} key={index}>
-                                                <Lesson lesson={lesson} course={course}/>
-                                            </Grid>
-                                        )
-                                    })}
-                                </Grid>
-                            </Container>
-                        </Box>
+                            <Box
+                                component={motion.div}
+                                variants={item}>
+                                <Typography
+                                    variant="body1"
+                                    align="center"
+                                    sx={{
+                                        textTransform: "none",
+                                        color: "text.secondary",
+                                        fontWeight: 700
+                                    }}
+                                    gutterBottom={true}>{course.summary}</Typography>
+                            </Box>
+
+                            <Box
+                                component={motion.div}
+                                variants={item}>
+                                <Divider variant="fullWidth" light={true} sx={{my: 8}}/>
+                            </Box>
+
+                            <Grid container={true} spacing={5}>
+                                {lessons.map((lesson, index) => {
+                                    return (
+                                        <Grid xs={12} md={6} lg={4} item={true} key={index}>
+                                            <Lesson lesson={lesson} course={course}/>
+                                        </Grid>
+                                    )
+                                })}
+                            </Grid>
+                        </Container>
                     ) : (
                         <Container>
                             <Box>
@@ -53,7 +110,6 @@ const CourseLessonsPage = () => {
                         </Container>
                     )
                 }
-
             </Box>
         </Layout>
     )

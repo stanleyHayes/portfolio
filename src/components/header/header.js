@@ -7,7 +7,12 @@ import TabletHeader from "./tablet-header";
 const Header = () => {
 
     return (
-        <AppBar variant="elevation" elevation={0}>
+        <AppBar
+            sx={{
+                backgroundColor: "background.glass",
+                backdropFilter: "blur(5.5px)"
+            }}
+            variant="elevation" elevation={0}>
             <Hidden mdDown={true}>
                 <DesktopHeader />
             </Hidden>

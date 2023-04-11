@@ -52,8 +52,8 @@ const AboutPage = () => {
                 />
 
             </Helmet>
-            <Box sx={{py: 8}}>
-                <Container>
+            <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
+                <Container maxWidth="xl">
                     <Typography
                         variant="h6"
                         align="center"
@@ -66,12 +66,11 @@ const AboutPage = () => {
                         }}>About</Typography>
 
                     <Typography
-                        variant="h3"
+                        variant="h2"
                         align="center"
                         sx={{
                             textTransform: "none",
                             color: "colors.accent",
-                            fontFamily: "RayleighGlamour",
                             fontWeight: 700
                         }}
                     >Get to know me</Typography>

@@ -20,9 +20,9 @@ const HomePage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
                 />
             </Helmet>
-            <Container sx={{minHeight: "92vh", alignItems: "center", display: "flex", py: {xs: 4, lg: 0}}}>
+            <Container maxWidth="xl" sx={{minHeight: "92vh", alignItems: "center", display: "flex", py: {xs: 4, lg: 0}}}>
                 <Grid container={true} spacing={5} justify="space-between" alignItems="center">
-                    <Grid item={true} xs={12} md={4} container={true}>
+                    <Grid item={true} xs={12} md={5} container={true}>
                         <Tilt>
                             <Box
                                 component={motion.div}
@@ -45,9 +45,9 @@ const HomePage = () => {
                                     sx={{
                                         width: "100%",
                                         borderTopLeftRadius: 64,
-                                        borderTopRightRadius: 8,
+                                        borderTopRightRadius: 0,
                                         borderBottomRightRadius: 54,
-                                        borderBottomLeftRadius: 8,
+                                        borderBottomLeftRadius: 0,
                                     }}
                                     src="/assets/profile.jpeg"
                                 />
@@ -55,7 +55,7 @@ const HomePage = () => {
                         </Tilt>
                     </Grid>
                     <Grid
-                        xs={12} md={8} item={true}>
+                        xs={12} md={7} item={true}>
                         <Box
                             component={motion.div}
                             initial={{y: '10vh', opacity: 0}}
@@ -80,7 +80,7 @@ const HomePage = () => {
                                     component="span"
                                     sx={{color: "colors.green", fontFamily: "SatrevaNova", fontWeight: 700}}
                                     gutterBottom={true}
-                                    variant="h5">
+                                    variant="h4">
                                     Stanley
                                 </Typography>
                                 {"  "}
@@ -88,7 +88,7 @@ const HomePage = () => {
                                     component="span"
                                     sx={{fontFamily: "SatrevaNova", color: "colors.blue", fontWeight: 700}}
                                     gutterBottom={true}
-                                    variant="h5">
+                                    variant="h4">
                                     Hayford
                                 </Typography>
                             </Typography>
@@ -145,9 +145,10 @@ const HomePage = () => {
                                         <Button
                                             sx={{
                                                 borderTopLeftRadius: 16,
-                                                borderTopRightRadius: 4,
+                                                borderTopRightRadius: 0,
                                                 borderBottomRightRadius: 16,
-                                                borderBottomLeftRadius: 4,
+                                                borderBottomLeftRadius: 0,
+                                                py: 1.5,
                                                 backgroundColor: "colors.accent",
                                                 color: "colors.black",
                                                 textTransform: "capitalize",
@@ -207,9 +208,10 @@ const HomePage = () => {
                                                 color: "colors.accent",
                                                 borderColor: "colors.accent",
                                                 borderTopLeftRadius: 12,
-                                                borderTopRightRadius: 4,
+                                                borderTopRightRadius: 0,
                                                 borderBottomRightRadius: 12,
-                                                borderBottomLeftRadius: 4,
+                                                borderBottomLeftRadius: 0,
+                                                py: 1.5,
                                                 "&:hover": {
                                                     backgroundColor: "light.accent",
                                                     transition: "all 500ms ease-out"

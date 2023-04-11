@@ -101,7 +101,7 @@ const ContactPage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
                 />
             </Helmet>
-            <Box sx={{py: 4}}>
+            <Box sx={{py: 4, "&::-webkit-scrollbar": {display: "none"}}}>
 
                 <Container
                     component={motion.div}
@@ -125,12 +125,11 @@ const ContactPage = () => {
 
                     <Typography
                         component={motion.h3} variants={item}
-                        variant="h3"
+                        variant="h2"
                         align="center"
                         sx={{
                             textTransform: "none",
                             color: "colors.accent",
-                            fontFamily: "RayleighGlamour",
                             fontWeight: 700
                         }}
                         gutterBottom={true}>Get In Touch</Typography>

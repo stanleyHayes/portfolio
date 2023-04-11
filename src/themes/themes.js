@@ -14,7 +14,8 @@ const lightTheme = createTheme({
         background: {
             default: "#f6f7f8",
             paper: "#ffffff",
-            accent: "#FFF6E9"
+            accent: "#FFF6E9",
+            glass: 'rgba(255,255,255,0.10)'
         },
         text: {
             primary: "#0b1d3c",
@@ -32,7 +33,6 @@ const lightTheme = createTheme({
         colors: {
             purple: "#6549f8",
             accent: "#FBA024",
-            footer: "#000137",
             green: "#3f9267",
             blue: "#3d7df6",
             black: "#141521",
@@ -62,7 +62,7 @@ const darkTheme = createTheme({
         background: {
             default: "#1b1a1a",
             paper: "#252729",
-            glass: "rgba(37,39,41,0.05)",
+            glass: 'rgba(45,51,59,0.10)',
             secondary: "#EDF4FF",
             accent: "#FFF6E9",
         },

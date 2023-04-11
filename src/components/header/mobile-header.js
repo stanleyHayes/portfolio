@@ -16,7 +16,9 @@ const MobileHeader = () => {
             sx={{
                 borderBottomStyle: "solid",
                 borderBottomColor: "divider",
-                borderBottomWidth: 2
+                borderBottomWidth: 2,
+                backgroundColor: "background.glass",
+                backdropFilter: "blur(5px)"
             }}
             variant="regular">
             <Stack

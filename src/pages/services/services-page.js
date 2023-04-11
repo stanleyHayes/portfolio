@@ -53,7 +53,7 @@ const ServicesPage = () => {
                     content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver, Services"
                 />
             </Helmet>
-            <Box sx={{py: 8}}>
+            <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
                 <Container
                     component={motion.div}
                     variants={container}
@@ -79,12 +79,11 @@ const ServicesPage = () => {
                         component={motion.div}
                         variants={item}>
                         <Typography
-                            variant="h3"
+                            variant="h2"
                             align="center"
                             sx={{
                                 textTransform: "none",
                                 color: "colors.accent",
-                                fontFamily: "RayleighGlamour",
                                 fontWeight: 700
                             }}
                             gutterBottom={true}>What I do</Typography>
@@ -243,8 +242,11 @@ const ServicesPage = () => {
                                         elevation={0}>
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
-                                                <img src="/assets/rest-api.png" alt="rest api logo"
-                                                     title="Rest API Service"/>
+                                                <img
+                                                    src="/assets/rest-api.png"
+                                                    alt="rest api logo"
+                                                     title="Rest API Service"
+                                                />
                                             </Stack>
 
                                             <Typography sx={{
@@ -283,8 +285,12 @@ const ServicesPage = () => {
                                         variant="elevation" elevation={0}>
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
-                                                <img src="/assets/sql.png" alt="sql database logo"
-                                                     title="SQL Database Design Service"/>
+                                                <img
+                                                    style={{width: 32, height: 32, marginBottom: 4}}
+                                                    src="/assets/mobile-app.png"
+                                                    alt=" Mobile Apps"
+                                                    title=" Mobile Apps"
+                                                />
                                             </Stack>
 
                                             <Typography sx={{
@@ -293,12 +299,12 @@ const ServicesPage = () => {
                                                 fontFamily: "SatrevaNova",
                                                 mb: 2
                                             }} align="center" variant="h4">
-                                                SQL Database
+                                                Mobile Apps
                                             </Typography>
                                             <Typography
                                                 sx={{fontWeight: 500, color: "text.secondary"}}
                                                 align="center" variant="body2">
-                                                SQL Database using MYSQL
+                                                Android & iOS mobile apps using React native
                                             </Typography>
                                         </CardContent>
                                     </Card>
@@ -323,8 +329,12 @@ const ServicesPage = () => {
                                         variant="elevation" elevation={0}>
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
-                                                <img src="/assets/nosql.png" alt="nosql logo"
-                                                     title="NOSQL database design Service"/>
+                                                <img
+                                                    style={{width: 32, height: 32, marginBottom: 4}}
+                                                    src="/assets/blockchain.png"
+                                                    alt="DApps"
+                                                    title="DApps"
+                                                />
                                             </Stack>
                                             <Typography sx={{
                                                 fontWeight: 700,
@@ -332,12 +342,13 @@ const ServicesPage = () => {
                                                 fontFamily: "SatrevaNova",
                                                 mb: 2
                                             }} align="center" variant="h4">
-                                                NoSQL Database
+                                                DApps
                                             </Typography>
                                             <Typography
                                                 sx={{fontWeight: 500, color: "text.secondary"}}
                                                 align="center" variant="body2">
-                                                NoSQL Database using MongoDB
+                                                Blockchain Applications & Decentralised applications using solidity or
+                                                Rust
                                             </Typography>
                                         </CardContent>
                                     </Card>

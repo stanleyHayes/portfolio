@@ -43,7 +43,9 @@ const DesktopHeader = () => {
             sx={{
                 borderBottomStyle: "solid",
                 borderBottomColor: "divider",
-                borderBottomWidth: 2
+                borderBottomWidth: 2,
+                backgroundColor: "background.glass",
+                backdropFilter: "blur(5px)"
             }}
             variant="regular">
             <Stack
@@ -97,6 +99,9 @@ const DesktopHeader = () => {
                         <NavigationLink path="/about" label="About"/>
                     </Box>
                     <Box component={motion.div} variants={item}>
+                        <NavigationLink path="/learn" label="Learn"/>
+                    </Box>
+                    <Box component={motion.div} variants={item}>
                         <NavigationLink path="/portfolio" label="Portfolio"/>
                     </Box>
                     <Box component={motion.div} variants={item}>
@@ -105,7 +110,6 @@ const DesktopHeader = () => {
                     <Box component={motion.div} variants={item}>
                         <NavigationLink path="/contact" label="Contact"/>
                     </Box>
-                    {/*<NavigationLink path="/blog" label="Blog"/>*/}
                 </Stack>
                 <Stack
                     component={motion.div}

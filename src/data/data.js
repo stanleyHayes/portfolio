@@ -1,3 +1,5 @@
+import profile from "./../assets/images/projects/profile.jpeg";
+
 export const getProjects = () => {
     return [
         {
@@ -5,133 +7,163 @@ export const getProjects = () => {
             summary: "Upload your book trailer video to get more buys.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://thebookstation.vercel.app",
-            status: 'progress'
+            status: 'progress',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
-            title: "SmithField",
-            summary: "E-commerce website for selling vegetables, fruits and other items",
+            title: "Black Bridge Clothing",
+            summary: "E-commerce website for selling clothing",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
-            link: "https://smithfield.vercel.app",
-            status: 'progress'
+            link: "https://blackbridgeclothing.vercel.app",
+            status: 'progress',
+            image: profile
         },
         {
             title: "MFA",
             summary: "A redesign of Ministry of Finance Ghana Website",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://mfa-eight.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Dark Docs Shop",
             summary: "Buy spammed credit cards, bank logs and cheques",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://darkdocs-shop.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "GIISDEC",
             summary: "Ghana Integrated Iron & Steel Development Corporation",
             categories: ["WordPress"],
-            link: "http://giisdec.com",
-            status: 'completed'
+            link: "https://giisdec.com",
+            status: 'completed',
+            image: profile
         },
         {
             title: "Chime Africa",
             summary: "CHIME is an Advancing Business Education (ABE UK) online training program and opportunity being offered at a SUBSIDIZED RATE to the general public...",
             categories: ["React", "MySQL", "PHP", "Material UI"],
-            link: "http://chimeafrica.org",
-            status: 'completed'
+            link: "https://chimeafrica.org",
+            status: 'completed',
+            image: profile
         },
         {
             title: "Against Racism",
             summary: "Together, the tool against hatred has been developed by Tieto against anger in a project to monitor incidents of hatred in Finland.",
             categories: ["WordPress", "CSS"],
             link: "https://www.yhdessavihaavastaan.fi/",
-            status: 'completed'
+            status: 'completed',
+            image: profile
         },
         {
             title: "Susu Plus",
             summary: "Mobile app for crowd funding.",
             categories: ["Native Base", 'React Native', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "#",
-            status: 'progress'
+            status: 'progress',
+            image: profile
         },
         {
             title: "Book Bae",
             summary: "Mobile app for dating and social connection",
             categories: ["Native Base", 'React Native', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "#",
-            status: 'progress'
+            status: 'progress',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Supercraft GH",
             summary: "Marketing website for Supercraft GH. Specialises in metal works.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://supercraft.com",
-            status: 'progress'
+            status: 'completed',
+            image: profile
         },
         {
             title: "Aiden Trust Bank",
             summary: "Marketing website for fictitious bank.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://aideentrust.com",
-            status: 'progress'
+            status: 'completed',
+            image: profile
         },
         {
             title: "Aiden Trust",
             summary: "Client website for fictitious bank.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://client.aideentrust.com",
-            status: 'progress'
+            status: 'completed',
+            image: profile
         },
         {
             title: "Floriclean",
             summary: "Marketing website for Floriclean. Specialises in cleaning carpets, houses etc.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://floriclean.vercel.app",
-            status: 'progress'
+            status: 'progress',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Smash Sneakers",
             summary: "E-commerce website for selling shoes.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://smashsneakers.vercel.app",
-            status: 'progress'
+            status: 'progress',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Ruderalis",
             summary: "E-commerce website for the buying and selling of marijuana and related products.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
             link: "https://ruderalis.vercel.app",
-            status: 'progress'
+            status: 'progress',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Rotech Academy",
             summary: "We are a team of able robotics enthusiasts with over five years of experience in building robots and programming for various competitions and coaching national and international robotics teams.",
             categories: ["React", "Email JS", "Material UI"],
             link: "https://rotech-academy.site",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Voodoo Wallet",
             summary: "Buy and Sell Bitcoin at an affordable rate.",
             categories: ["React", "MongoDB", "Express", "Node JS"],
             link: "https://voodoo-client.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Stanley Hayford",
             summary: "Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages.",
             categories: ["React", "Material UI", 'Redux'],
             link: "https://hayfordstanley.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Blog Mania",
             summary: "Reader's favorite place",
             categories: ["React", "Material UI", "Redux"],
-            link: "https://blogmania.vercel.app",
-            status: 'completed'
+            link: "https://learnmania.vercel.app",
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
 
         {
@@ -139,7 +171,9 @@ export const getProjects = () => {
             summary: "SIRCLES (as in “circle”) is a creative exploit that seeks to give beautiful meanings to images and stories through still photos and video concepts. ",
             categories: ["React", "Material UI"],
             link: "https://sircles-ori.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
 
         {
@@ -147,28 +181,36 @@ export const getProjects = () => {
             summary: "Result-oriented design, architecture, and construction at your service ",
             categories: ["React", "Material UI"],
             link: "https://rodac.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Jasey Farms",
             summary: "Healthy, quality, affordable vegetables for everyday people",
             categories: ["React", "Material UI"],
             link: "https://jaseyfarms.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Jasey Mining",
             summary: "Optimising the blasting experiences for our clients ",
             categories: ["React", "Material UI"],
             link: "https://jaseymining.vercel.app",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         },
         {
             title: "Cristiano Ronaldo",
             summary: "Cristiano Ronaldo is a Portuguese professional footballer who plays for Juventus and Portugal national team.",
             categories: ["HTML", "CSS", "JavaScript", "Personal", "GitHub Pages"],
             link: "https://stanleyhayes.github.io/cristianoronaldo/",
-            status: 'completed'
+            status: 'completed',
+            source: "https://github.com/bookbae",
+            image: profile
         }
     ];
 }
@@ -372,7 +414,24 @@ export const getCourses = () => {
                     slug: "moving-forward"
                 }
             ],
-            detailPage: "/blog/c-programming",
+            detailPage: "/learn/c-programming",
+            summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+        },
+        {
+            name: "Rust",
+            image: "/assets/rust.svg",
+            slug: "rust",
+            lessons: [
+                {
+                    title: "Introduction",
+                    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                    number: "001",
+                    date: new Date(),
+                    author: "Stanley Hayford",
+                    slug: "introduction"
+                },
+            ],
+            detailPage: "/learn/rust",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -389,7 +448,7 @@ export const getCourses = () => {
                     slug: "introduction"
                 },
             ],
-            detailPage: "/blog/cplusplus",
+            detailPage: "/learn/cplusplus",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -397,7 +456,7 @@ export const getCourses = () => {
             image: "/assets/javascript.svg",
             slug: "javascript",
             lessons: [],
-            detailPage: "/blog/javascript",
+            detailPage: "/learn/javascript",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -405,7 +464,7 @@ export const getCourses = () => {
             image: "/assets/typescript.svg",
             slug: "typescript",
             lessons: [],
-            detailPage: "/blog/typescript",
+            detailPage: "/learn/typescript",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -413,7 +472,7 @@ export const getCourses = () => {
             image: "/assets/golang.svg",
             slug: "python",
             lessons: [],
-            detailPage: "/blog/python",
+            detailPage: "/learn/python",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -421,7 +480,7 @@ export const getCourses = () => {
             image: "/assets/java.svg",
             slug: "java",
             lessons: [],
-            detailPage: "/blog/java",
+            detailPage: "/learn/java",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -429,7 +488,7 @@ export const getCourses = () => {
             image: "/assets/powershell.svg",
             slug: "shell-scripting",
             lessons: [],
-            detailPage: "/blog/shell-scripting",
+            detailPage: "/learn/shell-scripting",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -437,7 +496,7 @@ export const getCourses = () => {
             image: "/assets/python.svg",
             slug: "python",
             lessons: [],
-            detailPage: "/blog/python",
+            detailPage: "/learn/python",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -445,7 +504,7 @@ export const getCourses = () => {
             image: "/assets/html.svg",
             slug: "html",
             lessons: [],
-            detailPage: "/blog/html",
+            detailPage: "/learn/html",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -453,7 +512,7 @@ export const getCourses = () => {
             image: "/assets/css3.svg",
             slug: "css",
             lessons: [],
-            detailPage: "/blog/css",
+            detailPage: "/learn/css",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -461,7 +520,7 @@ export const getCourses = () => {
             image: "/assets/mongodb.svg",
             slug: "mongodb",
             lessons: [],
-            detailPage: "/blog/mongodb",
+            detailPage: "/learn/mongodb",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         },
         {
@@ -469,7 +528,7 @@ export const getCourses = () => {
             image: "/assets/kotlin.svg",
             slug: "kotlin",
             lessons: [],
-            detailPage: "/blog/kotlin",
+            detailPage: "/learn/kotlin",
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
         }
     ]
