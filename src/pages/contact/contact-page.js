@@ -138,9 +138,9 @@ const ContactPage = () => {
                         <Alert
                             sx={{
                                 borderTopLeftRadius: 32,
-                                borderTopRightRadius: 4,
+                                borderTopRightRadius: 0,
                                 borderBottomRightRadius: 32,
-                                borderBottomLeftRadius: 4
+                                borderBottomLeftRadius: 0
                             }}
                             severity="error" variant="standard">
                             <AlertTitle>
@@ -153,9 +153,9 @@ const ContactPage = () => {
                         <Alert
                             sx={{
                                 borderTopLeftRadius: 32,
-                                borderTopRightRadius: 4,
+                                borderTopRightRadius: 0,
                                 borderBottomRightRadius: 32,
-                                borderBottomLeftRadius: 4
+                                borderBottomLeftRadius: 0
                             }}
                             severity="success" variant="standard">
                             <AlertTitle>
@@ -188,9 +188,9 @@ const ContactPage = () => {
                                         <Card
                                             sx={{
                                                 borderTopLeftRadius: 32,
-                                                borderTopRightRadius: 4,
+                                                borderTopRightRadius: 0,
                                                 borderBottomRightRadius: 32,
-                                                borderBottomLeftRadius: 4,
+                                                borderBottomLeftRadius: 0,
                                             }}
 
                                             variant="outlined">
@@ -236,9 +236,9 @@ const ContactPage = () => {
                                         <Card
                                             sx={{
                                                 borderTopLeftRadius: 32,
-                                                borderTopRightRadius: 4,
+                                                borderTopRightRadius: 0,
                                                 borderBottomRightRadius: 32,
-                                                borderBottomLeftRadius: 4,
+                                                borderBottomLeftRadius: 0,
                                             }}
 
                                             variant="outlined">
@@ -284,9 +284,9 @@ const ContactPage = () => {
                                     <Card
                                         sx={{
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 4,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 4,
+                                            borderBottomLeftRadius: 0,
                                         }}
                                         variant="outlined">
                                         <CardContent>
@@ -332,9 +332,9 @@ const ContactPage = () => {
                         <Card
                             sx={{
                                 borderTopLeftRadius: 32,
-                                borderTopRightRadius: 4,
+                                borderTopRightRadius: 0,
                                 borderBottomRightRadius: 32,
-                                borderBottomLeftRadius: 4
+                                borderBottomLeftRadius: 0
                             }}
                             variant="outlined">
                             <CardContent>
@@ -510,7 +510,6 @@ const ContactPage = () => {
                                                             borderBottomRightRadius: 16,
                                                             borderBottomLeftRadius: 0,
                                                             backgroundColor: "colors.accent",
-                                                            textTransform: "capitalize",
                                                             color: "colors.black",
                                                             fontWeight: "bold",
                                                             "&:hover": {
@@ -520,7 +519,8 @@ const ContactPage = () => {
                                                                 borderTopRightRadius: 0,
                                                                 borderBottomRightRadius: 16,
                                                                 borderBottomLeftRadius: 0,
-                                                                transition: "all 500ms ease-out"
+                                                                transition: "all 500ms ease-out",
+                                                                py: 1.5
                                                             }
                                                         }}
                                                         fullWidth={true}

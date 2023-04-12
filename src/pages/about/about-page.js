@@ -294,9 +294,9 @@ const AboutPage = () => {
                             value={index}
 
                             sx={{
-                                borderTopLeftRadius: 32,
+                                borderTopLeftRadius: 16,
                                 borderTopRightRadius: 0,
-                                borderBottomRightRadius: 32,
+                                borderBottomRightRadius: 16,
                                 borderBottomLeftRadius: 0,
                             }}
                             onChange={handleTabChange}>
@@ -320,9 +320,9 @@ const AboutPage = () => {
                                         sx={{
                                             height: "100%",
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }} variant="outlined">
                                         <CardContent>
                                             <Typography sx={{
@@ -413,9 +413,9 @@ const AboutPage = () => {
                                         sx={{
                                             height: "100%",
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }}
                                         variant="outlined">
                                         <CardContent>
@@ -504,9 +504,9 @@ const AboutPage = () => {
                                         sx={{
                                             height: "100%",
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }}
                                         variant="outlined">
                                         <CardContent>
@@ -625,17 +625,17 @@ const AboutPage = () => {
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }}>
                                             <Card
                                                 sx={{
                                                     height: "100%",
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8
+                                                    borderBottomLeftRadius: 0
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
@@ -699,17 +699,17 @@ const AboutPage = () => {
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }}>
                                             <Card
                                                 sx={{
                                                     height: "100%",
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8,
+                                                    borderBottomLeftRadius: 0,
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
@@ -766,17 +766,17 @@ const AboutPage = () => {
                                             contentStyle={{
                                                 background: theme.palette.background.paper,
                                                 borderTopLeftRadius: 32,
-                                                borderTopRightRadius: 8,
+                                                borderTopRightRadius: 0,
                                                 borderBottomRightRadius: 32,
-                                                borderBottomLeftRadius: 8,
+                                                borderBottomLeftRadius: 0,
                                             }}>
                                             <Card
                                                 sx={{
                                                     height: "100%",
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8,
+                                                    borderBottomLeftRadius: 0,
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
@@ -832,17 +832,17 @@ const AboutPage = () => {
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }}>
                                             <Card
                                                 sx={{
                                                     height: "100%",
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8,
+                                                    borderBottomLeftRadius: 0,
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
@@ -905,9 +905,9 @@ const AboutPage = () => {
                                                 sx={{
                                                     height: "100%",
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8
+                                                    borderBottomLeftRadius: 0
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
@@ -965,17 +965,17 @@ const AboutPage = () => {
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }}>
                                             <Card
                                                 sx={{
                                                     height: "100%",
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8
+                                                    borderBottomLeftRadius: 0
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
@@ -1032,17 +1032,17 @@ const AboutPage = () => {
                                             contentStyle={{
                                                 background: theme.palette.background.paper,
                                                 borderTopLeftRadius: 32,
-                                                borderTopRightRadius: 8,
+                                                borderTopRightRadius: 0,
                                                 borderBottomRightRadius: 32,
-                                                borderBottomLeftRadius: 8,
+                                                borderBottomLeftRadius: 0,
                                             }}>
                                             <Card
                                                 sx={{
                                                     height: "100%",
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8
+                                                    borderBottomLeftRadius: 0
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
@@ -1100,16 +1100,16 @@ const AboutPage = () => {
                                             } contentStyle={{
                                             background: theme.palette.background.paper,
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
+                                            borderBottomLeftRadius: 0,
                                         }}>
                                             <Card
                                                 sx={{
                                                     borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 8,
+                                                    borderTopRightRadius: 0,
                                                     borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 8,
+                                                    borderBottomLeftRadius: 0,
                                                 }}
                                                 variant="outlined">
                                                 <CardContent>
