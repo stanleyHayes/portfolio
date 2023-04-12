@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {motion} from "framer-motion";
 import {Tilt} from "react-tilt";
+import 'react-typed/dist/animatedCursor.css';
+import ReactTyped from "react-typed";
 
 const HomePage = () => {
     return (
@@ -78,18 +80,19 @@ const HomePage = () => {
                                 {"  "}I am{"  "}
                                 <Typography
                                     component="span"
-                                    sx={{color: "colors.green", fontFamily: "SatrevaNova", fontWeight: 700}}
+                                    sx={{color: "colors.blue", fontFamily: "SatrevaNova", fontWeight: 700}}
                                     gutterBottom={true}
                                     variant="h4">
-                                    Stanley
-                                </Typography>
-                                {"  "}
-                                <Typography
-                                    component="span"
-                                    sx={{fontFamily: "SatrevaNova", color: "colors.blue", fontWeight: 700}}
-                                    gutterBottom={true}
-                                    variant="h4">
-                                    Hayford
+                                    <ReactTyped
+                                        strings={["Stanley Hayford", "Userma'atre Setepenre", "Inigo Lopez ", "Vladislaus Draguila"]}
+                                        typeSpeed={100}
+                                        backSpeed={75}
+                                        backDelay={25}
+                                        shuffle={true}
+                                        loop={true}
+                                        showCursor={true}
+                                        smartBackspace={true}
+                                    />
                                 </Typography>
                             </Typography>
                         </Box>
@@ -151,7 +154,6 @@ const HomePage = () => {
                                                 py: 1.5,
                                                 backgroundColor: "colors.accent",
                                                 color: "colors.black",
-                                                textTransform: "capitalize",
                                                 fontWeight: "bold",
                                                 "&:hover": {
                                                     backgroundColor: "light.accent",
