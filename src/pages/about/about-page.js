@@ -103,10 +103,10 @@ const AboutPage = () => {
                                 <Card
                                     sx={{
                                         width: "100%",
-                                        borderTopLeftRadius: 32,
-                                        borderTopRightRadius: 8,
-                                        borderBottomRightRadius: 32,
-                                        borderBottomLeftRadius: 8,
+                                        borderTopLeftRadius: 64,
+                                        borderTopRightRadius: 0,
+                                        borderBottomRightRadius: 64,
+                                        borderBottomLeftRadius: 0,
                                         backgroundColor: "background.glass",
                                         backdropFilter: "blur(5px)"
                                     }}
@@ -146,6 +146,7 @@ const AboutPage = () => {
                                                                 sx={{cursor: "pointer"}}
                                                                 label="GitHub"
                                                                 size="medium"
+                                                                variant="outlined"
                                                                 title="GitHub"
                                                                 avatar={
                                                                     <Avatar
@@ -170,6 +171,7 @@ const AboutPage = () => {
                                                                 sx={{cursor: "pointer"}}
                                                                 label="LinkedIn"
                                                                 size="medium"
+                                                                variant="outlined"
                                                                 title="LinkedIn"
                                                                 avatar={
                                                                     <Avatar
@@ -195,6 +197,7 @@ const AboutPage = () => {
                                                                 sx={{cursor: "pointer"}}
                                                                 label="Twitter"
                                                                 size="medium"
+                                                                variant="outlined"
                                                                 title="Twitter"
                                                                 avatar={
                                                                     <Avatar
@@ -224,9 +227,9 @@ const AboutPage = () => {
                                                                     color: "colors.accent",
                                                                     borderColor: "colors.accent",
                                                                     borderTopLeftRadius: 12,
-                                                                    borderTopRightRadius: 4,
+                                                                    borderTopRightRadius: 0,
                                                                     borderBottomRightRadius: 12,
-                                                                    borderBottomLeftRadius: 4,
+                                                                    borderBottomLeftRadius: 0,
                                                                     "&:hover": {
                                                                         backgroundColor: "light.accent",
                                                                         transition: "all 500ms ease-out"
@@ -252,9 +255,9 @@ const AboutPage = () => {
                                                                     backgroundColor: "colors.accent",
                                                                     fontWeight: "bold",
                                                                     borderTopLeftRadius: 12,
-                                                                    borderTopRightRadius: 4,
+                                                                    borderTopRightRadius: 0,
                                                                     borderBottomRightRadius: 12,
-                                                                    borderBottomLeftRadius: 4,
+                                                                    borderBottomLeftRadius: 0,
                                                                     "&:hover": {
                                                                         backgroundColor: "light.accent",
                                                                         transition: "all 500ms ease-out",
@@ -291,10 +294,10 @@ const AboutPage = () => {
                             value={index}
 
                             sx={{
-                                borderTopLeftRadius: 12,
-                                borderTopRightRadius: 4,
-                                borderBottomRightRadius: 12,
-                                borderBottomLeftRadius: 4,
+                                borderTopLeftRadius: 32,
+                                borderTopRightRadius: 0,
+                                borderBottomRightRadius: 32,
+                                borderBottomLeftRadius: 0,
                             }}
                             onChange={handleTabChange}>
                             <Tab label="Skills"/>
