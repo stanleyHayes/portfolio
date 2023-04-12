@@ -137,9 +137,9 @@ const ContactPage = () => {
                     {error && (
                         <Alert
                             sx={{
-                                borderTopLeftRadius: 16,
+                                borderTopLeftRadius: 32,
                                 borderTopRightRadius: 4,
-                                borderBottomRightRadius: 16,
+                                borderBottomRightRadius: 32,
                                 borderBottomLeftRadius: 4
                             }}
                             severity="error" variant="standard">
@@ -152,9 +152,9 @@ const ContactPage = () => {
                     {Boolean(message) && (
                         <Alert
                             sx={{
-                                borderTopLeftRadius: 16,
+                                borderTopLeftRadius: 32,
                                 borderTopRightRadius: 4,
-                                borderBottomRightRadius: 16,
+                                borderBottomRightRadius: 32,
                                 borderBottomLeftRadius: 4
                             }}
                             severity="success" variant="standard">
@@ -184,16 +184,16 @@ const ContactPage = () => {
                             container={true} spacing={4}>
                             <Grid component={motion.div} variants={item} xs={12} md={4} item={true}>
                                 <Tilt style={{height: "100%"}}>
-                                    <Link href={`tel://+231670044319`} underline="none">
+                                    <Link href={`tel://+233270044319`} underline="none">
                                         <Card
                                             sx={{
-                                                borderTopLeftRadius: 16,
+                                                borderTopLeftRadius: 32,
                                                 borderTopRightRadius: 4,
-                                                borderBottomRightRadius: 16,
+                                                borderBottomRightRadius: 32,
                                                 borderBottomLeftRadius: 4,
                                             }}
-                                            elevation={0}
-                                            variant="elevation">
+
+                                            variant="outlined">
                                             <CardContent>
                                                 <Stack spacing={2}>
                                                     <Stack direction="row" justifyContent="center">
@@ -235,13 +235,13 @@ const ContactPage = () => {
                                     <Link href={`mailto:dev.stanley.hayford@ghmail.com`} underline="none">
                                         <Card
                                             sx={{
-                                                borderTopLeftRadius: 16,
+                                                borderTopLeftRadius: 32,
                                                 borderTopRightRadius: 4,
-                                                borderBottomRightRadius: 16,
+                                                borderBottomRightRadius: 32,
                                                 borderBottomLeftRadius: 4,
                                             }}
-                                            elevation={0}
-                                            variant="elevation">
+
+                                            variant="outlined">
                                             <CardContent>
                                                 <Stack spacing={2}>
                                                     <Stack direction="row" justifyContent="center">
@@ -283,12 +283,12 @@ const ContactPage = () => {
                                 <Tilt style={{height: "100%"}}>
                                     <Card
                                         sx={{
-                                            borderTopLeftRadius: 16,
+                                            borderTopLeftRadius: 32,
                                             borderTopRightRadius: 4,
-                                            borderBottomRightRadius: 16,
+                                            borderBottomRightRadius: 32,
                                             borderBottomLeftRadius: 4,
                                         }}
-                                        elevation={0} variant="elevation">
+                                        variant="outlined">
                                         <CardContent>
                                             <Stack spacing={2}>
                                                 <Stack direction="row" justifyContent="center">
@@ -331,12 +331,12 @@ const ContactPage = () => {
 
                         <Card
                             sx={{
-                                borderTopLeftRadius: 16,
+                                borderTopLeftRadius: 32,
                                 borderTopRightRadius: 4,
-                                borderBottomRightRadius: 16,
+                                borderBottomRightRadius: 32,
                                 borderBottomLeftRadius: 4
                             }}
-                            variant="elevation" elevation={0}>
+                            variant="outlined">
                             <CardContent>
                                 <form onSubmit={formik.handleSubmit}>
                                     <Grid container={true} spacing={4}>
@@ -367,9 +367,9 @@ const ContactPage = () => {
                                                             required={true}
                                                             sx={{
                                                                 borderTopLeftRadius: 16,
-                                                                borderTopRightRadius: 4,
+                                                                borderTopRightRadius: 0,
                                                                 borderBottomRightRadius: 16,
-                                                                borderBottomLeftRadius: 4
+                                                                borderBottomLeftRadius: 0
                                                             }}
                                                         />
                                                         {
@@ -402,9 +402,9 @@ const ContactPage = () => {
                                                             required={true}
                                                             sx={{
                                                                 borderTopLeftRadius: 16,
-                                                                borderTopRightRadius: 4,
+                                                                borderTopRightRadius: 0,
                                                                 borderBottomRightRadius: 16,
-                                                                borderBottomLeftRadius: 4
+                                                                borderBottomLeftRadius: 0
                                                             }}
                                                         />
                                                         {
@@ -437,9 +437,9 @@ const ContactPage = () => {
                                                             required={true}
                                                             sx={{
                                                                 borderTopLeftRadius: 16,
-                                                                borderTopRightRadius: 4,
+                                                                borderTopRightRadius: 0,
                                                                 borderBottomRightRadius: 16,
-                                                                borderBottomLeftRadius: 4
+                                                                borderBottomLeftRadius: 0
                                                             }}
                                                         />
                                                         {
@@ -484,9 +484,9 @@ const ContactPage = () => {
                                                             required={true}
                                                             sx={{
                                                                 borderTopLeftRadius: 16,
-                                                                borderTopRightRadius: 4,
+                                                                borderTopRightRadius: 0,
                                                                 borderBottomRightRadius: 16,
-                                                                borderBottomLeftRadius: 4
+                                                                borderBottomLeftRadius: 0
                                                             }}
                                                         />
                                                         {
@@ -505,10 +505,10 @@ const ContactPage = () => {
                                                     <Button
                                                         type="submit"
                                                         sx={{
-                                                            borderTopLeftRadius: 12,
-                                                            borderTopRightRadius: 4,
-                                                            borderBottomRightRadius: 12,
-                                                            borderBottomLeftRadius: 4,
+                                                            borderTopLeftRadius: 16,
+                                                            borderTopRightRadius: 0,
+                                                            borderBottomRightRadius: 16,
+                                                            borderBottomLeftRadius: 0,
                                                             backgroundColor: "colors.accent",
                                                             textTransform: "capitalize",
                                                             color: "colors.black",
@@ -516,9 +516,9 @@ const ContactPage = () => {
                                                             "&:hover": {
                                                                 backgroundColor: "light.accent",
                                                                 color: "colors.black",
-                                                                borderTopLeftRadius: 20,
+                                                                borderTopLeftRadius: 16,
                                                                 borderTopRightRadius: 0,
-                                                                borderBottomRightRadius: 20,
+                                                                borderBottomRightRadius: 16,
                                                                 borderBottomLeftRadius: 0,
                                                                 transition: "all 500ms ease-out"
                                                             }

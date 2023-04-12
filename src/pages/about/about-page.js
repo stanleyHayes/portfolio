@@ -110,7 +110,7 @@ const AboutPage = () => {
                                         backgroundColor: "background.glass",
                                         backdropFilter: "blur(5px)"
                                     }}
-                                    variant="elevation" elevation={0}>
+                                    variant="outlined">
                                     <CardContent>
                                         <Stack spacing={3}>
                                             <Typography variant="h4">Profile</Typography>
@@ -289,7 +289,7 @@ const AboutPage = () => {
                             defaultValue="skills"
                             variant={mobile ? "scrollable" : "standard"}
                             value={index}
-                            elevation={0}
+
                             sx={{
                                 borderTopLeftRadius: 12,
                                 borderTopRightRadius: 4,
@@ -320,7 +320,7 @@ const AboutPage = () => {
                                             borderTopRightRadius: 8,
                                             borderBottomRightRadius: 32,
                                             borderBottomLeftRadius: 8,
-                                        }} variant="elevation" elevation={0}>
+                                        }} variant="outlined">
                                         <CardContent>
                                             <Typography sx={{
                                                 color: "colors.accent",
@@ -414,7 +414,7 @@ const AboutPage = () => {
                                             borderBottomRightRadius: 32,
                                             borderBottomLeftRadius: 8,
                                         }}
-                                        variant="elevation" elevation={0}>
+                                        variant="outlined">
                                         <CardContent>
                                             <Typography
                                                 sx={{
@@ -505,7 +505,7 @@ const AboutPage = () => {
                                             borderBottomRightRadius: 32,
                                             borderBottomLeftRadius: 8,
                                         }}
-                                        variant="elevation" elevation={0}>
+                                        variant="outlined">
                                         <CardContent>
                                             <Typography
                                                 sx={{
@@ -634,7 +634,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{
@@ -708,7 +708,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8,
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{
@@ -775,7 +775,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8,
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{
@@ -841,7 +841,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8,
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{
@@ -906,7 +906,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{
@@ -974,7 +974,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{
@@ -1041,7 +1041,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{
@@ -1108,7 +1108,7 @@ const AboutPage = () => {
                                                     borderBottomRightRadius: 32,
                                                     borderBottomLeftRadius: 8,
                                                 }}
-                                                variant="elevation" elevation={0}>
+                                                variant="outlined">
                                                 <CardContent>
                                                     <Typography
                                                         sx={{

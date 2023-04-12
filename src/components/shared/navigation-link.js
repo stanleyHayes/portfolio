@@ -16,10 +16,25 @@ const NavigationLink = ({path, label}) => {
             <Typography
                 variant="body1"
                 sx={{
-                    fontWeight: pathname === path ? 600: 400,
-                    fontFamily: pathname === path ? "SatrevaNova": "Outfit",
+                    fontWeight: pathname === path ? 600 : 400,
+                    paddingX: 1,
+                    py: 0.5,
+                    fontFamily: pathname === path ? "SatrevaNova" : "Outfit",
                     color: pathname === path ? "colors.accent" : "text.primary",
-                    "&:hover": {color: "colors.accent", transition: "all 300ms"}
+                    borderColor: pathname === path ? "light.accent" : false,
+                    borderWidth: pathname === path ? 1 : 0,
+                    borderStyle: pathname === path ? "solid" : "none",
+                    borderTopLeftRadius: 12,
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 12,
+                    borderBottomLeftRadius: 0,
+                    "&:hover": {
+                        color: "colors.accent",
+                        transition: "all 300ms",
+                        borderColor: "light.accent",
+                        borderWidth: 1,
+                        borderStyle: "solid"
+                    }
                 }}>
                 {label}
             </Typography>

@@ -119,7 +119,7 @@ const ServicesPage = () => {
                                             borderBottomLeftRadius: 8,
                                             height: "100%"
                                         }}
-                                        variant="elevation" elevation={0}>
+                                        variant="outlined">
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
                                                 <img
@@ -161,7 +161,7 @@ const ServicesPage = () => {
                                             borderBottomLeftRadius: 8,
                                             height: "100%"
                                         }}
-                                        variant="elevation" elevation={0}>
+                                        variant="outlined">
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
                                                 <img src="/assets/wordpress.png" alt="wordpress logo"
@@ -201,7 +201,7 @@ const ServicesPage = () => {
                                             borderBottomLeftRadius: 8,
                                             height: "100%"
                                         }}
-                                        variant="elevation" elevation={0}>
+                                        variant="outlined">
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
                                                 <img src="/assets/web-app.png" alt="Web Apps logo"
@@ -238,14 +238,14 @@ const ServicesPage = () => {
                                             borderBottomLeftRadius: 8,
                                             height: "100%"
                                         }}
-                                        variant="elevation"
-                                        elevation={0}>
+                                        variant="outlined"
+                                    >
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
                                                 <img
                                                     src="/assets/rest-api.png"
                                                     alt="rest api logo"
-                                                     title="Rest API Service"
+                                                    title="Rest API Service"
                                                 />
                                             </Stack>
 
@@ -282,7 +282,7 @@ const ServicesPage = () => {
                                             borderBottomLeftRadius: 8,
                                             height: "100%"
                                         }}
-                                        variant="elevation" elevation={0}>
+                                        variant="outlined">
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
                                                 <img
@@ -326,7 +326,7 @@ const ServicesPage = () => {
                                             borderBottomLeftRadius: 8,
                                             height: "100%"
                                         }}
-                                        variant="elevation" elevation={0}>
+                                        variant="outlined">
                                         <CardContent>
                                             <Stack direction="row" justifyContent="center">
                                                 <img

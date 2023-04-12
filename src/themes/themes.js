@@ -75,7 +75,7 @@ const darkTheme = createTheme({
         light: {
             primary: "rgba(63,146,103,0.15)",
             secondary: "rgba(54,105,247,0.01)",
-            accent: "rgba(255,185,31,0.15)",
+            accent: "rgba(255,185,31,0.05)",
             black: "rgba(20,21,33,0.15)",
             purple: "rgba(101,73,248,0.15)"
         },
