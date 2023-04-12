@@ -413,7 +413,7 @@ const AboutPage = () => {
                                         sx={{
                                             height: "100%",
                                             borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0
+                                            borderTopRightRadius: 0,
                                             borderBottomRightRadius: 32,
                                             borderBottomLeftRadius: 0,
                                         }}
