@@ -3,6 +3,14 @@ import profile from "./../assets/images/projects/profile.jpeg";
 export const getProjects = () => {
     return [
         {
+            title: "De-future Solutions",
+            summary: "Marketing website for a digital marketing company",
+            categories: ["Material UI", 'React JS', 'Redux'],
+            link: "https://de-futuresolutions.com",
+            status: 'completed',
+            image: profile
+        },
+        {
             title: "The Book Station",
             summary: "Upload your book trailer video to get more buys.",
             categories: ["Material UI", 'React JS', 'Express JS', 'Mongo DB', 'Node JS', 'Redux'],
@@ -217,6 +225,36 @@ export const getProjects = () => {
 
 export const getCertification = () => {
     return [
+        {
+            title: "LFS145: Introduction to Protocol Buffers",
+            institution: "The Linux Foundation",
+            expiry: "No Expiry",
+            link: "https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/f3183c16-6ad5-4d6e-ab8a-541c5c6071ab-stanley-hayford-16e35f8d-8b24-4edd-88c2-582fa3a17a2a-certificate.pdf"
+        },
+        {
+            title: "Solana Blockchain Developer Program",
+            institution: "NAS Academy",
+            expiry: "No Expiry",
+            link: "/assets/docs/Solana Cohort 6.pdf"
+        },
+        {
+            title: "Rust Programming: The Complete Developer's Guide",
+            institution: "ZeroToMastery",
+            expiry: "No Expiry",
+            link: "/assets/docs/certificate-of-completion-for-rust-programming-the-complete-developer-s-guide.pdf"
+        },
+        {
+            title: "Go Programming: The Complete Developer's Guide",
+            institution: "ZeroToMastery",
+            expiry: "No Expiry",
+            link: "/assets/docs/certificate-of-completion-for-go-programming-golang-the-complete-developer-s-guide.pdf"
+        },
+        {
+            title: "Complete Vue Developer 2023: Zero to Mastery (Pinia, Vitest)",
+            institution: "ZeroToMastery",
+            expiry: "No Expiry",
+            link: "/assets/docs/certificate-of-completion-for-complete-vue-developer-in-2021-w-vuex-composition-api-router.pdf"
+        },
         {
             title: "M001: MongoDB Basics",
             institution: "Mongo DB University",

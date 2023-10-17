@@ -487,7 +487,7 @@ const AboutPage = () => {
                                             </Typography>
 
                                             <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Gorilla MUX
+                                                Go Fibre
                                             </Typography>
 
                                             <Typography sx={{color: "text.secondary"}} variant="body2">
@@ -495,6 +495,10 @@ const AboutPage = () => {
                                             </Typography>
                                             <Typography sx={{color: "text.secondary"}} variant="body2">
                                                 Git / GitHub
+                                            </Typography>
+
+                                            <Typography sx={{color: "text.secondary"}} variant="body2">
+                                                Anchor - Solana
                                             </Typography>
                                         </CardContent>
                                     </Card>
@@ -582,6 +586,10 @@ const AboutPage = () => {
 
                                             <Typography sx={{color: "text.secondary"}} variant="body2">
                                                 Java / Kotlin
+                                            </Typography>
+
+                                            <Typography sx={{color: "text.secondary"}} variant="body2">
+                                                Solidity
                                             </Typography>
                                         </CardContent>
                                     </Card>
@@ -720,6 +728,72 @@ const AboutPage = () => {
                                                             fontWeight: 700
                                                         }}
                                                         variant="h6">
+                                                        Betika
+                                                    </Typography>
+                                                    <Divider sx={{my: 2}} light={true}/>
+                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
+                                                        Software Engineer
+                                                    </Typography>
+                                                    <Divider sx={{my: 2}} light={true}/>
+                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
+                                                        2023 - Present
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </VerticalTimelineElement>
+                                        <VerticalTimelineElement
+                                            iconStyle={{
+                                                backgroundColor: theme.palette.background.paper
+                                            }}
+                                            icon={
+                                                <Avatar
+                                                    src="/assets/coding.svg"
+                                                    sx={{
+                                                        mt: {xs: 0.5, lg: 1.5},
+                                                        ml: {xs: 0.5, lg: 1.5},
+                                                        width: 32,
+                                                        height: 32,
+                                                    }}
+                                                    alt="coding icon"
+                                                    title="coding icon"
+                                                />
+                                            }
+                                            date={
+                                                !mobile && (
+                                                    <Typography
+                                                        sx={{
+                                                            color: "colors.accent",
+                                                            fontWeight: 700
+                                                        }}
+                                                        variant="overline">
+                                                        2022 - 2023
+                                                    </Typography>
+                                                )
+
+                                            } contentStyle={{
+                                            background: theme.palette.background.paper,
+                                            borderTopLeftRadius: 32,
+                                            borderTopRightRadius: 0,
+                                            borderBottomRightRadius: 32,
+                                            borderBottomLeftRadius: 0,
+                                        }}>
+                                            <Card
+                                                sx={{
+                                                    height: "100%",
+                                                    borderTopLeftRadius: 32,
+                                                    borderTopRightRadius: 0,
+                                                    borderBottomRightRadius: 32,
+                                                    borderBottomLeftRadius: 0,
+                                                }}
+                                                variant="outlined">
+                                                <CardContent>
+                                                    <Typography
+                                                        sx={{
+                                                            color: "colors.accent",
+                                                            fontFamily: "SatrevaNova",
+                                                            fontWeight: 700
+                                                        }}
+                                                        variant="h6">
                                                         Geometry Research
                                                     </Typography>
                                                     <Divider sx={{my: 2}} light={true}/>
@@ -759,7 +833,7 @@ const AboutPage = () => {
                                                             fontWeight: 700
                                                         }}
                                                         variant="overline">
-                                                        2022 - 2023
+                                                        2022
                                                     </Typography>
                                                 )
                                             }
@@ -891,7 +965,7 @@ const AboutPage = () => {
                                                             fontWeight: 700
                                                         }}
                                                         variant="overline">
-                                                        2021 - Present
+                                                        2021 - 2022
                                                     </Typography>
                                                 )
                                             } contentStyle={{
@@ -1025,7 +1099,7 @@ const AboutPage = () => {
                                                             fontWeight: 700
                                                         }}
                                                         variant="overline">
-                                                        2018 - Present
+                                                        2018 - 2023
                                                     </Typography>
                                                 )
                                             }

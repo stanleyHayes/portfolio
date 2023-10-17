@@ -25,7 +25,6 @@ const Certification = ({certification}) => {
                         sx={{
                             color: "colors.accent",
                             fontFamily: "SatrevaNova",
-                            fontWeight: 600
                         }} variant="h6">{certification.title}</Typography>
                     <Divider sx={{my: 2}} variant="fullWidth" light={true}/>
                     <Typography sx={{color: "text.primary"}} variant="body2">
