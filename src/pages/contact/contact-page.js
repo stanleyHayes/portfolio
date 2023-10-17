@@ -20,7 +20,6 @@ import {CallOutlined, LocationOnOutlined, MailOutline} from "@mui/icons-material
 import {Helmet} from "react-helmet";
 import {useFormik} from "formik";
 import * as yup from "yup";
-import "yup-phone";
 import {motion} from "framer-motion";
 import {Tilt} from "react-tilt";
 import {useDispatch, useSelector} from "react-redux";
