@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
 import {
+    Alert,
     Avatar,
     Box,
     Button,
@@ -8,297 +9,340 @@ import {
     CardContent,
     CardMedia,
     Chip,
+    CircularProgress,
     Container,
     Divider,
     Grid,
+    IconButton,
     Link as MUILink,
-    Paper,
+    Pagination,
     Stack,
     Tab,
     Tabs,
     Typography,
-    useMediaQuery
+    useMediaQuery,
+    Paper
 } from "@mui/material";
-import {VerticalTimeline, VerticalTimelineElement} from "react-vertical-timeline-component";
-import {useSelector} from "react-redux";
-import {getUiState} from "../../features/ui/ui-slice";
-import {THEMES} from "../../themes/themes";
 import {Helmet} from "react-helmet";
-import {getCertification} from "../../data/data";
 import Certification from "../../components/shared/certification";
+import AnimatedTimeline from "../../components/shared/animated-timeline";
+import {motion} from "framer-motion";
+import useSounds from "../../hooks/use-sound";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    fetchSkills,
+    fetchEducation,
+    fetchExperience,
+    fetchCertifications,
+    fetchInfo,
+    selectSkills,
+    selectEducation,
+    selectExperience,
+    selectCertifications,
+    selectInfo
+} from "../../features/data/data-slice";
+
+const container = {
+    initial: {opacity: 0},
+    whileInView: {
+        opacity: 1,
+        transition: {staggerChildren: 0.15, duration: 0.8}
+    }
+};
+
+const item = {
+    initial: {opacity: 0, y: 20},
+    whileInView: {opacity: 1, y: 0, transition: {duration: 0.5}}
+};
 
 const AboutPage = () => {
 
+    const dispatch = useDispatch();
+    const {playLaugh, playRoundComplete} = useSounds();
     const [index, setIndex] = useState(0);
+    const [certPage, setCertPage] = useState(1);
     const handleTabChange = (event, index) => {
         setIndex(index);
+        setCertPage(1);
     }
 
     const mobile = useMediaQuery('(max-width: 660px)');
-    const {theme: variant} = useSelector(getUiState);
-    let theme = variant === "dark" ? THEMES.darkTheme : THEMES.lightTheme
+
+    const {loading: skillsLoading, error: skillsError, data: skills} = useSelector(selectSkills);
+    const {loading: educationLoading, error: educationError, data: education} = useSelector(selectEducation);
+    const {loading: experienceLoading, error: experienceError, data: experience} = useSelector(selectExperience);
+    const {loading: certsLoading, error: certsError, data: certifications} = useSelector(selectCertifications);
+    const {data: info} = useSelector(selectInfo);
+
+    useEffect(() => {
+        dispatch(fetchSkills());
+        dispatch(fetchEducation());
+        dispatch(fetchExperience());
+        dispatch(fetchCertifications());
+        dispatch(fetchInfo());
+    }, [dispatch]);
+
+    const name = info?.name || "Stanley Asoku Hayford";
+    const title = info?.title || "Software Engineer";
+    const company = info?.company || "Betika";
+    const bio = info?.bio || "";
+    const email = info?.email || "hayfordstanley@gmail.com";
+    const phone = info?.phone || "+233 555-180-048";
+    const location = info?.location || "Accra, Ghana";
+    const profileImage = (info?.profileImage && info.profileImage.length > 0) ? info.profileImage : "/assets/stanley.jpeg";
+    const resumeUrl = info?.resumeUrl || "/docs/Resume-Stanley-Asoku--Hayford.pdf";
+    const coverLetterUrl = info?.coverLetterUrl || "";
+    const socialLinks = info?.socialLinks || {};
+    const socialChips = [
+        {key: "github", label: "GitHub", icon: "/assets/github.svg"},
+        {key: "linkedin", label: "LinkedIn", icon: "/assets/linkedin.svg"},
+        {key: "twitter", label: "X", icon: "/assets/twitter.svg"},
+    ].filter(s => socialLinks[s.key]);
+
+    const isLoading = skillsLoading || educationLoading || experienceLoading || certsLoading;
+    const anyError = skillsError || educationError || experienceError || certsError;
 
     return (
         <Layout>
             <Helmet>
-                <title>Stanley Hayford | About</title>
-                <meta
-                    name="description"
-                    content="Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise professional with 6 years of hands-on experience taking charge of front and back-end web development. Skillful creating servers and databases for functionality and designing and developing API's. Hardworking collaborator with a track record of superior results. "
-                />
-                <meta
-                    name="keywords"
-                    content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver"
-                />
-
+                <title>{name} | About</title>
+                <meta name="description" content={bio || `${name} - ${title} at ${company}`} />
+                <meta name="keywords" content={`${name}, ${title}, Software Engineer`} />
             </Helmet>
             <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
                 <Container maxWidth="xl">
-                    <Typography
-                        variant="h6"
-                        align="center"
-                        sx={{
-                            textTransform: "uppercase",
-                            color: "colors.accent",
-                            fontFamily: "SatrevaNova",
-                            fontWeight: 700,
-                            mb: 2
-                        }}>About</Typography>
+                    <Box
+                        component={motion.div}
+                        initial={{opacity: 0, y: 20}}
+                        whileInView={{opacity: 1, y: 0, transition: {duration: 0.8}}}
+                        viewport={{once: true}}>
+                        <Typography
+                            variant="body2"
+                            align="center"
+                            sx={{
+                                textTransform: "uppercase",
+                                color: "colors.accent",
+                                fontFamily: "'Inter'",
+                                fontWeight: 800,
+                                mb: 1,
+                                letterSpacing: 3
+                            }}>About</Typography>
 
-                    <Typography
-                        variant="h2"
-                        align="center"
-                        sx={{
-                            textTransform: "none",
-                            color: "colors.accent",
-                            fontWeight: 700
-                        }}
-                    >Get to know me</Typography>
-
-                    <Divider
-                        variant="fullWidth"
-                        light={true}
-                        sx={{
-                            marginTop: 3,
-                            marginBottom: 3
-                        }}
-                    />
-
-                    <Box>
-                        <Grid container={true} spacing={5}>
-                            <Grid item={true} xs={12} md={6} justifyContent="center" container={true}>
-                                <CardMedia
-                                    component="img"
-                                    sx={{
-                                        width: "100%",
-                                        borderTopLeftRadius: 32,
-                                        borderTopRightRadius: 8,
-                                        borderBottomRightRadius: 32,
-                                        borderBottomLeftRadius: 8,
-                                    }}
-                                    src="/assets/stanley.jpeg"
-                                />
-                            </Grid>
-                            <Grid item={true} xs={12} md={6}>
-                                <Card
-                                    sx={{
-                                        width: "100%",
-                                        borderTopLeftRadius: 64,
-                                        borderTopRightRadius: 0,
-                                        borderBottomRightRadius: 64,
-                                        borderBottomLeftRadius: 0,
-                                        backgroundColor: "background.glass",
-                                        backdropFilter: "blur(5px)"
-                                    }}
-                                    variant="outlined">
-                                    <CardContent>
-                                        <Stack spacing={3}>
-                                            <Typography variant="h4">Profile</Typography>
-                                            <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                Tech-savvy Full Stack Web Developer proficient in fundamental front-end
-                                                languages
-                                                and
-                                                server-side languages. In-depth knowledge of SQL and MongoDB. Analytical
-                                                and
-                                                precise
-                                                professional with 6 years of hands-on experience taking charge of front
-                                                and
-                                                back-end
-                                                web
-                                                development. Skillful creating servers and databases for functionality
-                                                and
-                                                designing
-                                                and
-                                                developing API's. Hardworking collaborator with a track record of
-                                                superior
-                                                results.
-                                            </Typography>
-                                            <Box>
-                                                <Grid spacing={2} justifyContent="flex-start" container={true}>
-                                                    <Grid item={true}>
-                                                        <MUILink
-                                                            sx={{cursor: "pointer"}}
-                                                            underline="none"
-                                                            rel="noreferrer noopener"
-                                                            target="_blank"
-                                                            href="https://github.com/stanleyHayes">
-                                                            <Chip
-                                                                sx={{cursor: "pointer"}}
-                                                                label="GitHub"
-                                                                size="medium"
-                                                                variant="outlined"
-                                                                title="GitHub"
-                                                                avatar={
-                                                                    <Avatar
-                                                                        src="/assets/github.svg"
-                                                                        sx={{
-                                                                            width: 25,
-                                                                            height: 25
-                                                                        }}
-                                                                        alt="something icon"
-                                                                        title="something icon"/>
-                                                                }
-                                                            />
-                                                        </MUILink>
-                                                    </Grid>
-                                                    <Grid item={true}>
-                                                        <MUILink
-                                                            sx={{cursor: "pointer"}}
-                                                            underline="none" rel="noreferrer noopener"
-                                                            target="_blank"
-                                                            href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/">
-                                                            <Chip
-                                                                sx={{cursor: "pointer"}}
-                                                                label="LinkedIn"
-                                                                size="medium"
-                                                                variant="outlined"
-                                                                title="LinkedIn"
-                                                                avatar={
-                                                                    <Avatar
-                                                                        src="/assets/linkedin.svg"
-                                                                        sx={{
-                                                                            width: 25,
-                                                                            height: 25
-                                                                        }}
-                                                                        alt="LinkedIn Profile"
-                                                                        title="LinkedIn Profile"/>
-                                                                }
-                                                            />
-                                                        </MUILink>
-                                                    </Grid>
-                                                    <Grid item={true}>
-                                                        <MUILink
-                                                            sx={{cursor: "pointer"}}
-                                                            underline="none"
-                                                            rel="noreferrer noopener"
-                                                            target="_blank"
-                                                            href="https://twitter.com/stanley_hayford">
-                                                            <Chip
-                                                                sx={{cursor: "pointer"}}
-                                                                label="Twitter"
-                                                                size="medium"
-                                                                variant="outlined"
-                                                                title="Twitter"
-                                                                avatar={
-                                                                    <Avatar
-                                                                        src="/assets/twitter.svg"
-                                                                        sx={{
-                                                                            width: 25,
-                                                                            height: 25
-                                                                        }}
-                                                                        alt="Twitter Profile"
-                                                                        title="Twitter Profile"
-                                                                    />
-                                                                }
-                                                            />
-                                                        </MUILink>
-                                                    </Grid>
-                                                </Grid>
-                                            </Box>
-                                            <Box>
-                                                <Grid container={true} spacing={4}>
-                                                    <Grid item={true} xs={12} md={6}>
-                                                        <MUILink
-                                                            underline="none"
-                                                            href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
-                                                            download="Resume-Stanley-Asoku-Hayford.pdf">
-                                                            <Button
-                                                                sx={{
-                                                                    color: "colors.accent",
-                                                                    borderColor: "colors.accent",
-                                                                    borderTopLeftRadius: 12,
-                                                                    borderTopRightRadius: 0,
-                                                                    borderBottomRightRadius: 12,
-                                                                    borderBottomLeftRadius: 0,
-                                                                    "&:hover": {
-                                                                        backgroundColor: "light.accent",
-                                                                        transition: "all 500ms ease-out"
-                                                                    }
-                                                                }}
-                                                                fullWidth={true}
-                                                                disableElevation={true}
-                                                                variant="outlined"
-                                                                size="large">
-                                                                Download Resume
-                                                            </Button>
-                                                        </MUILink>
-                                                    </Grid>
-
-                                                    <Grid item={true} xs={12} md={6}>
-                                                        <MUILink
-                                                            underline="none"
-                                                            href="/public/docs/Resume-Stanley-Asoku--Hayford.pdf"
-                                                            download="Resume-Stanley-Asoku-Hayford.pdf">
-                                                            <Button
-                                                                sx={{
-                                                                    color: "colors.black",
-                                                                    backgroundColor: "colors.accent",
-                                                                    fontWeight: "bold",
-                                                                    borderTopLeftRadius: 12,
-                                                                    borderTopRightRadius: 0,
-                                                                    borderBottomRightRadius: 12,
-                                                                    borderBottomLeftRadius: 0,
-                                                                    "&:hover": {
-                                                                        backgroundColor: "light.accent",
-                                                                        transition: "all 500ms ease-out",
-                                                                        color: "colors.accent",
-                                                                    }
-                                                                }}
-                                                                fullWidth={true}
-                                                                disableElevation={true}
-                                                                variant="contained"
-                                                                size="large">
-                                                                Download Cover Letter
-                                                            </Button>
-                                                        </MUILink>
-                                                    </Grid>
-                                                </Grid>
-                                            </Box>
-                                        </Stack>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        </Grid>
+                        <Typography
+                            variant="h3"
+                            align="center"
+                            sx={{
+                                color: "text.primary",
+                                fontWeight: 700,
+                                mb: 1
+                            }}>
+                            Get to know me
+                        </Typography>
                     </Box>
 
-                    <Divider sx={{my: 4}} light={true} variant="fullWidth"/>
+                    <Divider variant="fullWidth" light={true} sx={{my: 4}}/>
 
+                    {/* Profile Section */}
+                    <Box sx={{
+                        position: "relative",
+                        borderRadius: 1,
+                        overflow: "hidden",
+                        border: 1,
+                        borderColor: "divider",
+                    }}>
+                        {/* Background gradient */}
+                        <Box sx={{
+                            position: "absolute", inset: 0,
+                            background: (t) => t.palette.mode === "dark"
+                                ? "linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(245,166,35,0.05) 50%, rgba(124,58,237,0.06) 100%)"
+                                : "linear-gradient(135deg, rgba(37,99,235,0.04) 0%, rgba(245,166,35,0.03) 50%, rgba(124,58,237,0.04) 100%)",
+                        }} />
+                        {/* Dot pattern */}
+                        <Box sx={{
+                            position: "absolute", inset: 0,
+                            backgroundImage: (t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(96,165,250,0.06)" : "rgba(37,99,235,0.04)"} 1px, transparent 1px)`,
+                            backgroundSize: "24px 24px",
+                        }} />
+
+                        <Box sx={{position: "relative", zIndex: 1, p: {xs: 3, md: 5}}}>
+                            <Grid container spacing={5} alignItems="center">
+                                <Grid size={{xs: 12, md: 4}}>
+                                    <Box sx={{position: "relative", maxWidth: 320, mx: "auto"}}>
+                                        {/* Glow ring */}
+                                        <Box sx={{
+                                            position: "absolute", inset: -6,
+                                            borderRadius: "50%",
+                                            background: (t) => t.palette.mode === "dark"
+                                                ? "linear-gradient(135deg, #60a5fa, #F5A623, #7c3aed)"
+                                                : "linear-gradient(135deg, #2563eb, #F5A623, #7c3aed)",
+                                            opacity: 0.3,
+                                            filter: "blur(16px)",
+                                        }} />
+                                        <CardMedia
+                                            component="img"
+                                            sx={{
+                                                width: "100%",
+                                                aspectRatio: "1",
+                                                objectFit: "cover",
+                                                borderRadius: "50%",
+                                                border: 3,
+                                                borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.3)" : "rgba(37,99,235,0.2)",
+                                            }}
+                                            src={profileImage || "/assets/stanley.jpeg"}
+                                        />
+                                        {/* Status indicator */}
+                                        <Box sx={{
+                                            position: "absolute", bottom: 16, right: 16,
+                                            width: 20, height: 20, borderRadius: "50%",
+                                            backgroundColor: "#10b981",
+                                            border: 3, borderColor: "background.paper",
+                                            animation: "pulse 2s ease-in-out infinite",
+                                            "@keyframes pulse": {"0%, 100%": {boxShadow: "0 0 0 0 rgba(16,185,129,0.4)"}, "50%": {boxShadow: "0 0 0 8px rgba(16,185,129,0)"}},
+                                        }} />
+                                    </Box>
+                                </Grid>
+                                <Grid size={{xs: 12, md: 8}}>
+                                    <Stack spacing={2.5}>
+                                        {/* Name with gradient */}
+                                        <Typography variant="h3" sx={{
+                                            fontWeight: 900,
+                                            background: (t) => t.palette.mode === "dark"
+                                                ? "linear-gradient(135deg, #e2e8f0, #60a5fa)"
+                                                : "linear-gradient(135deg, #0f172a, #2563eb)",
+                                            WebkitBackgroundClip: "text",
+                                            WebkitTextFillColor: "transparent",
+                                        }}>
+                                            {name}
+                                        </Typography>
+
+                                        {/* Role badge */}
+                                        <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
+                                            <Box sx={{
+                                                display: "inline-flex", alignItems: "center", gap: 1,
+                                                px: 2, py: 0.7, borderRadius: "999px",
+                                                background: (t) => t.palette.mode === "dark"
+                                                    ? "linear-gradient(135deg, rgba(96,165,250,0.15), rgba(245,166,35,0.1))"
+                                                    : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
+                                                border: 1,
+                                                borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.2)" : "rgba(37,99,235,0.15)",
+                                            }}>
+                                                <Box sx={{width: 8, height: 8, borderRadius: "50%", backgroundColor: "colors.accent"}} />
+                                                <Typography variant="body2" sx={{color: "colors.accent", fontWeight: 700, letterSpacing: 0.5}}>
+                                                    {title}
+                                                </Typography>
+                                            </Box>
+                                            {company && (
+                                                <Chip label={`@ ${company}`} size="small" sx={{fontWeight: 600, height: 28, backgroundColor: "light.secondary", color: "colors.gold"}} />
+                                            )}
+                                        </Stack>
+
+                                        {/* Bio */}
+                                        {bio && (
+                                            <Typography sx={{color: "text.secondary", lineHeight: 1.8, maxWidth: 600}} variant="body1">
+                                                {bio}
+                                            </Typography>
+                                        )}
+
+                                        {/* Quick stats row */}
+                                        <Stack direction="row" spacing={3} sx={{py: 1}}>
+                                            {[
+                                                {label: "Experience", value: "7+ yrs"},
+                                                {label: "Location", value: location || "Accra, Ghana"},
+                                                {label: "Status", value: "Available"},
+                                            ].map((stat, i) => (
+                                                <Box key={i}>
+                                                    <Typography variant="caption" sx={{color: "text.secondary", textTransform: "uppercase", letterSpacing: 1, fontSize: "0.65rem"}}>
+                                                        {stat.label}
+                                                    </Typography>
+                                                    <Typography variant="body2" sx={{color: "text.primary", fontWeight: 600}}>
+                                                        {stat.value}
+                                                    </Typography>
+                                                </Box>
+                                            ))}
+                                        </Stack>
+
+                                        {/* Social + Resume row */}
+                                        <Stack direction={{xs: "column", sm: "row"}} spacing={2} alignItems={{sm: "center"}}>
+                                            {/* Social icons */}
+                                            <Stack direction="row" spacing={1}>
+                                                {socialChips.map(s => (
+                                                    <MUILink key={s.key} underline="none" rel="noreferrer noopener" target="_blank" href={socialLinks[s.key]}>
+                                                        <IconButton size="small" sx={{
+                                                            border: 1, borderColor: "divider", borderRadius: 1,
+                                                            transition: "all 300ms",
+                                                            "&:hover": {borderColor: "colors.accent", backgroundColor: "light.accent", transform: "translateY(-2px)"},
+                                                        }}>
+                                                            <Avatar src={s.icon} sx={{width: 18, height: 18}} />
+                                                        </IconButton>
+                                                    </MUILink>
+                                                ))}
+                                            </Stack>
+
+                                            {/* Resume button */}
+                                            {(resumeUrl || coverLetterUrl) && (
+                                                <Stack direction="row" spacing={1.5} flexWrap="wrap">
+                                                    {resumeUrl && (
+                                                        <MUILink underline="none" href={resumeUrl} target="_blank" rel="noreferrer" onClick={playRoundComplete}>
+                                                            <Box sx={{
+                                                                display: "inline-flex", alignItems: "center", gap: 1,
+                                                                px: 3, py: 1, borderRadius: "999px",
+                                                                background: (t) => t.palette.mode === "dark"
+                                                                    ? "linear-gradient(135deg, #60a5fa, #F5A623)"
+                                                                    : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                                                color: "white", fontWeight: 700, fontSize: "0.8rem",
+                                                                letterSpacing: 1, textTransform: "uppercase",
+                                                                cursor: "pointer", transition: "all 300ms",
+                                                                position: "relative", overflow: "hidden",
+                                                                "&:hover": {transform: "translateY(-2px)", boxShadow: "0 8px 25px rgba(37,99,235,0.3)"},
+                                                                "&::before": {content: '""', position: "absolute", top: 0, left: "-100%", width: "100%", height: "100%", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)", transition: "left 500ms"},
+                                                                "&:hover::before": {left: "100%"},
+                                                            }}>
+                                                                Resume
+                                                            </Box>
+                                                        </MUILink>
+                                                    )}
+                                                    {coverLetterUrl && (
+                                                        <MUILink underline="none" href={coverLetterUrl} target="_blank" rel="noreferrer" onClick={playLaugh}>
+                                                            <Box sx={{
+                                                                display: "inline-flex", alignItems: "center", gap: 1,
+                                                                px: 3, py: 1, borderRadius: "999px",
+                                                                border: 2,
+                                                                borderColor: "colors.accent",
+                                                                color: "colors.accent",
+                                                                fontWeight: 700, fontSize: "0.8rem",
+                                                                letterSpacing: 1, textTransform: "uppercase",
+                                                                cursor: "pointer", transition: "all 300ms",
+                                                                "&:hover": {
+                                                                    transform: "translateY(-2px)",
+                                                                    backgroundColor: "light.accent",
+                                                                    boxShadow: "0 8px 25px rgba(37,99,235,0.15)",
+                                                                },
+                                                            }}>
+                                                                Cover Letter
+                                                            </Box>
+                                                        </MUILink>
+                                                    )}
+                                                </Stack>
+                                            )}
+                                        </Stack>
+                                    </Stack>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Box>
+
+                    <Divider sx={{my: 6}} light={true} variant="fullWidth"/>
+
+                    {/* Tabs */}
                     <Box>
                         <Tabs
                             component={Paper}
                             indicatorColor="secondary"
                             textColor="secondary"
-                            centered={!mobile && true}
-                            defaultValue="skills"
+                            centered={!mobile}
                             variant={mobile ? "scrollable" : "standard"}
                             value={index}
-
-                            sx={{
-                                borderTopLeftRadius: 16,
-                                borderTopRightRadius: 0,
-                                borderBottomRightRadius: 16,
-                                borderBottomLeftRadius: 0,
-                            }}
+                            sx={{borderRadius: 1}}
                             onChange={handleTabChange}>
                             <Tab label="Skills"/>
                             <Tab label="Education"/>
@@ -307,922 +351,172 @@ const AboutPage = () => {
                         </Tabs>
                     </Box>
 
-                    <Divider sx={{my: 8}} light={true} variant="fullWidth"/>
+                    <Divider sx={{my: 6}} light={true} variant="fullWidth"/>
 
+                    {/* Tab Content */}
                     <Box>
-                        {index === 0 ? (
-                            <Grid
-                                container={true}
-                                spacing={4}
-                                sx={{}}>
-                                <Grid item={true} xs={12} md={4}>
-                                    <Card
-                                        sx={{
-                                            height: "100%",
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }} variant="outlined">
-                                        <CardContent>
-                                            <Typography sx={{
-                                                color: "colors.accent",
-                                                fontFamily: "SatrevaNova",
-                                                fontWeight: 700
-                                            }} variant="h6">
-                                                Frontend
-                                            </Typography>
+                        {isLoading && (
+                            <Box sx={{display: "flex", justifyContent: "center", py: 8}}>
+                                <CircularProgress color="secondary" />
+                            </Box>
+                        )}
 
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
+                        {anyError && !isLoading && (
+                            <Alert severity="error" variant="outlined" sx={{borderRadius: 1, mb: 3}}>
+                                {anyError}
+                            </Alert>
+                        )}
 
-                                            <Typography
-                                                sx={{color: "text.secondary"}}
-                                                variant="body2">
-                                                I love to work actively on the user experience portion of a software
-                                                development lifecycle from wireframe prototyping to frontend
-                                                development.
-                                                I love Material UI!
-                                            </Typography>
+                        {!isLoading && !anyError && index === 0 && (
+                            <Grid container spacing={4}>
+                                {(skills || []).map((category, catIndex) => {
+                                    const palettes = [
+                                        {color: "#2563eb", gradient: "linear-gradient(135deg, #2563eb, #1d4ed8)", icon: "{ }"},
+                                        {color: "#7c3aed", gradient: "linear-gradient(135deg, #7c3aed, #6d28d9)", icon: "~/"},
+                                        {color: "#F5A623", gradient: "linear-gradient(135deg, #F5A623, #d97706)", icon: "</>"},
+                                        {color: "#06b6d4", gradient: "linear-gradient(135deg, #06b6d4, #0891b2)", icon: ">>"},
+                                        {color: "#ef4444", gradient: "linear-gradient(135deg, #ef4444, #dc2626)", icon: "&&"},
+                                        {color: "#10b981", gradient: "linear-gradient(135deg, #10b981, #059669)", icon: "::"},
+                                    ];
+                                    const p = palettes[catIndex % palettes.length];
+                                    const items = (category.items || []).map(s => typeof s === "string" ? s : s.name || s);
 
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography
-                                                sx={{color: "text.secondary"}}
-                                                variant="body1">
-                                                Things I love Designing
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                Prototypes, Wireframes, Websites
-                                            </Typography>
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography
-                                                sx={{color: "text.secondary"}}
-                                                variant="body1">
-                                                Design Tools & Languages
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                React JS
-                                            </Typography>
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                React Native
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                Next JS
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                Vue JS
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                WordPress
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                Svelte
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                Figma
-                                            </Typography>
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                GraphQL Client
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item={true} xs={12} md={4}>
-                                    <Card
-                                        sx={{
-                                            height: "100%",
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}
-                                        variant="outlined">
-                                        <CardContent>
-                                            <Typography
-                                                sx={{
-                                                    color: "colors.accent",
-                                                    fontFamily: "SatrevaNova",
-                                                    fontWeight: 700
-                                                }}
-                                                variant="h6">
-                                                Backend
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                I love to get down to the dirty stuff and build APIs; websocket
-                                                servers; microservice architectures; and generally full-fledged backend
-                                                apps.
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography
-                                                sx={{color: "text.secondary"}}
-                                                variant="body1">
-                                                Things I love Building
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography
-                                                sx={{color: "text.secondary"}}
-                                                variant="body2">
-                                                Web Applications, APIs
-                                            </Typography>
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography
-                                                sx={{color: "text.secondary"}}
-                                                variant="body1">
-                                                Dev Tools & Languages
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Node JS
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Nest JS
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                GraphQL Server
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Express JS
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                MongoDB
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                SQL
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Go Fibre
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Postman
-                                            </Typography>
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Git / GitHub
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Anchor - Solana
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item={true} xs={12} md={4}>
-                                    <Card
-                                        sx={{
-                                            height: "100%",
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}
-                                        variant="outlined">
-                                        <CardContent>
-                                            <Typography
-                                                sx={{
-                                                    color: "colors.accent",
-                                                    fontFamily: "SatrevaNova",
-                                                    fontWeight: 700
-                                                }}
-                                                variant="h6">
-                                                Programming Languages
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography sx={{color: "text.secondary"}}
-                                                        variant="body2">
-                                                I love to analyse and solve algorithmic problems and challenge myself
-                                                with
-                                                exploring new language features. At gun point, I'll probably use C
-                                                programming to solve any problem I encounter.
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography
-                                                sx={{color: "text.secondary"}}
-                                                variant="body1">
-                                                Things I love Doing
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Solving Programming Problems
-                                            </Typography>
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography
-                                                sx={{color: "text.secondary"}} variant="body1">
-                                                Languages
-                                            </Typography>
-
-                                            <Divider variant="fullWidth" sx={{my: 2}} light={true}/>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                C / C++
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                C#
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                PHP
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Rust
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Python
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                JavaScript / Typescript
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Go Lang
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Java / Kotlin
-                                            </Typography>
-
-                                            <Typography sx={{color: "text.secondary"}} variant="body2">
-                                                Solidity
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                            </Grid>
-
-                        ) : index === 1 ? (
-                            <Grid container={true} sx={{marginTop: 8}}>
-                                <Grid item={true} xs={12}>
-                                    <VerticalTimeline
-                                        lineColor={theme.palette.background.paper}
-                                        animate={true}>
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/school.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="school icon"
-                                                    title="school icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2013 - 2017
-                                                    </Typography>
-                                                )
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        BSc. Computer Engineering
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}}
-                                                                variant="body1">KNUST</Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2013 - 2017
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-                                    </VerticalTimeline>
-                                </Grid>
-                            </Grid>
-                        ) : index === 2 ? (
-                            <Grid container={true} justifyContent="center">
-                                <Grid item={true} xs={12}>
-                                    <VerticalTimeline
-                                        lineColor={theme.palette.background.paper}
-                                        animate={true}>
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/coding.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="coding icon"
-                                                    title="coding icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2022 - 2023
-                                                    </Typography>
-                                                )
-
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0,
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        Betika
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Software Engineer
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2023 - Present
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/coding.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="coding icon"
-                                                    title="coding icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2022 - 2023
-                                                    </Typography>
-                                                )
-
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0,
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        Geometry Research
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Frontend Developer
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2022 - 2023
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/coding.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="coding icon"
-                                                    title="coding icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2022
-                                                    </Typography>
-                                                )
-                                            }
-                                            contentStyle={{
-                                                background: theme.palette.background.paper,
-                                                borderTopLeftRadius: 32,
-                                                borderTopRightRadius: 0,
-                                                borderBottomRightRadius: 32,
-                                                borderBottomLeftRadius: 0,
+                                    return (
+                                        <Grid key={category.category || catIndex} size={{xs: 12, md: 6, lg: 4}}>
+                                            <Card variant="outlined" sx={{
+                                                height: "100%", borderRadius: 1, overflow: "hidden",
+                                                transition: "all 300ms ease",
+                                                "&:hover": {
+                                                    transform: "translateY(-4px)",
+                                                    borderColor: p.color,
+                                                    boxShadow: `0 12px 40px ${p.color}20`,
+                                                    "& .skill-header": {backgroundSize: "120%"},
+                                                }
                                             }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0,
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        Q-ueue.ai
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Full Stack Engineer
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2022
-                                                    </Typography>
+                                                {/* Gradient header */}
+                                                <Box className="skill-header" sx={{
+                                                    background: p.gradient,
+                                                    backgroundSize: "100%",
+                                                    transition: "background-size 500ms",
+                                                    px: 3, py: 2.5,
+                                                    position: "relative",
+                                                    "&::before": {
+                                                        content: '""', position: "absolute", inset: 0,
+                                                        backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)`,
+                                                        backgroundSize: "16px 16px",
+                                                    },
+                                                }}>
+                                                    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{position: "relative", zIndex: 1}}>
+                                                        <Stack spacing={0.5}>
+                                                            <Typography variant="h6" sx={{color: "white", fontWeight: 800, letterSpacing: 0.5}}>
+                                                                {category.category}
+                                                            </Typography>
+                                                            <Typography variant="caption" sx={{color: "rgba(255,255,255,0.7)"}}>
+                                                                {items.length} {items.length === 1 ? "skill" : "skills"}
+                                                            </Typography>
+                                                        </Stack>
+                                                        <Box sx={{
+                                                            width: 44, height: 44, borderRadius: 1,
+                                                            backgroundColor: "rgba(255,255,255,0.15)",
+                                                            backdropFilter: "blur(4px)",
+                                                            display: "flex", alignItems: "center", justifyContent: "center",
+                                                        }}>
+                                                            <Typography sx={{color: "white", fontWeight: 900, fontSize: "0.9rem"}}>
+                                                                {p.icon}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Stack>
+                                                </Box>
+
+                                                {/* Skill chips */}
+                                                <CardContent sx={{p: 3}}>
+                                                    <Stack direction="row" flexWrap="wrap" gap={1}>
+                                                        {items.map((skill, i) => (
+                                                            <Chip
+                                                                key={skill}
+                                                                label={skill}
+                                                                size="small"
+                                                                sx={{
+                                                                    height: 28,
+                                                                    fontSize: "0.75rem",
+                                                                    fontWeight: 500,
+                                                                    backgroundColor: `${p.color}0a`,
+                                                                    color: "text.primary",
+                                                                    border: `1px solid ${p.color}20`,
+                                                                    transition: "all 250ms",
+                                                                    "&:hover": {
+                                                                        backgroundColor: `${p.color}18`,
+                                                                        borderColor: `${p.color}50`,
+                                                                        transform: "translateY(-1px)",
+                                                                    },
+                                                                }}
+                                                            />
+                                                        ))}
+                                                    </Stack>
                                                 </CardContent>
                                             </Card>
-                                        </VerticalTimelineElement>
-
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/coding.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="coding icon"
-                                                    title="coding icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2021 - Present
-                                                    </Typography>
-                                                )
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0,
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        Dev Track
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Full Stack Mobile & Web Engineer
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2022 - Present
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/coding.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="coding icon"
-                                                    title="coding icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2021 - 2022
-                                                    </Typography>
-                                                )
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                        }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        Vien Health
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Full Stack Engineer
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2021 - 2022
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-
-
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            animate={true}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/school.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="school icon"
-                                                    title="school icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2018 - 2021
-                                                    </Typography>
-                                                )
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        SORPHISE
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Full Stack Web Developer
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2018 - 2021
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/school.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="school icon"
-                                                    title="school icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2018 - 2023
-                                                    </Typography>
-                                                )
-                                            }
-                                            contentStyle={{
-                                                background: theme.palette.background.paper,
-                                                borderTopLeftRadius: 32,
-                                                borderTopRightRadius: 0,
-                                                borderBottomRightRadius: 32,
-                                                borderBottomLeftRadius: 0,
-                                            }}>
-                                            <Card
-                                                sx={{
-                                                    height: "100%",
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        Academic City College
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Teaching Assistant
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2018 - 2023
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-
-
-                                        <VerticalTimelineElement
-                                            iconStyle={{
-                                                backgroundColor: theme.palette.background.paper
-                                            }}
-                                            icon={
-                                                <Avatar
-                                                    src="/assets/school.svg"
-                                                    sx={{
-                                                        mt: {xs: 0.5, lg: 1.5},
-                                                        ml: {xs: 0.5, lg: 1.5},
-                                                        width: 32,
-                                                        height: 32,
-                                                    }}
-                                                    alt="school icon"
-                                                    title="school icon"
-                                                />
-                                            }
-                                            date={
-                                                !mobile && (
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="overline">
-                                                        2017 - 2018
-                                                    </Typography>
-                                                )
-
-                                            } contentStyle={{
-                                            background: theme.palette.background.paper,
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 0,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 0,
-                                        }}>
-                                            <Card
-                                                sx={{
-                                                    borderTopLeftRadius: 32,
-                                                    borderTopRightRadius: 0,
-                                                    borderBottomRightRadius: 32,
-                                                    borderBottomLeftRadius: 0,
-                                                }}
-                                                variant="outlined">
-                                                <CardContent>
-                                                    <Typography
-                                                        sx={{
-                                                            color: "colors.accent",
-                                                            fontFamily: "SatrevaNova",
-                                                            fontWeight: 700
-                                                        }}
-                                                        variant="h6">
-                                                        KNUST
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="body1">
-                                                        Teaching Assistant
-                                                    </Typography>
-                                                    <Divider sx={{my: 2}} light={true}/>
-                                                    <Typography sx={{color: "text.secondary"}} variant="overline">
-                                                        2017 - 2018
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </VerticalTimelineElement>
-                                    </VerticalTimeline>
-                                </Grid>
-                            </Grid>
-                        ) : (
-                            <Grid container={true} spacing={4}>
-                                {
-                                    getCertification().map((certification, index) => {
-                                        return (
-                                            <Grid item={true} xs={12} md={6} lg={4} key={index}>
-                                                <Certification certification={certification}/>
-                                            </Grid>
-                                        )
-                                    })
-                                }
+                                        </Grid>
+                                    );
+                                })}
                             </Grid>
                         )}
+
+                        {!isLoading && !anyError && index === 1 && (
+                            <AnimatedTimeline type="education" items={(education || []).map((edu, i) => ({
+                                degree: edu.title,
+                                school: edu.institution,
+                                period: `${edu.startDate} - ${edu.endDate || 'Present'}`,
+                                color: ["#2563eb", "#3b82f6", "#8b5cf6", "#f59e0b"][i % 4],
+                                icon: edu.title?.includes("MSc") ? "MSc" : edu.title?.includes("BSc") ? "BSc" : "Edu",
+                                highlights: edu.summary ? (Array.isArray(edu.summary) ? edu.summary : [edu.summary]) : []
+                            }))} />
+                        )}
+
+                        {!isLoading && !anyError && index === 2 && (
+                            <AnimatedTimeline type="experience" items={(experience || []).map((exp, i) => ({
+                                company: exp.company,
+                                role: exp.title,
+                                period: `${exp.startDate} - ${exp.endDate || 'Present'}`,
+                                color: ["#2563eb", "#3b82f6", "#8b5cf6", "#f59e0b", "#06b6d4", "#ef4444"][i % 6],
+                                current: !exp.endDate || exp.endDate === 'Present',
+                                location: exp.location || "",
+                                summary: typeof exp.summary === 'string' ? exp.summary : "",
+                                contributions: exp.contributions || exp.highlights || [],
+                                technologies: exp.technologies || exp.tech || [],
+                            }))} />
+                        )}
+
+                        {!isLoading && !anyError && index === 3 && (() => {
+                            const CERTS_PER_PAGE = 9;
+                            const allCerts = certifications || [];
+                            const totalCertPages = Math.ceil(allCerts.length / CERTS_PER_PAGE);
+                            const paginatedCerts = allCerts.slice((certPage - 1) * CERTS_PER_PAGE, certPage * CERTS_PER_PAGE);
+                            return (
+                                <>
+                                    <Grid container spacing={4}>
+                                        {paginatedCerts.map((certification, idx) => (
+                                            <Grid size={{xs: 12, md: 6, lg: 4}} key={certification._id || idx}>
+                                                <Certification certification={certification} index={(certPage - 1) * CERTS_PER_PAGE + idx}/>
+                                            </Grid>
+                                        ))}
+                                    </Grid>
+                                    {totalCertPages > 1 && (
+                                        <Stack alignItems="center" sx={{mt: 4}}>
+                                            <Pagination
+                                                count={totalCertPages}
+                                                page={certPage}
+                                                onChange={(_, v) => setCertPage(v)}
+                                                color="secondary"
+                                                shape="rounded"
+                                            />
+                                            <Typography variant="body2" sx={{color: "text.secondary", mt: 1}}>
+                                                {paginatedCerts.length} of {allCerts.length} certifications
+                                            </Typography>
+                                        </Stack>
+                                    )}
+                                </>
+                            );
+                        })()}
                     </Box>
                 </Container>
             </Box>

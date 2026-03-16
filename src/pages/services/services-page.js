@@ -1,44 +1,62 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Layout from "../../components/layout";
-import {Box, Card, CardContent, Container, Divider, Grid, Stack, Typography} from "@mui/material";
+import {Alert, Box, Card, CardContent, CircularProgress, Container, Grid, Stack, Typography} from "@mui/material";
 import {Helmet} from "react-helmet";
 import {motion} from "framer-motion";
-import {Tilt} from "react-tilt";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchServices, selectServices} from "../../features/data/data-slice";
+import {
+    SchoolOutlined,
+    WebOutlined,
+    CodeOutlined,
+    ApiOutlined,
+    PhoneAndroidOutlined,
+    TokenOutlined,
+    BuildOutlined
+} from "@mui/icons-material";
 
+const iconMap = {
+    SchoolOutlined,
+    WebOutlined,
+    CodeOutlined,
+    ApiOutlined,
+    PhoneAndroidOutlined,
+    TokenOutlined,
+    BuildOutlined,
+};
 
-const container = {
-    initial: {
-        x: '-10vw',
-        opacity: 0
-    },
-    whileInView: {
-        x: 0,
-        opacity: 1,
-        transition: {
-            duration: 1,
-            staggerChildren: 0.3,
-            type: "tween",
-
-        }
-    }
-}
-
-const item = {
-    initial: {
-        x: '-10vw',
-        opacity: 0
-    },
-    whileInView: {
-        x: 0,
-        opacity: 1,
-        transition: {
-            duration: 0.3
-        }
-    }
-}
-
+const colorPalette = ["#2563eb", "#F5A623", "#7c3aed", "#ef4444", "#06b6d4", "#f59e0b"];
 
 const ServicesPage = () => {
+
+    const dispatch = useDispatch();
+    const {loading, error, data: services} = useSelector(selectServices);
+
+    useEffect(() => {
+        dispatch(fetchServices());
+    }, [dispatch]);
+
+    if (loading) {
+        return (
+            <Layout>
+                <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh"}}>
+                    <CircularProgress color="secondary" />
+                </Box>
+            </Layout>
+        );
+    }
+
+    if (error) {
+        return (
+            <Layout>
+                <Container maxWidth="lg" sx={{py: 8}}>
+                    <Alert severity="error" variant="outlined" sx={{borderRadius: 1}}>
+                        {error}
+                    </Alert>
+                </Container>
+            </Layout>
+        );
+    }
 
     return (
         <Layout>
@@ -46,320 +64,101 @@ const ServicesPage = () => {
                 <title>Stanley Hayford | Services</title>
                 <meta
                     name="description"
-                    content="Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages. In-depth knowledge of SQL and MongoDB. Analytical and precise professional with 4 years of hands-on experience taking charge of front and back-end web development. Skillful creating servers and databases for functionality and designing and developing API's. Hardworking collaborator with a track record of superior results. "
-                />
-                <meta
-                    name="keywords"
-                    content="Stanley, Hayford, Full Stack Web Developer, Programmer, Problem Solver, Services"
+                    content="Software Engineer offering training, web apps, APIs, mobile apps, and blockchain solutions."
                 />
             </Helmet>
-            <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
-                <Container
-                    component={motion.div}
-                    variants={container}
-                    whileInView="whileInView"
-                    initial="initial">
+            <Box sx={{py: {xs: 8, md: 10}}}>
+                <Container maxWidth="lg">
                     <Box
                         component={motion.div}
-                        variants={item}>
+                        initial={{opacity: 0, y: 20}}
+                        whileInView={{opacity: 1, y: 0, transition: {duration: 0.6}}}
+                        viewport={{once: true}}
+                        sx={{mb: 8, textAlign: "center"}}>
                         <Typography
-                            variant="h6"
-                            align="center"
+                            variant="body2"
                             sx={{
                                 textTransform: "uppercase",
                                 color: "colors.accent",
-                                fontFamily: "SatrevaNova",
-                                fontWeight: 700,
-                                mb: 2
-                            }}>Services</Typography>
-
-                    </Box>
-
-                    <Box
-                        component={motion.div}
-                        variants={item}>
+                                fontWeight: 800,
+                                mb: 1,
+                                letterSpacing: 3
+                            }}>
+                            Services
+                        </Typography>
                         <Typography
-                            variant="h2"
-                            align="center"
-                            sx={{
-                                textTransform: "none",
-                                color: "colors.accent",
-                                fontWeight: 700
-                            }}
-                            gutterBottom={true}>What I do</Typography>
+                            variant="h3"
+                            sx={{color: "text.primary", fontWeight: 700, mb: 2}}>
+                            What I Do
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{color: "text.secondary", maxWidth: 560, mx: "auto", lineHeight: 1.8}}>
+                            End-to-end development services, from ideation to deployment, tailored to bring your vision to life.
+                        </Typography>
                     </Box>
 
-                    <Box
-                        component={motion.div}
-                        variants={item}>
-                        <Divider variant="fullWidth" light={true} sx={{my: 8}}/>
-                    </Box>
-                    <Box
-                        component={motion.div}
-                        variants={item}>
-                        <Grid
-                            component={motion.div}
-                            variants={container}
-                            whileInView="whileInView"
-                            initial="initial"
-                            container={true} spacing={4}>
-                            <Grid
-                                component={motion.div}
-                                variants={item}
-                                item={true}
-                                xs={12}
-                                md={6}
-                                lg={4}>
-                                <Tilt style={{height: "100%"}}>
-                                    <Card
-                                        sx={{
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                            height: "100%"
-                                        }}
-                                        variant="outlined">
-                                        <CardContent>
-                                            <Stack direction="row" justifyContent="center">
-                                                <img
-                                                    src="/assets/training.png"
-                                                    alt="training logo"
-                                                    title="Training Service"
-                                                />
-                                            </Stack>
-                                            <Typography sx={{
-                                                fontWeight: 700,
-                                                color: "colors.accent",
-                                                fontFamily: "SatrevaNova",
-                                                mb: 2
-                                            }} align="center" variant="h4">Training</Typography>
-                                            <Typography
-                                                sx={{fontWeight: 500, color: "text.secondary"}}
-                                                align="center" variant="body2">
-                                                Training beginner and intermediate programmers in OOP, functional and
-                                                procedural
-                                                programming
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Tilt>
-                            </Grid>
-                            <Grid
-                                component={motion.div}
-                                variants={item}
-                                item={true}
-                                xs={12}
-                                md={6}
-                                lg={4}>
-                                <Tilt style={{height: "100%"}}>
-                                    <Card
-                                        sx={{
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                            height: "100%"
-                                        }}
-                                        variant="outlined">
-                                        <CardContent>
-                                            <Stack direction="row" justifyContent="center">
-                                                <img src="/assets/wordpress.png" alt="wordpress logo"
-                                                     title="WordPress Service"/>
-                                            </Stack>
-
-                                            <Typography sx={{
-                                                fontWeight: 700,
-                                                color: "colors.accent",
-                                                fontFamily: "SatrevaNova",
-                                                mb: 2
-                                            }} align="center" variant="h4">
-                                                WordPress
-                                            </Typography>
-                                            <Typography
-                                                sx={{fontWeight: 500, color: "text.secondary"}}
-                                                align="center" variant="body2">
-                                                Corporate and E-Commerce websites using WordPress.
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Tilt>
-                            </Grid>
-                            <Grid
-                                component={motion.div}
-                                variants={item}
-                                item={true}
-                                xs={12}
-                                md={6}
-                                lg={4}>
-                                <Tilt style={{height: "100%"}}>
-                                    <Card
-                                        sx={{
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                            height: "100%"
-                                        }}
-                                        variant="outlined">
-                                        <CardContent>
-                                            <Stack direction="row" justifyContent="center">
-                                                <img src="/assets/web-app.png" alt="Web Apps logo"
-                                                     title="Web App Dev Service"/>
-                                            </Stack>
-
-                                            <Typography sx={{
-                                                fontWeight: 700,
-                                                color: "colors.accent",
-                                                fontFamily: "SatrevaNova",
-                                                mb: 2
-                                            }} align="center" variant="h4">
-                                                Web Apps
-                                            </Typography>
-                                            <Typography
-                                                sx={{fontWeight: 500, color: "text.secondary"}}
-                                                align="center" variant="body2">
-                                                Responsive Web Apps using React, Vue, Svelte
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Tilt>
-                            </Grid>
-                            <Grid
-                                component={motion.div}
-                                variants={item}
-                                item={true} xs={12} md={6} lg={4}>
-                                <Tilt style={{height: "100%"}}>
-                                    <Card
-                                        sx={{
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                            height: "100%"
-                                        }}
-                                        variant="outlined"
-                                    >
-                                        <CardContent>
-                                            <Stack direction="row" justifyContent="center">
-                                                <img
-                                                    src="/assets/rest-api.png"
-                                                    alt="rest api logo"
-                                                    title="Rest API Service"
-                                                />
-                                            </Stack>
-
-                                            <Typography sx={{
-                                                fontWeight: 700,
-                                                color: "colors.accent",
-                                                fontFamily: "SatrevaNova",
-                                                mb: 2
-                                            }} align="center" variant="h4">
-                                                Web APIs
-                                            </Typography>
-                                            <Typography
-                                                sx={{fontWeight: 500, color: "text.secondary"}}
-                                                align="center" variant="body2">
-                                                Scalable Web APIs using NodeJS, GoFibre
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Tilt>
-                            </Grid>
-                            <Grid
-                                component={motion.div}
-                                variants={item}
-                                item={true}
-                                xs={12}
-                                md={6}
-                                lg={4}>
-                                <Tilt style={{height: "100%"}}>
-                                    <Card
-                                        sx={{
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                            height: "100%"
-                                        }}
-                                        variant="outlined">
-                                        <CardContent>
-                                            <Stack direction="row" justifyContent="center">
-                                                <img
-                                                    style={{width: 32, height: 32, marginBottom: 4}}
-                                                    src="/assets/mobile-app.png"
-                                                    alt=" Mobile Apps"
-                                                    title=" Mobile Apps"
-                                                />
-                                            </Stack>
-
-                                            <Typography sx={{
-                                                fontWeight: 700,
-                                                color: "colors.accent",
-                                                fontFamily: "SatrevaNova",
-                                                mb: 2
-                                            }} align="center" variant="h4">
-                                                Mobile Apps
-                                            </Typography>
-                                            <Typography
-                                                sx={{fontWeight: 500, color: "text.secondary"}}
-                                                align="center" variant="body2">
-                                                Android & iOS mobile apps using React native
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Tilt>
-                            </Grid>
-                            <Grid
-                                component={motion.div}
-                                variants={item}
-                                item={true}
-                                xs={12}
-                                md={6}
-                                lg={4}>
-                                <Tilt style={{height: "100%"}}>
-                                    <Card
-                                        sx={{
-                                            borderTopLeftRadius: 32,
-                                            borderTopRightRadius: 8,
-                                            borderBottomRightRadius: 32,
-                                            borderBottomLeftRadius: 8,
-                                            height: "100%"
-                                        }}
-                                        variant="outlined">
-                                        <CardContent>
-                                            <Stack direction="row" justifyContent="center">
-                                                <img
-                                                    style={{width: 32, height: 32, marginBottom: 4}}
-                                                    src="/assets/blockchain.png"
-                                                    alt="DApps"
-                                                    title="DApps"
-                                                />
-                                            </Stack>
-                                            <Typography sx={{
-                                                fontWeight: 700,
-                                                color: "colors.accent",
-                                                fontFamily: "SatrevaNova",
-                                                mb: 2
-                                            }} align="center" variant="h4">
-                                                DApps
-                                            </Typography>
-                                            <Typography
-                                                sx={{fontWeight: 500, color: "text.secondary"}}
-                                                align="center" variant="body2">
-                                                Blockchain Applications & Decentralised applications using solidity or
-                                                Rust
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Tilt>
-                            </Grid>
-                        </Grid>
-                    </Box>
+                    <Grid container spacing={4}>
+                        {(services || []).map((service, index) => {
+                            const color = colorPalette[index % colorPalette.length];
+                            const IconComponent = iconMap[service.icon] || BuildOutlined;
+                            return (
+                                <Grid size={{xs: 12, md: 6, lg: 4}} key={index}>
+                                    <Box
+                                        component={motion.div}
+                                        initial={{opacity: 0, y: 30}}
+                                        whileInView={{opacity: 1, y: 0, transition: {duration: 0.5, delay: index * 0.08}}}
+                                        viewport={{once: true}}
+                                        sx={{height: "100%"}}>
+                                        <Card
+                                            variant="outlined"
+                                            sx={{
+                                                borderRadius: 1,
+                                                height: "100%",
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                borderTop: `3px solid ${color}`,
+                                                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                                                "&:hover": {
+                                                    transform: "translateY(-4px)",
+                                                    boxShadow: `0 8px 24px ${color}33`
+                                                }
+                                            }}>
+                                            <CardContent sx={{p: 3, flexGrow: 1}}>
+                                                <Box
+                                                    sx={{
+                                                        width: 56,
+                                                        height: 56,
+                                                        borderRadius: 1,
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        justifyContent: "center",
+                                                        backgroundColor: `${color}14`,
+                                                        mb: 2.5
+                                                    }}>
+                                                    <IconComponent sx={{fontSize: 28, color: color}} />
+                                                </Box>
+                                                <Typography
+                                                    variant="h6"
+                                                    sx={{fontWeight: 700, color: "text.primary", mb: 1}}>
+                                                    {service.title}
+                                                </Typography>
+                                                <Typography
+                                                    variant="body2"
+                                                    sx={{color: "text.secondary", lineHeight: 1.7, mb: 2.5}}>
+                                                    {service.description}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Box>
+                                </Grid>
+                            );
+                        })}
+                    </Grid>
                 </Container>
             </Box>
         </Layout>
-    )
-}
+    );
+};
 
 export default ServicesPage;

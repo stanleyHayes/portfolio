@@ -4,13 +4,13 @@ import {MESSAGE_API} from "../../api/messages";
 
 const sendMessage = createAsyncThunk(
     'messages/sendMessage',
-    async ({data, resetForm}, {rejectWithMessage}) => {
+    async ({data, resetForm}, {rejectWithValue}) => {
         try {
             await MESSAGE_API.sendMessage(data);
             resetForm();
-            return "Message sent successfully. We will reach out to you ASAP!!"
+            return "Message sent successfully. We will reach out to you ASAP!"
         } catch (e) {
-            return rejectWithMessage(e);
+            return rejectWithValue(e.message || "Failed to send message. Please try again.");
         }
     })
 

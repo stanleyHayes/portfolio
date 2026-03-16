@@ -1,226 +1,116 @@
 import React from "react";
-import {Box, CardMedia, Link as MUILink, Stack, Toolbar, Typography} from "@mui/material";
+import useSounds from "../../hooks/use-sound";
+import {Box, IconButton, Link as MUILink, Stack, Toolbar, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import {changeTheme, getUiState} from "../../features/ui/ui-slice";
-import {DarkModeOutlined, GitHub, LightModeOutlined, LinkedIn, Twitter} from "@mui/icons-material";
+import {DarkModeOutlined, GitHub, LightModeOutlined, LinkedIn, Twitter, VolumeUpOutlined, VolumeOffOutlined} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
 import NavigationLink from "../shared/navigation-link";
-import logo from "./../../assets/images/logo/logo.png";
-import {motion} from "framer-motion";
-
-const container = {
-    initial: {
-        opacity: 0
-    },
-    animate: {
-        opacity: 1,
-        transition: {
-            delayChildren: 0.1,
-            staggerChildren: 0.2,
-            duration: 1
-        }
-    }
-};
-
-const item = {
-    initial: {
-        opacity: 0,
-    },
-    animate: {
-        opacity: 1,
-        duration: 1
-    },
-};
-
+import {GlowButton} from "../shared/styled-button";
 
 const DesktopHeader = () => {
 
     const dispatch = useDispatch();
-    const theme = useSelector(getUiState);
+    const {theme} = useSelector(getUiState);
+    const {playClick, soundEnabled, toggle} = useSounds();
+
+    const socialIconSx = {
+        fontSize: 18,
+        color: "text.secondary",
+        transition: "all 300ms",
+    };
 
     return (
-        <Toolbar
-            sx={{
-                borderBottomStyle: "solid",
-                borderBottomColor: "divider",
-                borderBottomWidth: 2,
-                backgroundColor: "background.glass",
-                backdropFilter: "blur(5px)"
-            }}
-            variant="regular">
+        <Toolbar variant="dense" sx={{py: 1, px: {md: 3, lg: 5}}}>
             <Stack
-                component={motion.div}
-                variants={container}
-                animate="animate"
-                initial="initial"
                 sx={{width: "100%"}}
                 direction="row"
-                justifyContent="space-around"
+                justifyContent="space-between"
                 alignItems="center">
-                <Stack
-                    component={motion.div}
-                    variants={item}
-                    direction="row"
-                    spacing={1}
-                    alignItems="center">
-                    <Link style={{textDecoration: "none"}} to="/">
-                        <CardMedia
-                            component="img"
-                            sx={{width: 50, height: 50}}
-                            src={logo}
-                            alt="lightening bolt zeus"
-                            title="Zeus"
-                        />
-                    </Link>
 
-                    <Link style={{textDecoration: "none"}} to="/">
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                fontWeight: 700,
-                                color: "colors.accent",
-                                fontFamily: "SatrevaNova"
-                            }}>Zeus</Typography>
-                    </Link>
+                {/* Logo with gradient */}
+                <Link style={{textDecoration: "none"}} to="/">
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            fontWeight: 900,
+                            letterSpacing: 1,
+                            background: (t) => t.palette.mode === "dark"
+                                ? "linear-gradient(135deg, #60a5fa, #F5A623)"
+                                : "linear-gradient(135deg, #2563eb, #F5A623)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                        }}>
+                        {"<Zeus />"}
+                    </Typography>
+                </Link>
+
+                {/* Nav Links */}
+                <Stack direction="row" spacing={0.5} alignItems="center">
+                    <NavigationLink path="/" label="Home"/>
+                    <NavigationLink path="/about" label="About"/>
+                    <NavigationLink path="/learn" label="Learn"/>
+                    <NavigationLink path="/portfolio" label="Portfolio"/>
+                    <NavigationLink path="/services" label="Services"/>
                 </Stack>
-                <Stack
-                    component={motion.div}
-                    variants={container}
-                    animate="animate"
-                    initial="initial"
-                    direction="row"
-                    spacing={3}
-                    justifyContent="center"
-                    alignItems="center">
-                    <Box component={motion.div} variants={item}>
-                        <NavigationLink path="/" label="Olympus"/>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        <NavigationLink path="/about" label="About"/>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        <NavigationLink path="/learn" label="Learn"/>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        <NavigationLink path="/portfolio" label="Portfolio"/>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        <NavigationLink path="/services" label="Services"/>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        <NavigationLink path="/contact" label="Contact"/>
-                    </Box>
-                </Stack>
-                <Stack
-                    component={motion.div}
-                    variants={container}
-                    animate="animate"
-                    initial="initial"
-                    direction="row"
-                    spacing={2}
-                    justifyContent="center"
-                    alignItems="center">
-                    <Box component={motion.div} variants={item}>
-                        <MUILink
-                            underline="none"
-                            href="https://github.com/stanleyHayes"
-                            rel="noreferrer"
-                            target="_blank">
-                            <GitHub
+
+                {/* Right side: socials + theme + CTA */}
+                <Stack direction="row" spacing={1} alignItems="center">
+                    {[
+                        {Icon: GitHub, href: "https://github.com/stanleyHayes"},
+                        {Icon: LinkedIn, href: "https://www.linkedin.com/in/stanley-asoku-hayford/"},
+                        {Icon: Twitter, href: "https://x.com/stanley_hayford"},
+                    ].map((social, i) => (
+                        <MUILink key={i} underline="none" href={social.href} rel="noreferrer" target="_blank">
+                            <IconButton
+                                size="small"
                                 sx={{
-                                    fontSize: 32,
-                                    padding: 0.6,
-                                    backgroundColor: "light.accent",
-                                    cursor: "pointer",
-                                    borderTopLeftRadius: 12,
-                                    borderTopRightRadius: 4,
-                                    borderBottomRightRadius: 12,
-                                    borderBottomLeftRadius: 4,
-                                    color: "colors.accent"
-                                }}
-                            />
+                                    "&:hover": {
+                                        backgroundColor: "light.accent",
+                                        "& .MuiSvgIcon-root": {color: "colors.accent"},
+                                    }
+                                }}>
+                                <social.Icon sx={socialIconSx} />
+                            </IconButton>
                         </MUILink>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        <MUILink
-                            underline="none"
-                            href="https://www.linkedin.com/in/stanley-asoku-hayford-200b67106/"
-                            rel="noreferrer"
-                            target="_blank">
-                            <LinkedIn
-                                sx={{
-                                    fontSize: 32,
-                                    padding: 0.6,
-                                    backgroundColor: "light.accent",
-                                    cursor: "pointer",
-                                    borderTopLeftRadius: 12,
-                                    borderTopRightRadius: 4,
-                                    borderBottomRightRadius: 12,
-                                    borderBottomLeftRadius: 4,
-                                    color: "colors.accent"
-                                }}
-                            />
-                        </MUILink>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        <MUILink
-                            underline="none"
-                            href="https://twitter.com/stanley_hayford"
-                            rel="noreferrer"
-                            target="_blank">
-                            <Twitter
-                                sx={{
-                                    fontSize: 32,
-                                    padding: 0.6,
-                                    backgroundColor: "light.accent",
-                                    cursor: "pointer",
-                                    borderTopLeftRadius: 12,
-                                    borderTopRightRadius: 4,
-                                    borderBottomRightRadius: 12,
-                                    borderBottomLeftRadius: 4,
-                                    color: "colors.accent"
-                                }}
-                            />
-                        </MUILink>
-                    </Box>
-                    <Box component={motion.div} variants={item}>
-                        {
-                            theme === "dark" ?
-                                (
-                                    <LightModeOutlined
-                                        sx={{
-                                            fontSize: 32,
-                                            padding: 0.6,
-                                            backgroundColor: "light.accent",
-                                            cursor: "pointer",
-                                            borderTopLeftRadius: 12,
-                                            borderTopRightRadius: 4,
-                                            borderBottomRightRadius: 12,
-                                            borderBottomLeftRadius: 4,
-                                            color: "colors.accent"
-                                        }}
-                                        onClick={() => dispatch(changeTheme())}
-                                    />
-                                )
-                                :
-                                (
-                                    <DarkModeOutlined
-                                        onClick={() => dispatch(changeTheme())}
-                                        sx={{
-                                            fontSize: 32,
-                                            padding: 0.6,
-                                            backgroundColor: "light.accent",
-                                            cursor: "pointer",
-                                            borderTopLeftRadius: 12,
-                                            borderTopRightRadius: 4,
-                                            borderBottomRightRadius: 12,
-                                            borderBottomLeftRadius: 4,
-                                            color: "colors.accent"
-                                        }}
-                                    />
-                                )
+                    ))}
+
+                    {/* Theme toggle with animation */}
+                    <IconButton
+                        size="small"
+                        onClick={() => { playClick(); dispatch(changeTheme()); }}
+                        sx={{
+                            transition: "transform 300ms",
+                            "&:hover": {
+                                transform: "rotate(30deg)",
+                                backgroundColor: "light.accent",
+                                "& .MuiSvgIcon-root": {color: "colors.gold"},
+                            }
+                        }}>
+                        {theme === "dark"
+                            ? <LightModeOutlined sx={{...socialIconSx, color: "colors.gold"}} />
+                            : <DarkModeOutlined sx={socialIconSx} />
                         }
-                    </Box>
+                    </IconButton>
+
+                    {/* Sound toggle */}
+                    <IconButton
+                        size="small"
+                        onClick={toggle}
+                        sx={{
+                            transition: "all 300ms",
+                            "&:hover": {backgroundColor: "light.accent", "& .MuiSvgIcon-root": {color: "colors.accent"}},
+                        }}>
+                        {soundEnabled
+                            ? <VolumeUpOutlined sx={socialIconSx} />
+                            : <VolumeOffOutlined sx={{...socialIconSx, opacity: 0.4}} />
+                        }
+                    </IconButton>
+
+                    {/* CTA Button */}
+                    <GlowButton to="/contact" variant="primary">
+                        Contact
+                    </GlowButton>
                 </Stack>
             </Stack>
         </Toolbar>

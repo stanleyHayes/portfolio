@@ -1,55 +1,57 @@
-import {Box, CardMedia, CircularProgress, Container, Stack, Typography} from "@mui/material";
-import logo from "../../assets/images/logo/logo.png";
+import {Box, CircularProgress, Container, Stack, Typography} from "@mui/material";
+import {motion} from "framer-motion";
 
 const Splash = () => {
     return (
-        <Box sx={{maxHeight: "100vh", height: "100vh", display: "flex", alignItems: "center"}}>
-            <Container>
-                <Stack spacing={3}>
-                    <Box>
+        <Box sx={{
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "background.default"
+        }}>
+            <Container maxWidth="sm">
+                <Stack spacing={4} alignItems="center">
+                    <Box
+                        component={motion.div}
+                        initial={{opacity: 0, scale: 0.8}}
+                        animate={{opacity: 1, scale: 1, transition: {duration: 0.6}}}>
                         <Typography
-                            variant="h4"
+                            variant="h2"
                             align="center"
                             sx={{
-                                textTransform: "uppercase",
-                                color: "text.primary",
-                                fontWeight: 700,
-                                fontFamily: "SatrevaNova",
-                                letterSpacing: 1.4,
+                                fontWeight: 900,
+                                letterSpacing: 2,
+                                background: (t) => t.palette.mode === "dark"
+                                    ? "linear-gradient(135deg, #60a5fa, #F5A623)"
+                                    : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
                             }}>
-                            This is Olympus
+                            {"<Zeus />"}
                         </Typography>
                     </Box>
-                    <Box>
-                        <Stack justifyContent="center" direction="row" spacing={3}>
-                            <CardMedia
-                                src={logo}
-                                sx={{
-                                    height: 150,
-                                    objectPosition: "center",
-                                    objectFit: "contain"
-                                }}
-                                component="img"
-                            />
-                        </Stack>
-                    </Box>
-                    <Box>
-                        <Stack justifyContent="center" direction="row" spacing={3}>
-                            <CircularProgress variant="indeterminate" color="secondary" size={50}/>
-                        </Stack>
-                    </Box>
-                    <Box>
+                    <Box
+                        component={motion.div}
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1, transition: {duration: 0.8, delay: 0.3}}}>
                         <Typography
-                            variant="h6"
+                            variant="body2"
                             align="center"
                             sx={{
-                                textTransform: "none",
                                 color: "text.secondary",
-                                fontFamily: "SatrevaNova",
-                                letterSpacing: 1.4,
+                                fontFamily: "'Inter'",
+                                letterSpacing: 6,
+                                textTransform: "uppercase"
                             }}>
-                            Setting up. Please wait...
+                            loading...
                         </Typography>
+                    </Box>
+                    <Box
+                        component={motion.div}
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1, transition: {duration: 0.5, delay: 0.5}}}>
+                        <CircularProgress variant="indeterminate" color="secondary" size={32} thickness={5} />
                     </Box>
                 </Stack>
             </Container>

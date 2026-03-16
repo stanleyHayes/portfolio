@@ -1,48 +1,50 @@
 import {createTheme} from "@mui/material";
 
+// Zeus palette: electric blue, lightning gold, stormy darks
 const lightTheme = createTheme({
     typography: {
-        fontFamily: "Outfit, Urbanist, UberMoveAR, Manrope, SamsungSans, SamsungSharpSans,  RayleighGlamour, SatrevaNova, OgelicRegular"
+        fontFamily: "'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
     },
     palette: {
         primary: {
             main: "#FFFFFF"
         },
         secondary: {
-            main: "#FBA024"
+            main: "#F5A623"
         },
         background: {
-            default: "#f6f7f8",
+            default: "#f5f6fa",
             paper: "#ffffff",
-            accent: "#FFF6E9",
+            accent: "#fef9ef",
             glass: 'rgba(255,255,255,0.10)'
         },
         text: {
-            primary: "#0b1d3c",
-            secondary: "#9aa2ae",
-            title: "#3d7df6",
-            accent: "#FFB91F"
+            primary: "#0f172a",
+            secondary: "#64748b",
+            title: "#2563eb",
+            accent: "#d97706"
         },
         light: {
-            primary: "rgba(63,146,103,0.3)",
-            secondary: "rgba(54,105,247,0.3)",
-            accent: "rgba(255,185,31,0.3)",
-            black: "rgba(20,21,33,0.3)",
-            purple: "rgba(101,73,248,0.3)"
+            primary: "rgba(37,99,235,0.10)",
+            secondary: "rgba(245,166,35,0.10)",
+            accent: "rgba(37,99,235,0.10)",
+            black: "rgba(15,23,42,0.06)",
+            purple: "rgba(139,92,246,0.10)"
         },
         colors: {
-            purple: "#6549f8",
-            accent: "#FBA024",
-            green: "#3f9267",
-            blue: "#3d7df6",
-            black: "#141521",
-            red: "#d50000"
+            purple: "#7c3aed",
+            accent: "#2563eb",
+            green: "#10b981",
+            blue: "#2563eb",
+            black: "#0f172a",
+            red: "#ef4444",
+            gold: "#F5A623",
         },
         icon: {
-            accent: "#FBA024",
-            secondary: "#247FFB",
-            accentBackground: "rgba(200,151,67,0.2)",
-            secondaryBackground: "rgba(36,127,251,0.2)"
+            accent: "#2563eb",
+            secondary: "#F5A623",
+            accentBackground: "rgba(37,99,235,0.10)",
+            secondaryBackground: "rgba(245,166,35,0.10)"
         },
         mode: "light",
     }
@@ -50,47 +52,48 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
     typography: {
-        fontFamily: "Outfit, Urbanist, SamsungSharpSans,SamsungSans, Manrope, UberMoveAR, RayleighGlamour, SatrevaNova, OgelicRegular"
+        fontFamily: "'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
     },
     palette: {
         primary: {
-            main: "#252729"
+            main: "#0f172a"
         },
         secondary: {
-            main: "#FBA024"
+            main: "#F5A623"
         },
         background: {
-            default: "#1b1a1a",
-            paper: "#252729",
-            glass: 'rgba(45,51,59,0.10)',
-            secondary: "#EDF4FF",
-            accent: "#FFF6E9",
+            default: "#070b14",
+            paper: "#0f172a",
+            glass: 'rgba(15,23,42,0.60)',
+            secondary: "#fef9ef",
+            accent: "#1a1a3e",
         },
         text: {
-            primary: "#fdfdfd",
-            secondary: "#8a8a88",
-            title: "#3d7df6",
-            accent: "#c89743"
+            primary: "#e2e8f0",
+            secondary: "#94a3b8",
+            title: "#60a5fa",
+            accent: "#F5A623"
         },
         light: {
-            primary: "rgba(63,146,103,0.15)",
-            secondary: "rgba(54,105,247,0.01)",
-            accent: "rgba(255,185,31,0.05)",
-            black: "rgba(20,21,33,0.15)",
-            purple: "rgba(101,73,248,0.15)"
+            primary: "rgba(37,99,235,0.15)",
+            secondary: "rgba(245,166,35,0.12)",
+            accent: "rgba(37,99,235,0.12)",
+            black: "rgba(15,23,42,0.4)",
+            purple: "rgba(139,92,246,0.15)"
         },
         colors: {
-            accent: "#FBA024",
-            footer: "#000137",
-            green: "#3f9267",
-            blue: "#3d7df6",
-            black: "#141521",
+            accent: "#60a5fa",
+            footer: "#030712",
+            green: "#10b981",
+            blue: "#2563eb",
+            black: "#0f172a",
+            gold: "#F5A623",
         },
         icon: {
-            accent: "#FBA024",
-            secondary: "#247FFB",
-            accentBackground: "rgba(200,151,67,0.2)",
-            secondaryBackground: "rgba(36,127,251,0.2)"
+            accent: "#60a5fa",
+            secondary: "#F5A623",
+            accentBackground: "rgba(96,165,250,0.12)",
+            secondaryBackground: "rgba(245,166,35,0.12)"
         },
         mode: "dark",
     }

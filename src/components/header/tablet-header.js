@@ -20,11 +20,11 @@ const TabletHeader = () => {
                 backdropFilter: "blur(5px)"
             }}
             variant="regular">
-            <Grid container={true} justify="space-between" alignItems="center">
-                <Grid item={true} xs={1}>
+            <Grid container justifyContent="space-between" alignItems="center">
+                <Grid size={{xs: 1}}>
                     <Menu />
                 </Grid>
-                <Grid item={true} xs={7} container={true} justify="flex-start">
+                <Grid size={{xs: 7}} container justifyContent="flex-start">
                     <Link to="/" >
                         <Button startIcon={
                             <img
@@ -36,26 +36,26 @@ const TabletHeader = () => {
                         }  variant="text">Zeus</Button>
                     </Link>
                 </Grid>
-                <Grid xs={4} container={true} item={true} spacing={3} alignItems="center">
-                    <Grid item={true} >
+                <Grid size={{xs: 4}} container spacing={3} alignItems="center">
+                    <Grid>
                         <a href="https://github.com/stanleyHayes" rel="noreferrer" target="_blank">
                             <img  src="/assets/github.svg" alt="GitHub logo" title="GitHub Repository"/>
                         </a>
                     </Grid>
-                    <Grid item={true}>
+                    <Grid>
                         <a href="https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/" rel="noreferrer" target="_blank">
                             <img  src="/assets/linkedin.svg" alt="Linkedin Account" title="LinkedIn Account"/>
                         </a>
                     </Grid>
-                    <Grid item={true}>
+                    <Grid>
                         <a href="https://twitter.com/stanley_hayford" rel="noreferrer" target="_blank">
                             <img  src="/assets/twitter.svg" alt="Twitter Account" title="Twitter Account"/>
                         </a>
                     </Grid>
-                    <Grid item={true}>
+                    <Grid>
                         <img  src="/assets/ghana.svg" alt="Ghana Flag" title="Ghana Flag"/>
                     </Grid>
-                    <Grid item={true}>
+                    <Grid>
                         {
                             theme === "dark" ?
                                 (<Brightness7  onClick={() => dispatch(changeTheme())}/>)

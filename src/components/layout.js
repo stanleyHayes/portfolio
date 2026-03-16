@@ -1,7 +1,10 @@
 import React from "react";
 import {Box, SwipeableDrawer} from "@mui/material";
 import Header from "./header/header";
+import Footer from "./shared/footer";
 import DrawerContent from "./drawer/drawer-content";
+import BirthdayBanner from "./shared/birthday-banner";
+import SupportButton from "./shared/support-button";
 import {useDispatch, useSelector} from "react-redux";
 import {getUiState, toggleDrawer} from "../features/ui/ui-slice";
 import {motion} from "framer-motion";
@@ -14,27 +17,23 @@ const Layout = ({children}) => {
     return (
         <Box
             sx={{
-                minHeight: {xs: "100vh", lg: "100vh"},
+                minHeight: "100vh",
                 display: "flex",
                 flexDirection: "column",
                 maxWidth: "100vw",
                 overflowX: "hidden",
-                "&:--webkit-scrollbar": {display: "none"}
+                "&::-webkit-scrollbar": {display: "none"}
             }}>
             <Box>
                 <Header/>
             </Box>
+            <BirthdayBanner />
             <Box
-                initial={{
-                    y: "10vh",
-                    opacity: 0
-                }}
+                initial={{y: "10vh", opacity: 0}}
                 animate={{
                     y: 0,
                     opacity: 1,
-                    transition: {
-                        duration: 1.5
-                    }
+                    transition: {duration: 1.5}
                 }}
                 exit={{
                     y: "-100vh",
@@ -46,10 +45,12 @@ const Layout = ({children}) => {
                     flexGrow: 1,
                     backgroundColor: "background.default",
                     mt: {xs: 7, lg: 8.3},
-                    "&:--webkit-scrollbar": {display: "none"}
-            }}>
+                    "&::-webkit-scrollbar": {display: "none"}
+                }}>
                 {children}
             </Box>
+            <Footer/>
+            <SupportButton />
             <SwipeableDrawer
                 onClose={() => dispatch(toggleDrawer(false))}
                 onOpen={() => dispatch(toggleDrawer(true))}
