@@ -3,16 +3,25 @@ import useSounds from "../../hooks/use-sound";
 import {Box, IconButton, Link as MUILink, Stack, Toolbar, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import {changeTheme, getUiState} from "../../features/ui/ui-slice";
-import {DarkModeOutlined, GitHub, LightModeOutlined, LinkedIn, Twitter, VolumeUpOutlined, VolumeOffOutlined} from "@mui/icons-material";
+import {DarkModeOutlined, GitHub, Instagram, LightModeOutlined, LinkedIn, Twitter, VolumeUpOutlined, VolumeOffOutlined} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
 import NavigationLink from "../shared/navigation-link";
 import {GlowButton} from "../shared/styled-button";
+import {selectInfo} from "../../features/data/data-slice";
+
+const socialIconMap = {github: GitHub, linkedin: LinkedIn, twitter: Twitter, instagram: Instagram};
 
 const DesktopHeader = () => {
 
     const dispatch = useDispatch();
     const {theme} = useSelector(getUiState);
+    const {data: info} = useSelector(selectInfo);
     const {playClick, soundEnabled, toggle} = useSounds();
+
+    const rawLinks = info?.socialLinks || {};
+    const socials = Object.entries(rawLinks)
+        .filter(([, url]) => url && url.length > 0)
+        .map(([key, url]) => ({Icon: socialIconMap[key] || GitHub, href: url}));
 
     const socialIconSx = {
         fontSize: 18,
@@ -56,11 +65,7 @@ const DesktopHeader = () => {
 
                 {/* Right side: socials + theme + CTA */}
                 <Stack direction="row" spacing={1} alignItems="center">
-                    {[
-                        {Icon: GitHub, href: "https://github.com/stanleyHayes"},
-                        {Icon: LinkedIn, href: "https://www.linkedin.com/in/stanley-asoku-hayford/"},
-                        {Icon: Twitter, href: "https://x.com/stanley_hayford"},
-                    ].map((social, i) => (
+                    {socials.map((social, i) => (
                         <MUILink key={i} underline="none" href={social.href} rel="noreferrer" target="_blank">
                             <IconButton
                                 size="small"

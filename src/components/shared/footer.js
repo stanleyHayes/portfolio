@@ -7,6 +7,8 @@ import {Canvas, useFrame} from "@react-three/fiber";
 import * as THREE from "three";
 import {publicAPI} from "../../api/client";
 import useSounds from "../../hooks/use-sound";
+import {useSelector} from "react-redux";
+import {selectInfo} from "../../features/data/data-slice";
 
 const ParticleWave = () => {
     const meshRef = useRef();
@@ -47,12 +49,12 @@ const navLinks = [
     {label: "Contact", path: "/contact"},
 ];
 
-const socials = [
-    {Icon: GitHub, href: "https://github.com/stanleyHayes", label: "GitHub", color: "#fff"},
-    {Icon: LinkedIn, href: "https://www.linkedin.com/in/stanley-asoku-hayford/", label: "LinkedIn", color: "#0A66C2"},
-    {Icon: Twitter, href: "https://x.com/stanley_hayford", label: "X", color: "#1DA1F2"},
-    {Icon: Instagram, href: "https://instagram.com/hayford.stanley", label: "Instagram", color: "#E4405F"},
-];
+const socialConfig = {
+    github: {Icon: GitHub, label: "GitHub", color: "#fff"},
+    linkedin: {Icon: LinkedIn, label: "LinkedIn", color: "#0A66C2"},
+    twitter: {Icon: Twitter, label: "X", color: "#1DA1F2"},
+    instagram: {Icon: Instagram, label: "Instagram", color: "#E4405F"},
+};
 
 const FooterLink = ({to, children}) => (
     <Link to={to} style={{textDecoration: "none"}}>
@@ -69,6 +71,14 @@ const FooterLink = ({to, children}) => (
 
 const Footer = () => {
     const {playExcellent} = useSounds();
+    const {data: info} = useSelector(selectInfo);
+
+    const rawLinks = info?.socialLinks || {};
+    const socials = Object.entries(rawLinks)
+        .filter(([, url]) => url && url.length > 0)
+        .map(([key, url]) => ({...socialConfig[key], href: url}))
+        .filter(s => s.Icon);
+
     const [email, setEmail] = useState("");
     const [subName, setSubName] = useState("");
     const [subscribed, setSubscribed] = useState(false);
