@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
+import SkeletonLoader from "../../components/shared/skeleton-loader";
 import {
     Alert,
     Box,
     Card,
     CardContent,
-    CircularProgress,
     Container,
     Divider,
     Drawer,
@@ -23,6 +23,7 @@ import {Link} from "react-router-dom";
 import {ViewList, ArrowBackOutlined, ArrowForwardOutlined} from "@mui/icons-material";
 import Lessons from "../../components/shared/lessons";
 import {Helmet} from "react-helmet";
+import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourseLesson, fetchCourseBySlug, selectCurrentLesson, selectCurrentCourse} from "../../features/data/data-slice";
 
@@ -48,13 +49,7 @@ const LessonDetailPage = () => {
     const lessons = courseData?.lessons || [];
 
     if (loading) {
-        return (
-            <Layout>
-                <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh"}}>
-                    <CircularProgress color="secondary" />
-                </Box>
-            </Layout>
-        );
+        return <Layout><SkeletonLoader variant="detail" /></Layout>;
     }
 
     if (error) {
@@ -88,10 +83,11 @@ const LessonDetailPage = () => {
 
     return (
         <Layout>
-            <Helmet>
-                <title>{lesson.title} | {course.name} | Stanley Hayford</title>
-            </Helmet>
-            <Box sx={{py: 4}}>
+            <PageBackground variant="detail">
+                <Helmet>
+                    <title>{lesson.title} | {course.name} | Stanley Hayford</title>
+                </Helmet>
+                <Box sx={{py: 4}}>
                 <Container maxWidth="xl">
                     {/* Back navigation */}
                     <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{mb: 3}}>
@@ -150,8 +146,7 @@ const LessonDetailPage = () => {
                                             variant="h6"
                                             sx={{
                                                 color: "colors.accent",
-                                                fontFamily: "'Inter'",
-                                                fontWeight: 800,
+                                                                                                fontWeight: 800,
                                                 textTransform: "uppercase",
                                                 letterSpacing: 1,
                                                 mb: 1
@@ -183,8 +178,7 @@ const LessonDetailPage = () => {
                                             variant="overline"
                                             sx={{
                                                 color: "colors.accent",
-                                                fontFamily: "'Inter'",
-                                                letterSpacing: 2
+                                                                                                letterSpacing: 2
                                             }}>
                                             {course.name} &middot; Lesson {lesson.number}
                                         </Typography>
@@ -274,32 +268,32 @@ const LessonDetailPage = () => {
                 )}
             </Box>
 
-            <Drawer
-                anchor="right"
-                variant="temporary"
-                onClose={() => setOpen(false)}
-                open={open}>
-                <Box sx={{width: 300, p: 2}}>
-                    <Typography
-                        variant="h6"
-                        sx={{
-                            color: "colors.accent",
-                            fontFamily: "'Inter'",
-                            fontWeight: 800,
-                            textTransform: "uppercase",
-                            letterSpacing: 1,
-                            mb: 1
-                        }}>
-                        {course.name}
-                    </Typography>
-                    <Divider light={true} sx={{mb: 1}}/>
-                    <Lessons
-                        lessons={lessons}
-                        lslug={lslug}
-                        handleSelectedLesson={handleSelectedLesson}
-                    />
-                </Box>
-            </Drawer>
+                <Drawer
+                    anchor="right"
+                    variant="temporary"
+                    onClose={() => setOpen(false)}
+                    open={open}>
+                    <Box sx={{width: 300, p: 2}}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                color: "colors.accent",
+                                                                fontWeight: 800,
+                                textTransform: "uppercase",
+                                letterSpacing: 1,
+                                mb: 1
+                            }}>
+                            {course.name}
+                        </Typography>
+                        <Divider light={true} sx={{mb: 1}}/>
+                        <Lessons
+                            lessons={lessons}
+                            lslug={lslug}
+                            handleSelectedLesson={handleSelectedLesson}
+                        />
+                    </Box>
+                </Drawer>
+            </PageBackground>
         </Layout>
     )
 }

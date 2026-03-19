@@ -62,72 +62,72 @@ const Project = ({project}) => {
                 }
             }}>
 
-            {/* Generative Hero Area */}
-            <Box
-                className="project-hero"
-                sx={{
-                    height: 180,
-                    background: hasImage ? `url(${project.image})` : bg,
-                    backgroundSize: hasImage ? "cover" : "100%",
-                    backgroundPosition: "center",
-                    position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "background-size 500ms ease",
-                    // Dot grid pattern overlay
-                    "&::before": hasImage ? {} : {
-                        content: '""',
-                        position: "absolute",
-                        inset: 0,
-                        backgroundImage: `radial-gradient(circle, ${accent}20 1px, transparent 1px)`,
-                        backgroundSize: "20px 20px",
-                    },
-                }}>
-
-                {/* Initials or overlay for real images */}
-                {!hasImage && (
-                    <Typography
-                        className="project-initials"
-                        sx={{
-                            fontSize: "3rem",
-                            fontWeight: 900,
-                            color: `${accent}`,
-                            letterSpacing: 4,
-                            textShadow: `0 0 40px ${accent}40`,
-                            zIndex: 1,
-                            transition: "transform 300ms",
-                            userSelect: "none",
-                        }}>
-                        {initials}
-                    </Typography>
-                )}
-
-                {/* Status chip */}
-                <Chip
-                    label={isCompleted ? "Completed" : "In Progress"}
-                    size="small"
+            {/* Generative Hero Area — floating with padding */}
+            <Box sx={{p: 1.5, pb: 0}}>
+                <Box
+                    className="project-hero"
                     sx={{
-                        position: "absolute",
-                        top: 12,
-                        right: 12,
-                        backgroundColor: `${accent}cc`,
-                        color: "white",
-                        fontWeight: 600,
-                        fontSize: "0.65rem",
-                        height: 22,
-                        backdropFilter: "blur(4px)",
-                        zIndex: 2,
-                    }}
-                />
+                        height: 180,
+                        borderRadius: 2,
+                        background: hasImage ? `url(${project.image})` : bg,
+                        backgroundSize: hasImage ? "cover" : "100%",
+                        backgroundPosition: "center",
+                        position: "relative",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        overflow: "hidden",
+                        transition: "background-size 500ms ease",
+                        "&::before": hasImage ? {} : {
+                            content: '""',
+                            position: "absolute",
+                            inset: 0,
+                            backgroundImage: `radial-gradient(circle, ${accent}20 1px, transparent 1px)`,
+                            backgroundSize: "20px 20px",
+                        },
+                    }}>
 
-                {/* Bottom gradient fade */}
-                <Box sx={{
-                    position: "absolute",
-                    bottom: 0, left: 0, right: 0,
-                    height: 60,
-                    background: (t) => `linear-gradient(transparent, ${t.palette.background.paper})`,
-                }} />
+                    {!hasImage && (
+                        <Typography
+                            className="project-initials"
+                            sx={{
+                                fontSize: "3rem",
+                                fontWeight: 900,
+                                color: `${accent}`,
+                                letterSpacing: 4,
+                                textShadow: `0 0 40px ${accent}40`,
+                                zIndex: 1,
+                                transition: "transform 300ms",
+                                userSelect: "none",
+                            }}>
+                            {initials}
+                        </Typography>
+                    )}
+
+                    <Chip
+                        label={isCompleted ? "Completed" : "In Progress"}
+                        size="small"
+                        sx={{
+                            position: "absolute",
+                            top: 10,
+                            right: 10,
+                            backgroundColor: `${accent}cc`,
+                            color: "white",
+                            fontWeight: 600,
+                            fontSize: "0.65rem",
+                            height: 22,
+                            backdropFilter: "blur(4px)",
+                            zIndex: 2,
+                        }}
+                    />
+
+                    <Box sx={{
+                        position: "absolute",
+                        bottom: 0, left: 0, right: 0,
+                        height: 60,
+                        background: (t) => `linear-gradient(transparent, ${t.palette.background.paper})`,
+                    }} />
+                </Box>
             </Box>
 
             <CardContent sx={{flexGrow: 1, p: 3, pt: 1}}>

@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
-import {Alert, Box, Chip, CircularProgress, Container, Divider, Grid, Pagination, Stack, Typography} from "@mui/material";
+import {Alert, Box, Chip, Container, Divider, Grid, Pagination, Stack, Typography} from "@mui/material";
+import SkeletonLoader from "../../components/shared/skeleton-loader";
 import Course from "../../components/shared/course";
 import {Helmet} from "react-helmet";
 import {motion} from "framer-motion";
+import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourses, selectCourses} from "../../features/data/data-slice";
 
@@ -29,13 +31,7 @@ const CoursesPage = () => {
     };
 
     if (loading) {
-        return (
-            <Layout>
-                <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh"}}>
-                    <CircularProgress color="secondary" />
-                </Box>
-            </Layout>
-        );
+        return <Layout><SkeletonLoader variant="cards" /></Layout>;
     }
 
     if (error) {
@@ -50,11 +46,12 @@ const CoursesPage = () => {
 
     return (
         <Layout>
-            <Helmet>
-                <title>Stanley Hayford | Learn to Code</title>
-            </Helmet>
-            <Box sx={{py: 8}}>
-                <Container maxWidth="xl">
+            <PageBackground variant="cards">
+                <Helmet>
+                    <title>Stanley Hayford | Learn to Code</title>
+                </Helmet>
+                <Box sx={{py: 8}}>
+                    <Container maxWidth="xl">
                     <Box
                         component={motion.div}
                         initial={{opacity: 0, y: 20}}
@@ -111,7 +108,8 @@ const CoursesPage = () => {
                         </Stack>
                     )}
                 </Container>
-            </Box>
+                </Box>
+            </PageBackground>
         </Layout>
     )
 }

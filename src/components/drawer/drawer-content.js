@@ -59,6 +59,7 @@ const DrawerContent = () => {
                         <NavigationLink path="/about" label="About"/>
                         <NavigationLink path="/portfolio" label="Portfolio"/>
                         <NavigationLink path="/learn" label="Learn"/>
+                        <NavigationLink path="/blog" label="Blog"/>
                         <NavigationLink path="/services" label="Services"/>
                         <NavigationLink path="/contact" label="Contact"/>
                     </Stack>

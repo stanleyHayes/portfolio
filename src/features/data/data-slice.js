@@ -52,6 +52,16 @@ export const fetchInfo = createAsyncThunk("data/fetchInfo", async (_, {rejectWit
     catch (e) { return rejectWithValue(e.message); }
 });
 
+export const fetchPosts = createAsyncThunk("data/fetchPosts", async (_, {rejectWithValue}) => {
+    try { return await publicAPI.getPosts(); }
+    catch (e) { return rejectWithValue(e.message); }
+});
+
+export const fetchPostBySlug = createAsyncThunk("data/fetchPostBySlug", async (slug, {rejectWithValue}) => {
+    try { return await publicAPI.getPostBySlug(slug); }
+    catch (e) { return rejectWithValue(e.message); }
+});
+
 export const sendMessage = createAsyncThunk("data/sendMessage", async ({data, resetForm}, {rejectWithValue}) => {
     try {
         const result = await publicAPI.sendMessage(data);
@@ -83,6 +93,8 @@ const dataSlice = createSlice({
         experience: {...initialEntity, data: []},
         services: {...initialEntity, data: []},
         info: {...initialEntity},
+        posts: {...initialEntity, data: []},
+        currentPost: {...initialEntity},
         message: {loading: false, error: null, success: null},
     },
     reducers: {
@@ -105,6 +117,8 @@ const dataSlice = createSlice({
         h(fetchExperience, "experience");
         h(fetchServices, "services");
         h(fetchInfo, "info");
+        h(fetchPosts, "posts");
+        h(fetchPostBySlug, "currentPost");
 
         // Message has different shape
         builder.addCase(sendMessage.pending, (state) => {
@@ -130,6 +144,8 @@ export const selectEducation = (state) => state.data.education;
 export const selectExperience = (state) => state.data.experience;
 export const selectServices = (state) => state.data.services;
 export const selectInfo = (state) => state.data.info;
+export const selectPosts = (state) => state.data.posts;
+export const selectCurrentPost = (state) => state.data.currentPost;
 export const selectMessage = (state) => state.data.message;
 
 export default dataSlice.reducer;

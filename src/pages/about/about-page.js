@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
+import SkeletonLoader from "../../components/shared/skeleton-loader";
 import {
     Alert,
     Avatar,
@@ -9,7 +10,6 @@ import {
     CardContent,
     CardMedia,
     Chip,
-    CircularProgress,
     Container,
     Divider,
     Grid,
@@ -27,6 +27,7 @@ import {Helmet} from "react-helmet";
 import Certification from "../../components/shared/certification";
 import AnimatedTimeline from "../../components/shared/animated-timeline";
 import {motion} from "framer-motion";
+import PageBackground from "../../components/shared/page-background";
 import useSounds from "../../hooks/use-sound";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -104,13 +105,14 @@ const AboutPage = () => {
 
     return (
         <Layout>
-            <Helmet>
-                <title>{name} | About</title>
-                <meta name="description" content={bio || `${name} - ${title} at ${company}`} />
-                <meta name="keywords" content={`${name}, ${title}, Software Engineer`} />
-            </Helmet>
-            <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
-                <Container maxWidth="xl">
+            <PageBackground variant="hero">
+                <Helmet>
+                    <title>{name} | About</title>
+                    <meta name="description" content={bio || `${name} - ${title} at ${company}`} />
+                    <meta name="keywords" content={`${name}, ${title}, Software Engineer`} />
+                </Helmet>
+                <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
+                    <Container maxWidth="xl">
                     <Box
                         component={motion.div}
                         initial={{opacity: 0, y: 20}}
@@ -122,8 +124,7 @@ const AboutPage = () => {
                             sx={{
                                 textTransform: "uppercase",
                                 color: "colors.accent",
-                                fontFamily: "'Inter'",
-                                fontWeight: 800,
+                                                                fontWeight: 800,
                                 mb: 1,
                                 letterSpacing: 3
                             }}>About</Typography>
@@ -356,9 +357,7 @@ const AboutPage = () => {
                     {/* Tab Content */}
                     <Box>
                         {isLoading && (
-                            <Box sx={{display: "flex", justifyContent: "center", py: 8}}>
-                                <CircularProgress color="secondary" />
-                            </Box>
+                            <SkeletonLoader variant={index === 3 ? "timeline" : "cards"} />
                         )}
 
                         {anyError && !isLoading && (
@@ -367,7 +366,45 @@ const AboutPage = () => {
                             </Alert>
                         )}
 
-                        {!isLoading && !anyError && index === 0 && (
+                        {!isLoading && !anyError && index === 0 && (() => {
+                            // Skill symbol map — maps skill names to symbols/short codes
+                            const skillSymbols = {
+                                // Languages
+                                "Golang": "Go", "Go": "Go", "JS/TS": "JS", "JavaScript": "JS", "TypeScript": "TS",
+                                "Python": "Py", "Java": "Jv", "SQL": "DB", "Solidity": "Sol", "C/C++": "C+",
+                                "Rust": "Rs", "PHP": "HP", "Kotlin": "Kt", "Ruby": "Rb", "Swift": "Sw",
+                                "Dart": "Dt", "Scala": "Sc", "Perl": "Pl", "Lua": "Lu", "R": "R",
+                                // Backend
+                                "Node/Express/Nest": "Nd", "REST/Microservices": "API", "RabbitMQ/Kafka": "MQ",
+                                "MySQL/Redis/MongoDB": "DB", "Docker/K8s": "Dk", "CI-CD/GitHub Actions": "CI",
+                                "Prometheus/Grafana": "Mo", "Loki/Tempo/Seq": "Lg", "Zap Logging": "Zp",
+                                "gRPC": "gR", "Nginx": "Nx", "Redis": "Rd", "MongoDB": "Mg",
+                                "PostgreSQL": "Pg", "Kafka": "Kf", "RabbitMQ": "RQ",
+                                // Frontend
+                                "React/Next": "Rc", "React Native": "RN", "Vue/Svelte": "Vu", "MUI/Tailwind": "UI",
+                                "GraphQL": "GQ", "WordPress": "WP", "Figma": "Fg", "Flask": "Fl",
+                                "Angular": "Ng", "Svelte": "Sv", "HTML": "HT", "CSS": "CS",
+                                "Tailwind": "TW", "Bootstrap": "Bs", "SASS": "Ss",
+                                // DevOps / Infra
+                                "Docker": "Dk", "Kubernetes": "K8", "Terraform": "Tf", "AWS": "AW",
+                                "GCP": "GC", "Azure": "Az", "Linux": "Lx", "Git": "Gt",
+                                // Special interests
+                                "Distributed Systems": "DS", "DS&A": "Al", "Optimization": "Op", "ML": "ML",
+                                "Data Science": "Da", "Compiler Construction": "Cc", "Software Testing": "QA",
+                                "Event-Driven": "Ev", "Blockchain": "Bc", "AI": "AI", "IoT": "Io",
+                                "WebAssembly": "Wa", "System Design": "SD", "Cryptography": "Cr",
+                            };
+                            const getSymbol = (name) => {
+                                if (skillSymbols[name]) return skillSymbols[name];
+                                // Fuzzy match: check if any key is contained in the name
+                                for (const [key, val] of Object.entries(skillSymbols)) {
+                                    if (name.toLowerCase().includes(key.toLowerCase())) return val;
+                                }
+                                // Fallback: first 2 chars
+                                return name.substring(0, 2);
+                            };
+
+                            return (
                             <Grid container spacing={4}>
                                 {(skills || []).map((category, catIndex) => {
                                     const palettes = [
@@ -436,18 +473,32 @@ const AboutPage = () => {
                                                                 key={skill}
                                                                 label={skill}
                                                                 size="small"
+                                                                avatar={
+                                                                    <Avatar sx={{
+                                                                        width: 22, height: 22,
+                                                                        fontSize: "0.55rem",
+                                                                        fontWeight: 900,
+                                                                        backgroundColor: `${p.color}25`,
+                                                                        color: p.color,
+                                                                        letterSpacing: -0.5,
+                                                                    }}>
+                                                                        {getSymbol(skill)}
+                                                                    </Avatar>
+                                                                }
                                                                 sx={{
-                                                                    height: 28,
+                                                                    height: 30,
                                                                     fontSize: "0.75rem",
                                                                     fontWeight: 500,
                                                                     backgroundColor: `${p.color}0a`,
                                                                     color: "text.primary",
                                                                     border: `1px solid ${p.color}20`,
                                                                     transition: "all 250ms",
+                                                                    "& .MuiChip-avatar": {ml: 0.3},
                                                                     "&:hover": {
                                                                         backgroundColor: `${p.color}18`,
                                                                         borderColor: `${p.color}50`,
                                                                         transform: "translateY(-1px)",
+                                                                        "& .MuiChip-avatar": {backgroundColor: `${p.color}40`},
                                                                     },
                                                                 }}
                                                             />
@@ -459,7 +510,8 @@ const AboutPage = () => {
                                     );
                                 })}
                             </Grid>
-                        )}
+                            );
+                        })()}
 
                         {!isLoading && !anyError && index === 1 && (
                             <AnimatedTimeline type="education" items={(education || []).map((edu, i) => ({
@@ -519,7 +571,8 @@ const AboutPage = () => {
                         })()}
                     </Box>
                 </Container>
-            </Box>
+                </Box>
+            </PageBackground>
         </Layout>
     )
 }

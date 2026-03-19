@@ -60,6 +60,7 @@ const DesktopHeader = () => {
                     <NavigationLink path="/about" label="About"/>
                     <NavigationLink path="/learn" label="Learn"/>
                     <NavigationLink path="/portfolio" label="Portfolio"/>
+                    <NavigationLink path="/blog" label="Blog"/>
                     <NavigationLink path="/services" label="Services"/>
                 </Stack>
 

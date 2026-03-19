@@ -1,6 +1,18 @@
+/* TTSquares font family */
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Thin.otf') format('opentype'); font-weight: 100; font-style: normal; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Thin Italic.otf') format('opentype'); font-weight: 100; font-style: italic; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Light.otf') format('opentype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Light italic.otf') format('opentype'); font-weight: 300; font-style: italic; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Regular.otf') format('opentype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Italic.otf') format('opentype'); font-weight: 400; font-style: italic; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Bold Italic.otf') format('opentype'); font-weight: 700; font-style: italic; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Black.otf') format('opentype'); font-weight: 900; font-style: normal; }
+@font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Black Italic.otf') format('opentype'); font-weight: 900; font-style: italic; }
+
 body {
   margin: 0;
-  font-family: 'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'TTSquares', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

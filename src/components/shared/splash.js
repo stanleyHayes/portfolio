@@ -40,8 +40,7 @@ const Splash = () => {
                             align="center"
                             sx={{
                                 color: "text.secondary",
-                                fontFamily: "'Inter'",
-                                letterSpacing: 6,
+                                                                letterSpacing: 6,
                                 textTransform: "uppercase"
                             }}>
                             loading...

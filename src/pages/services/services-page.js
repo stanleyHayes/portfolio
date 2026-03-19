@@ -1,8 +1,10 @@
 import React, {useEffect} from "react";
 import Layout from "../../components/layout";
-import {Alert, Box, Card, CardContent, CircularProgress, Container, Grid, Stack, Typography} from "@mui/material";
+import {Alert, Box, Card, CardContent, Container, Grid, Stack, Typography} from "@mui/material";
+import SkeletonLoader from "../../components/shared/skeleton-loader";
 import {Helmet} from "react-helmet";
 import {motion} from "framer-motion";
+import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchServices, selectServices} from "../../features/data/data-slice";
 import {
@@ -37,13 +39,7 @@ const ServicesPage = () => {
     }, [dispatch]);
 
     if (loading) {
-        return (
-            <Layout>
-                <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh"}}>
-                    <CircularProgress color="secondary" />
-                </Box>
-            </Layout>
-        );
+        return <Layout><SkeletonLoader variant="cards" /></Layout>;
     }
 
     if (error) {
@@ -60,15 +56,16 @@ const ServicesPage = () => {
 
     return (
         <Layout>
-            <Helmet>
-                <title>Stanley Hayford | Services</title>
-                <meta
-                    name="description"
-                    content="Software Engineer offering training, web apps, APIs, mobile apps, and blockchain solutions."
-                />
-            </Helmet>
-            <Box sx={{py: {xs: 8, md: 10}}}>
-                <Container maxWidth="lg">
+            <PageBackground variant="cards">
+                <Helmet>
+                    <title>Stanley Hayford | Services</title>
+                    <meta
+                        name="description"
+                        content="Software Engineer offering training, web apps, APIs, mobile apps, and blockchain solutions."
+                    />
+                </Helmet>
+                <Box sx={{py: {xs: 8, md: 10}}}>
+                    <Container maxWidth="lg">
                     <Box
                         component={motion.div}
                         initial={{opacity: 0, y: 20}}
@@ -156,7 +153,8 @@ const ServicesPage = () => {
                         })}
                     </Grid>
                 </Container>
-            </Box>
+                </Box>
+            </PageBackground>
         </Layout>
     );
 };

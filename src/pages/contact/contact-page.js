@@ -36,6 +36,7 @@ import {Helmet} from "react-helmet";
 import {useFormik} from "formik";
 import * as yup from "yup";
 import {motion} from "framer-motion";
+import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
 import {sendMessage, selectMessage, clearMessage, fetchInfo, selectInfo} from "../../features/data/data-slice";
 import useSounds from "../../hooks/use-sound";
@@ -107,8 +108,9 @@ const ContactPage = () => {
 
     return (
         <Layout>
-            {messageLoading && <LinearProgress color="secondary" />}
-            <Helmet>
+            <PageBackground variant="minimal">
+                {messageLoading && <LinearProgress color="secondary" />}
+                <Helmet>
                 <title>Stanley Hayford | Contact</title>
                 <meta name="description" content="Get in touch with Stanley Hayford - Software Engineer based in Accra, Ghana." />
             </Helmet>
@@ -519,6 +521,7 @@ const ContactPage = () => {
                     {messageError}
                 </Alert>
             </Snackbar>
+            </PageBackground>
         </Layout>
     )
 }

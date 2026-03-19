@@ -1,9 +1,36 @@
 import {createTheme} from "@mui/material";
 
+// ═══════════════════════════════════════════════════════════════
+// FONT SELECTOR — Change ACTIVE_FONT to swap the entire site font.
+// Options:
+//   "ttsquares"   → TTSquares (blocky, squared, custom)
+//   "silkscreen"  → Silkscreen (pixel art, retro gaming)
+//   "pressstart"  → Press Start 2P (8-bit pixel, very bold)
+//   "sharetech"   → Share Tech Mono (clean monospace, techy)
+//   "vt323"       → VT323 (retro terminal, CRT feel)
+//   "spacemono"   → Space Mono (modern monospace, editorial)
+//   "orbitron"    → Orbitron (futuristic, geometric, sci-fi)
+//   "googlesans"  → Google Sans (clean, modern, default)
+// ═══════════════════════════════════════════════════════════════
+const ACTIVE_FONT = "ttsquares";
+
+const FONT_STACKS = {
+    ttsquares:  "'TTSquares', 'Inter', sans-serif",
+    silkscreen: "'Silkscreen', cursive",
+    pressstart: "'Press Start 2P', monospace",
+    sharetech:  "'Share Tech Mono', monospace",
+    vt323:      "'VT323', monospace",
+    spacemono:  "'Space Mono', monospace",
+    orbitron:   "'Orbitron', sans-serif",
+    googlesans: "'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+};
+
+const fontFamily = FONT_STACKS[ACTIVE_FONT] || FONT_STACKS.googlesans;
+
 // Zeus palette: electric blue, lightning gold, stormy darks
 const lightTheme = createTheme({
     typography: {
-        fontFamily: "'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+        fontFamily,
     },
     palette: {
         primary: {
@@ -52,7 +79,7 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
     typography: {
-        fontFamily: "'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+        fontFamily,
     },
     palette: {
         primary: {

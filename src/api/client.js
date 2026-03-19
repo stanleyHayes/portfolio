@@ -27,6 +27,12 @@ export const publicAPI = {
     getExperience: () => fetchAPI("/public/experience"),
     getServices: () => fetchAPI("/public/services"),
     getInfo: () => fetchAPI("/public/info"),
+    getPosts: () => fetchAPI("/public/posts"),
+    getPostBySlug: (slug) => fetchAPI(`/public/posts/${slug}`),
     sendMessage: (data) => fetchAPI("/messages", {method: "POST", body: JSON.stringify(data)}),
     subscribe: (data) => fetchAPI("/subscribers", {method: "POST", body: JSON.stringify(data)}),
+    createVisit: (data) => fetchAPI("/public/visit", {method: "POST", body: JSON.stringify(data)}),
+    updateVisitDuration: (id, data) => fetchAPI(`/public/visit/${id}`, {method: "PUT", body: JSON.stringify(data)}),
+    trackNavigation: (id, data) => fetchAPI(`/public/visit/${id}/navigate`, {method: "POST", body: JSON.stringify(data)}),
+    trackClick: (id, data) => fetchAPI(`/public/visit/${id}/click`, {method: "POST", body: JSON.stringify(data)}),
 };

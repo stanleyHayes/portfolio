@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
-import {Alert, Box, Button, CardMedia, Chip, CircularProgress, Container, Divider, Grid, Pagination, Stack, Typography} from "@mui/material";
+import {Alert, Box, Button, CardMedia, Chip, Container, Divider, Grid, Pagination, Stack, Typography} from "@mui/material";
+import SkeletonLoader from "../../components/shared/skeleton-loader";
 import {useParams} from "react-router";
 import {Link} from "react-router-dom";
 import Lesson from "../../components/shared/lesson";
 import {Helmet} from "react-helmet";
 import {motion} from "framer-motion";
+import PageBackground from "../../components/shared/page-background";
 import {ArrowBackOutlined} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourseBySlug, selectCurrentCourse} from "../../features/data/data-slice";
@@ -34,13 +36,7 @@ const CourseLessonsPage = () => {
     };
 
     if (loading) {
-        return (
-            <Layout>
-                <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh"}}>
-                    <CircularProgress color="secondary" />
-                </Box>
-            </Layout>
-        );
+        return <Layout><SkeletonLoader variant="cards" /></Layout>;
     }
 
     if (error) {
@@ -70,11 +66,12 @@ const CourseLessonsPage = () => {
 
     return (
         <Layout>
-            <Helmet>
-                <title>{course.name} | Stanley Hayford</title>
-            </Helmet>
-            <Box sx={{py: 8}}>
-                <Container maxWidth="xl">
+            <PageBackground variant="cards">
+                <Helmet>
+                    <title>{course.name} | Stanley Hayford</title>
+                </Helmet>
+                <Box sx={{py: 8}}>
+                    <Container maxWidth="xl">
                     {/* Back link */}
                     <Box component={motion.div} initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.3}}>
                         <Link to="/learn" style={{textDecoration: "none"}}>
@@ -195,7 +192,8 @@ const CourseLessonsPage = () => {
                         </Box>
                     )}
                 </Container>
-            </Box>
+                </Box>
+            </PageBackground>
         </Layout>
     )
 }

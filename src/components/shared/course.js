@@ -53,101 +53,96 @@ const Course = ({course}) => {
             onMouseEnter={playTick}
             onClick={() => { playClick(); navigate(`/learn/${course.slug}/lessons`); }}>
 
-            {/* Creative Header */}
-            <Box sx={{
-                position: "relative",
-                background: bg,
-                py: 5,
-                px: 3,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                // Diagonal stripes pattern
-                "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: `repeating-linear-gradient(
-                        -45deg,
-                        transparent,
-                        transparent 10px,
-                        ${accent}08 10px,
-                        ${accent}08 20px
-                    )`,
-                },
-            }}>
-                {/* Course icon */}
-                {course.image ? (
-                    <CardMedia
-                        className="course-icon"
-                        component="img"
-                        src={course.image}
-                        sx={{
-                            height: 64,
-                            width: 64,
-                            objectFit: "contain",
-                            zIndex: 1,
-                            transition: "transform 400ms ease",
-                            filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.3))",
-                        }}
-                    />
-                ) : (
-                    <Box
-                        className="course-icon"
-                        sx={{
-                            width: 64, height: 64, borderRadius: 1,
-                            backgroundColor: `${accent}25`,
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                            zIndex: 1,
-                            transition: "transform 400ms ease",
-                        }}>
-                        <Typography sx={{color: accent, fontWeight: 900, fontSize: "1.5rem"}}>
-                            {course.name.charAt(0)}
-                        </Typography>
-                    </Box>
-                )}
-
-                {/* Hover play button */}
-                <Box
-                    className="play-btn"
-                    sx={{
-                        position: "absolute",
-                        right: 16,
-                        bottom: 16,
-                        width: 36,
-                        height: 36,
-                        borderRadius: "50%",
-                        backgroundColor: accent,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        opacity: 0,
-                        transform: "scale(0.8)",
-                        transition: "all 300ms ease",
-                        zIndex: 2,
-                    }}>
-                    <PlayArrowOutlined sx={{color: "white", fontSize: 20}} />
-                </Box>
-
-                {/* Lesson count badge */}
+            {/* Creative Header — floating with padding */}
+            <Box sx={{p: 1.5, pb: 0}}>
                 <Box sx={{
-                    position: "absolute",
-                    top: 12,
-                    right: 12,
-                    zIndex: 2,
+                    position: "relative",
+                    background: bg,
+                    borderRadius: 2,
+                    py: 5,
+                    px: 3,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    overflow: "hidden",
+                    "&::before": {
+                        content: '""',
+                        position: "absolute",
+                        inset: 0,
+                        backgroundImage: `repeating-linear-gradient(
+                            -45deg,
+                            transparent,
+                            transparent 10px,
+                            ${accent}08 10px,
+                            ${accent}08 20px
+                        )`,
+                    },
                 }}>
-                    <Chip
-                        label={`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"}`}
-                        size="small"
+                    {course.image ? (
+                        <CardMedia
+                            className="course-icon"
+                            component="img"
+                            src={course.image}
+                            sx={{
+                                height: 64,
+                                width: 64,
+                                objectFit: "contain",
+                                zIndex: 1,
+                                transition: "transform 400ms ease",
+                                filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.3))",
+                            }}
+                        />
+                    ) : (
+                        <Box
+                            className="course-icon"
+                            sx={{
+                                width: 64, height: 64, borderRadius: 1,
+                                backgroundColor: `${accent}25`,
+                                display: "flex", alignItems: "center", justifyContent: "center",
+                                zIndex: 1,
+                                transition: "transform 400ms ease",
+                            }}>
+                            <Typography sx={{color: accent, fontWeight: 900, fontSize: "1.5rem"}}>
+                                {course.name.charAt(0)}
+                            </Typography>
+                        </Box>
+                    )}
+
+                    <Box
+                        className="play-btn"
                         sx={{
-                            backgroundColor: "rgba(0,0,0,0.5)",
-                            backdropFilter: "blur(4px)",
-                            color: "white",
-                            fontWeight: 600,
-                            fontSize: "0.65rem",
-                            height: 22,
-                        }}
-                    />
+                            position: "absolute",
+                            right: 14,
+                            bottom: 14,
+                            width: 36,
+                            height: 36,
+                            borderRadius: "50%",
+                            backgroundColor: accent,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            opacity: 0,
+                            transform: "scale(0.8)",
+                            transition: "all 300ms ease",
+                            zIndex: 2,
+                        }}>
+                        <PlayArrowOutlined sx={{color: "white", fontSize: 20}} />
+                    </Box>
+
+                    <Box sx={{position: "absolute", top: 10, right: 10, zIndex: 2}}>
+                        <Chip
+                            label={`${lessonCount} ${lessonCount === 1 ? "lesson" : "lessons"}`}
+                            size="small"
+                            sx={{
+                                backgroundColor: "rgba(0,0,0,0.5)",
+                                backdropFilter: "blur(4px)",
+                                color: "white",
+                                fontWeight: 600,
+                                fontSize: "0.65rem",
+                                height: 22,
+                            }}
+                        />
+                    </Box>
                 </Box>
             </Box>
 
