@@ -19,7 +19,7 @@ const Certification = ({certification, index = 0}) => {
             variant="outlined"
             sx={{
                 height: "100%",
-                borderRadius: 2,
+                borderRadius: 3,
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",

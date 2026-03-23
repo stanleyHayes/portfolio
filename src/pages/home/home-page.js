@@ -219,7 +219,7 @@ const HomePage = () => {
                     <Box component={motion.div} animate={{scale: [1, 1.15, 1], opacity: [0.1, 0.04, 0.1], transition: {duration: 5, repeat: Infinity, delay: 1}}} sx={{position: "absolute", bottom: "-20%", right: "-3%", width: 350, height: 350, borderRadius: "50%", background: (t) => `radial-gradient(circle, ${t.palette.colors?.accent || "#60a5fa"}20, transparent 70%)`}} />
 
                     {/* Floating geometric shapes */}
-                    <Box component={motion.div} animate={{y: [0, -15, 0], rotate: [0, 45, 0], transition: {duration: 6, repeat: Infinity, ease: "easeInOut"}}} sx={{position: "absolute", top: "15%", right: "8%", width: 50, height: 50, border: (t) => `2px solid ${t.palette.colors?.gold || "#F5A623"}40`, borderRadius: 2, transform: "rotate(15deg)"}} />
+                    <Box component={motion.div} animate={{y: [0, -15, 0], rotate: [0, 45, 0], transition: {duration: 6, repeat: Infinity, ease: "easeInOut"}}} sx={{position: "absolute", top: "15%", right: "8%", width: 50, height: 50, border: (t) => `2px solid ${t.palette.colors?.gold || "#F5A623"}40`, borderRadius: 3, transform: "rotate(15deg)"}} />
                     <Box component={motion.div} animate={{y: [0, 10, 0], transition: {duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5}}} sx={{position: "absolute", bottom: "20%", left: "6%", width: 35, height: 35, borderRadius: "50%", backgroundColor: (t) => `${t.palette.colors?.gold || "#F5A623"}15`, border: (t) => `1.5px solid ${t.palette.colors?.gold || "#F5A623"}30`}} />
                     <Box component={motion.div} animate={{y: [0, -8, 0], transition: {duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5}}} sx={{position: "absolute", top: "30%", left: "15%", width: 24, height: 24, backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}12`, borderRadius: "50%", border: (t) => `1.5px solid ${t.palette.colors?.accent || "#60a5fa"}25`}} />
 
@@ -259,7 +259,7 @@ const HomePage = () => {
                             {infoLoading || !stats ? (
                                 [...Array(4)].map((_, index) => (
                                     <Grid size={{xs: 6, md: 3}} key={index}>
-                                        <Card variant="outlined" sx={{borderRadius: 2, textAlign: "center", py: 2}}>
+                                        <Card variant="outlined" sx={{borderRadius: 3, textAlign: "center", py: 2}}>
                                             <CardContent>
                                                 <Skeleton variant="circular" width={40} height={40} sx={{mx: "auto", mb: 1}} />
                                                 <Skeleton variant="text" width="60%" height={40} sx={{mx: "auto"}} />
@@ -273,13 +273,13 @@ const HomePage = () => {
                                     const StatIcon = stat.icon || statIcons[index % statIcons.length];
                                     return (
                                         <Grid size={{xs: 6, md: 3}} key={index}>
-                                            <Card variant="outlined" sx={{borderRadius: 2, textAlign: "center", py: 2, position: "relative", overflow: "hidden", "&:hover": {borderColor: "colors.accent", transition: "all 300ms", "& .stat-glow": {opacity: 1}}}}>
+                                            <Card variant="outlined" sx={{borderRadius: 3, textAlign: "center", py: 2, position: "relative", overflow: "hidden", "&:hover": {borderColor: "colors.accent", transition: "all 300ms", "& .stat-glow": {opacity: 1}}}}>
                                                 <Box className="stat-glow" sx={{position: "absolute", inset: 0, opacity: 0, transition: "opacity 400ms", background: (t) => `radial-gradient(circle at center, ${t.palette.colors?.accent || "#60a5fa"}08, transparent 70%)`, pointerEvents: "none"}} />
                                                 <CardContent sx={{position: "relative", zIndex: 1}}>
                                                     {typeof StatIcon === 'function' || typeof StatIcon === 'object' ? (
-                                                        <StatIcon sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 1, backgroundColor: "icon.accentBackground"}} />
+                                                        <StatIcon sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 2, backgroundColor: "icon.accentBackground"}} />
                                                     ) : (
-                                                        <Box sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 1, backgroundColor: "icon.accentBackground", display: "inline-flex"}} />
+                                                        <Box sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 2, backgroundColor: "icon.accentBackground", display: "inline-flex"}} />
                                                     )}
                                                     <Typography variant="h3" sx={{color: "colors.accent", fontWeight: 800, textTransform: "uppercase", letterSpacing: 1}}>{stat.value}</Typography>
                                                     <Typography variant="body2" sx={{color: "text.secondary", mt: 0.5}}>{stat.label}</Typography>
@@ -309,7 +309,7 @@ const HomePage = () => {
                             {techStack.map((tech, index) => (
                                 <Grid key={index} size="auto">
                                         <Card variant="outlined" sx={{
-                                            borderRadius: 2, width: 100, height: 100,
+                                            borderRadius: 3, width: 100, height: 100,
                                             display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
                                             cursor: "default", "&:hover": {borderColor: "colors.accent", transition: "all 300ms"}
                                         }}>

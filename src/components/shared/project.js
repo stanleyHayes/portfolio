@@ -44,7 +44,7 @@ const Project = ({project}) => {
             onMouseEnter={playTick}
             sx={{
                 height: "100%",
-                borderRadius: 2,
+                borderRadius: 3,
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
