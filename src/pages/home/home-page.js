@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import Layout from "../../components/layout";
-import {Avatar, Box, Button, Card, CardContent, CardMedia, Container, Divider, Grid, Stack, Typography} from "@mui/material";
+import {Avatar, Box, Button, Card, CardContent, CardMedia, Container, Divider, Grid, Skeleton, Stack, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 import {motion} from "framer-motion";
 
 import TypingAnimation from "../../components/shared/typing-animation";
@@ -12,13 +12,9 @@ import {fetchInfo, fetchPosts, selectInfo, selectPosts} from "../../features/dat
 import {GlowButton} from "../../components/shared/styled-button";
 import {Chip} from "@mui/material";
 import PageBackground from "../../components/shared/page-background";
+import FriendlyError from "../../components/shared/friendly-error";
 
-const defaultStats = [
-    {icon: WorkOutline, value: "20+", label: "Projects Delivered"},
-    {icon: CodeOutlined, value: "12+", label: "Languages & Frameworks"},
-    {icon: DevicesOutlined, value: "7+", label: "Years Experience"},
-    {icon: SchoolOutlined, value: "20+", label: "Certifications"},
-];
+const statIcons = [WorkOutline, CodeOutlined, DevicesOutlined, SchoolOutlined];
 
 const techStack = [
     {name: "Go", icon: "/assets/golang.svg"},
@@ -36,7 +32,7 @@ const techStack = [
 const HomePage = () => {
 
     const dispatch = useDispatch();
-    const {data: info} = useSelector(selectInfo);
+    const {data: info, loading: infoLoading, error: infoError} = useSelector(selectInfo);
     const {data: posts} = useSelector(selectPosts);
 
     useEffect(() => {
@@ -46,26 +42,38 @@ const HomePage = () => {
 
     const latestPosts = (posts || []).slice(0, 3);
 
-    const name = info?.name || "Stanley Hayford";
-    const title = info?.title || "Software Engineer";
-    const bio = info?.bio || "Software Engineer with over seven years of experience building scalable software systems across web, backend, and distributed architectures. Expertise in event-driven architectures, microservices, and production-ready systems with Golang, Node.js, and modern observability stacks.";
-    const profileImage = (info?.profileImage && info.profileImage.length > 0) ? info.profileImage : "/assets/profile.jpeg";
-    const stats = info?.stats || defaultStats;
+    const name = info?.name;
+    const title = info?.title;
+    const bio = info?.bio;
+    const profileImage = (info?.profileImage && info.profileImage.length > 0) ? info.profileImage : null;
+    const rawStats = info?.stats;
+    const stats = rawStats && !Array.isArray(rawStats)
+        ? Object.entries(rawStats).filter(([k]) => k !== '_id').map(([key, value], i) => ({
+            label: key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase()),
+            value: `${value}+`,
+            icon: statIcons[i % statIcons.length],
+        }))
+        : Array.isArray(rawStats) ? rawStats : null;
 
     return (
         <Layout>
             <PageBackground variant="hero">
             <Helmet>
-                <title>{name} | {title} | Home</title>
+                <title>{name || "Loading..."} | {title || "Loading..."} | Home</title>
                 <meta
                     name="description"
-                    content={bio}
+                    content={bio || ""}
                 />
                 <meta name="keywords" content="Stanley, Hayford, Software Engineer, Golang, Node.js" />
             </Helmet>
 
             {/* Hero Section */}
             <Container maxWidth="xl" sx={{minHeight: "88vh", alignItems: "center", display: "flex", py: {xs: 4, lg: 0}}}>
+                {infoError && !info ? (
+                    <Box sx={{width: "100%"}}>
+                        <FriendlyError onRetry={() => { dispatch(fetchInfo()); dispatch(fetchPosts()); }} />
+                    </Box>
+                ) : (
                 <Grid container spacing={5} alignItems="center">
                     <Grid size={{xs: 12, md: 5}}>
                         <Box
@@ -92,16 +100,29 @@ const HomePage = () => {
                                         clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",
                                         filter: "blur(20px)",
                                     }} />
-                                <CardMedia
-                                    component="img"
-                                    sx={{
-                                        width: "100%",
-                                        clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",
-                                        aspectRatio: "1",
-                                        objectFit: "cover",
-                                    }}
-                                    src={profileImage}
-                                />
+                                {infoLoading || !profileImage ? (
+                                    <Skeleton
+                                        variant="rectangular"
+                                        width={400}
+                                        height={400}
+                                        sx={{
+                                            maxWidth: "100%",
+                                            aspectRatio: "1",
+                                            clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",
+                                        }}
+                                    />
+                                ) : (
+                                    <CardMedia
+                                        component="img"
+                                        sx={{
+                                            width: "100%",
+                                            clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",
+                                            aspectRatio: "1",
+                                            objectFit: "cover",
+                                        }}
+                                        src={profileImage}
+                                    />
+                                )}
                             </Box>
                         </Box>
                     </Grid>
@@ -121,47 +142,64 @@ const HomePage = () => {
                             <Box
                                 component={motion.div}
                                 variants={{hidden: {opacity: 0, y: 25, filter: "blur(6px)"}, visible: {opacity: 1, y: 0, filter: "blur(0px)", transition: {duration: 0.8, ease: [0.22, 1, 0.36, 1]}}}}>
-                                <Typography sx={{color: "text.primary", mb: 1}} variant="h3">
-                                    I am{" "}
-                                    <Typography
-                                        component="span"
-                                        sx={{color: "colors.blue", fontWeight: 800, textTransform: "uppercase", letterSpacing: 1}}
-                                        variant="h3">
-                                        <TypingAnimation
-                                            strings={[name, `a ${title}`, "a Backend Developer", "a Systems Builder"]}
-                                            typeSpeed={80}
-                                            backSpeed={50}
-                                            backDelay={2000}
-                                            loop={true}
-                                        />
+                                {infoLoading || !name ? (
+                                    <Skeleton variant="text" width="80%" height={50} sx={{mb: 1}} />
+                                ) : (
+                                    <Typography sx={{color: "text.primary", mb: 1, fontSize: {xs: "1.5rem", sm: "2rem", md: "2.5rem"}}} variant="h3">
+                                        I am{" "}
+                                        <Typography
+                                            component="span"
+                                            sx={{color: "colors.blue", fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, fontSize: "inherit"}}
+                                            variant="h3">
+                                            <TypingAnimation
+                                                strings={[name, `a ${title}`, "a Backend Developer", "a Systems Builder"]}
+                                                typeSpeed={80}
+                                                backSpeed={50}
+                                                backDelay={2000}
+                                                loop={true}
+                                            />
+                                        </Typography>
                                     </Typography>
-                                </Typography>
+                                )}
                             </Box>
                             {/* Title */}
                             <Box
                                 component={motion.div}
                                 variants={{hidden: {opacity: 0, y: 20, filter: "blur(6px)"}, visible: {opacity: 1, y: 0, filter: "blur(0px)", transition: {duration: 0.8, ease: [0.22, 1, 0.36, 1]}}}}>
-                                <Typography sx={{color: "colors.accent", fontWeight: 600, textTransform: "uppercase", letterSpacing: 1}} variant="h5">
-                                    {title}
-                                </Typography>
+                                {infoLoading || !title ? (
+                                    <Skeleton variant="text" width="40%" height={32} />
+                                ) : (
+                                    <Typography sx={{color: "colors.accent", fontWeight: 600, textTransform: "uppercase", letterSpacing: 1}} variant="h5">
+                                        {title}
+                                    </Typography>
+                                )}
                             </Box>
                             {/* Bio */}
                             <Box
                                 component={motion.div}
                                 variants={{hidden: {opacity: 0, y: 20, filter: "blur(4px)"}, visible: {opacity: 1, y: 0, filter: "blur(0px)", transition: {duration: 0.9, ease: [0.22, 1, 0.36, 1]}}}}>
-                                <Typography sx={{color: "text.secondary", mb: 4, mt: 2, lineHeight: 1.8, maxWidth: 600}} variant="body1">
-                                    {bio}
-                                </Typography>
+                                {infoLoading ? (
+                                    <Stack spacing={0.8} sx={{mb: 4, mt: 2, maxWidth: 600}}>
+                                        <Skeleton variant="text" width="100%" height={22} />
+                                        <Skeleton variant="text" width="95%" height={22} />
+                                        <Skeleton variant="text" width="88%" height={22} />
+                                        <Skeleton variant="text" width="70%" height={22} />
+                                    </Stack>
+                                ) : (
+                                    <Typography sx={{color: "text.secondary", mb: 4, mt: 2, lineHeight: 1.8, maxWidth: 600, fontSize: {xs: "0.85rem", sm: "0.95rem", md: "1rem"}}} variant="body1">
+                                        {bio}
+                                    </Typography>
+                                )}
                             </Box>
                             {/* Buttons */}
                             <Box
                                 component={motion.div}
                                 variants={{hidden: {opacity: 0, y: 20}, visible: {opacity: 1, y: 0, transition: {duration: 0.8, ease: [0.22, 1, 0.36, 1]}}}}>
-                                <Stack direction={{xs: "column", sm: "row"}} spacing={2}>
-                                    <GlowButton to="/contact" variant="primary">
+                                <Stack direction={{xs: "column", sm: "row"}} spacing={2} sx={{width: "100%"}}>
+                                    <GlowButton to="/contact" variant="primary" fullWidth>
                                         Get In Touch
                                     </GlowButton>
-                                    <GlowButton to="/portfolio" variant="outline">
+                                    <GlowButton to="/portfolio" variant="outline" fullWidth>
                                         View My Work
                                     </GlowButton>
                                 </Stack>
@@ -169,6 +207,7 @@ const HomePage = () => {
                         </Box>
                     </Grid>
                 </Grid>
+                )}
             </Container>
 
             {/* Stats Section */}
@@ -180,7 +219,7 @@ const HomePage = () => {
                     <Box component={motion.div} animate={{scale: [1, 1.15, 1], opacity: [0.1, 0.04, 0.1], transition: {duration: 5, repeat: Infinity, delay: 1}}} sx={{position: "absolute", bottom: "-20%", right: "-3%", width: 350, height: 350, borderRadius: "50%", background: (t) => `radial-gradient(circle, ${t.palette.colors?.accent || "#60a5fa"}20, transparent 70%)`}} />
 
                     {/* Floating geometric shapes */}
-                    <Box component={motion.div} animate={{y: [0, -15, 0], rotate: [0, 45, 0], transition: {duration: 6, repeat: Infinity, ease: "easeInOut"}}} sx={{position: "absolute", top: "15%", right: "8%", width: 50, height: 50, border: (t) => `2px solid ${t.palette.colors?.gold || "#F5A623"}40`, borderRadius: 1, transform: "rotate(15deg)"}} />
+                    <Box component={motion.div} animate={{y: [0, -15, 0], rotate: [0, 45, 0], transition: {duration: 6, repeat: Infinity, ease: "easeInOut"}}} sx={{position: "absolute", top: "15%", right: "8%", width: 50, height: 50, border: (t) => `2px solid ${t.palette.colors?.gold || "#F5A623"}40`, borderRadius: 2, transform: "rotate(15deg)"}} />
                     <Box component={motion.div} animate={{y: [0, 10, 0], transition: {duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5}}} sx={{position: "absolute", bottom: "20%", left: "6%", width: 35, height: 35, borderRadius: "50%", backgroundColor: (t) => `${t.palette.colors?.gold || "#F5A623"}15`, border: (t) => `1.5px solid ${t.palette.colors?.gold || "#F5A623"}30`}} />
                     <Box component={motion.div} animate={{y: [0, -8, 0], transition: {duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5}}} sx={{position: "absolute", top: "30%", left: "15%", width: 24, height: 24, backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}12`, borderRadius: "50%", border: (t) => `1.5px solid ${t.palette.colors?.accent || "#60a5fa"}25`}} />
 
@@ -217,26 +256,39 @@ const HomePage = () => {
                 <Container maxWidth="xl" sx={{position: "relative", zIndex: 1}}>
                     <Box component={motion.div} initial={{opacity: 0, y: 30}} whileInView={{opacity: 1, y: 0, transition: {duration: 0.8}}} viewport={{once: true}}>
                         <Grid container spacing={4}>
-                            {(Array.isArray(stats) ? stats : defaultStats).map((stat, index) => {
-                                const StatIcon = stat.icon || defaultStats[index % defaultStats.length].icon;
-                                return (
+                            {infoLoading || !stats ? (
+                                [...Array(4)].map((_, index) => (
                                     <Grid size={{xs: 6, md: 3}} key={index}>
-                                        <Card variant="outlined" sx={{borderRadius: 1, textAlign: "center", py: 2, position: "relative", overflow: "hidden", "&:hover": {borderColor: "colors.accent", transition: "all 300ms", "& .stat-glow": {opacity: 1}}}}>
-                                            {/* Per-card subtle glow on hover */}
-                                            <Box className="stat-glow" sx={{position: "absolute", inset: 0, opacity: 0, transition: "opacity 400ms", background: (t) => `radial-gradient(circle at center, ${t.palette.colors?.accent || "#60a5fa"}08, transparent 70%)`, pointerEvents: "none"}} />
-                                            <CardContent sx={{position: "relative", zIndex: 1}}>
-                                                {typeof StatIcon === 'function' || typeof StatIcon === 'object' ? (
-                                                    <StatIcon sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 1, backgroundColor: "icon.accentBackground"}} />
-                                                ) : (
-                                                    <Box sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 1, backgroundColor: "icon.accentBackground", display: "inline-flex"}} />
-                                                )}
-                                                <Typography variant="h3" sx={{color: "colors.accent", fontWeight: 800, textTransform: "uppercase", letterSpacing: 1}}>{stat.value}</Typography>
-                                                <Typography variant="body2" sx={{color: "text.secondary", mt: 0.5}}>{stat.label}</Typography>
+                                        <Card variant="outlined" sx={{borderRadius: 2, textAlign: "center", py: 2}}>
+                                            <CardContent>
+                                                <Skeleton variant="circular" width={40} height={40} sx={{mx: "auto", mb: 1}} />
+                                                <Skeleton variant="text" width="60%" height={40} sx={{mx: "auto"}} />
+                                                <Skeleton variant="text" width="80%" sx={{mx: "auto", mt: 0.5}} />
                                             </CardContent>
                                         </Card>
                                     </Grid>
-                                );
-                            })}
+                                ))
+                            ) : (
+                                stats.map((stat, index) => {
+                                    const StatIcon = stat.icon || statIcons[index % statIcons.length];
+                                    return (
+                                        <Grid size={{xs: 6, md: 3}} key={index}>
+                                            <Card variant="outlined" sx={{borderRadius: 2, textAlign: "center", py: 2, position: "relative", overflow: "hidden", "&:hover": {borderColor: "colors.accent", transition: "all 300ms", "& .stat-glow": {opacity: 1}}}}>
+                                                <Box className="stat-glow" sx={{position: "absolute", inset: 0, opacity: 0, transition: "opacity 400ms", background: (t) => `radial-gradient(circle at center, ${t.palette.colors?.accent || "#60a5fa"}08, transparent 70%)`, pointerEvents: "none"}} />
+                                                <CardContent sx={{position: "relative", zIndex: 1}}>
+                                                    {typeof StatIcon === 'function' || typeof StatIcon === 'object' ? (
+                                                        <StatIcon sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 1, backgroundColor: "icon.accentBackground"}} />
+                                                    ) : (
+                                                        <Box sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 1, backgroundColor: "icon.accentBackground", display: "inline-flex"}} />
+                                                    )}
+                                                    <Typography variant="h3" sx={{color: "colors.accent", fontWeight: 800, textTransform: "uppercase", letterSpacing: 1}}>{stat.value}</Typography>
+                                                    <Typography variant="body2" sx={{color: "text.secondary", mt: 0.5}}>{stat.label}</Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </Grid>
+                                    );
+                                })
+                            )}
                         </Grid>
                     </Box>
                 </Container>
@@ -257,7 +309,7 @@ const HomePage = () => {
                             {techStack.map((tech, index) => (
                                 <Grid key={index} size="auto">
                                         <Card variant="outlined" sx={{
-                                            borderRadius: 1, width: 100, height: 100,
+                                            borderRadius: 2, width: 100, height: 100,
                                             display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
                                             cursor: "default", "&:hover": {borderColor: "colors.accent", transition: "all 300ms"}
                                         }}>
@@ -309,7 +361,7 @@ const HomePage = () => {
                                             <Link to={`/blog/${post.slug}`} style={{textDecoration: "none", display: "flex", width: "100%"}}>
                                                 <Box sx={{
                                                     width: "100%",
-                                                    borderRadius: 3,
+                                                    borderRadius: 6,
                                                     overflow: "hidden",
                                                     backgroundColor: "background.paper",
                                                     boxShadow: (t) => t.palette.mode === "dark"
@@ -336,7 +388,7 @@ const HomePage = () => {
 
                                                     {/* Cover image — floating with padding */}
                                                     <Box sx={{p: 1.5, pb: 0}}>
-                                                    <Box sx={{position: "relative", overflow: "hidden", height: 180, borderRadius: 2}}>
+                                                    <Box sx={{position: "relative", overflow: "hidden", height: 180, borderRadius: 4}}>
                                                         {post.coverImage ? (
                                                             <Box
                                                                 className="post-image"
@@ -373,7 +425,7 @@ const HomePage = () => {
                                                         <Box sx={{
                                                             position: "absolute", top: 12, right: 12,
                                                             backgroundColor: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)",
-                                                            borderRadius: 2, px: 1.2, py: 0.4,
+                                                            borderRadius: 4, px: 1.2, py: 0.4,
                                                             display: "flex", alignItems: "center", gap: 0.5,
                                                         }}>
                                                             <AccessTimeOutlined sx={{fontSize: 13, color: "#fff"}} />
@@ -395,7 +447,7 @@ const HomePage = () => {
                                                                         <Chip key={tag} label={tag} size="small" sx={{
                                                                             fontSize: "0.68rem", height: 24,
                                                                             backgroundColor: tc.bg, color: tc.color,
-                                                                            fontWeight: 700, borderRadius: 1.5, letterSpacing: 0.3,
+                                                                            fontWeight: 700, borderRadius: 3, letterSpacing: 0.3,
                                                                         }} />
                                                                     );
                                                                 })}

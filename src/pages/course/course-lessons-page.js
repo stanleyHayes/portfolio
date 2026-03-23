@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
-import {Alert, Box, Button, CardMedia, Chip, Container, Divider, Grid, Pagination, Stack, Typography} from "@mui/material";
-import SkeletonLoader from "../../components/shared/skeleton-loader";
+import {Box, Button, CardMedia, Chip, Container, Divider, Grid, Pagination, Skeleton, Stack, Typography} from "@mui/material";
+import FriendlyError from "../../components/shared/friendly-error";
 import {useParams} from "react-router";
 import {Link} from "react-router-dom";
 import Lesson from "../../components/shared/lesson";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {ArrowBackOutlined} from "@mui/icons-material";
@@ -35,40 +35,11 @@ const CourseLessonsPage = () => {
         window.scrollTo({top: 0, behavior: "smooth"});
     };
 
-    if (loading) {
-        return <Layout><SkeletonLoader variant="cards" /></Layout>;
-    }
-
-    if (error) {
-        return (
-            <Layout>
-                <Container maxWidth="xl" sx={{py: 8}}>
-                    <Alert severity="error" variant="outlined" sx={{borderRadius: 1}}>{error}</Alert>
-                </Container>
-            </Layout>
-        );
-    }
-
-    if (!course) {
-        return (
-            <Layout>
-                <Container sx={{py: 8, textAlign: "center"}}>
-                    <Typography variant="h4" sx={{color: "text.primary"}}>Course not found</Typography>
-                    <Link to="/learn" style={{textDecoration: "none"}}>
-                        <Button sx={{mt: 2, color: "colors.accent"}} startIcon={<ArrowBackOutlined />}>
-                            Back to Courses
-                        </Button>
-                    </Link>
-                </Container>
-            </Layout>
-        );
-    }
-
     return (
         <Layout>
             <PageBackground variant="cards">
                 <Helmet>
-                    <title>{course.name} | Stanley Hayford</title>
+                    <title>{course ? `${course.name} | Stanley Hayford` : 'Course Lessons | Stanley Hayford'}</title>
                 </Helmet>
                 <Box sx={{py: 8}}>
                     <Container maxWidth="xl">
@@ -85,43 +56,80 @@ const CourseLessonsPage = () => {
                     </Box>
 
                     {/* Course Header */}
-                    <Box component={motion.div} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.6}}>
-                        <Stack direction={{xs: "column", md: "row"}} spacing={4} alignItems={{md: "center"}} sx={{mb: 2}}>
-                            <Box sx={{
-                                width: 80, height: 80, borderRadius: 1, flexShrink: 0,
-                                backgroundColor: "light.accent",
-                                display: "flex", alignItems: "center", justifyContent: "center"
-                            }}>
-                                <CardMedia component="img" src={course.image} sx={{width: 48, height: 48, objectFit: "contain"}} />
-                            </Box>
-                            <Box>
-                                <Typography variant="h3" sx={{color: "text.primary", fontWeight: 700}}>
-                                    {course.name}
-                                </Typography>
-                                <Typography variant="body1" sx={{color: "text.secondary", mt: 0.5, maxWidth: 600}}>
-                                    {course.summary}
-                                </Typography>
-                                <Stack direction="row" spacing={1} sx={{mt: 1.5}}>
-                                    <Chip
-                                        label={`${lessons.length} ${lessons.length === 1 ? "Lesson" : "Lessons"}`}
-                                        size="small"
-                                        sx={{backgroundColor: "light.accent", color: "colors.accent", fontWeight: 700}}
-                                    />
-                                    <Chip
-                                        label="By Stanley Hayford"
-                                        size="small"
-                                        variant="outlined"
-                                        sx={{borderColor: "divider", color: "text.secondary"}}
-                                    />
+                    {loading ? (
+                        <Box>
+                            <Stack direction={{xs: "column", md: "row"}} spacing={4} alignItems={{md: "center"}} sx={{mb: 2}}>
+                                <Skeleton variant="rectangular" width={80} height={80} sx={{borderRadius: 2, flexShrink: 0}} />
+                                <Box sx={{flex: 1}}>
+                                    <Skeleton variant="text" width="40%" height={40} />
+                                    <Skeleton variant="text" width="60%" />
+                                    <Stack direction="row" spacing={1} sx={{mt: 1.5}}>
+                                        <Skeleton variant="rectangular" width={100} height={24} sx={{borderRadius: 2}} />
+                                        <Skeleton variant="rectangular" width={130} height={24} sx={{borderRadius: 2}} />
+                                    </Stack>
+                                </Box>
+                            </Stack>
+                            <Divider light sx={{my: 4}} />
+                            <Grid container spacing={4}>
+                                {[...Array(6)].map((_, i) => (
+                                    <Grid size={{xs: 12, md: 6, lg: 4}} key={i}>
+                                        <Skeleton variant="rectangular" height={200} sx={{borderRadius: 2, mb: 1}} />
+                                        <Skeleton variant="text" width="70%" />
+                                        <Skeleton variant="text" width="50%" />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Box>
+                    ) : error ? (
+                        <FriendlyError onRetry={() => dispatch(fetchCourseBySlug(slug))} />
+                    ) : !course ? (
+                        <Box sx={{textAlign: "center", py: 8}}>
+                            <Typography variant="h4" sx={{color: "text.primary"}}>Course not found</Typography>
+                            <Link to="/learn" style={{textDecoration: "none"}}>
+                                <Button sx={{mt: 2, color: "colors.accent"}} startIcon={<ArrowBackOutlined />}>
+                                    Back to Courses
+                                </Button>
+                            </Link>
+                        </Box>
+                    ) : (
+                        <>
+                            <Box component={motion.div} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.6}}>
+                                <Stack direction={{xs: "column", md: "row"}} spacing={4} alignItems={{md: "center"}} sx={{mb: 2}}>
+                                    <Box sx={{
+                                        width: 80, height: 80, borderRadius: 2, flexShrink: 0,
+                                        backgroundColor: "light.accent",
+                                        display: "flex", alignItems: "center", justifyContent: "center"
+                                    }}>
+                                        <CardMedia component="img" src={course.image} sx={{width: 48, height: 48, objectFit: "contain"}} />
+                                    </Box>
+                                    <Box>
+                                        <Typography variant="h3" sx={{color: "text.primary", fontWeight: 700}}>
+                                            {course.name}
+                                        </Typography>
+                                        <Typography variant="body1" sx={{color: "text.secondary", mt: 0.5, maxWidth: 600}}>
+                                            {course.summary}
+                                        </Typography>
+                                        <Stack direction="row" spacing={1} sx={{mt: 1.5}}>
+                                            <Chip
+                                                label={`${lessons.length} ${lessons.length === 1 ? "Lesson" : "Lessons"}`}
+                                                size="small"
+                                                sx={{backgroundColor: "light.accent", color: "colors.accent", fontWeight: 700}}
+                                            />
+                                            <Chip
+                                                label="By Stanley Hayford"
+                                                size="small"
+                                                variant="outlined"
+                                                sx={{borderColor: "divider", color: "text.secondary"}}
+                                            />
+                                        </Stack>
+                                    </Box>
                                 </Stack>
                             </Box>
-                        </Stack>
-                    </Box>
 
-                    <Divider light sx={{my: 4}} />
+                            <Divider light sx={{my: 4}} />
 
-                    {/* Lessons Grid */}
-                    {lessons.length > 0 ? (
+                            {/* Lessons Grid */}
+                            {lessons.length > 0 ? (
                         <>
                             <Grid container spacing={4}>
                                 {paginated.map((lesson, index) => (
@@ -162,7 +170,7 @@ const CourseLessonsPage = () => {
                             transition={{duration: 0.6}}
                             sx={{textAlign: "center", py: 12}}>
                             <Box sx={{
-                                width: 120, height: 120, borderRadius: 1, mx: "auto", mb: 4,
+                                width: 120, height: 120, borderRadius: 2, mx: "auto", mb: 4,
                                 backgroundColor: "light.accent",
                                 display: "flex", alignItems: "center", justifyContent: "center"
                             }}>
@@ -183,13 +191,15 @@ const CourseLessonsPage = () => {
                                     startIcon={<ArrowBackOutlined />}
                                     sx={{
                                         color: "colors.accent", borderColor: "colors.accent",
-                                        borderRadius: 1, textTransform: "none",
+                                        borderRadius: 2, textTransform: "none",
                                         "&:hover": {backgroundColor: "light.accent"}
                                     }}>
                                     Browse Other Courses
                                 </Button>
                             </Link>
                         </Box>
+                    )}
+                        </>
                     )}
                 </Container>
                 </Box>

@@ -44,7 +44,7 @@ const Project = ({project}) => {
             onMouseEnter={playTick}
             sx={{
                 height: "100%",
-                borderRadius: 1,
+                borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
@@ -67,8 +67,8 @@ const Project = ({project}) => {
                 <Box
                     className="project-hero"
                     sx={{
-                        height: 180,
-                        borderRadius: 2,
+                        height: 220,
+                        borderRadius: 4,
                         background: hasImage ? `url(${project.image})` : bg,
                         backgroundSize: hasImage ? "cover" : "100%",
                         backgroundPosition: "center",
@@ -127,6 +127,32 @@ const Project = ({project}) => {
                         height: 60,
                         background: (t) => `linear-gradient(transparent, ${t.palette.background.paper})`,
                     }} />
+
+                    {/* Category tags overlay */}
+                    <Stack direction="row" flexWrap="wrap" gap={0.5} sx={{
+                        position: "absolute",
+                        bottom: 8, left: 8, right: 8,
+                        zIndex: 2,
+                    }}>
+                        {(project.categories || []).slice(0, 4).map((category, index) => (
+                            <Chip
+                                key={index}
+                                label={category}
+                                size="small"
+                                sx={{
+                                    fontSize: "0.65rem",
+                                    height: 22,
+                                    backgroundColor: `${accent}cc`,
+                                    color: "white",
+                                    backdropFilter: "blur(4px)",
+                                }}
+                            />
+                        ))}
+                        {(project.categories || []).length > 4 && (
+                            <Chip label={`+${project.categories.length - 4}`} size="small"
+                                  sx={{fontSize: "0.65rem", height: 22, backgroundColor: `${accent}99`, color: "white", backdropFilter: "blur(4px)"}} />
+                        )}
+                    </Stack>
                 </Box>
             </Box>
 
@@ -134,29 +160,16 @@ const Project = ({project}) => {
                 <Typography variant="h6" sx={{color: "text.primary", fontWeight: 700, mb: 0.5}}>
                     {project.title}
                 </Typography>
-                <Typography variant="body2" sx={{color: "text.secondary", mb: 2, lineHeight: 1.6}}>
+                <Typography variant="body2" sx={{
+                    color: "text.secondary", lineHeight: 1.6,
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                }}>
                     {project.summary}
                 </Typography>
-                <Stack direction="row" flexWrap="wrap" gap={0.5}>
-                    {(project.categories || []).slice(0, 4).map((category, index) => (
-                        <Chip
-                            key={index}
-                            label={category}
-                            size="small"
-                            sx={{
-                                fontSize: "0.65rem",
-                                height: 22,
-                                backgroundColor: `${accent}15`,
-                                color: accent,
-                                border: `1px solid ${accent}30`,
-                            }}
-                        />
-                    ))}
-                    {(project.categories || []).length > 4 && (
-                        <Chip label={`+${project.categories.length - 4}`} size="small"
-                              sx={{fontSize: "0.65rem", height: 22, backgroundColor: "light.accent", color: "colors.accent"}} />
-                    )}
-                </Stack>
             </CardContent>
             <Divider />
             <CardActions sx={{px: 2, py: 1.5}}>

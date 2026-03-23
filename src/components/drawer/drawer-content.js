@@ -84,7 +84,7 @@ const DrawerContent = () => {
                                     letterSpacing: 1,
                                     fontSize: "0.8rem",
                                     color: "colors.accent",
-                                    borderRadius: 1,
+                                    borderRadius: 2,
                                     borderColor: "colors.accent",
                                 }}>
                                 Contact

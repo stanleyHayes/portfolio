@@ -62,13 +62,13 @@ const PulsingOrb = ({top, left, right, bottom, size = 120}) => (
 
 const SkeletonCard = () => (
     <Box sx={{
-        borderRadius: 3,
+        borderRadius: 6,
         overflow: "hidden",
         backgroundColor: "background.paper",
         boxShadow: 1,
         p: 2
     }}>
-        <Skeleton variant="rectangular" width="100%" height={140} sx={{borderRadius: 2, mb: 2}} />
+        <Skeleton variant="rectangular" width="100%" height={140} sx={{borderRadius: 4, mb: 2}} />
         <Stack direction="row" spacing={1.5} alignItems="center" sx={{mb: 1.5}}>
             <Skeleton variant="circular" width={36} height={36} />
             <Skeleton variant="text" width="60%" height={24} />
@@ -114,7 +114,7 @@ const TimelineVariant = () => (
                         <Box sx={{flex: 1}}>
                             <Box sx={{
                                 backgroundColor: "background.paper",
-                                borderRadius: 3,
+                                borderRadius: 6,
                                 p: 2.5,
                                 boxShadow: 1
                             }}>
@@ -138,7 +138,7 @@ const DetailVariant = () => (
         initial={{opacity: 0, y: 20}}
         animate={{opacity: 1, y: 0, transition: {duration: 0.5}}}
         sx={{maxWidth: 800, mx: "auto", width: "100%"}}>
-        <Skeleton variant="rectangular" width="100%" height={320} sx={{borderRadius: 3, mb: 3}} />
+        <Skeleton variant="rectangular" width="100%" height={320} sx={{borderRadius: 6, mb: 3}} />
         <Stack direction="row" spacing={2} alignItems="center" sx={{mb: 3}}>
             <Skeleton variant="circular" width={48} height={48} />
             <Stack spacing={0.5} sx={{flex: 1}}>
@@ -164,7 +164,7 @@ const ListVariant = () => (
                 animate={{opacity: 1, x: 0, transition: {duration: 0.35, delay: i * 0.07}}}
                 sx={{
                     backgroundColor: "background.paper",
-                    borderRadius: 3,
+                    borderRadius: 6,
                     p: 2,
                     boxShadow: 1
                 }}>
@@ -174,7 +174,7 @@ const ListVariant = () => (
                         <Skeleton variant="text" width="55%" height={22} />
                         <Skeleton variant="text" width="80%" height={16} />
                     </Stack>
-                    <Skeleton variant="rectangular" width={60} height={28} sx={{borderRadius: 2, flexShrink: 0}} />
+                    <Skeleton variant="rectangular" width={60} height={28} sx={{borderRadius: 4, flexShrink: 0}} />
                 </Stack>
             </Box>
         ))}

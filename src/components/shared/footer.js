@@ -1,7 +1,7 @@
 import React, {useRef, useMemo, useState} from "react";
 import {Alert, Box, Button, CircularProgress, Container, Grid, IconButton, Link as MUILink, Snackbar, Stack, TextField, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import {GitHub, LinkedIn, Twitter, Instagram, FavoriteOutlined, TerminalOutlined, SendOutlined, ArrowOutwardOutlined} from "@mui/icons-material";
+import {GitHub, LinkedIn, Twitter, Instagram, FavoriteOutlined, TerminalOutlined, SendOutlined, ArrowOutwardOutlined, HomeOutlined, PersonOutlined, WorkOutlined, BuildOutlined, SchoolOutlined, ArticleOutlined, MailOutlined} from "@mui/icons-material";
 import {motion, AnimatePresence} from "framer-motion";
 import {Canvas, useFrame} from "@react-three/fiber";
 import * as THREE from "three";
@@ -41,29 +41,30 @@ const ParticleWave = () => {
 };
 
 const navLinks = [
-    {label: "Home", path: "/"},
-    {label: "About", path: "/about"},
-    {label: "Portfolio", path: "/portfolio"},
-    {label: "Services", path: "/services"},
-    {label: "Learn", path: "/learn"},
-    {label: "Blog", path: "/blog"},
-    {label: "Contact", path: "/contact"},
+    {label: "Home", path: "/", Icon: HomeOutlined},
+    {label: "About", path: "/about", Icon: PersonOutlined},
+    {label: "Portfolio", path: "/portfolio", Icon: WorkOutlined},
+    {label: "Services", path: "/services", Icon: BuildOutlined},
+    {label: "Learn", path: "/learn", Icon: SchoolOutlined},
+    {label: "Blog", path: "/blog", Icon: ArticleOutlined},
+    {label: "Contact", path: "/contact", Icon: MailOutlined},
 ];
 
 const socialConfig = {
-    github: {Icon: GitHub, label: "GitHub", color: "#fff"},
+    github: {Icon: GitHub, label: "GitHub", color: "#333"},
     linkedin: {Icon: LinkedIn, label: "LinkedIn", color: "#0A66C2"},
     twitter: {Icon: Twitter, label: "X", color: "#1DA1F2"},
     instagram: {Icon: Instagram, label: "Instagram", color: "#E4405F"},
 };
 
-const FooterLink = ({to, children}) => (
+const FooterLink = ({to, icon: Icon, children}) => (
     <Link to={to} style={{textDecoration: "none"}}>
-        <Stack direction="row" alignItems="center" spacing={0.5} sx={{
+        <Stack direction="row" alignItems="center" spacing={1} sx={{
             color: "text.secondary",
             transition: "all 250ms",
             "&:hover": {color: "colors.accent", "& .link-arrow": {opacity: 1, transform: "translateX(0)"}},
         }}>
+            {Icon && <Icon sx={{fontSize: 16, opacity: 0.7}} />}
             <Typography variant="body2">{children}</Typography>
             <ArrowOutwardOutlined className="link-arrow" sx={{fontSize: 12, opacity: 0, transform: "translateX(-4px)", transition: "all 250ms"}} />
         </Stack>
@@ -133,12 +134,22 @@ const Footer = () => {
                                     {"<Zeus />"}
                                 </Typography>
                                 <Typography variant="body2" sx={{color: "text.secondary", lineHeight: 1.8, maxWidth: 260}}>
-                                    Software Engineer crafting scalable systems and elegant solutions. Based in Accra, Ghana.
+                                    {info?.bio ? info.bio.substring(0, 100) + "..." : "Software Engineer crafting scalable systems and elegant solutions."}
                                 </Typography>
-                                <MUILink href="mailto:hayfordstanley@gmail.com" underline="hover" sx={{color: "colors.accent", fontSize: "0.85rem"}}>
-                                    hayfordstanley@gmail.com
-                                </MUILink>
                                 <Stack direction="row" spacing={1} sx={{pt: 1}}>
+                                    {info?.email && (
+                                        <MUILink href={`mailto:${info.email}`} underline="none">
+                                            <IconButton
+                                                size="small"
+                                                sx={{
+                                                    border: 1, borderColor: "divider", borderRadius: 1,
+                                                    width: 38, height: 38, transition: "all 300ms",
+                                                    "&:hover": {backgroundColor: "#ea4335", borderColor: "#ea4335", transform: "translateY(-3px)", "& .social-icon": {color: "white"}},
+                                                }}>
+                                                <MailOutlined className="social-icon" sx={{color: "text.secondary", fontSize: 18, transition: "color 200ms"}} />
+                                            </IconButton>
+                                        </MUILink>
+                                    )}
                                     {socials.map((social, i) => (
                                         <MUILink key={i} href={social.href} target="_blank" rel="noreferrer" underline="none">
                                             <IconButton
@@ -163,7 +174,7 @@ const Footer = () => {
                             </Typography>
                             <Stack spacing={1.5}>
                                 {navLinks.slice(0, 4).map(link => (
-                                    <FooterLink key={link.path} to={link.path}>{link.label}</FooterLink>
+                                    <FooterLink key={link.path} to={link.path} icon={link.Icon}>{link.label}</FooterLink>
                                 ))}
                             </Stack>
                         </Grid>
@@ -175,7 +186,7 @@ const Footer = () => {
                             </Typography>
                             <Stack spacing={1.5}>
                                 {navLinks.slice(4).map(link => (
-                                    <FooterLink key={link.path} to={link.path}>{link.label}</FooterLink>
+                                    <FooterLink key={link.path} to={link.path} icon={link.Icon}>{link.label}</FooterLink>
                                 ))}
                             </Stack>
                         </Grid>
@@ -234,7 +245,7 @@ const Footer = () => {
                                                     fullWidth size="small" placeholder="Your name"
                                                     value={subName} onChange={(e) => setSubName(e.target.value)} required
                                                     slotProps={{input: {sx: {
-                                                        borderRadius: 1,
+                                                        borderRadius: 2,
                                                         backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
                                                         border: 1, borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.12)" : "rgba(37,99,235,0.08)",
                                                         "&:hover": {borderColor: "colors.accent"},
@@ -245,7 +256,7 @@ const Footer = () => {
                                                         fullWidth size="small" placeholder="Your email"
                                                         value={email} onChange={(e) => setEmail(e.target.value)} type="email" required
                                                         slotProps={{input: {sx: {
-                                                            borderRadius: 1,
+                                                            borderRadius: 2,
                                                             backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
                                                             border: 1, borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.12)" : "rgba(37,99,235,0.08)",
                                                             "&:hover": {borderColor: "colors.accent"},
@@ -258,7 +269,7 @@ const Footer = () => {
                                                         type="submit"
                                                         sx={{
                                                             px: 3, py: 1, border: "none", cursor: subLoading ? "wait" : "pointer",
-                                                            borderRadius: 1, flexShrink: 0,
+                                                            borderRadius: 2, flexShrink: 0,
                                                             fontWeight: 700, fontSize: "0.75rem", letterSpacing: 1, textTransform: "uppercase",
                                                             color: "white", display: "flex", alignItems: "center", gap: 0.5,
                                                             background: (t) => t.palette.mode === "dark"
@@ -306,7 +317,7 @@ const Footer = () => {
                     onClose={() => setSnackbar(s => ({...s, open: false}))}
                     severity={snackbar.severity}
                     variant="filled"
-                    sx={{borderRadius: 1, fontWeight: 600}}>
+                    sx={{borderRadius: 2, fontWeight: 600}}>
                     {snackbar.message}
                 </Alert>
             </Snackbar>

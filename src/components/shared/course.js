@@ -28,7 +28,7 @@ const Course = ({course}) => {
             variant="outlined"
             sx={{
                 height: "100%",
-                borderRadius: 1,
+                borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
                 cursor: "pointer",
@@ -58,7 +58,7 @@ const Course = ({course}) => {
                 <Box sx={{
                     position: "relative",
                     background: bg,
-                    borderRadius: 2,
+                    borderRadius: 4,
                     py: 5,
                     px: 3,
                     display: "flex",
@@ -96,7 +96,7 @@ const Course = ({course}) => {
                         <Box
                             className="course-icon"
                             sx={{
-                                width: 64, height: 64, borderRadius: 1,
+                                width: 64, height: 64, borderRadius: 2,
                                 backgroundColor: `${accent}25`,
                                 display: "flex", alignItems: "center", justifyContent: "center",
                                 zIndex: 1,
@@ -161,7 +161,7 @@ const Course = ({course}) => {
                         <ArrowForwardOutlined className="arrow-icon" sx={{color: accent, fontSize: 16, transition: "transform 200ms"}} />
                     </Stack>
                     <Box sx={{
-                        width: 24, height: 4, borderRadius: 2,
+                        width: 24, height: 4, borderRadius: 4,
                         background: `linear-gradient(90deg, ${accent}, transparent)`,
                     }} />
                 </Stack>

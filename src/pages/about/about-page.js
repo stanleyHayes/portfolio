@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
-import SkeletonLoader from "../../components/shared/skeleton-loader";
 import {
-    Alert,
     Avatar,
     Box,
     Button,
@@ -16,6 +14,7 @@ import {
     IconButton,
     Link as MUILink,
     Pagination,
+    Skeleton,
     Stack,
     Tab,
     Tabs,
@@ -23,9 +22,10 @@ import {
     useMediaQuery,
     Paper
 } from "@mui/material";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 import Certification from "../../components/shared/certification";
 import AnimatedTimeline from "../../components/shared/animated-timeline";
+import {WorkOutlineOutlined, LocationOnOutlined, CheckCircleOutlined} from "@mui/icons-material";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import useSounds from "../../hooks/use-sound";
@@ -42,6 +42,7 @@ import {
     selectCertifications,
     selectInfo
 } from "../../features/data/data-slice";
+import FriendlyError from "../../components/shared/friendly-error";
 
 const container = {
     initial: {opacity: 0},
@@ -73,7 +74,7 @@ const AboutPage = () => {
     const {loading: educationLoading, error: educationError, data: education} = useSelector(selectEducation);
     const {loading: experienceLoading, error: experienceError, data: experience} = useSelector(selectExperience);
     const {loading: certsLoading, error: certsError, data: certifications} = useSelector(selectCertifications);
-    const {data: info} = useSelector(selectInfo);
+    const {data: info, loading: infoLoading} = useSelector(selectInfo);
 
     useEffect(() => {
         dispatch(fetchSkills());
@@ -83,16 +84,14 @@ const AboutPage = () => {
         dispatch(fetchInfo());
     }, [dispatch]);
 
-    const name = info?.name || "Stanley Asoku Hayford";
-    const title = info?.title || "Software Engineer";
-    const company = info?.company || "Betika";
-    const bio = info?.bio || "";
-    const email = info?.email || "hayfordstanley@gmail.com";
-    const phone = info?.phone || "+233 555-180-048";
-    const location = info?.location || "Accra, Ghana";
-    const profileImage = (info?.profileImage && info.profileImage.length > 0) ? info.profileImage : "/assets/stanley.jpeg";
-    const resumeUrl = info?.resumeUrl || "/docs/Resume-Stanley-Asoku--Hayford.pdf";
-    const coverLetterUrl = info?.coverLetterUrl || "";
+    const name = info?.name;
+    const title = info?.title;
+    const company = info?.company;
+    const bio = info?.bio;
+    const location = info?.location;
+    const profileImage = (info?.profileImage && info.profileImage.length > 0) ? info.profileImage : null;
+    const resumeUrl = info?.resumeUrl;
+    const coverLetterUrl = info?.coverLetterUrl;
     const socialLinks = info?.socialLinks || {};
     const socialChips = [
         {key: "github", label: "GitHub", icon: "/assets/github.svg"},
@@ -107,9 +106,9 @@ const AboutPage = () => {
         <Layout>
             <PageBackground variant="hero">
                 <Helmet>
-                    <title>{name} | About</title>
-                    <meta name="description" content={bio || `${name} - ${title} at ${company}`} />
-                    <meta name="keywords" content={`${name}, ${title}, Software Engineer`} />
+                    <title>{name || "Loading..."} | About</title>
+                    <meta name="description" content={bio || ""} />
+                    <meta name="keywords" content={`${name || ""}, ${title || ""}, Software Engineer`} />
                 </Helmet>
                 <Box sx={{py: 8, "&::-webkit-scrollbar": {display: "none"}}}>
                     <Container maxWidth="xl">
@@ -146,7 +145,7 @@ const AboutPage = () => {
                     {/* Profile Section */}
                     <Box sx={{
                         position: "relative",
-                        borderRadius: 1,
+                        borderRadius: 2,
                         overflow: "hidden",
                         border: 1,
                         borderColor: "divider",
@@ -179,21 +178,33 @@ const AboutPage = () => {
                                             opacity: 0.3,
                                             filter: "blur(16px)",
                                         }} />
-                                        <CardMedia
-                                            component="img"
-                                            sx={{
-                                                width: "100%",
-                                                aspectRatio: "1",
-                                                objectFit: "cover",
-                                                borderRadius: "50%",
-                                                border: 3,
-                                                borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.3)" : "rgba(37,99,235,0.2)",
-                                            }}
-                                            src={profileImage || "/assets/stanley.jpeg"}
-                                        />
+                                        {infoLoading || !profileImage ? (
+                                            <Skeleton
+                                                variant="circular"
+                                                width={300}
+                                                height={300}
+                                                sx={{
+                                                    maxWidth: "100%",
+                                                    mx: "auto",
+                                                }}
+                                            />
+                                        ) : (
+                                            <CardMedia
+                                                component="img"
+                                                sx={{
+                                                    width: "100%",
+                                                    aspectRatio: "1",
+                                                    objectFit: "cover",
+                                                    borderRadius: "50%",
+                                                    border: 3,
+                                                    borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.3)" : "rgba(37,99,235,0.2)",
+                                                }}
+                                                src={profileImage}
+                                            />
+                                        )}
                                         {/* Status indicator */}
                                         <Box sx={{
-                                            position: "absolute", bottom: 16, right: 16,
+                                            position: "absolute", bottom: "14%", right: "14%",
                                             width: 20, height: 20, borderRadius: "50%",
                                             backgroundColor: "#10b981",
                                             border: 3, borderColor: "background.paper",
@@ -205,88 +216,126 @@ const AboutPage = () => {
                                 <Grid size={{xs: 12, md: 8}}>
                                     <Stack spacing={2.5}>
                                         {/* Name with gradient */}
-                                        <Typography variant="h3" sx={{
-                                            fontWeight: 900,
-                                            background: (t) => t.palette.mode === "dark"
-                                                ? "linear-gradient(135deg, #e2e8f0, #60a5fa)"
-                                                : "linear-gradient(135deg, #0f172a, #2563eb)",
-                                            WebkitBackgroundClip: "text",
-                                            WebkitTextFillColor: "transparent",
-                                        }}>
-                                            {name}
-                                        </Typography>
+                                        {infoLoading || !name ? (
+                                            <Skeleton variant="text" width="60%" height={50} />
+                                        ) : (
+                                            <Typography variant="h3" sx={{
+                                                fontWeight: 900,
+                                                fontSize: {xs: "1.5rem", sm: "2rem", md: "2.5rem"},
+                                                background: (t) => t.palette.mode === "dark"
+                                                    ? "linear-gradient(135deg, #e2e8f0, #60a5fa)"
+                                                    : "linear-gradient(135deg, #0f172a, #2563eb)",
+                                                WebkitBackgroundClip: "text",
+                                                WebkitTextFillColor: "transparent",
+                                            }}>
+                                                {name}
+                                            </Typography>
+                                        )}
 
                                         {/* Role badge */}
-                                        <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
-                                            <Box sx={{
-                                                display: "inline-flex", alignItems: "center", gap: 1,
-                                                px: 2, py: 0.7, borderRadius: "999px",
-                                                background: (t) => t.palette.mode === "dark"
-                                                    ? "linear-gradient(135deg, rgba(96,165,250,0.15), rgba(245,166,35,0.1))"
-                                                    : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
-                                                border: 1,
-                                                borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.2)" : "rgba(37,99,235,0.15)",
-                                            }}>
-                                                <Box sx={{width: 8, height: 8, borderRadius: "50%", backgroundColor: "colors.accent"}} />
-                                                <Typography variant="body2" sx={{color: "colors.accent", fontWeight: 700, letterSpacing: 0.5}}>
-                                                    {title}
-                                                </Typography>
-                                            </Box>
-                                            {company && (
-                                                <Chip label={`@ ${company}`} size="small" sx={{fontWeight: 600, height: 28, backgroundColor: "light.secondary", color: "colors.gold"}} />
-                                            )}
-                                        </Stack>
+                                        {infoLoading || !title ? (
+                                            <Stack direction="row" spacing={1}>
+                                                <Skeleton variant="rounded" width={180} height={32} sx={{borderRadius: "999px"}} />
+                                                <Skeleton variant="rounded" width={100} height={28} sx={{borderRadius: "999px"}} />
+                                            </Stack>
+                                        ) : (
+                                            <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
+                                                <Box sx={{
+                                                    display: "inline-flex", alignItems: "center", gap: 1,
+                                                    px: 2, py: 0.7, borderRadius: "999px",
+                                                    background: (t) => t.palette.mode === "dark"
+                                                        ? "linear-gradient(135deg, rgba(96,165,250,0.15), rgba(245,166,35,0.1))"
+                                                        : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
+                                                    border: 1,
+                                                    borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.2)" : "rgba(37,99,235,0.15)",
+                                                }}>
+                                                    <Box sx={{width: 8, height: 8, borderRadius: "50%", backgroundColor: "colors.accent"}} />
+                                                    <Typography variant="body2" sx={{color: "colors.accent", fontWeight: 700, letterSpacing: 0.5}}>
+                                                        {title}
+                                                    </Typography>
+                                                </Box>
+                                                {company && (
+                                                    <Chip label={`@ ${company}`} size="small" sx={{fontWeight: 600, height: 28, backgroundColor: "light.secondary", color: "colors.gold"}} />
+                                                )}
+                                            </Stack>
+                                        )}
 
                                         {/* Bio */}
-                                        {bio && (
-                                            <Typography sx={{color: "text.secondary", lineHeight: 1.8, maxWidth: 600}} variant="body1">
+                                        {infoLoading ? (
+                                            <Stack spacing={0.8} sx={{maxWidth: 600}}>
+                                                <Skeleton variant="text" width="100%" height={22} />
+                                                <Skeleton variant="text" width="95%" height={22} />
+                                                <Skeleton variant="text" width="88%" height={22} />
+                                                <Skeleton variant="text" width="70%" height={22} />
+                                            </Stack>
+                                        ) : bio && (
+                                            <Typography sx={{color: "text.secondary", lineHeight: 1.8, maxWidth: 600, fontSize: {xs: "0.85rem", sm: "0.95rem", md: "1rem"}}} variant="body1">
                                                 {bio}
                                             </Typography>
                                         )}
 
                                         {/* Quick stats row */}
-                                        <Stack direction="row" spacing={3} sx={{py: 1}}>
-                                            {[
-                                                {label: "Experience", value: "7+ yrs"},
-                                                {label: "Location", value: location || "Accra, Ghana"},
-                                                {label: "Status", value: "Available"},
+                                        <Stack direction="row" spacing={{xs: 0.8, sm: 1.5}} sx={{py: 1}}>
+                                            {infoLoading ? (
+                                                [...Array(3)].map((_, i) => (
+                                                    <Skeleton key={i} variant="rounded" width={120} height={36} sx={{borderRadius: "999px"}} />
+                                                ))
+                                            ) : [
+                                                {icon: <WorkOutlineOutlined sx={{fontSize: {xs: 14, sm: 16}}}/>, label: "Experience", value: "7+ yrs", color: "#2563eb"},
+                                                {icon: <LocationOnOutlined sx={{fontSize: {xs: 14, sm: 16}}}/>, label: "Location", value: location || "", color: "#16a34a"},
+                                                {icon: <CheckCircleOutlined sx={{fontSize: {xs: 14, sm: 16}}}/>, label: "Status", value: "Available", color: "#f59e0b"},
                                             ].map((stat, i) => (
-                                                <Box key={i}>
-                                                    <Typography variant="caption" sx={{color: "text.secondary", textTransform: "uppercase", letterSpacing: 1, fontSize: "0.65rem"}}>
+                                                <Box key={i} sx={{
+                                                    display: "inline-flex", alignItems: "center", gap: {xs: 0.5, sm: 0.8},
+                                                    px: {xs: 1, sm: 2}, py: {xs: 0.5, sm: 0.7}, borderRadius: "999px",
+                                                    backgroundColor: `${stat.color}0a`,
+                                                    border: `1px solid ${stat.color}20`,
+                                                    transition: "all 250ms",
+                                                    "&:hover": {
+                                                        backgroundColor: `${stat.color}18`,
+                                                        borderColor: `${stat.color}50`,
+                                                        transform: "translateY(-1px)",
+                                                    },
+                                                }}>
+                                                    <Box sx={{
+                                                        display: "flex", alignItems: "center", justifyContent: "center",
+                                                        width: {xs: 20, sm: 24}, height: {xs: 20, sm: 24}, borderRadius: "50%",
+                                                        backgroundColor: `${stat.color}15`,
+                                                        color: stat.color,
+                                                    }}>
+                                                        {stat.icon}
+                                                    </Box>
+                                                    <Typography variant="body2" sx={{
+                                                        color: "text.primary", fontWeight: 600, fontSize: "0.75rem",
+                                                        display: {xs: "none", sm: "block"},
+                                                    }}>
                                                         {stat.label}
                                                     </Typography>
-                                                    <Typography variant="body2" sx={{color: "text.primary", fontWeight: 600}}>
+                                                    <Typography variant="body2" sx={{color: stat.color, fontWeight: 700, fontSize: {xs: "0.65rem", sm: "0.75rem"}, whiteSpace: "nowrap"}}>
                                                         {stat.value}
                                                     </Typography>
                                                 </Box>
                                             ))}
                                         </Stack>
 
-                                        {/* Social + Resume row */}
-                                        <Stack direction={{xs: "column", sm: "row"}} spacing={2} alignItems={{sm: "center"}}>
-                                            {/* Social icons */}
-                                            <Stack direction="row" spacing={1}>
-                                                {socialChips.map(s => (
-                                                    <MUILink key={s.key} underline="none" rel="noreferrer noopener" target="_blank" href={socialLinks[s.key]}>
-                                                        <IconButton size="small" sx={{
-                                                            border: 1, borderColor: "divider", borderRadius: 1,
-                                                            transition: "all 300ms",
-                                                            "&:hover": {borderColor: "colors.accent", backgroundColor: "light.accent", transform: "translateY(-2px)"},
-                                                        }}>
-                                                            <Avatar src={s.icon} sx={{width: 18, height: 18}} />
-                                                        </IconButton>
-                                                    </MUILink>
-                                                ))}
+                                        {/* Resume row - skeleton when loading */}
+                                        {infoLoading ? (
+                                            <Stack direction="row" spacing={1.5}>
+                                                <Skeleton variant="rounded" width={120} height={44} sx={{borderRadius: "999px"}} />
+                                                <Skeleton variant="rounded" width={140} height={44} sx={{borderRadius: "999px"}} />
                                             </Stack>
-
+                                        ) : (
+                                        <React.Fragment>
+                                        {/* Resume row */}
+                                        <Stack direction={{xs: "column", sm: "row"}} spacing={2} alignItems={{sm: "center"}}>
                                             {/* Resume button */}
                                             {(resumeUrl || coverLetterUrl) && (
-                                                <Stack direction="row" spacing={1.5} flexWrap="wrap">
+                                                <Stack direction={{xs: "column", sm: "row"}} spacing={1.5} sx={{width: {xs: "100%", sm: "auto"}}}>
                                                     {resumeUrl && (
-                                                        <MUILink underline="none" href={resumeUrl} target="_blank" rel="noreferrer" onClick={playRoundComplete}>
+                                                        <MUILink underline="none" href={resumeUrl} target="_blank" rel="noreferrer" onClick={playRoundComplete} sx={{width: {xs: "100%", sm: "auto"}}}>
                                                             <Box sx={{
-                                                                display: "inline-flex", alignItems: "center", gap: 1,
-                                                                px: 3, py: 1, borderRadius: "999px",
+                                                                display: "flex", alignItems: "center", justifyContent: "center", gap: 1,
+                                                                px: 3, py: 1.2, borderRadius: "999px", width: "100%", height: 44,
                                                                 background: (t) => t.palette.mode === "dark"
                                                                     ? "linear-gradient(135deg, #60a5fa, #F5A623)"
                                                                     : "linear-gradient(135deg, #2563eb, #F5A623)",
@@ -303,67 +352,162 @@ const AboutPage = () => {
                                                         </MUILink>
                                                     )}
                                                     {coverLetterUrl && (
-                                                        <MUILink underline="none" href={coverLetterUrl} target="_blank" rel="noreferrer" onClick={playLaugh}>
+                                                        <MUILink underline="none" href={coverLetterUrl} target="_blank" rel="noreferrer" onClick={playLaugh} sx={{width: {xs: "100%", sm: "auto"}}}>
                                                             <Box sx={{
-                                                                display: "inline-flex", alignItems: "center", gap: 1,
-                                                                px: 3, py: 1, borderRadius: "999px",
-                                                                border: 2,
-                                                                borderColor: "colors.accent",
-                                                                color: "colors.accent",
-                                                                fontWeight: 700, fontSize: "0.8rem",
-                                                                letterSpacing: 1, textTransform: "uppercase",
+                                                                display: "flex", alignItems: "center", justifyContent: "center",
+                                                                px: 3, borderRadius: "999px", width: "100%", height: 44,
+                                                                position: "relative",
+                                                                background: (t) => t.palette.mode === "dark"
+                                                                    ? "linear-gradient(135deg, #60a5fa, #F5A623)"
+                                                                    : "linear-gradient(135deg, #2563eb, #F5A623)",
                                                                 cursor: "pointer", transition: "all 300ms",
                                                                 "&:hover": {
                                                                     transform: "translateY(-2px)",
-                                                                    backgroundColor: "light.accent",
                                                                     boxShadow: "0 8px 25px rgba(37,99,235,0.15)",
                                                                 },
                                                             }}>
-                                                                Cover Letter
+                                                                <Box sx={{
+                                                                    position: "absolute", inset: "2px",
+                                                                    borderRadius: "999px",
+                                                                    backgroundColor: "background.paper",
+                                                                }}/>
+                                                                <Typography sx={{
+                                                                    position: "relative", zIndex: 1,
+                                                                    fontWeight: 700, fontSize: "0.8rem",
+                                                                    letterSpacing: 1, textTransform: "uppercase",
+                                                                    background: (t) => t.palette.mode === "dark"
+                                                                        ? "linear-gradient(135deg, #60a5fa, #F5A623)"
+                                                                        : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                                                    WebkitBackgroundClip: "text",
+                                                                    WebkitTextFillColor: "transparent",
+                                                                    backgroundClip: "text",
+                                                                }}>
+                                                                    Cover Letter
+                                                                </Typography>
                                                             </Box>
                                                         </MUILink>
                                                     )}
                                                 </Stack>
                                             )}
                                         </Stack>
+                                        </React.Fragment>
+                                        )}
                                     </Stack>
                                 </Grid>
                             </Grid>
                         </Box>
                     </Box>
 
-                    <Divider sx={{my: 6}} light={true} variant="fullWidth"/>
+                    <Divider sx={{my: 3}} light={true} variant="fullWidth"/>
 
                     {/* Tabs */}
-                    <Box>
-                        <Tabs
-                            component={Paper}
-                            indicatorColor="secondary"
-                            textColor="secondary"
-                            centered={!mobile}
-                            variant={mobile ? "scrollable" : "standard"}
-                            value={index}
-                            sx={{borderRadius: 1}}
-                            onChange={handleTabChange}>
-                            <Tab label="Skills"/>
-                            <Tab label="Education"/>
-                            <Tab label="Experience"/>
-                            <Tab label="Certifications"/>
-                        </Tabs>
+                    <Box sx={{display: "flex", justifyContent: "center"}}>
+                        <Stack
+                            direction="row"
+                            spacing={1}
+                            sx={{
+                                p: 0.75,
+                                borderRadius: "999px",
+                                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)",
+                                border: 1,
+                                borderColor: "divider",
+                                flexWrap: "nowrap",
+                                justifyContent: "center",
+                            }}
+                        >
+                            {[
+                                {label: "Skills", icon: "{ }"},
+                                {label: "Education", icon: "Edu"},
+                                {label: "Experience", icon: "Exp"},
+                                {label: "Certifications", icon: "Cert"},
+                            ].map((tab, i) => {
+                                const isActive = index === i;
+                                const accentColors = ["#2563eb", "#7c3aed", "#F5A623", "#06b6d4"];
+                                const activeColor = accentColors[i];
+                                return (
+                                    <Box
+                                        key={tab.label}
+                                        component={motion.div}
+                                        whileHover={{scale: 1.04}}
+                                        whileTap={{scale: 0.97}}
+                                        onClick={(e) => handleTabChange(e, i)}
+                                        sx={{
+                                            display: "flex", alignItems: "center", gap: 1,
+                                            px: {xs: 1.2, sm: 3}, py: {xs: 0.8, sm: 1.2},
+                                            borderRadius: "999px",
+                                            cursor: "pointer",
+                                            transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+                                            position: "relative",
+                                            overflow: "hidden",
+                                            ...(isActive ? {
+                                                background: (t) => t.palette.mode === "dark"
+                                                    ? `linear-gradient(135deg, ${activeColor}30, ${activeColor}15)`
+                                                    : `linear-gradient(135deg, ${activeColor}18, ${activeColor}08)`,
+                                                border: 1,
+                                                borderColor: `${activeColor}40`,
+                                                boxShadow: `0 4px 20px ${activeColor}20`,
+                                            } : {
+                                                border: 1,
+                                                borderColor: "transparent",
+                                                "&:hover": {
+                                                    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+                                                },
+                                            }),
+                                        }}
+                                    >
+                                        <Box sx={{
+                                            width: 28, height: 28, borderRadius: "50%",
+                                            display: "flex", alignItems: "center", justifyContent: "center",
+                                            fontSize: "0.6rem", fontWeight: 900,
+                                            backgroundColor: isActive ? `${activeColor}25` : (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)",
+                                            color: isActive ? activeColor : "text.secondary",
+                                            transition: "all 300ms",
+                                        }}>
+                                            {tab.icon}
+                                        </Box>
+                                        <Typography variant="body2" sx={{
+                                            fontWeight: isActive ? 700 : 500,
+                                            color: isActive ? activeColor : "text.secondary",
+                                            letterSpacing: isActive ? 0.5 : 0,
+                                            transition: "all 300ms",
+                                            fontSize: {xs: "0.78rem", sm: "0.85rem"},
+                                            display: {xs: "none", sm: "block"},
+                                        }}>
+                                            {tab.label}
+                                        </Typography>
+                                        {isActive && (
+                                            <Box sx={{
+                                                width: 6, height: 6, borderRadius: "50%",
+                                                backgroundColor: activeColor,
+                                                boxShadow: `0 0 8px ${activeColor}`,
+                                                animation: "pulse 2s ease-in-out infinite",
+                                                display: {xs: "none", sm: "block"},
+                                            }} />
+                                        )}
+                                    </Box>
+                                );
+                            })}
+                        </Stack>
                     </Box>
 
-                    <Divider sx={{my: 6}} light={true} variant="fullWidth"/>
+                    <Divider sx={{my: 3}} light={true} variant="fullWidth"/>
 
                     {/* Tab Content */}
                     <Box>
                         {isLoading && (
-                            <SkeletonLoader variant={index === 3 ? "timeline" : "cards"} />
+                            <Grid container spacing={4}>
+                                {[...Array(6)].map((_, i) => (
+                                    <Grid size={{xs: 12, md: 6, lg: 4}} key={i}>
+                                        <Skeleton variant="rectangular" height={200} sx={{borderRadius: 2, mb: 1}} />
+                                        <Skeleton variant="text" width="70%" />
+                                        <Skeleton variant="text" width="50%" />
+                                    </Grid>
+                                ))}
+                            </Grid>
                         )}
 
                         {anyError && !isLoading && (
-                            <Alert severity="error" variant="outlined" sx={{borderRadius: 1, mb: 3}}>
-                                {anyError}
-                            </Alert>
+                            <FriendlyError onRetry={() => { dispatch(fetchSkills()); dispatch(fetchEducation()); dispatch(fetchExperience()); dispatch(fetchCertifications()); }} />
                         )}
 
                         {!isLoading && !anyError && index === 0 && (() => {
@@ -421,7 +565,7 @@ const AboutPage = () => {
                                     return (
                                         <Grid key={category.category || catIndex} size={{xs: 12, md: 6, lg: 4}}>
                                             <Card variant="outlined" sx={{
-                                                height: "100%", borderRadius: 1, overflow: "hidden",
+                                                height: "100%", borderRadius: 2, overflow: "hidden",
                                                 transition: "all 300ms ease",
                                                 "&:hover": {
                                                     transform: "translateY(-4px)",

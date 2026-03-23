@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
-import SkeletonLoader from "../../components/shared/skeleton-loader";
 import {
-    Alert,
     Box,
     Card,
     CardContent,
@@ -13,6 +11,7 @@ import {
     Chip,
     Fab,
     Grid,
+    Skeleton,
     Stack,
     Typography,
     useMediaQuery,
@@ -22,10 +21,11 @@ import {useNavigate, useParams} from "react-router";
 import {Link} from "react-router-dom";
 import {ViewList, ArrowBackOutlined, ArrowForwardOutlined} from "@mui/icons-material";
 import Lessons from "../../components/shared/lessons";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourseLesson, fetchCourseBySlug, selectCurrentLesson, selectCurrentCourse} from "../../features/data/data-slice";
+import FriendlyError from "../../components/shared/friendly-error";
 
 const LessonDetailPage = () => {
     const navigate = useNavigate();
@@ -48,34 +48,6 @@ const LessonDetailPage = () => {
     const lesson = lessonData?.lesson;
     const lessons = courseData?.lessons || [];
 
-    if (loading) {
-        return <Layout><SkeletonLoader variant="detail" /></Layout>;
-    }
-
-    if (error) {
-        return (
-            <Layout>
-                <Container maxWidth="xl" sx={{py: 8}}>
-                    <Alert severity="error" variant="outlined" sx={{borderRadius: 1}}>
-                        {error}
-                    </Alert>
-                </Container>
-            </Layout>
-        );
-    }
-
-    if (!lesson || !course) {
-        return (
-            <Layout>
-                <Container sx={{py: 8, textAlign: "center"}}>
-                    <Typography variant="h4" sx={{color: "text.primary"}}>
-                        Lesson not found
-                    </Typography>
-                </Container>
-            </Layout>
-        );
-    }
-
     const handleSelectedLesson = (selectedLesson) => {
         navigate(`/learn/${cslug}/lessons/${selectedLesson.slug}`);
         setOpen(false);
@@ -85,7 +57,7 @@ const LessonDetailPage = () => {
         <Layout>
             <PageBackground variant="detail">
                 <Helmet>
-                    <title>{lesson.title} | {course.name} | Stanley Hayford</title>
+                    <title>{lesson ? `${lesson.title} | ${course?.name || ''} | Stanley Hayford` : 'Lesson | Stanley Hayford'}</title>
                 </Helmet>
                 <Box sx={{py: 4}}>
                 <Container maxWidth="xl">
@@ -100,7 +72,7 @@ const LessonDetailPage = () => {
                             </Button>
                         </Link>
                         {/* Next/Prev navigation */}
-                        {lessons.length > 1 && (() => {
+                        {!loading && lessons.length > 1 && (() => {
                             const currentIdx = lessons.findIndex(l => l.slug === lslug);
                             const prev = currentIdx > 0 ? lessons[currentIdx - 1] : null;
                             const next = currentIdx < lessons.length - 1 ? lessons[currentIdx + 1] : null;
@@ -130,6 +102,33 @@ const LessonDetailPage = () => {
                         })()}
                     </Stack>
 
+                    {loading ? (
+                        <Grid container spacing={4}>
+                            {isDesktop && (
+                                <Grid size={{xs: 12, lg: 3}}>
+                                    <Skeleton variant="rectangular" height={400} sx={{borderRadius: 2}} />
+                                </Grid>
+                            )}
+                            <Grid size={{xs: 12, lg: 9}}>
+                                <Skeleton variant="text" width="30%" height={24} sx={{mb: 1}} />
+                                <Skeleton variant="text" width="70%" height={40} sx={{mb: 1}} />
+                                <Skeleton variant="text" width="20%" sx={{mb: 3}} />
+                                <Skeleton variant="rectangular" height={300} sx={{borderRadius: 2, mb: 2}} />
+                                <Skeleton variant="text" width="90%" />
+                                <Skeleton variant="text" width="85%" />
+                                <Skeleton variant="text" width="75%" />
+                            </Grid>
+                        </Grid>
+                    ) : error ? (
+                        <FriendlyError onRetry={() => dispatch(fetchCourseLesson({cslug, lslug}))} />
+                    ) : !lesson || !course ? (
+                        <Box sx={{textAlign: "center", py: 8}}>
+                            <Typography variant="h4" sx={{color: "text.primary"}}>
+                                Lesson not found
+                            </Typography>
+                        </Box>
+                    ) : (
+                        <>
                     <Grid container spacing={4}>
                         {/* Sidebar - desktop only */}
                         {isDesktop && (
@@ -137,7 +136,7 @@ const LessonDetailPage = () => {
                                 <Card
                                     variant="outlined"
                                     sx={{
-                                        borderRadius: 1,
+                                        borderRadius: 2,
                                         position: "sticky",
                                         top: 80
                                     }}>
@@ -171,7 +170,7 @@ const LessonDetailPage = () => {
                         <Grid size={{xs: 12, lg: 9}}>
                             <Card
                                 variant="outlined"
-                                sx={{borderRadius: 1}}>
+                                sx={{borderRadius: 2}}>
                                 <CardContent sx={{p: {xs: 3, md: 5}}}>
                                     <Stack spacing={1} sx={{mb: 3}}>
                                         <Typography
@@ -230,7 +229,7 @@ const LessonDetailPage = () => {
                                                 <Box
                                                     sx={{
                                                         backgroundColor: "background.default",
-                                                        borderRadius: 1,
+                                                        borderRadius: 2,
                                                         p: 3,
                                                         mt: 2,
                                                         fontFamily: "monospace",
@@ -250,7 +249,6 @@ const LessonDetailPage = () => {
                             </Card>
                         </Grid>
                     </Grid>
-                </Container>
 
                 {/* FAB for mobile lesson navigation */}
                 {!isDesktop && (
@@ -266,7 +264,6 @@ const LessonDetailPage = () => {
                         <ViewList/>
                     </Fab>
                 )}
-            </Box>
 
                 <Drawer
                     anchor="right"
@@ -278,7 +275,7 @@ const LessonDetailPage = () => {
                             variant="h6"
                             sx={{
                                 color: "colors.accent",
-                                                                fontWeight: 800,
+                                fontWeight: 800,
                                 textTransform: "uppercase",
                                 letterSpacing: 1,
                                 mb: 1
@@ -293,6 +290,10 @@ const LessonDetailPage = () => {
                         />
                     </Box>
                 </Drawer>
+                        </>
+                    )}
+                </Container>
+            </Box>
             </PageBackground>
         </Layout>
     )

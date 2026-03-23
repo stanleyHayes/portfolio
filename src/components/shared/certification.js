@@ -19,7 +19,7 @@ const Certification = ({certification, index = 0}) => {
             variant="outlined"
             sx={{
                 height: "100%",
-                borderRadius: 1,
+                borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
@@ -107,7 +107,7 @@ const Certification = ({certification, index = 0}) => {
                         color,
                         textTransform: "none",
                         fontWeight: 600,
-                        borderRadius: 1,
+                        borderRadius: 2,
                         "&:hover": {backgroundColor: `${color}08`},
                     }}
                     href={certification.link}

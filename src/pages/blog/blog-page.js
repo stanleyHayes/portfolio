@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
-import {Alert, Avatar, Box, Chip, Container, Divider, Grid, Pagination, Stack, Typography} from "@mui/material";
-import SkeletonLoader from "../../components/shared/skeleton-loader";
-import {Helmet} from "react-helmet";
+import {Avatar, Box, Chip, Container, Divider, Grid, Pagination, Skeleton, Stack, Typography} from "@mui/material";
+import FriendlyError from "../../components/shared/friendly-error";
+import {Helmet} from "react-helmet-async";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -37,7 +37,7 @@ const PostCard = ({post, index}) => {
                 <Box sx={{
                     height: "100%",
                     width: "100%",
-                    borderRadius: 3,
+                    borderRadius: 6,
                     overflow: "hidden",
                     backgroundColor: "background.paper",
                     boxShadow: (t) => t.palette.mode === "dark"
@@ -73,7 +73,7 @@ const PostCard = ({post, index}) => {
 
                     {/* Cover Image — floating with padding */}
                     <Box sx={{p: 1.5, pb: 0}}>
-                    <Box sx={{position: "relative", overflow: "hidden", height: 200, borderRadius: 2}}>
+                    <Box sx={{position: "relative", overflow: "hidden", height: 200, borderRadius: 4}}>
                         {post.coverImage ? (
                             <Box
                                 className="post-image"
@@ -130,7 +130,7 @@ const PostCard = ({post, index}) => {
                             right: 12,
                             backgroundColor: "rgba(0,0,0,0.5)",
                             backdropFilter: "blur(8px)",
-                            borderRadius: 2,
+                            borderRadius: 4,
                             px: 1.2,
                             py: 0.4,
                             display: "flex",
@@ -168,7 +168,7 @@ const PostCard = ({post, index}) => {
                                                 backgroundColor: tc.bg,
                                                 color: tc.color,
                                                 fontWeight: 700,
-                                                borderRadius: 1.5,
+                                                borderRadius: 3,
                                                 letterSpacing: 0.3,
                                             }}
                                         />
@@ -248,20 +248,6 @@ const BlogPage = () => {
         window.scrollTo({top: 0, behavior: "smooth"});
     };
 
-    if (loading) {
-        return <Layout><SkeletonLoader variant="cards" /></Layout>;
-    }
-
-    if (error) {
-        return (
-            <Layout>
-                <Container maxWidth="xl" sx={{py: 8}}>
-                    <Alert severity="error" variant="outlined" sx={{borderRadius: 1}}>{error}</Alert>
-                </Container>
-            </Layout>
-        );
-    }
-
     return (
         <Layout>
             <PageBackground variant="cards">
@@ -285,39 +271,58 @@ const BlogPage = () => {
                         <Typography variant="body1" align="center" sx={{color: "text.secondary", maxWidth: 550, mx: "auto", mb: 2}}>
                             Exploring ideas in software engineering, web development, and technology.
                         </Typography>
-                        <Stack direction="row" justifyContent="center" sx={{mb: 2}}>
-                            <Chip
-                                label={`${allPosts.length} Posts`}
-                                size="small"
-                                sx={{backgroundColor: "light.accent", color: "colors.accent", fontWeight: 700}}
-                            />
-                        </Stack>
+                        {!loading && (
+                            <Stack direction="row" justifyContent="center" sx={{mb: 2}}>
+                                <Chip
+                                    label={`${allPosts.length} Posts`}
+                                    size="small"
+                                    sx={{backgroundColor: "light.accent", color: "colors.accent", fontWeight: 700}}
+                                />
+                            </Stack>
+                        )}
                     </Box>
 
                     <Divider light sx={{my: 4}} />
 
-                    <Grid container spacing={4} sx={{display: "flex", flexWrap: "wrap"}}>
-                        {paginated.map((post, index) => (
-                            <Grid size={{xs: 12, sm: 6, lg: 4}} key={post._id || index} sx={{display: "flex", flexDirection: "column"}}>
-                                <PostCard post={post} index={index} />
+                    {loading ? (
+                        <Grid container spacing={4}>
+                            {[...Array(6)].map((_, i) => (
+                                <Grid size={{xs: 12, sm: 6, lg: 4}} key={i}>
+                                    <Skeleton variant="rectangular" height={200} sx={{borderRadius: 6, mb: 1}} />
+                                    <Skeleton variant="text" width="40%" sx={{mb: 0.5}} />
+                                    <Skeleton variant="text" width="80%" />
+                                    <Skeleton variant="text" width="60%" />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    ) : error ? (
+                        <FriendlyError onRetry={() => dispatch(fetchPosts())} />
+                    ) : (
+                        <>
+                            <Grid container spacing={4} sx={{display: "flex", flexWrap: "wrap"}}>
+                                {paginated.map((post, index) => (
+                                    <Grid size={{xs: 12, sm: 6, lg: 4}} key={post._id || index} sx={{display: "flex", flexDirection: "column"}}>
+                                        <PostCard post={post} index={index} />
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))}
-                    </Grid>
 
-                    {totalPages > 1 && (
-                        <Stack alignItems="center" sx={{mt: 6}}>
-                            <Pagination
-                                count={totalPages}
-                                page={page}
-                                onChange={handlePageChange}
-                                color="secondary"
-                                shape="rounded"
-                                size="large"
-                            />
-                            <Typography variant="body2" sx={{color: "text.secondary", mt: 1}}>
-                                Showing {paginated.length} of {allPosts.length} posts
-                            </Typography>
-                        </Stack>
+                            {totalPages > 1 && (
+                                <Stack alignItems="center" sx={{mt: 6}}>
+                                    <Pagination
+                                        count={totalPages}
+                                        page={page}
+                                        onChange={handlePageChange}
+                                        color="secondary"
+                                        shape="rounded"
+                                        size="large"
+                                    />
+                                    <Typography variant="body2" sx={{color: "text.secondary", mt: 1}}>
+                                        Showing {paginated.length} of {allPosts.length} posts
+                                    </Typography>
+                                </Stack>
+                            )}
+                        </>
                     )}
                 </Container>
                 </Box>

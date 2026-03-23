@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
-import {Alert, Box, Button, Container, Divider, Grid, Pagination, Stack, Typography} from "@mui/material";
-import SkeletonLoader from "../../components/shared/skeleton-loader";
+import {Box, Button, Container, Divider, Grid, Pagination, Skeleton, Stack, Typography} from "@mui/material";
+import FriendlyError from "../../components/shared/friendly-error";
 import Project from "../../components/shared/project";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -33,22 +33,6 @@ const PortfolioPage = () => {
         setPage(value);
         window.scrollTo({top: 0, behavior: "smooth"});
     };
-
-    if (loading) {
-        return <Layout><SkeletonLoader variant="cards" /></Layout>;
-    }
-
-    if (error) {
-        return (
-            <Layout>
-                <Container maxWidth="xl" sx={{py: 8}}>
-                    <Alert severity="error" variant="outlined" sx={{borderRadius: 1}}>
-                        {error}
-                    </Alert>
-                </Container>
-            </Layout>
-        );
-    }
 
     return (
         <Layout>
@@ -88,7 +72,7 @@ const PortfolioPage = () => {
                                     variant={filter === f.value ? "contained" : "outlined"}
                                     onClick={() => { setFilter(f.value); setPage(1); }}
                                     sx={{
-                                        borderRadius: 1,
+                                        borderRadius: 2,
                                         textTransform: "uppercase",
                                         letterSpacing: 1,
                                         fontSize: "0.75rem",
@@ -106,39 +90,55 @@ const PortfolioPage = () => {
 
                         <Divider light={true} sx={{mb: 6}} />
 
-                        <Box
-                            component={motion.div}
-                            initial={{opacity: 0, y: 20}}
-                            whileInView={{opacity: 1, y: 0, transition: {duration: 0.6}}}
-                            viewport={{once: true}}>
+                        {loading ? (
                             <Grid container spacing={4}>
-                                {paginated.map((project, index) => (
-                                    <Grid size={{xs: 12, md: 6, lg: 4}} key={index}>
-                                        <Box sx={{height: "100%"}}>
-                                            <Project project={project}/>
-                                        </Box>
+                                {[...Array(6)].map((_, i) => (
+                                    <Grid size={{xs: 12, md: 6, lg: 4}} key={i}>
+                                        <Skeleton variant="rectangular" height={200} sx={{borderRadius: 2, mb: 1}} />
+                                        <Skeleton variant="text" width="70%" />
+                                        <Skeleton variant="text" width="50%" />
                                     </Grid>
                                 ))}
                             </Grid>
-                        </Box>
+                        ) : error ? (
+                            <FriendlyError onRetry={() => dispatch(fetchProjects())} />
+                        ) : (
+                            <>
+                                <Box
+                                    component={motion.div}
+                                    initial={{opacity: 0, y: 20}}
+                                    whileInView={{opacity: 1, y: 0, transition: {duration: 0.6}}}
+                                    viewport={{once: true}}>
+                                    <Grid container spacing={4}>
+                                        {paginated.map((project, index) => (
+                                            <Grid size={{xs: 12, md: 6, lg: 4}} key={index}>
+                                                <Box sx={{height: "100%"}}>
+                                                    <Project project={project}/>
+                                                </Box>
+                                            </Grid>
+                                        ))}
+                                    </Grid>
+                                </Box>
 
-                        {/* Pagination */}
-                        {totalPages > 1 && (
-                            <Stack alignItems="center" sx={{mt: 6}}>
-                                <Pagination
-                                    count={totalPages}
-                                    page={page}
-                                    onChange={handlePageChange}
-                                    color="secondary"
-                                    shape="rounded"
-                                    size="large"
-                                />
-                            </Stack>
+                                {/* Pagination */}
+                                {totalPages > 1 && (
+                                    <Stack alignItems="center" sx={{mt: 6}}>
+                                        <Pagination
+                                            count={totalPages}
+                                            page={page}
+                                            onChange={handlePageChange}
+                                            color="secondary"
+                                            shape="rounded"
+                                            size="large"
+                                        />
+                                    </Stack>
+                                )}
+
+                                <Typography variant="body2" align="center" sx={{color: "text.secondary", mt: 2}}>
+                                    Showing {paginated.length} of {filtered.length} projects
+                                </Typography>
+                            </>
                         )}
-
-                        <Typography variant="body2" align="center" sx={{color: "text.secondary", mt: 2}}>
-                            Showing {paginated.length} of {filtered.length} projects
-                        </Typography>
                     </Container>
                 </Box>
             </PageBackground>

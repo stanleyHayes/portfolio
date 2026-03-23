@@ -28,13 +28,13 @@ const TimelineNode = ({color, isFirst, isLast, children}) => {
                     />
                     {!isLast && (
                         <Box sx={{position: "relative", flexGrow: 1, width: 2, mt: 0.5}}>
-                            <Box sx={{position: "absolute", inset: 0, backgroundColor: "divider", borderRadius: 1}} />
+                            <Box sx={{position: "absolute", inset: 0, backgroundColor: "divider", borderRadius: 2}} />
                             <Box
                                 component={motion.div}
                                 initial={{height: 0}}
                                 animate={isInView ? {height: "100%"} : {}}
                                 transition={{duration: 0.8, delay: 0.3, ease: "easeOut"}}
-                                sx={{position: "absolute", top: 0, left: 0, right: 0, backgroundColor: color, borderRadius: 1, boxShadow: `0 0 8px ${color}40`}}
+                                sx={{position: "absolute", top: 0, left: 0, right: 0, backgroundColor: color, borderRadius: 2, boxShadow: `0 0 8px ${color}40`}}
                             />
                         </Box>
                     )}
@@ -60,7 +60,7 @@ const ExperienceCard = ({item}) => {
 
     return (
         <Card variant="outlined" sx={{
-            borderRadius: 1, overflow: "hidden",
+            borderRadius: 2, overflow: "hidden",
             borderLeft: {xs: 4, md: 0}, borderTop: {xs: 0, md: 3}, borderColor: item.color,
             transition: "all 300ms ease",
             "&:hover": {
@@ -149,7 +149,7 @@ const ExperienceCard = ({item}) => {
                                                     >
                                                         <Stack direction="row" spacing={1.5} alignItems="flex-start">
                                                             <Box sx={{
-                                                                width: 20, height: 20, borderRadius: 0.5,
+                                                                width: 20, height: 20, borderRadius: 1,
                                                                 backgroundColor: `${item.color}12`,
                                                                 border: `1px solid ${item.color}25`,
                                                                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -238,7 +238,7 @@ const AnimatedTimeline = ({items, type = "experience"}) => {
                     ) : (
                         /* Education card */
                         <Card variant="outlined" sx={{
-                            borderRadius: 1, overflow: "hidden",
+                            borderRadius: 2, overflow: "hidden",
                             borderLeft: {xs: 4, md: 0}, borderTop: {xs: 0, md: 3}, borderColor: item.color,
                             transition: "all 300ms ease",
                             "&:hover": {transform: "translateY(-4px)", boxShadow: `0 12px 40px ${item.color}18`}
@@ -246,7 +246,7 @@ const AnimatedTimeline = ({items, type = "experience"}) => {
                             <CardContent sx={{p: {xs: 3, md: 4}}}>
                                 <Stack direction={{xs: "column", md: "row"}} spacing={3}>
                                     <Box sx={{
-                                        width: 72, height: 72, borderRadius: 1, flexShrink: 0,
+                                        width: 72, height: 72, borderRadius: 2, flexShrink: 0,
                                         backgroundColor: `${item.color}12`,
                                         display: "flex", alignItems: "center", justifyContent: "center",
                                     }}>

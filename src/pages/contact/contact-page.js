@@ -32,11 +32,12 @@ import {
     Twitter,
     Instagram
 } from "@mui/icons-material";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 import {useFormik} from "formik";
 import * as yup from "yup";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
+import {Skeleton} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {sendMessage, selectMessage, clearMessage, fetchInfo, selectInfo} from "../../features/data/data-slice";
 import useSounds from "../../hooks/use-sound";
@@ -46,7 +47,7 @@ const ContactPage = () => {
     const dispatch = useDispatch();
     const {playExcellent} = useSounds();
     const {loading: messageLoading, error: messageError, data: messageData} = useSelector(selectMessage);
-    const {data: info} = useSelector(selectInfo);
+    const {data: info, loading: infoLoading} = useSelector(selectInfo);
 
     useEffect(() => {
         dispatch(fetchInfo());
@@ -73,37 +74,37 @@ const ContactPage = () => {
         })
     });
 
-    const contactInfo = [
+    const contactInfo = info ? [
         {
             icon: CallOutlined,
             label: "Phone",
-            value: info?.phone || "+233 555-180-048",
-            href: info?.phone ? `tel://${info.phone}` : "tel://+233555180048"
+            value: info.phone,
+            href: info.phone ? `tel://${info.phone}` : null
         },
         {
             icon: MailOutline,
             label: "Email",
-            value: info?.email || "hayfordstanley@gmail.com",
-            href: info?.email ? `mailto:${info.email}` : "mailto:hayfordstanley@gmail.com"
+            value: info.email,
+            href: info.email ? `mailto:${info.email}` : null
         },
         {
             icon: LocationOnOutlined,
             label: "Location",
-            value: info?.location || "Accra, Ghana",
+            value: info.location,
             href: null
         }
-    ];
+    ].filter(c => c.value) : [];
 
     // Convert socialLinks object {github: "url", linkedin: "url", ...} to array
     const rawLinks = info?.socialLinks || {};
     const socialLinkConfig = [
-        {key: "github", Icon: GitHub, fallback: "https://github.com/stanleyHayes"},
-        {key: "linkedin", Icon: LinkedIn, fallback: "https://www.linkedin.com/in/stanley-asoku-hayford/"},
-        {key: "twitter", Icon: Twitter, fallback: "https://x.com/stanley_hayford"},
-        {key: "instagram", Icon: Instagram, fallback: "https://instagram.com/hayford.stanley"},
+        {key: "github", Icon: GitHub},
+        {key: "linkedin", Icon: LinkedIn},
+        {key: "twitter", Icon: Twitter},
+        {key: "instagram", Icon: Instagram},
     ];
     const socialLinks = socialLinkConfig
-        .map(({key, Icon, fallback}) => ({Icon, href: rawLinks[key] || fallback}))
+        .map(({key, Icon}) => ({Icon, href: rawLinks[key]}))
         .filter(s => s.href);
 
     return (
@@ -140,13 +141,13 @@ const ContactPage = () => {
 
                     {/* Alerts */}
                     {messageError && (
-                        <Alert severity="error" variant="outlined" sx={{borderRadius: 1, mb: 3}}>
+                        <Alert severity="error" variant="outlined" sx={{borderRadius: 2, mb: 3}}>
                             <AlertTitle sx={{fontWeight: 600}}>Error</AlertTitle>
                             {messageError}
                         </Alert>
                     )}
                     {Boolean(messageData) && (
-                        <Alert severity="success" variant="outlined" sx={{borderRadius: 1, mb: 3}}>
+                        <Alert severity="success" variant="outlined" sx={{borderRadius: 2, mb: 3}}>
                             <AlertTitle sx={{fontWeight: 600}}>Sent</AlertTitle>
                             {messageData}
                         </Alert>
@@ -163,7 +164,7 @@ const ContactPage = () => {
 
                                 {/* Contact Info Card — glass + gradient */}
                                 <Box sx={{
-                                    borderRadius: 1, mb: 3, overflow: "hidden",
+                                    borderRadius: 2, mb: 3, overflow: "hidden",
                                     border: 1,
                                     borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.15)" : "rgba(37,99,235,0.1)",
                                     backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.5)" : "rgba(255,255,255,0.5)",
@@ -186,14 +187,26 @@ const ContactPage = () => {
                                         </Stack>
 
                                         <Stack spacing={2}>
-                                            {contactInfo.map((info, index) => {
+                                            {infoLoading ? (
+                                                [...Array(3)].map((_, i) => (
+                                                    <Box key={i} sx={{p: 2, borderRadius: 2, border: 1, borderColor: "divider"}}>
+                                                        <Stack direction="row" spacing={2} alignItems="center">
+                                                            <Skeleton variant="circular" width={44} height={44} />
+                                                            <Box sx={{flex: 1}}>
+                                                                <Skeleton variant="text" width="30%" height={14} />
+                                                                <Skeleton variant="text" width="60%" height={20} />
+                                                            </Box>
+                                                        </Stack>
+                                                    </Box>
+                                                ))
+                                            ) : contactInfo.map((info, index) => {
                                                 const colors = ["#2563eb", "#F5A623", "#7c3aed"];
                                                 const c = colors[index % colors.length];
                                                 const inner = (
                                                     <Box
                                                         key={index}
                                                         sx={{
-                                                            p: 2, borderRadius: 1,
+                                                            p: 2, borderRadius: 2,
                                                             border: 1, borderColor: `${c}20`,
                                                             backgroundColor: `${c}06`,
                                                             transition: "all 250ms",
@@ -228,14 +241,15 @@ const ContactPage = () => {
                                                 return info.href ? (
                                                     <Link key={index} href={info.href} underline="none">{inner}</Link>
                                                 ) : <Box key={index}>{inner}</Box>;
-                                            })}
+                                            })
+                                            }
                                         </Stack>
                                     </Box>
                                 </Box>
 
                                 {/* Social Links Card */}
                                 <Box sx={{
-                                    borderRadius: 1, overflow: "hidden",
+                                    borderRadius: 2, overflow: "hidden",
                                     border: 1,
                                     borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.15)" : "rgba(37,99,235,0.1)",
                                     backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.5)" : "rgba(255,255,255,0.5)",
@@ -260,7 +274,19 @@ const ContactPage = () => {
                                             </Box>
                                         </Stack>
                                         <Stack spacing={1.5}>
-                                            {socialLinks.map((social, i) => {
+                                            {infoLoading ? (
+                                                [...Array(4)].map((_, i) => (
+                                                    <Box key={i} sx={{p: 1.5, borderRadius: 2, border: 1, borderColor: "divider"}}>
+                                                        <Stack direction="row" spacing={2} alignItems="center">
+                                                            <Skeleton variant="circular" width={40} height={40} />
+                                                            <Box sx={{flex: 1}}>
+                                                                <Skeleton variant="text" width="40%" height={18} />
+                                                                <Skeleton variant="text" width="55%" height={14} />
+                                                            </Box>
+                                                        </Stack>
+                                                    </Box>
+                                                ))
+                                            ) : socialLinks.map((social, i) => {
                                                 const SocialIcon = social.Icon || GitHub;
                                                 const configs = [
                                                     {label: "GitHub", handle: "@stanleyHayes", color: "#fff", darkColor: "#c9d1d9", gradient: "linear-gradient(135deg, #2b3137, #1a1e22)"},
@@ -272,7 +298,7 @@ const ContactPage = () => {
                                                 return (
                                                     <Link key={i} href={social.href || social.url} target="_blank" rel="noreferrer" underline="none">
                                                         <Box sx={{
-                                                            p: 1.5, borderRadius: 1,
+                                                            p: 1.5, borderRadius: 2,
                                                             border: 1, borderColor: `${cfg.color}15`,
                                                             transition: "all 300ms",
                                                             "&:hover": {
@@ -315,7 +341,8 @@ const ContactPage = () => {
                                                         </Box>
                                                     </Link>
                                                 );
-                                            })}
+                                            })
+                                            }
                                         </Stack>
                                     </Box>
                                 </Box>
@@ -331,7 +358,7 @@ const ContactPage = () => {
                                 viewport={{once: true}}>
                                 {/* Form Card — glass + gradient */}
                                 <Box sx={{
-                                    borderRadius: 1, overflow: "hidden",
+                                    borderRadius: 2, overflow: "hidden",
                                     border: 1,
                                     borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.15)" : "rgba(37,99,235,0.1)",
                                     backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.5)" : "rgba(255,255,255,0.5)",
@@ -372,7 +399,7 @@ const ContactPage = () => {
                                                                     <PersonOutline sx={{color: "text.secondary", fontSize: 20}} />
                                                                 </InputAdornment>
                                                             ),
-                                                            sx: {borderRadius: 1}
+                                                            sx: {borderRadius: 2}
                                                         }
                                                     }}
                                                 />
@@ -395,7 +422,7 @@ const ContactPage = () => {
                                                                     <AlternateEmailOutlined sx={{color: "text.secondary", fontSize: 20}} />
                                                                 </InputAdornment>
                                                             ),
-                                                            sx: {borderRadius: 1}
+                                                            sx: {borderRadius: 2}
                                                         }
                                                     }}
                                                 />
@@ -417,7 +444,7 @@ const ContactPage = () => {
                                                                     <SubjectOutlined sx={{color: "text.secondary", fontSize: 20}} />
                                                                 </InputAdornment>
                                                             ),
-                                                            sx: {borderRadius: 1}
+                                                            sx: {borderRadius: 2}
                                                         }
                                                     }}
                                                 />
@@ -436,7 +463,7 @@ const ContactPage = () => {
                                                     helperText={formik.touched.message && formik.errors.message}
                                                     slotProps={{
                                                         input: {
-                                                            sx: {borderRadius: 1}
+                                                            sx: {borderRadius: 2}
                                                         }
                                                     }}
                                                 />
@@ -504,7 +531,7 @@ const ContactPage = () => {
                     onClose={() => dispatch(clearMessage())}
                     severity="success"
                     variant="filled"
-                    sx={{borderRadius: 1, fontWeight: 600}}>
+                    sx={{borderRadius: 2, fontWeight: 600}}>
                     {messageData}
                 </Alert>
             </Snackbar>
@@ -517,7 +544,7 @@ const ContactPage = () => {
                     onClose={() => dispatch(clearMessage())}
                     severity="error"
                     variant="filled"
-                    sx={{borderRadius: 1, fontWeight: 600}}>
+                    sx={{borderRadius: 2, fontWeight: 600}}>
                     {messageError}
                 </Alert>
             </Snackbar>

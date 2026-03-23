@@ -57,7 +57,7 @@ const NavigationLink = ({path, label}) => {
                         background: (theme) => theme.palette.mode === "dark"
                             ? "linear-gradient(90deg, #60a5fa, #F5A623)"
                             : "linear-gradient(90deg, #2563eb, #F5A623)",
-                        borderRadius: 1,
+                        borderRadius: 2,
                         transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
                 />

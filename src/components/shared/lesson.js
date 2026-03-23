@@ -30,7 +30,7 @@ const Lesson = ({lesson, course}) => {
             variant="outlined"
             sx={{
                 height: "100%",
-                borderRadius: 1,
+                borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
                 cursor: "pointer",
@@ -60,7 +60,7 @@ const Lesson = ({lesson, course}) => {
                         className="lesson-number"
                         sx={{
                             width: 48, height: 48,
-                            borderRadius: 1,
+                            borderRadius: 2,
                             backgroundColor: `${color}15`,
                             border: `1px solid ${color}30`,
                             display: "flex",

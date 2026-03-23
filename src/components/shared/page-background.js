@@ -45,7 +45,7 @@ const FloatingShape = ({top, left, right, bottom, size = 60, delay = 0, shape = 
     <Box component={motion.div} animate={floatAnim(delay, 3 + delay)} sx={{
         position: "absolute", top, left, right, bottom,
         width: size, height: size,
-        borderRadius: shape === "circle" ? "50%" : shape === "diamond" ? 1 : 1,
+        borderRadius: shape === "circle" ? "50%" : shape === "diamond" ? 2 : 2,
         transform: shape === "diamond" ? "rotate(45deg)" : undefined,
         border: borderOnly
             ? (t) => `1.5px solid ${gold
@@ -233,12 +233,12 @@ const PageBackground = ({variant = "cards", children}) => {
 
             {/* Render shapes */}
             {config.shapes.map((s, i) => {
-                const props = {key: i, top: s.top, left: s.left, right: s.right, bottom: s.bottom, size: s.size, delay: s.delay || 0};
-                if (s.type === "orb") return <Orb {...props} />;
-                if (s.type === "goldorb") return <GoldOrb {...props} />;
-                if (s.type === "ring") return <SpinningRing {...props} />;
-                if (s.type === "glyph") return <CodeGlyph {...props} gold={s.gold}>{s.children}</CodeGlyph>;
-                return <FloatingShape {...props} shape={s.shape} borderOnly={s.borderOnly} gold={s.gold} />;
+                const props = {top: s.top, left: s.left, right: s.right, bottom: s.bottom, size: s.size, delay: s.delay || 0};
+                if (s.type === "orb") return <Orb key={i} {...props} />;
+                if (s.type === "goldorb") return <GoldOrb key={i} {...props} />;
+                if (s.type === "ring") return <SpinningRing key={i} {...props} />;
+                if (s.type === "glyph") return <CodeGlyph key={i} {...props} gold={s.gold}>{s.children}</CodeGlyph>;
+                return <FloatingShape key={i} {...props} shape={s.shape} borderOnly={s.borderOnly} gold={s.gold} />;
             })}
 
             {/* Render scattered dots */}

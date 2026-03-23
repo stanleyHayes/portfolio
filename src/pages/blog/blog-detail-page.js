@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import Layout from "../../components/layout";
-import {Alert, Avatar, Box, Button, Chip, Container, Divider, Stack, Typography} from "@mui/material";
-import SkeletonLoader from "../../components/shared/skeleton-loader";
-import {Helmet} from "react-helmet";
+import {Alert, Avatar, Box, Button, Chip, Container, Divider, Skeleton, Stack, Typography} from "@mui/material";
+import FriendlyError from "../../components/shared/friendly-error";
+import {Helmet} from "react-helmet-async";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -29,39 +29,50 @@ const BlogDetailPage = () => {
         ? new Date(post.publishedAt).toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"})
         : null;
 
-    if (loading) {
-        return <Layout><SkeletonLoader variant="detail" /></Layout>;
-    }
-
-    if (error) {
-        return (
-            <Layout>
-                <Container maxWidth="md" sx={{py: 8}}>
-                    <Alert severity="error" variant="outlined" sx={{borderRadius: 1}}>{error}</Alert>
-                </Container>
-            </Layout>
-        );
-    }
-
-    if (!post) {
-        return (
-            <Layout>
-                <Container maxWidth="md" sx={{py: 8}}>
-                    <Alert severity="info" variant="outlined" sx={{borderRadius: 1}}>Post not found.</Alert>
-                </Container>
-            </Layout>
-        );
-    }
-
     return (
         <Layout>
             <PageBackground variant="detail">
                 <Helmet>
-                <title>{post.title ? `${post.title} | Stanley Hayford Blog` : "Stanley Hayford | Blog"}</title>
-                <meta name="description" content={post.excerpt || "Read this blog post by Stanley Hayford."} />
-                {post.coverImage && <meta property="og:image" content={post.coverImage} />}
+                <title>{post?.title ? `${post.title} | Stanley Hayford Blog` : "Stanley Hayford | Blog"}</title>
+                <meta name="description" content={post?.excerpt || "Read this blog post by Stanley Hayford."} />
+                {post?.coverImage && <meta property="og:image" content={post.coverImage} />}
             </Helmet>
 
+            {loading ? (
+                <Box sx={{py: {xs: 4, md: 6}}}>
+                    <Container maxWidth="md">
+                        <Skeleton variant="text" width={120} height={36} sx={{mb: 4}} />
+                        <Skeleton variant="rectangular" height={300} sx={{borderRadius: 4, mb: 3}} />
+                        <Skeleton variant="text" width="80%" height={40} sx={{mb: 1}} />
+                        <Skeleton variant="text" width="60%" height={40} sx={{mb: 3}} />
+                        <Stack direction="row" spacing={2} alignItems="center" sx={{mb: 4}}>
+                            <Skeleton variant="circular" width={44} height={44} />
+                            <Box>
+                                <Skeleton variant="text" width={120} />
+                                <Skeleton variant="text" width={80} />
+                            </Box>
+                        </Stack>
+                        <Skeleton variant="text" width="100%" />
+                        <Skeleton variant="text" width="95%" />
+                        <Skeleton variant="text" width="90%" />
+                        <Skeleton variant="text" width="85%" />
+                        <Skeleton variant="text" width="70%" />
+                    </Container>
+                </Box>
+            ) : error ? (
+                <Box sx={{py: {xs: 4, md: 6}}}>
+                    <Container maxWidth="md">
+                        <FriendlyError onRetry={() => dispatch(fetchPostBySlug(slug))} />
+                    </Container>
+                </Box>
+            ) : !post ? (
+                <Box sx={{py: {xs: 4, md: 6}}}>
+                    <Container maxWidth="md">
+                        <Alert severity="info" variant="outlined" sx={{borderRadius: 2}}>Post not found.</Alert>
+                    </Container>
+                </Box>
+            ) : (
+                <>
             {/* Hero Section */}
             <Box
                 component={motion.div}
@@ -203,18 +214,18 @@ const BlogDetailPage = () => {
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 0.5, delay: 0.2}}
                         sx={{
-                            "& img": {maxWidth: "100%", height: "auto", borderRadius: 2, my: 2},
+                            "& img": {maxWidth: "100%", height: "auto", borderRadius: 4, my: 2},
                             "& h1, & h2, & h3, & h4, & h5, & h6": {color: "text.primary", fontWeight: 700, mt: 4, mb: 2},
                             "& h1": {fontSize: "2rem"}, "& h2": {fontSize: "1.6rem"}, "& h3": {fontSize: "1.3rem"},
                             "& p": {color: "text.secondary", lineHeight: 1.8, mb: 2, fontSize: "1.05rem"},
                             "& a": {color: "colors.accent", textDecoration: "underline", "&:hover": {opacity: 0.8}},
-                            "& blockquote": {borderLeft: 4, borderColor: "colors.accent", pl: 3, py: 1, my: 3, backgroundColor: "background.paper", borderRadius: 1, "& p": {mb: 0}},
+                            "& blockquote": {borderLeft: 4, borderColor: "colors.accent", pl: 3, py: 1, my: 3, backgroundColor: "background.paper", borderRadius: 2, "& p": {mb: 0}},
                             "& ul, & ol": {color: "text.secondary", pl: 3, mb: 2},
                             "& li": {mb: 0.5, lineHeight: 1.7},
                             "& hr": {border: "none", borderTop: 1, borderColor: "divider", my: 4},
                             "& table": {width: "100%", borderCollapse: "collapse", my: 3, "& th, & td": {border: 1, borderColor: "divider", px: 2, py: 1, textAlign: "left"}, "& th": {backgroundColor: "background.paper", fontWeight: 700, color: "text.primary"}, "& td": {color: "text.secondary"}},
-                            "& code:not(pre code)": {backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.1)" : "rgba(37,99,235,0.08)", color: "colors.accent", px: 0.8, py: 0.2, borderRadius: 1, fontSize: "0.88rem", fontFamily: "'Fira Code', 'Consolas', monospace"},
-                            "& .syntax-highlighter-wrapper": {my: 3, borderRadius: 2, overflow: "hidden"},
+                            "& code:not(pre code)": {backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.1)" : "rgba(37,99,235,0.08)", color: "colors.accent", px: 0.8, py: 0.2, borderRadius: 2, fontSize: "0.88rem", fontFamily: "'Fira Code', 'Consolas', monospace"},
+                            "& .syntax-highlighter-wrapper": {my: 3, borderRadius: 4, overflow: "hidden"},
                         }}>
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
@@ -274,7 +285,7 @@ const BlogDetailPage = () => {
                                 borderColor: "colors.accent",
                                 textTransform: "none",
                                 fontWeight: 600,
-                                borderRadius: 2,
+                                borderRadius: 4,
                                 "&:hover": {backgroundColor: "light.accent"},
                             }}>
                             All Posts
@@ -282,6 +293,8 @@ const BlogDetailPage = () => {
                     </Box>
                 </Container>
                 </Box>
+                </>
+            )}
             </PageBackground>
         </Layout>
     );

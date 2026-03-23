@@ -14,7 +14,7 @@ const Lessons = ({lessons, handleSelectedLesson, lslug}) => {
                         selected={isActive}
                         onClick={() => handleSelectedLesson(lesson)}
                         sx={{
-                            borderRadius: 1,
+                            borderRadius: 2,
                             mb: 0.5,
                             "&.Mui-selected": {
                                 backgroundColor: "light.accent",

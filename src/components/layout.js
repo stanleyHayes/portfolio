@@ -29,16 +29,14 @@ const Layout = ({children}) => {
             </Box>
             <BirthdayBanner />
             <Box
-                initial={{y: "10vh", opacity: 0}}
+                initial={{opacity: 0}}
                 animate={{
-                    y: 0,
                     opacity: 1,
-                    transition: {duration: 1.5}
+                    transition: {duration: 0.3, ease: "easeOut"}
                 }}
                 exit={{
-                    y: "-100vh",
                     opacity: 0,
-                    duration: 1.5
+                    transition: {duration: 0.15, ease: "easeIn"}
                 }}
                 component={motion.div}
                 sx={{
