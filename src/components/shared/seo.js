@@ -62,7 +62,7 @@ const SEO = ({
 };
 
 // Pre-built JSON-LD generators
-export const personSchema = (info = {}) => ({
+export const personSchema = (rawInfo) => { const info = rawInfo || {}; return ({
     "@context": "https://schema.org",
     "@type": "Person",
     name: info.name || "Stanley Asoku Hayford",
@@ -80,7 +80,7 @@ export const personSchema = (info = {}) => ({
         addressCountry: "GH",
     },
     knowsAbout: ["Golang", "Node.js", "React", "TypeScript", "Kubernetes", "Docker", "MongoDB", "PostgreSQL"],
-});
+}); };
 
 export const articleSchema = (post) => ({
     "@context": "https://schema.org",

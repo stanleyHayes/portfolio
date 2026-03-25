@@ -58,7 +58,7 @@ const HomePage = () => {
     return (
         <Layout>
             <PageBackground variant="hero">
-            <SEO title={`${name || "Stanley Hayford"} | ${title || "Software Engineer"}`} description={bio} path="/" jsonLd={personSchema(info)} />
+            <SEO title={`${name || "Stanley Hayford"} | ${title || "Software Engineer"}`} description={bio} path="/" jsonLd={info ? personSchema(info) : undefined} />
 
             {/* Hero Section */}
             <Container maxWidth="xl" sx={{minHeight: "88vh", alignItems: "center", display: "flex", py: {xs: 4, lg: 0}}}>

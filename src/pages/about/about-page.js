@@ -105,7 +105,7 @@ const AboutPage = () => {
     return (
         <Layout>
             <PageBackground variant="hero">
-                <SEO title="About" description={bio || "Learn about Stanley Hayford..."} path="/about" jsonLd={personSchema(info)} />
+                <SEO title="About" description={bio || "Learn about Stanley Hayford..."} path="/about" jsonLd={info ? personSchema(info) : undefined} />
                 <Box sx={{ py: 8, "&::-webkit-scrollbar": { display: "none" } }}>
                     <Container maxWidth="xl">
                         <Box
