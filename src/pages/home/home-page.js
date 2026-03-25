@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Layout from "../../components/layout";
 import {Avatar, Box, Button, Card, CardContent, CardMedia, Container, Divider, Grid, Skeleton, Stack, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
+import SEO, {personSchema} from "../../components/shared/seo";
 import {motion} from "framer-motion";
 
 import TypingAnimation from "../../components/shared/typing-animation";
@@ -58,14 +58,7 @@ const HomePage = () => {
     return (
         <Layout>
             <PageBackground variant="hero">
-            <Helmet>
-                <title>{name || "Loading..."} | {title || "Loading..."} | Home</title>
-                <meta
-                    name="description"
-                    content={bio || ""}
-                />
-                <meta name="keywords" content="Stanley, Hayford, Software Engineer, Golang, Node.js" />
-            </Helmet>
+            <SEO title={`${name || "Stanley Hayford"} | ${title || "Software Engineer"}`} description={bio} path="/" jsonLd={personSchema(info)} />
 
             {/* Hero Section */}
             <Container maxWidth="xl" sx={{minHeight: "88vh", alignItems: "center", display: "flex", py: {xs: 4, lg: 0}}}>

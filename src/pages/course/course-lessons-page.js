@@ -5,7 +5,7 @@ import FriendlyError from "../../components/shared/friendly-error";
 import {useParams} from "react-router";
 import {Link} from "react-router-dom";
 import Lesson from "../../components/shared/lesson";
-import {Helmet} from "react-helmet-async";
+import SEO, {courseSchema} from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {ArrowBackOutlined} from "@mui/icons-material";
@@ -38,9 +38,7 @@ const CourseLessonsPage = () => {
     return (
         <Layout>
             <PageBackground variant="cards">
-                <Helmet>
-                    <title>{course ? `${course.name} | Stanley Hayford` : 'Course Lessons | Stanley Hayford'}</title>
-                </Helmet>
+                <SEO title={course?.name || "Course"} description={course?.summary || "Programming course by Stanley Hayford"} path={"/learn/" + slug} jsonLd={course ? courseSchema(course) : undefined} />
                 <Box sx={{py: 8}}>
                     <Container maxWidth="xl">
                     {/* Back link */}

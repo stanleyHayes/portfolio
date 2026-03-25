@@ -3,7 +3,7 @@ import Layout from "../../components/layout";
 import {Box, Button, Container, Divider, Grid, Pagination, Skeleton, Stack, Typography} from "@mui/material";
 import FriendlyError from "../../components/shared/friendly-error";
 import Project from "../../components/shared/project";
-import {Helmet} from "react-helmet-async";
+import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -37,13 +37,7 @@ const PortfolioPage = () => {
     return (
         <Layout>
             <PageBackground variant="cards">
-                <Helmet>
-                    <title>Stanley Hayford | Portfolio</title>
-                    <meta
-                        name="description"
-                        content="Portfolio of projects built by Stanley Hayford - web applications, APIs, mobile apps, and more."
-                    />
-                </Helmet>
+                <SEO title="Portfolio" description="Portfolio of projects built by Stanley Hayford — web applications, APIs, mobile apps, and more." path="/portfolio" />
                 <Box sx={{py: 8}}>
                     <Container maxWidth="xl">
                         <Typography

@@ -3,7 +3,7 @@ import Layout from "../../components/layout";
 import {Box, Chip, Container, Divider, Grid, Pagination, Skeleton, Stack, Typography} from "@mui/material";
 import FriendlyError from "../../components/shared/friendly-error";
 import Course from "../../components/shared/course";
-import {Helmet} from "react-helmet-async";
+import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -33,9 +33,7 @@ const CoursesPage = () => {
     return (
         <Layout>
             <PageBackground variant="cards">
-                <Helmet>
-                    <title>Stanley Hayford | Learn to Code</title>
-                </Helmet>
+                <SEO title="Learn to Code" description="Free programming courses on Go, JavaScript, TypeScript, Python, Rust, Java, and more." path="/learn" />
                 <Box sx={{py: 8}}>
                     <Container maxWidth="xl">
                     <Box

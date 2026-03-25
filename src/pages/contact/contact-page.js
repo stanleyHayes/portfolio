@@ -32,7 +32,7 @@ import {
     Twitter,
     Instagram
 } from "@mui/icons-material";
-import {Helmet} from "react-helmet-async";
+import SEO from "../../components/shared/seo";
 import {useFormik} from "formik";
 import * as yup from "yup";
 import {motion} from "framer-motion";
@@ -111,10 +111,7 @@ const ContactPage = () => {
         <Layout>
             <PageBackground variant="minimal">
                 {messageLoading && <LinearProgress color="secondary" />}
-                <Helmet>
-                <title>Stanley Hayford | Contact</title>
-                <meta name="description" content="Get in touch with Stanley Hayford - Software Engineer based in Accra, Ghana." />
-            </Helmet>
+                <SEO title="Contact" description="Get in touch with Stanley Hayford — Software Engineer based in Accra, Ghana." path="/contact" />
 
             <Box sx={{py: 8}}>
                 <Container maxWidth="lg">

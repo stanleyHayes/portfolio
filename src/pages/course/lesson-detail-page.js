@@ -21,7 +21,7 @@ import {useNavigate, useParams} from "react-router";
 import {Link} from "react-router-dom";
 import {ViewList, ArrowBackOutlined, ArrowForwardOutlined} from "@mui/icons-material";
 import Lessons from "../../components/shared/lessons";
-import {Helmet} from "react-helmet-async";
+import SEO, {breadcrumbSchema} from "../../components/shared/seo";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourseLesson, fetchCourseBySlug, selectCurrentLesson, selectCurrentCourse} from "../../features/data/data-slice";
@@ -56,9 +56,7 @@ const LessonDetailPage = () => {
     return (
         <Layout>
             <PageBackground variant="detail">
-                <Helmet>
-                    <title>{lesson ? `${lesson.title} | ${course?.name || ''} | Stanley Hayford` : 'Lesson | Stanley Hayford'}</title>
-                </Helmet>
+                <SEO title={lesson?.title ? lesson.title + " | " + (course?.name || "") : "Lesson"} description={lesson?.summary || "Programming lesson by Stanley Hayford"} path={"/learn/" + cslug + "/" + lslug} jsonLd={breadcrumbSchema([{name: "Learn", path: "/learn"}, {name: course?.name, path: "/learn/" + cslug}, {name: lesson?.title, path: "/learn/" + cslug + "/" + lslug}])} />
                 <Box sx={{py: 4}}>
                 <Container maxWidth="xl">
                     {/* Back navigation */}

@@ -22,7 +22,7 @@ import {
     useMediaQuery,
     Paper
 } from "@mui/material";
-import { Helmet } from "react-helmet-async";
+import SEO, {personSchema} from "../../components/shared/seo";
 import Certification from "../../components/shared/certification";
 import AnimatedTimeline from "../../components/shared/animated-timeline";
 import { WorkOutlineOutlined, LocationOnOutlined, CheckCircleOutlined } from "@mui/icons-material";
@@ -105,11 +105,7 @@ const AboutPage = () => {
     return (
         <Layout>
             <PageBackground variant="hero">
-                <Helmet>
-                    <title>{name || "Loading..."} | About</title>
-                    <meta name="description" content={bio || ""} />
-                    <meta name="keywords" content={`${name || ""}, ${title || ""}, Software Engineer`} />
-                </Helmet>
+                <SEO title="About" description={bio || "Learn about Stanley Hayford..."} path="/about" jsonLd={personSchema(info)} />
                 <Box sx={{ py: 8, "&::-webkit-scrollbar": { display: "none" } }}>
                     <Container maxWidth="xl">
                         <Box

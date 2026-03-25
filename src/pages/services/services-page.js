@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Layout from "../../components/layout";
 import {Box, Card, CardContent, Container, Grid, Skeleton, Stack, Typography} from "@mui/material";
 import FriendlyError from "../../components/shared/friendly-error";
-import {Helmet} from "react-helmet-async";
+import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -41,13 +41,7 @@ const ServicesPage = () => {
     return (
         <Layout>
             <PageBackground variant="cards">
-                <Helmet>
-                    <title>Stanley Hayford | Services</title>
-                    <meta
-                        name="description"
-                        content="Software Engineer offering training, web apps, APIs, mobile apps, and blockchain solutions."
-                    />
-                </Helmet>
+                <SEO title="Services" description="Software engineering services: training, web applications, REST APIs, mobile apps, and blockchain solutions." path="/services" />
                 <Box sx={{py: {xs: 8, md: 10}}}>
                     <Container maxWidth="lg">
                     <Box

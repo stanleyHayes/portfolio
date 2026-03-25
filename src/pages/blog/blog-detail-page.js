@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Layout from "../../components/layout";
 import {Alert, Avatar, Box, Button, Chip, Container, Divider, Skeleton, Stack, Typography} from "@mui/material";
 import FriendlyError from "../../components/shared/friendly-error";
-import {Helmet} from "react-helmet-async";
+import SEO, {articleSchema} from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -32,11 +32,7 @@ const BlogDetailPage = () => {
     return (
         <Layout>
             <PageBackground variant="detail">
-                <Helmet>
-                <title>{post?.title ? `${post.title} | Stanley Hayford Blog` : "Stanley Hayford | Blog"}</title>
-                <meta name="description" content={post?.excerpt || "Read this blog post by Stanley Hayford."} />
-                {post?.coverImage && <meta property="og:image" content={post.coverImage} />}
-            </Helmet>
+                <SEO title={post?.title} description={post?.excerpt} path={"/blog/" + slug} image={post?.coverImage} type="article" article={{publishedAt: post?.publishedAt, tags: post?.tags}} jsonLd={post ? articleSchema(post) : undefined} />
 
             {loading ? (
                 <Box sx={{py: {xs: 4, md: 6}}}>

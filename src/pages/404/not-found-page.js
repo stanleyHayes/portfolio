@@ -1,5 +1,6 @@
 import {Box, Container, Stack, Typography} from "@mui/material";
 import Layout from "../../components/layout";
+import SEO from "../../components/shared/seo";
 import React, {useEffect, useState} from "react";
 import {motion} from "framer-motion";
 import {GlowButton} from "../../components/shared/styled-button";
@@ -98,6 +99,7 @@ const NotFoundPage = () => {
 
     return (
         <Layout>
+            <SEO title="404 — Page Not Found" description="The page you are looking for does not exist." path="/404" noIndex />
             <Container maxWidth="md">
                 <Box sx={{
                     py: {xs: 8, md: 12},

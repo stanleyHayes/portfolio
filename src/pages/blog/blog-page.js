@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
 import {Avatar, Box, Chip, Container, Divider, Grid, Pagination, Skeleton, Stack, Typography} from "@mui/material";
 import FriendlyError from "../../components/shared/friendly-error";
-import {Helmet} from "react-helmet-async";
+import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
 import {useDispatch, useSelector} from "react-redux";
@@ -251,10 +251,7 @@ const BlogPage = () => {
     return (
         <Layout>
             <PageBackground variant="cards">
-                <Helmet>
-                    <title>Stanley Hayford | Blog</title>
-                    <meta name="description" content="Read blog posts by Stanley Hayford on software engineering, web development, and technology." />
-                </Helmet>
+                <SEO title="Blog" description="Read blog posts by Stanley Hayford on software engineering, web development, and technology." path="/blog" />
                 <Box sx={{py: 8}}>
                     <Container maxWidth="xl">
                     <Box
