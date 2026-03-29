@@ -1,8 +1,7 @@
-import React from "react";
 import {Helmet} from "react-helmet-async";
 
 const SITE_URL = "https://hayfordstanley.vercel.app";
-const DEFAULT_IMAGE = `${SITE_URL}/og-image.svg`;
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 const SITE_NAME = "Stanley Hayford — Software Engineer";
 const TWITTER_HANDLE = "@stanley_hayford";
 
