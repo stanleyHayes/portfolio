@@ -9,10 +9,16 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
+    sourcemap: false,
+    minify: 'esbuild',
+    cssMinify: true,
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks: {
           three: ['three', '@react-three/fiber', '@react-three/drei'],
+          mui: ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
+          redux: ['@reduxjs/toolkit', 'react-redux'],
         },
       },
     },
@@ -21,6 +27,7 @@ export default defineConfig({
     loader: 'jsx',
     include: /src\/.*\.js$/,
     exclude: [],
+    drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
   },
   optimizeDeps: {
     esbuild: {

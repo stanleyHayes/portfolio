@@ -187,6 +187,9 @@ const AboutPage = () => {
                                             ) : (
                                                 <CardMedia
                                                     component="img"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    alt={name || "Stanley Hayford"}
                                                     sx={{
                                                         width: "100%",
                                                         aspectRatio: "1",

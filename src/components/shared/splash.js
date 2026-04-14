@@ -14,13 +14,17 @@ const Splash = () => {
 
     return (
         <Box sx={{
+            position: "fixed",
+            inset: 0,
+            width: "100vw",
             height: "100vh",
+            minHeight: "100dvh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: "background.default",
             overflow: "hidden",
-            position: "relative",
+            zIndex: 9999,
         }}>
             {/* Doodles */}
             <Box component={motion.div}

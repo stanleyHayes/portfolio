@@ -107,6 +107,9 @@ const HomePage = () => {
                                 ) : (
                                     <CardMedia
                                         component="img"
+                                        loading="lazy"
+                                        decoding="async"
+                                        alt={name || "Stanley Hayford"}
                                         sx={{
                                             width: "100%",
                                             clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",

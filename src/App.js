@@ -12,6 +12,7 @@ import Splash from "./components/shared/splash";
 import NotFoundPage from "./pages/404/not-found-page";
 import useVisitorTracking from "./hooks/use-visitor-tracking";
 import ScrollToTop from "./components/shared/scroll-to-top";
+import ErrorBoundary from "./components/shared/error-boundary";
 
 const HomePage = lazy(() => import("./pages/home/home-page"));
 const AboutPage = lazy(() => import("./pages/about/about-page"));
@@ -35,6 +36,7 @@ function App() {
         <HelmetProvider>
             <ThemeProvider theme={theme  === "dark" ? THEMES.darkTheme : THEMES.lightTheme}>
                 <CssBaseline enableColorScheme={true}/>
+                <ErrorBoundary>
                 <ScrollToTop />
                 <AnimatePresence mode="popLayout" initial={true}>
                     <Routes location={location}>
@@ -51,6 +53,7 @@ function App() {
                         <Route path="*" element={<Suspense fallback={<Splash/>}><NotFoundPage/></Suspense>}/>
                     </Routes>
                 </AnimatePresence>
+                </ErrorBoundary>
             </ThemeProvider>
         </HelmetProvider>
     );

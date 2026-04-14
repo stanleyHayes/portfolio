@@ -50,9 +50,22 @@ const Layout = ({children}) => {
             <Footer/>
             <SupportButton />
             <SwipeableDrawer
+                anchor="right"
                 onClose={() => dispatch(toggleDrawer(false))}
                 onOpen={() => dispatch(toggleDrawer(true))}
-                open={drawerOpen}>
+                open={drawerOpen}
+                slotProps={{
+                    paper: {
+                        sx: {
+                            width: {xs: "100%", sm: 380},
+                            backgroundColor: (t) => t.palette.mode === "dark" ? "#0A1628" : "#ffffff",
+                            backgroundImage: (t) => t.palette.mode === "dark"
+                                ? "linear-gradient(160deg, #0A1628 0%, #111827 60%, #0A1628 100%)"
+                                : "linear-gradient(160deg, #f8fafc 0%, #ffffff 60%, #f1f5f9 100%)",
+                            borderLeft: (t) => `1px solid ${t.palette.mode === "dark" ? "rgba(96,165,250,0.15)" : "rgba(37,99,235,0.1)"}`,
+                        }
+                    }
+                }}>
                 <DrawerContent/>
             </SwipeableDrawer>
         </Box>
