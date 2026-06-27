@@ -6,8 +6,10 @@ import Course from "../../components/shared/course";
 import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
+import BannerWatermark from "../../components/shared/banner-watermark";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourses, selectCourses} from "../../features/data/data-slice";
+import {SchoolOutlined} from "@mui/icons-material";
 
 const COURSES_PER_PAGE = 9;
 
@@ -40,7 +42,9 @@ const CoursesPage = () => {
                         component={motion.div}
                         initial={{opacity: 0, y: 20}}
                         animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.6}}>
+                        transition={{duration: 0.6}}
+                        sx={{position: "relative", overflow: "hidden", py: {xs: 2, md: 4}, "& > :not(.banner-watermark)": {position: "relative", zIndex: 1}}}>
+                        <BannerWatermark Icon={SchoolOutlined} />
                         <Typography variant="body2" align="center" sx={{textTransform: "uppercase", color: "colors.accent", fontWeight: 800, mb: 1, letterSpacing: 3}}>
                             Learn
                         </Typography>
@@ -51,7 +55,12 @@ const CoursesPage = () => {
                             Hands-on programming courses from fundamentals to advanced topics. Pick a language and start building.
                         </Typography>
                         {!loading && (
-                            <Stack direction="row" justifyContent="center" sx={{mb: 2}}>
+                            <Stack
+                                direction="row"
+                                sx={{
+                                    justifyContent: "center",
+                                    mb: 2
+                                }}>
                                 <Chip
                                     label={`${allCourses.length} Courses Available`}
                                     size="small"
@@ -61,7 +70,7 @@ const CoursesPage = () => {
                         )}
                     </Box>
 
-                    <Divider light sx={{my: 4}} />
+                    <Divider sx={{ my: 4, opacity: 0.6 }} />
 
                     {loading ? (
                         <Grid container spacing={4}>
@@ -93,7 +102,11 @@ const CoursesPage = () => {
                             </Grid>
 
                             {totalPages > 1 && (
-                                <Stack alignItems="center" sx={{mt: 6}}>
+                                <Stack
+                                    sx={{
+                                        alignItems: "center",
+                                        mt: 6
+                                    }}>
                                     <Pagination
                                         count={totalPages}
                                         page={page}
@@ -113,7 +126,7 @@ const CoursesPage = () => {
                 </Box>
             </PageBackground>
         </Layout>
-    )
+    );
 }
 
 export default CoursesPage;

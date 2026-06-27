@@ -2,13 +2,13 @@ import React, {useEffect, useState} from "react";
 import Layout from "../../components/layout";
 import {Box, Button, CardMedia, Chip, Container, Divider, Grid, Pagination, Skeleton, Stack, Typography} from "@mui/material";
 import FriendlyError from "../../components/shared/friendly-error";
-import {useParams} from "react-router";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router";
 import Lesson from "../../components/shared/lesson";
 import SEO, {courseSchema} from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
-import {ArrowBackOutlined} from "@mui/icons-material";
+import BannerWatermark from "../../components/shared/banner-watermark";
+import {ArrowBackOutlined, SchoolOutlined} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourseBySlug, selectCurrentCourse} from "../../features/data/data-slice";
 
@@ -56,7 +56,13 @@ const CourseLessonsPage = () => {
                     {/* Course Header */}
                     {loading ? (
                         <Box>
-                            <Stack direction={{xs: "column", md: "row"}} spacing={4} alignItems={{md: "center"}} sx={{mb: 2}}>
+                            <Stack
+                                direction={{xs: "column", md: "row"}}
+                                spacing={4}
+                                sx={{
+                                    alignItems: {md: "center"},
+                                    mb: 2
+                                }}>
                                 <Skeleton variant="rectangular" width={80} height={80} sx={{borderRadius: 2, flexShrink: 0}} />
                                 <Box sx={{flex: 1}}>
                                     <Skeleton variant="text" width="40%" height={40} />
@@ -67,7 +73,7 @@ const CourseLessonsPage = () => {
                                     </Stack>
                                 </Box>
                             </Stack>
-                            <Divider light sx={{my: 4}} />
+                            <Divider sx={{ my: 4, opacity: 0.6 }} />
                             <Grid container spacing={4}>
                                 {[...Array(6)].map((_, i) => (
                                     <Grid size={{xs: 12, md: 6, lg: 4}} key={i}>
@@ -91,8 +97,17 @@ const CourseLessonsPage = () => {
                         </Box>
                     ) : (
                         <>
-                            <Box component={motion.div} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.6}}>
-                                <Stack direction={{xs: "column", md: "row"}} spacing={4} alignItems={{md: "center"}} sx={{mb: 2}}>
+                            <Box component={motion.div} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.6}} sx={{position: "relative", overflow: "hidden", py: {xs: 2, md: 3}}}>
+                                <BannerWatermark Icon={SchoolOutlined} />
+                                <Stack
+                                    direction={{xs: "column", md: "row"}}
+                                    spacing={4}
+                                    sx={{
+                                        alignItems: {md: "center"},
+                                        mb: 2,
+                                        position: "relative",
+                                        zIndex: 1
+                                    }}>
                                     <Box sx={{
                                         width: 80, height: 80, borderRadius: 2, flexShrink: 0,
                                         backgroundColor: "light.accent",
@@ -124,7 +139,7 @@ const CourseLessonsPage = () => {
                                 </Stack>
                             </Box>
 
-                            <Divider light sx={{my: 4}} />
+                            <Divider sx={{ my: 4, opacity: 0.6 }} />
 
                             {/* Lessons Grid */}
                             {lessons.length > 0 ? (
@@ -145,7 +160,11 @@ const CourseLessonsPage = () => {
                             </Grid>
 
                             {totalPages > 1 && (
-                                <Stack alignItems="center" sx={{mt: 6}}>
+                                <Stack
+                                    sx={{
+                                        alignItems: "center",
+                                        mt: 6
+                                    }}>
                                     <Pagination
                                         count={totalPages}
                                         page={page}
@@ -203,7 +222,7 @@ const CourseLessonsPage = () => {
                 </Box>
             </PageBackground>
         </Layout>
-    )
+    );
 }
 
 export default CourseLessonsPage;

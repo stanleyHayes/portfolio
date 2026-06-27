@@ -16,16 +16,17 @@ const Splash = () => {
         <Box sx={{
             position: "fixed",
             inset: 0,
-            width: "100vw",
+            width: "100%",
             height: "100vh",
             minHeight: "100dvh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "grid",
+            placeItems: "center",
             backgroundColor: "background.default",
             overflow: "hidden",
             zIndex: 9999,
-        }}>
+        }}
+             aria-busy="true"
+             role="status">
             {/* Doodles */}
             <Box component={motion.div}
                  animate={{rotate: [0, 360], transition: {duration: 20, repeat: Infinity, ease: "linear"}}}
@@ -51,9 +52,13 @@ const Splash = () => {
             <Box component={motion.div}
                  animate={{scale: [1, 1.2, 1], transition: {duration: 3, repeat: Infinity, delay: 0.8}}}
                  sx={{position: "absolute", top: "65%", left: "30%", width: 10, height: 10, borderRadius: "50%", backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}20`}} />
-
-            <Container maxWidth="sm">
-                <Stack spacing={4} alignItems="center">
+            <Container maxWidth="sm" sx={{width: "100%", mx: "auto", px: {xs: 3, sm: 4}}}>
+                <Stack
+                    spacing={4}
+                    sx={{
+                        alignItems: "center",
+                        width: "100%"
+                    }}>
                     <Box
                         component={motion.div}
                         initial={{opacity: 0, scale: 0.8}}
@@ -113,7 +118,7 @@ const Splash = () => {
                 </Stack>
             </Container>
         </Box>
-    )
+    );
 }
 
 export default Splash;

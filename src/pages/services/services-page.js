@@ -5,6 +5,7 @@ import FriendlyError from "../../components/shared/friendly-error";
 import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
+import BannerWatermark from "../../components/shared/banner-watermark";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchServices, selectServices} from "../../features/data/data-slice";
 import {
@@ -49,7 +50,8 @@ const ServicesPage = () => {
                         initial={{opacity: 0, y: 20}}
                         whileInView={{opacity: 1, y: 0, transition: {duration: 0.6}}}
                         viewport={{once: true}}
-                        sx={{mb: 8, textAlign: "center"}}>
+                        sx={{mb: 8, textAlign: "center", position: "relative", overflow: "hidden", py: {xs: 2, md: 4}, "& > :not(.banner-watermark)": {position: "relative", zIndex: 1}}}>
+                        <BannerWatermark Icon={BuildOutlined} />
                         <Typography
                             variant="body2"
                             sx={{

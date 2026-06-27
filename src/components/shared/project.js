@@ -61,7 +61,6 @@ const Project = ({project}) => {
                     }
                 }
             }}>
-
             {/* Generative Hero Area — floating with padding */}
             <Box sx={{p: 1.5, pb: 0}}>
                 <Box
@@ -129,11 +128,17 @@ const Project = ({project}) => {
                     }} />
 
                     {/* Category tags overlay */}
-                    <Stack direction="row" flexWrap="wrap" gap={0.5} sx={{
-                        position: "absolute",
-                        bottom: 8, left: 8, right: 8,
-                        zIndex: 2,
-                    }}>
+                    <Stack
+                        direction="row"
+                        sx={{
+                            flexWrap: "wrap",
+                            gap: 0.5,
+                            position: "absolute",
+                            bottom: 8,
+                            left: 8,
+                            right: 8,
+                            zIndex: 2
+                        }}>
                         {(project.categories || []).slice(0, 4).map((category, index) => (
                             <Chip
                                 key={index}
@@ -155,7 +160,6 @@ const Project = ({project}) => {
                     </Stack>
                 </Box>
             </Box>
-
             <CardContent sx={{flexGrow: 1, p: 3, pt: 1}}>
                 <Typography variant="h6" sx={{color: "text.primary", fontWeight: 700, mb: 0.5}}>
                     {project.title}
@@ -173,7 +177,13 @@ const Project = ({project}) => {
             </CardContent>
             <Divider />
             <CardActions sx={{px: 2, py: 1.5}}>
-                <Stack sx={{width: "100%"}} direction="row" alignItems="center" justifyContent="space-between">
+                <Stack
+                    direction="row"
+                    sx={{
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        width: "100%"
+                    }}>
                     <Button
                         size="small"
                         endIcon={<LaunchOutlined sx={{fontSize: 14}} />}
@@ -196,7 +206,7 @@ const Project = ({project}) => {
                 </Stack>
             </CardActions>
         </Card>
-    )
+    );
 }
 
 export default Project;

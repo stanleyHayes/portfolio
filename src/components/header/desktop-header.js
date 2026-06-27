@@ -1,126 +1,267 @@
 import React from "react";
 import useSounds from "../../hooks/use-sound";
-import {Box, IconButton, Link as MUILink, Stack, Toolbar, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
-import {changeTheme, getUiState} from "../../features/ui/ui-slice";
-import {DarkModeOutlined, GitHub, Instagram, LightModeOutlined, LinkedIn, Twitter, VolumeUpOutlined, VolumeOffOutlined} from "@mui/icons-material";
-import {useDispatch, useSelector} from "react-redux";
+import {Box, Button, Container, IconButton, Stack, Toolbar, Tooltip, Typography} from "@mui/material";
+import {Link} from "react-router";
+import {getUiState} from "../../features/ui/ui-slice";
+import {
+    DarkModeOutlined,
+    GitHub,
+    Instagram,
+    LightModeOutlined,
+    LinkedIn,
+    MailOutlineOutlined,
+    Twitter,
+    VolumeOffOutlined,
+    VolumeUpOutlined,
+} from "@mui/icons-material";
+import {useSelector} from "react-redux";
 import NavigationLink from "../shared/navigation-link";
-import {GlowButton} from "../shared/styled-button";
 import {selectInfo} from "../../features/data/data-slice";
+import useThemeTransition from "../../hooks/use-theme-transition";
+import brandLogo from "../../assets/images/logo/logo.png";
 
 const socialIconMap = {github: GitHub, linkedin: LinkedIn, twitter: Twitter, instagram: Instagram};
+const fallbackSocialLinks = {
+    github: "https://github.com/stanleyHayes",
+    linkedin: "https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/",
+    twitter: "https://twitter.com/stanley_hayford",
+};
 
 const DesktopHeader = () => {
 
-    const dispatch = useDispatch();
     const {theme} = useSelector(getUiState);
     const {data: info} = useSelector(selectInfo);
     const {playClick, soundEnabled, toggle} = useSounds();
+    const toggleTheme = useThemeTransition();
 
-    const rawLinks = info?.socialLinks || {};
+    const rawLinks = {...fallbackSocialLinks, ...(info?.socialLinks || {})};
     const socials = Object.entries(rawLinks)
         .filter(([, url]) => url && url.length > 0)
-        .map(([key, url]) => ({Icon: socialIconMap[key] || GitHub, href: url}));
+        .map(([key, url]) => ({key, Icon: socialIconMap[key] || GitHub, href: url}));
 
-    const socialIconSx = {
-        fontSize: 18,
+    const actionButtonSx = {
+        width: 38,
+        height: 38,
+        border: 1,
+        borderColor: "divider",
+        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.72)",
         color: "text.secondary",
-        transition: "all 300ms",
+        transition: "transform 240ms ease, border-color 240ms ease, background-color 240ms ease, color 240ms ease",
+        "&:hover": {
+            transform: "translateY(-2px)",
+            borderColor: "colors.accent",
+            backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}16`,
+            color: "colors.accent",
+        },
     };
 
     return (
-        <Toolbar variant="dense" sx={{py: 1, px: {md: 3, lg: 5}}}>
-            <Stack
-                sx={{width: "100%"}}
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center">
+        <Toolbar disableGutters variant="dense" sx={{minHeight: {md: 58, lg: 62}, pointerEvents: "auto"}}>
+            <Container maxWidth="xl" disableGutters sx={{width: "100%"}}>
+                <Stack
+                    direction="row"
+                    spacing={{md: 1.2, lg: 2}}
+                    sx={{
+                        alignItems: "center",
+                        width: "100%",
+                        minHeight: {md: 58, lg: 62},
+                        px: {md: 1, lg: 1.25},
+                        py: 0.75,
+                        border: 1,
+                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.18)" : "rgba(15,23,42,0.10)",
+                        borderRadius: "24px",
+                        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(7,11,20,0.72)" : "rgba(255,255,255,0.76)",
 
-                {/* Logo with gradient */}
-                <Link style={{textDecoration: "none"}} to="/">
-                    <Typography
-                        variant="h6"
+                        backgroundImage: (t) => t.palette.mode === "dark"
+                            ? "linear-gradient(135deg, rgba(96,165,250,0.12), rgba(245,166,35,0.08))"
+                            : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
+
+                        backdropFilter: "blur(18px) saturate(170%)",
+                        WebkitBackdropFilter: "blur(18px) saturate(170%)",
+
+                        boxShadow: (t) => t.palette.mode === "dark"
+                            ? "0 18px 50px rgba(0,0,0,0.28)"
+                            : "0 18px 45px rgba(15,23,42,0.10)"
+                    }}>
+                    <Box
+                        component={Link}
+                        to="/"
+                        onClick={playClick}
                         sx={{
-                            fontWeight: 900,
-                            letterSpacing: 1,
-                            background: (t) => t.palette.mode === "dark"
-                                ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                : "linear-gradient(135deg, #2563eb, #F5A623)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
+                            minWidth: {md: 168, lg: 220},
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: 1.1,
+                            textDecoration: "none",
+                            color: "inherit",
                         }}>
-                        {"<Zeus />"}
-                    </Typography>
-                </Link>
+                        <Box
+                            sx={{
+                                width: 40,
+                                height: 40,
+                                borderRadius: "14px",
+                                display: "grid",
+                                placeItems: "center",
+                                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.12)" : "rgba(245,166,35,0.10)",
+                                border: 1,
+                                borderColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.28)" : "rgba(245,166,35,0.22)",
+                                boxShadow: "0 0 24px rgba(245,166,35,0.18)",
+                            }}>
+                            <Box component="img" src={brandLogo} alt="Zeus logo" sx={{width: 29, height: 29, objectFit: "contain"}} />
+                        </Box>
+                        <Box sx={{minWidth: 0}}>
+                            <Typography
+                                variant="subtitle2"
+                                sx={{
+                                    display: "block",
+                                    fontWeight: 900,
+                                    lineHeight: 1,
+                                    color: "text.primary",
+                                }}>
+                                {"<Zeus />"}
+                            </Typography>
+                            <Typography
+                                variant="caption"
+                                sx={{
+                                    display: {md: "none", lg: "block"},
+                                    color: "text.secondary",
+                                    fontSize: "0.68rem",
+                                    mt: 0.35,
+                                }}>
+                                Stanley Hayford
+                            </Typography>
+                        </Box>
+                    </Box>
 
-                {/* Nav Links */}
-                <Stack direction="row" spacing={0.5} alignItems="center">
-                    <NavigationLink path="/" label="Home"/>
-                    <NavigationLink path="/about" label="About"/>
-                    <NavigationLink path="/learn" label="Learn"/>
-                    <NavigationLink path="/portfolio" label="Portfolio"/>
-                    <NavigationLink path="/blog" label="Blog"/>
-                    <NavigationLink path="/services" label="Services"/>
-                </Stack>
+                    <Stack
+                        component="nav"
+                        direction="row"
+                        spacing={0.35}
+                        aria-label="Primary navigation"
+                        sx={{
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flex: 1,
+                            minWidth: 0,
+                            maxWidth: {md: 540, lg: 650},
+                            mx: "auto",
+                            p: 0.4,
+                            borderRadius: "999px",
+                            border: 1,
+                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(15,23,42,0.08)",
+                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.62)" : "rgba(248,250,252,0.74)"
+                        }}>
+                        <NavigationLink path="/" label="Home"/>
+                        <NavigationLink path="/about" label="About"/>
+                        <NavigationLink path="/learn" label="Learn"/>
+                        <NavigationLink path="/portfolio" label="Portfolio"/>
+                        <NavigationLink path="/blog" label="Blog"/>
+                        <NavigationLink path="/services" label="Services"/>
+                    </Stack>
 
-                {/* Right side: socials + theme + CTA */}
-                <Stack direction="row" spacing={1} alignItems="center">
-                    {socials.map((social, i) => (
-                        <MUILink key={i} underline="none" href={social.href} rel="noreferrer" target="_blank">
+                    <Stack
+                        direction="row"
+                        spacing={0.75}
+                        sx={{
+                            alignItems: "center",
+                            justifyContent: "flex-end",
+                            minWidth: {md: 170, lg: 268}
+                        }}>
+                        <Stack
+                            direction="row"
+                            spacing={0.5}
+                            sx={{
+                                alignItems: "center",
+                                display: {md: "none", lg: "flex"},
+                                width: 120
+                            }}>
+                            {socials.slice(0, 3).map((social) => (
+                                <Tooltip title={social.key} key={social.key}>
+                                    <IconButton
+                                        component="a"
+                                        href={social.href}
+                                        rel="noreferrer"
+                                        target="_blank"
+                                        aria-label={social.key}
+                                        size="small"
+                                        sx={actionButtonSx}>
+                                        <social.Icon sx={{fontSize: 18}} />
+                                    </IconButton>
+                                </Tooltip>
+                            ))}
+                        </Stack>
+
+                        <Tooltip title={theme === "dark" ? "Light mode" : "Dark mode"}>
                             <IconButton
                                 size="small"
+                                aria-label="Toggle color theme"
+                                onClick={(e) => { playClick(); toggleTheme(e); }}
                                 sx={{
+                                    ...actionButtonSx,
                                     "&:hover": {
-                                        backgroundColor: "light.accent",
-                                        "& .MuiSvgIcon-root": {color: "colors.accent"},
-                                    }
+                                        ...actionButtonSx["&:hover"],
+                                        color: "colors.gold",
+                                        borderColor: "colors.gold",
+                                    },
                                 }}>
-                                <social.Icon sx={socialIconSx} />
+                                {theme === "dark"
+                                    ? <LightModeOutlined sx={{fontSize: 18}} />
+                                    : <DarkModeOutlined sx={{fontSize: 18}} />
+                                }
                             </IconButton>
-                        </MUILink>
-                    ))}
+                        </Tooltip>
 
-                    {/* Theme toggle with animation */}
-                    <IconButton
-                        size="small"
-                        onClick={() => { playClick(); dispatch(changeTheme()); }}
-                        sx={{
-                            transition: "transform 300ms",
-                            "&:hover": {
-                                transform: "rotate(30deg)",
-                                backgroundColor: "light.accent",
-                                "& .MuiSvgIcon-root": {color: "colors.gold"},
-                            }
-                        }}>
-                        {theme === "dark"
-                            ? <LightModeOutlined sx={{...socialIconSx, color: "colors.gold"}} />
-                            : <DarkModeOutlined sx={socialIconSx} />
-                        }
-                    </IconButton>
+                        <Tooltip title={soundEnabled ? "Sound on" : "Sound off"}>
+                            <IconButton
+                                size="small"
+                                aria-label="Toggle sound"
+                                onClick={toggle}
+                                sx={actionButtonSx}>
+                                {soundEnabled
+                                    ? <VolumeUpOutlined sx={{fontSize: 18}} />
+                                    : <VolumeOffOutlined sx={{fontSize: 18, opacity: 0.55}} />
+                                }
+                            </IconButton>
+                        </Tooltip>
 
-                    {/* Sound toggle */}
-                    <IconButton
-                        size="small"
-                        onClick={toggle}
-                        sx={{
-                            transition: "all 300ms",
-                            "&:hover": {backgroundColor: "light.accent", "& .MuiSvgIcon-root": {color: "colors.accent"}},
-                        }}>
-                        {soundEnabled
-                            ? <VolumeUpOutlined sx={socialIconSx} />
-                            : <VolumeOffOutlined sx={{...socialIconSx, opacity: 0.4}} />
-                        }
-                    </IconButton>
-
-                    {/* CTA Button */}
-                    <GlowButton to="/contact" variant="primary">
-                        Contact
-                    </GlowButton>
+                        <Tooltip title="Contact">
+                            <Button
+                                component={Link}
+                                to="/contact"
+                                onClick={playClick}
+                                aria-label="Contact"
+                                startIcon={<MailOutlineOutlined sx={{fontSize: 17}} />}
+                                sx={{
+                                    minWidth: {md: 42, lg: 118},
+                                    height: 38,
+                                    px: {md: 1, lg: 1.7},
+                                    borderRadius: "999px",
+                                    color: "white",
+                                    fontWeight: 800,
+                                    fontSize: "0.76rem",
+                                    textTransform: "uppercase",
+                                    background: (t) => t.palette.mode === "dark"
+                                        ? "linear-gradient(135deg, #60a5fa, #F5A623)"
+                                        : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                    boxShadow: (t) => `0 10px 28px ${t.palette.colors?.accent || "#60a5fa"}24`,
+                                    transition: "transform 240ms ease, box-shadow 240ms ease",
+                                    "& .MuiButton-startIcon": {
+                                        mr: {md: 0, lg: 0.8},
+                                        ml: 0,
+                                    },
+                                    "&:hover": {
+                                        transform: "translateY(-2px)",
+                                        boxShadow: (t) => `0 14px 34px ${t.palette.colors?.accent || "#60a5fa"}34`,
+                                    },
+                                }}>
+                                <Box component="span" sx={{display: {md: "none", lg: "inline"}}}>Contact</Box>
+                            </Button>
+                        </Tooltip>
+                    </Stack>
                 </Stack>
-            </Stack>
+            </Container>
         </Toolbar>
-    )
+    );
 }
 
 export default DesktopHeader;

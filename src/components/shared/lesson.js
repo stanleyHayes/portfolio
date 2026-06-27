@@ -49,13 +49,17 @@ const Lesson = ({lesson, course}) => {
                     },
                 }
             }}>
-
             {/* Top colored bar */}
             <Box sx={{height: 4, background: `linear-gradient(90deg, ${color}, ${color}40)`}} />
-
             <CardContent sx={{flexGrow: 1, p: 3, display: "flex", flexDirection: "column"}}>
                 {/* Header row: number badge + date */}
-                <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{mb: 2}}>
+                <Stack
+                    direction="row"
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "flex-start",
+                        mb: 2
+                    }}>
                     <Box
                         className="lesson-number"
                         sx={{
@@ -72,15 +76,21 @@ const Lesson = ({lesson, course}) => {
                             {lesson.number}
                         </Typography>
                     </Box>
-                    <Stack spacing={0.5} alignItems="flex-end">
-                        <Stack direction="row" alignItems="center" spacing={0.5}>
+                    <Stack spacing={0.5} sx={{
+                        alignItems: "flex-end"
+                    }}>
+                        <Stack direction="row" spacing={0.5} sx={{
+                            alignItems: "center"
+                        }}>
                             <AccessTimeOutlined sx={{fontSize: 12, color: "text.secondary"}} />
                             <Typography variant="caption" sx={{color: "text.secondary", fontSize: "0.7rem"}}>
                                 {formatDate(lesson.date)}
                             </Typography>
                         </Stack>
                         {contentSections > 0 && (
-                            <Stack direction="row" alignItems="center" spacing={0.5}>
+                            <Stack direction="row" spacing={0.5} sx={{
+                                alignItems: "center"
+                            }}>
                                 <MenuBookOutlined sx={{fontSize: 12, color: "text.secondary"}} />
                                 <Typography variant="caption" sx={{color: "text.secondary", fontSize: "0.7rem"}}>
                                     {contentSections} sections
@@ -101,8 +111,15 @@ const Lesson = ({lesson, course}) => {
                 </Typography>
 
                 {/* Footer: author + CTA */}
-                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                    <Stack direction="row" spacing={1} alignItems="center">
+                <Stack
+                    direction="row"
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "center"
+                    }}>
+                    <Stack direction="row" spacing={1} sx={{
+                        alignItems: "center"
+                    }}>
                         <Avatar
                             src={course?.image}
                             sx={{width: 22, height: 22, backgroundColor: `${color}20`}}
@@ -111,7 +128,9 @@ const Lesson = ({lesson, course}) => {
                             {lesson.author}
                         </Typography>
                     </Stack>
-                    <Stack direction="row" alignItems="center" spacing={0.5}>
+                    <Stack direction="row" spacing={0.5} sx={{
+                        alignItems: "center"
+                    }}>
                         <Typography variant="caption" sx={{color, fontWeight: 700, fontSize: "0.75rem"}}>
                             Read
                         </Typography>
@@ -120,7 +139,7 @@ const Lesson = ({lesson, course}) => {
                 </Stack>
             </CardContent>
         </Card>
-    )
+    );
 }
 
 export default Lesson;

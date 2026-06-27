@@ -31,7 +31,12 @@ class ErrorBoundary extends React.Component {
             return (
                 <Box sx={{minHeight: "100vh", display: "flex", alignItems: "center", backgroundColor: "background.default"}}>
                     <Container maxWidth="sm">
-                        <Stack spacing={3} alignItems="center" textAlign="center">
+                        <Stack
+                            spacing={3}
+                            sx={{
+                                alignItems: "center",
+                                textAlign: "center"
+                            }}>
                             <Typography variant="h1" sx={{fontSize: {xs: "4rem", md: "6rem"}, fontWeight: 900, color: "colors.accent", lineHeight: 1}}>
                                 ⚡
                             </Typography>

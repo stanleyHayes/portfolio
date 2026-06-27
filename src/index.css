@@ -10,13 +10,56 @@
 @font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Black.otf') format('opentype'); font-weight: 900; font-style: normal; }
 @font-face { font-family: 'TTSquares'; src: url('./assets/fonts/ttsquares/Squares Black Italic.otf') format('opentype'); font-weight: 900; font-style: italic; }
 
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: 'TTSquares', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Outfit', 'TTSquares', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
   display: none !important;
+}
+
+/* ─── Circular reveal for the theme toggle (View Transitions API) ─── */
+/* Disable the default cross-fade; we drive the reveal ourselves in JS. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Outgoing theme stays fully painted underneath while the new theme is */
+/* clipped in as a growing circle from the toggle button. */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Respect reduced-motion: kill every view-transition animation. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }

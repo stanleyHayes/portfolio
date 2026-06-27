@@ -1,6 +1,5 @@
 import React from "react";
 import {Box, SwipeableDrawer} from "@mui/material";
-import Header from "./header/header";
 import Footer from "./shared/footer";
 import DrawerContent from "./drawer/drawer-content";
 import BirthdayBanner from "./shared/birthday-banner";
@@ -18,15 +17,13 @@ const Layout = ({children}) => {
         <Box
             sx={{
                 minHeight: "100vh",
+                width: "100%",
+                minWidth: 0,
                 display: "flex",
                 flexDirection: "column",
-                maxWidth: "100vw",
                 overflowX: "hidden",
                 "&::-webkit-scrollbar": {display: "none"}
             }}>
-            <Box>
-                <Header/>
-            </Box>
             <BirthdayBanner />
             <Box
                 initial={{opacity: 0}}
@@ -41,8 +38,10 @@ const Layout = ({children}) => {
                 component={motion.div}
                 sx={{
                     flexGrow: 1,
+                    width: "100%",
+                    minWidth: 0,
                     backgroundColor: "background.default",
-                    mt: {xs: 7, lg: 8.3},
+                    mt: {xs: 8.5, md: 10},
                     "&::-webkit-scrollbar": {display: "none"}
                 }}>
                 {children}

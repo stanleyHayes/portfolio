@@ -25,9 +25,10 @@ import {
 import SEO, {personSchema} from "../../components/shared/seo";
 import Certification from "../../components/shared/certification";
 import AnimatedTimeline from "../../components/shared/animated-timeline";
-import { WorkOutlineOutlined, LocationOnOutlined, CheckCircleOutlined } from "@mui/icons-material";
+import { WorkOutlineOutlined, LocationOnOutlined, CheckCircleOutlined, PersonOutlineOutlined } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
+import BannerWatermark from "../../components/shared/banner-watermark";
 import useSounds from "../../hooks/use-sound";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -63,6 +64,7 @@ const AboutPage = () => {
     const { playLaugh, playRoundComplete } = useSounds();
     const [index, setIndex] = useState(0);
     const [certPage, setCertPage] = useState(1);
+    const [aboutRequested, setAboutRequested] = useState(false);
     const handleTabChange = (event, index) => {
         setIndex(index);
         setCertPage(1);
@@ -74,7 +76,7 @@ const AboutPage = () => {
     const { loading: educationLoading, error: educationError, data: education } = useSelector(selectEducation);
     const { loading: experienceLoading, error: experienceError, data: experience } = useSelector(selectExperience);
     const { loading: certsLoading, error: certsError, data: certifications } = useSelector(selectCertifications);
-    const { data: info, loading: infoLoading } = useSelector(selectInfo);
+    const { data: info, loading: infoLoading, error: infoError } = useSelector(selectInfo);
 
     useEffect(() => {
         dispatch(fetchSkills());
@@ -82,6 +84,7 @@ const AboutPage = () => {
         dispatch(fetchExperience());
         dispatch(fetchCertifications());
         dispatch(fetchInfo());
+        setAboutRequested(true);
     }, [dispatch]);
 
     const name = info?.name;
@@ -93,13 +96,22 @@ const AboutPage = () => {
     const resumeUrl = info?.resumeUrl;
     const coverLetterUrl = info?.coverLetterUrl;
     const socialLinks = info?.socialLinks || {};
+    const aboutBannerDescription = bio
+        ? `${bio.split(".").filter(Boolean).slice(0, 2).join(". ")}.`
+        : "Software engineer building reliable products across backend systems, web platforms, and education technology.";
+    const aboutBannerChips = [
+        {label: title || "Software Engineer", Icon: WorkOutlineOutlined},
+        {label: location || "Accra, Ghana", Icon: LocationOnOutlined},
+        {label: company ? `@ ${company}` : "Available", Icon: CheckCircleOutlined},
+    ];
     const socialChips = [
         { key: "github", label: "GitHub", icon: "/assets/github.svg" },
         { key: "linkedin", label: "LinkedIn", icon: "/assets/linkedin.svg" },
         { key: "twitter", label: "X", icon: "/assets/twitter.svg" },
     ].filter(s => socialLinks[s.key]);
 
-    const isLoading = skillsLoading || educationLoading || experienceLoading || certsLoading;
+    const infoPending = !infoError && (infoLoading || !info);
+    const isLoading = !aboutRequested || skillsLoading || educationLoading || experienceLoading || certsLoading;
     const anyError = skillsError || educationError || experienceError || certsError;
 
     return (
@@ -107,12 +119,23 @@ const AboutPage = () => {
             <PageBackground variant="hero">
                 <SEO title="About" description={bio || "Learn about Stanley Hayford..."} path="/about" jsonLd={info ? personSchema(info) : undefined} />
                 <Box sx={{ py: 8, "&::-webkit-scrollbar": { display: "none" } }}>
-                    <Container maxWidth="xl">
+                    <Container maxWidth="xl" sx={{width: "100%"}}>
                         <Box
                             component={motion.div}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
-                            viewport={{ once: true }}>
+                            viewport={{ once: true }}
+                            sx={{
+                                position: "relative",
+                                overflow: "hidden",
+                                minHeight: {sm: 260, md: 300},
+                                py: {xs: 4, md: 7},
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                "& > :not(.banner-watermark)": {position: "relative", zIndex: 1}
+                            }}>
+                            <BannerWatermark Icon={PersonOutlineOutlined} size={{xs: 132, md: 190}} sx={{right: {sm: 24, md: 96}}} />
                             <Typography
                                 variant="body2"
                                 align="center"
@@ -134,9 +157,45 @@ const AboutPage = () => {
                                 }}>
                                 Get to know me
                             </Typography>
+                            <Typography
+                                variant="body1"
+                                align="center"
+                                sx={{
+                                    color: "text.secondary",
+                                    maxWidth: 760,
+                                    mx: "auto",
+                                    lineHeight: 1.8,
+                                    mb: 2.5
+                                }}>
+                                {aboutBannerDescription}
+                            </Typography>
+                            <Stack
+                                direction="row"
+                                spacing={1}
+                                sx={{
+                                    justifyContent: "center",
+                                    flexWrap: "wrap",
+                                    gap: 1
+                                }}>
+                                {aboutBannerChips.map(({label, Icon}) => (
+                                    <Chip
+                                        key={label}
+                                        icon={<Icon sx={{fontSize: 16}} />}
+                                        label={label}
+                                        size="small"
+                                        sx={{
+                                            backgroundColor: "light.accent",
+                                            color: "colors.accent",
+                                            borderRadius: 2,
+                                            fontWeight: 800,
+                                            "& .MuiChip-icon": {color: "inherit"}
+                                        }}
+                                    />
+                                ))}
+                            </Stack>
                         </Box>
 
-                        <Divider variant="fullWidth" light={true} sx={{ my: 4 }} />
+                        <Divider variant="fullWidth" sx={{ my: 4, opacity: 0.6 }} />
 
                         {/* Profile Section */}
                         <Box sx={{
@@ -145,6 +204,7 @@ const AboutPage = () => {
                             overflow: "hidden",
                             border: 1,
                             borderColor: "divider",
+                            width: "100%",
                         }}>
                             {/* Background gradient */}
                             <Box sx={{
@@ -161,7 +221,13 @@ const AboutPage = () => {
                             }} />
 
                             <Box sx={{ position: "relative", zIndex: 1, p: { xs: 3, md: 5 } }}>
-                                <Grid container spacing={5} alignItems="center">
+                                <Grid
+                                    container
+                                    spacing={5}
+                                    sx={{
+                                        alignItems: "center",
+                                        width: "100%"
+                                    }}>
                                     <Grid size={{ xs: 12, md: 4 }}>
                                         <Box sx={{ position: "relative", maxWidth: 320, mx: "auto" }}>
                                             {/* Glow ring */}
@@ -174,7 +240,7 @@ const AboutPage = () => {
                                                 opacity: 0.3,
                                                 filter: "blur(16px)",
                                             }} />
-                                            {infoLoading || !profileImage ? (
+                                            {infoPending || !profileImage ? (
                                                 <Skeleton
                                                     variant="circular"
                                                     width={300}
@@ -215,7 +281,7 @@ const AboutPage = () => {
                                     <Grid size={{ xs: 12, md: 8 }}>
                                         <Stack spacing={2.5}>
                                             {/* Name with gradient */}
-                                            {infoLoading || !name ? (
+                                            {infoPending || !name ? (
                                                 <Skeleton variant="text" width="60%" height={50} />
                                             ) : (
                                                 <Typography variant="h3" sx={{
@@ -232,13 +298,19 @@ const AboutPage = () => {
                                             )}
 
                                             {/* Role badge */}
-                                            {infoLoading || !title ? (
+                                            {infoPending || !title ? (
                                                 <Stack direction="row" spacing={1}>
                                                     <Skeleton variant="rounded" width={180} height={32} sx={{ borderRadius: "999px" }} />
                                                     <Skeleton variant="rounded" width={100} height={28} sx={{ borderRadius: "999px" }} />
                                                 </Stack>
                                             ) : (
-                                                <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
+                                                <Stack
+                                                    direction="row"
+                                                    spacing={1}
+                                                    sx={{
+                                                        alignItems: "center",
+                                                        flexWrap: "wrap"
+                                                    }}>
                                                     <Box sx={{
                                                         display: "inline-flex", alignItems: "center", gap: 1,
                                                         px: 2, py: 0.7, borderRadius: "999px",
@@ -260,7 +332,7 @@ const AboutPage = () => {
                                             )}
 
                                             {/* Bio */}
-                                            {infoLoading ? (
+                                            {infoPending ? (
                                                 <Stack spacing={0.8} sx={{ maxWidth: 600 }}>
                                                     <Skeleton variant="text" width="100%" height={22} />
                                                     <Skeleton variant="text" width="95%" height={22} />
@@ -275,7 +347,7 @@ const AboutPage = () => {
 
                                             {/* Quick stats row */}
                                             <Stack direction="row" spacing={{ xs: 0.8, sm: 1.5 }} sx={{ py: 1 }}>
-                                                {infoLoading ? (
+                                                {infoPending ? (
                                                     [...Array(3)].map((_, i) => (
                                                         <Skeleton key={i} variant="rounded" width={120} height={36} sx={{ borderRadius: "999px" }} />
                                                     ))
@@ -318,7 +390,7 @@ const AboutPage = () => {
                                             </Stack>
 
                                             {/* Resume row - skeleton when loading */}
-                                            {infoLoading ? (
+                                            {infoPending ? (
                                                 <Stack direction="row" spacing={1.5}>
                                                     <Skeleton variant="rounded" width={120} height={44} sx={{ borderRadius: "999px" }} />
                                                     <Skeleton variant="rounded" width={140} height={44} sx={{ borderRadius: "999px" }} />
@@ -326,7 +398,9 @@ const AboutPage = () => {
                                             ) : (
                                                 <React.Fragment>
                                                     {/* Resume row */}
-                                                    <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems={{ sm: "center" }}>
+                                                    <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{
+                                                        alignItems: { sm: "center" }
+                                                    }}>
                                                         {/* Resume button */}
                                                         {(resumeUrl || coverLetterUrl) && (
                                                             <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ width: { xs: "100%", sm: "auto" } }}>
@@ -397,7 +471,7 @@ const AboutPage = () => {
                             </Box>
                         </Box>
 
-                        <Divider sx={{ my: 3 }} light={true} variant="fullWidth" />
+                        <Divider sx={{ my: 3, opacity: 0.6 }} variant="fullWidth" />
 
                         {/* Tabs */}
                         <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -489,7 +563,7 @@ const AboutPage = () => {
                             </Stack>
                         </Box>
 
-                        <Divider sx={{ my: 3 }} light={true} variant="fullWidth" />
+                        <Divider sx={{ my: 3, opacity: 0.6 }} variant="fullWidth" />
 
                         {/* Tab Content */}
                         <Box>
@@ -551,12 +625,12 @@ const AboutPage = () => {
                                     <Grid container spacing={4}>
                                         {(skills || []).map((category, catIndex) => {
                                             const palettes = [
-                                                { color: "#2563eb", gradient: "linear-gradient(135deg, #2563eb, #1d4ed8)", icon: "{ }" },
-                                                { color: "#7c3aed", gradient: "linear-gradient(135deg, #7c3aed, #6d28d9)", icon: "~/" },
-                                                { color: "#F5A623", gradient: "linear-gradient(135deg, #F5A623, #d97706)", icon: "</>" },
-                                                { color: "#06b6d4", gradient: "linear-gradient(135deg, #06b6d4, #0891b2)", icon: ">>" },
-                                                { color: "#ef4444", gradient: "linear-gradient(135deg, #ef4444, #dc2626)", icon: "&&" },
-                                                { color: "#10b981", gradient: "linear-gradient(135deg, #10b981, #059669)", icon: "::" },
+                                                { color: "#2563eb", gradient: "linear-gradient(135deg, #2563eb, #1d4ed8)", icon: "{ }", note: "Core language and platform fluency for robust application work." },
+                                                { color: "#7c3aed", gradient: "linear-gradient(135deg, #7c3aed, #6d28d9)", icon: "~/", note: "System design, APIs, queues, storage, and service foundations." },
+                                                { color: "#F5A623", gradient: "linear-gradient(135deg, #F5A623, #d97706)", icon: "</>", note: "Interfaces, product experiences, and fast-moving frontend stacks." },
+                                                { color: "#06b6d4", gradient: "linear-gradient(135deg, #06b6d4, #0891b2)", icon: ">>", note: "Infrastructure, deployment, observability, and delivery workflow." },
+                                                { color: "#ef4444", gradient: "linear-gradient(135deg, #ef4444, #dc2626)", icon: "&&", note: "Performance, resilience, testing, and deeper engineering practice." },
+                                                { color: "#10b981", gradient: "linear-gradient(135deg, #10b981, #059669)", icon: "::", note: "Emerging technical interests and cross-discipline exploration." },
                                             ];
                                             const p = palettes[catIndex % palettes.length];
                                             const items = (category.items || []).map(s => typeof s === "string" ? s : s.name || s);
@@ -564,53 +638,116 @@ const AboutPage = () => {
                                             return (
                                                 <Grid key={category.category || catIndex} size={{ xs: 12, md: 6, lg: 4 }}>
                                                     <Card variant="outlined" sx={{
-                                                        height: "100%", borderRadius: 3, overflow: "hidden",
-                                                        transition: "all 300ms ease",
+                                                        height: "100%",
+                                                        borderRadius: 2,
+                                                        overflow: "hidden",
+                                                        position: "relative",
+                                                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(15,23,42,0.10)",
+                                                        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.88)",
+                                                        backgroundImage: (t) => t.palette.mode === "dark"
+                                                            ? `linear-gradient(135deg, ${p.color}18, rgba(15,23,42,0) 38%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
+                                                            : `linear-gradient(135deg, ${p.color}10, rgba(255,255,255,0) 38%), linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.70))`,
+                                                        boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 46px rgba(0,0,0,0.20)" : "0 18px 42px rgba(15,23,42,0.08)",
+                                                        transition: "transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease",
                                                         "&:hover": {
-                                                            transform: "translateY(-4px)",
+                                                            transform: "translateY(-6px)",
                                                             borderColor: p.color,
-                                                            boxShadow: `0 12px 40px ${p.color}20`,
-                                                            "& .skill-header": { backgroundSize: "120%" },
+                                                            boxShadow: (t) => t.palette.mode === "dark"
+                                                                ? `0 22px 60px rgba(0,0,0,0.32), 0 0 0 1px ${p.color}35`
+                                                                : `0 24px 58px rgba(15,23,42,0.12), 0 0 0 1px ${p.color}28`,
+                                                            "& .skill-mark": {
+                                                                transform: "translateY(-2px) rotate(-4deg)",
+                                                            },
+                                                            "& .skill-strip": {
+                                                                opacity: 1,
+                                                            },
                                                         }
                                                     }}>
-                                                        {/* Gradient header */}
-                                                        <Box className="skill-header" sx={{
+                                                        <Box className="skill-strip" sx={{
+                                                            position: "absolute",
+                                                            inset: "0 0 auto 0",
+                                                            height: 5,
                                                             background: p.gradient,
-                                                            backgroundSize: "100%",
-                                                            transition: "background-size 500ms",
-                                                            px: 3, py: 2.5,
+                                                            opacity: 0.9,
+                                                            transition: "opacity 260ms ease",
+                                                        }} />
+                                                        <Box className="skill-header" sx={{
+                                                            px: 3,
+                                                            pt: 3.2,
+                                                            pb: 2.2,
                                                             position: "relative",
+                                                            overflow: "hidden",
                                                             "&::before": {
-                                                                content: '""', position: "absolute", inset: 0,
-                                                                backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)`,
-                                                                backgroundSize: "16px 16px",
+                                                                content: '""',
+                                                                position: "absolute",
+                                                                inset: 0,
+                                                                opacity: 0.34,
+                                                                backgroundImage: (t) => {
+                                                                    const line = t.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.05)";
+                                                                    return `linear-gradient(90deg, ${line} 1px, transparent 1px), linear-gradient(${line} 1px, transparent 1px)`;
+                                                                },
+                                                                backgroundSize: "24px 24px",
                                                             },
                                                         }}>
-                                                            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ position: "relative", zIndex: 1 }}>
-                                                                <Stack spacing={0.5}>
-                                                                    <Typography variant="h6" sx={{ color: "white", fontWeight: 800, letterSpacing: 0.5 }}>
+                                                            <Stack
+                                                                direction="row"
+                                                                spacing={2}
+                                                                sx={{
+                                                                    justifyContent: "space-between",
+                                                                    alignItems: "flex-start",
+                                                                    position: "relative",
+                                                                    zIndex: 1
+                                                                }}>
+                                                                <Stack spacing={1} sx={{minWidth: 0}}>
+                                                                    <Chip
+                                                                        label={`${String(catIndex + 1).padStart(2, "0")} / ${items.length} ${items.length === 1 ? "skill" : "skills"}`}
+                                                                        size="small"
+                                                                        sx={{
+                                                                            alignSelf: "flex-start",
+                                                                            height: 25,
+                                                                            borderRadius: 1.5,
+                                                                            backgroundColor: `${p.color}14`,
+                                                                            color: p.color,
+                                                                            border: `1px solid ${p.color}28`,
+                                                                            fontSize: "0.65rem",
+                                                                            fontWeight: 850,
+                                                                        }}
+                                                                    />
+                                                                    <Typography variant="h6" sx={{ color: "text.primary", fontWeight: 900, lineHeight: 1.18, letterSpacing: 0.2 }}>
                                                                         {category.category}
                                                                     </Typography>
-                                                                    <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.7)" }}>
-                                                                        {items.length} {items.length === 1 ? "skill" : "skills"}
+                                                                    <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.55, maxWidth: 300 }}>
+                                                                        {p.note}
                                                                     </Typography>
                                                                 </Stack>
-                                                                <Box sx={{
-                                                                    width: 44, height: 44, borderRadius: 3,
-                                                                    backgroundColor: "rgba(255,255,255,0.15)",
-                                                                    backdropFilter: "blur(4px)",
-                                                                    display: "flex", alignItems: "center", justifyContent: "center",
+                                                                <Box className="skill-mark" sx={{
+                                                                    width: 54,
+                                                                    height: 54,
+                                                                    borderRadius: 2,
+                                                                    flexShrink: 0,
+                                                                    backgroundColor: `${p.color}13`,
+                                                                    border: `1px solid ${p.color}30`,
+                                                                    display: "flex",
+                                                                    alignItems: "center",
+                                                                    justifyContent: "center",
+                                                                    transition: "transform 260ms ease",
                                                                 }}>
-                                                                    <Typography sx={{ color: "white", fontWeight: 900, fontSize: "0.9rem" }}>
+                                                                    <Typography sx={{ color: p.color, fontWeight: 950, fontSize: "0.88rem" }}>
                                                                         {p.icon}
                                                                     </Typography>
                                                                 </Box>
                                                             </Stack>
                                                         </Box>
 
-                                                        {/* Skill chips */}
-                                                        <CardContent sx={{ p: 3 }}>
-                                                            <Stack direction="row" flexWrap="wrap" gap={1}>
+                                                        <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(15,23,42,0.08)"}} />
+
+                                                        <CardContent sx={{ p: 2.4 }}>
+                                                            <Stack
+                                                                direction="row"
+                                                                sx={{
+                                                                    flexWrap: "wrap",
+                                                                    gap: 0.85
+                                                                }}>
                                                                 {items.map((skill, i) => (
                                                                     <Chip
                                                                         key={skill}
@@ -618,30 +755,33 @@ const AboutPage = () => {
                                                                         size="small"
                                                                         avatar={
                                                                             <Avatar sx={{
-                                                                                width: 22, height: 22,
+                                                                                width: 22,
+                                                                                height: 22,
                                                                                 fontSize: "0.55rem",
                                                                                 fontWeight: 900,
-                                                                                backgroundColor: `${p.color}25`,
+                                                                                backgroundColor: `${p.color}18`,
                                                                                 color: p.color,
                                                                                 letterSpacing: -0.5,
+                                                                                border: `1px solid ${p.color}28`,
                                                                             }}>
                                                                                 {getSymbol(skill)}
                                                                             </Avatar>
                                                                         }
                                                                         sx={{
-                                                                            height: 30,
+                                                                            minHeight: 32,
                                                                             fontSize: "0.75rem",
-                                                                            fontWeight: 500,
-                                                                            backgroundColor: `${p.color}0a`,
+                                                                            fontWeight: 700,
+                                                                            borderRadius: 1.6,
+                                                                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.04)" : "rgba(15,23,42,0.035)",
                                                                             color: "text.primary",
-                                                                            border: `1px solid ${p.color}20`,
-                                                                            transition: "all 250ms",
+                                                                            border: `1px solid ${p.color}1f`,
+                                                                            transition: "transform 220ms ease, background-color 220ms ease, border-color 220ms ease",
                                                                             "& .MuiChip-avatar": { ml: 0.3 },
                                                                             "&:hover": {
                                                                                 backgroundColor: `${p.color}18`,
                                                                                 borderColor: `${p.color}50`,
                                                                                 transform: "translateY(-1px)",
-                                                                                "& .MuiChip-avatar": { backgroundColor: `${p.color}40` },
+                                                                                "& .MuiChip-avatar": { backgroundColor: `${p.color}24` },
                                                                             },
                                                                         }}
                                                                     />
@@ -696,7 +836,11 @@ const AboutPage = () => {
                                             ))}
                                         </Grid>
                                         {totalCertPages > 1 && (
-                                            <Stack alignItems="center" sx={{ mt: 4 }}>
+                                            <Stack
+                                                sx={{
+                                                    alignItems: "center",
+                                                    mt: 4
+                                                }}>
                                                 <Pagination
                                                     count={totalCertPages}
                                                     page={certPage}
@@ -717,7 +861,7 @@ const AboutPage = () => {
                 </Box>
             </PageBackground>
         </Layout>
-    )
+    );
 }
 
 export default AboutPage;

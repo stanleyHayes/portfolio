@@ -1,14 +1,14 @@
 import './App.css';
-import {Route, useLocation} from "react-router-dom";
-import {Routes} from "react-router";
+import {Route, Routes, useLocation} from "react-router";
 import {useSelector} from "react-redux";
 import {getUiState} from "./features/ui/ui-slice";
 import {THEMES} from "./themes/themes";
 import {CssBaseline, ThemeProvider} from "@mui/material";
-import {AnimatePresence} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import {Suspense, lazy} from "react";
 import {HelmetProvider} from "react-helmet-async";
 import Splash from "./components/shared/splash";
+import Header from "./components/header/header";
 import NotFoundPage from "./pages/404/not-found-page";
 import useVisitorTracking from "./hooks/use-visitor-tracking";
 import ScrollToTop from "./components/shared/scroll-to-top";
@@ -38,20 +38,32 @@ function App() {
                 <CssBaseline enableColorScheme={true}/>
                 <ErrorBoundary>
                 <ScrollToTop />
-                <AnimatePresence mode="popLayout" initial={true}>
-                    <Routes location={location}>
-                        <Route path="/" element={<Suspense fallback={<Splash/>}><HomePage/></Suspense>}/>
-                        <Route path="/about" element={<Suspense fallback={<Splash/>}><AboutPage/></Suspense>}/>
-                        <Route path="/contact" element={<Suspense fallback={<Splash/>}><ContactPage/></Suspense>}/>
-                        <Route path="/services" element={<Suspense fallback={<Splash/>}><ServicesPage/></Suspense>}/>
-                        <Route path="/portfolio" element={<Suspense fallback={<Splash/>}><PortfolioPage/></Suspense>}/>
-                        <Route path="/learn" element={<Suspense fallback={<Splash/>}><CoursesPage/></Suspense>}/>
-                        <Route path="/learn/:slug/lessons" element={<Suspense fallback={<Splash/>}><CourseLessonsPage/></Suspense>}/>
-                        <Route path="/learn/:cslug/lessons/:lslug" element={<Suspense fallback={<Splash/>}><LessonDetailPage/></Suspense>}/>
-                        <Route path="/blog" element={<Suspense fallback={<Splash/>}><BlogPage/></Suspense>}/>
-                        <Route path="/blog/:slug" element={<Suspense fallback={<Splash/>}><BlogDetailPage/></Suspense>}/>
-                        <Route path="*" element={<Suspense fallback={<Splash/>}><NotFoundPage/></Suspense>}/>
-                    </Routes>
+                {/* Persistent chrome: the fixed header stays mounted across routes
+                    so the nav active-indicator can slide between items (layoutId). */}
+                <Header/>
+                <AnimatePresence mode="wait" initial={false}>
+                    {/* Page transition: each route key animates the whole page in/out */}
+                    <motion.div
+                        key={location.pathname}
+                        initial={{opacity: 0, y: 18, filter: "blur(6px)"}}
+                        animate={{opacity: 1, y: 0, filter: "blur(0px)"}}
+                        exit={{opacity: 0, y: -18, filter: "blur(6px)"}}
+                        transition={{duration: 0.4, ease: [0.22, 1, 0.36, 1]}}
+                        style={{minHeight: "100vh"}}>
+                        <Routes location={location}>
+                            <Route path="/" element={<Suspense fallback={<Splash/>}><HomePage/></Suspense>}/>
+                            <Route path="/about" element={<Suspense fallback={<Splash/>}><AboutPage/></Suspense>}/>
+                            <Route path="/contact" element={<Suspense fallback={<Splash/>}><ContactPage/></Suspense>}/>
+                            <Route path="/services" element={<Suspense fallback={<Splash/>}><ServicesPage/></Suspense>}/>
+                            <Route path="/portfolio" element={<Suspense fallback={<Splash/>}><PortfolioPage/></Suspense>}/>
+                            <Route path="/learn" element={<Suspense fallback={<Splash/>}><CoursesPage/></Suspense>}/>
+                            <Route path="/learn/:slug/lessons" element={<Suspense fallback={<Splash/>}><CourseLessonsPage/></Suspense>}/>
+                            <Route path="/learn/:cslug/lessons/:lslug" element={<Suspense fallback={<Splash/>}><LessonDetailPage/></Suspense>}/>
+                            <Route path="/blog" element={<Suspense fallback={<Splash/>}><BlogPage/></Suspense>}/>
+                            <Route path="/blog/:slug" element={<Suspense fallback={<Splash/>}><BlogDetailPage/></Suspense>}/>
+                            <Route path="*" element={<Suspense fallback={<Splash/>}><NotFoundPage/></Suspense>}/>
+                        </Routes>
+                    </motion.div>
                 </AnimatePresence>
                 </ErrorBoundary>
             </ThemeProvider>

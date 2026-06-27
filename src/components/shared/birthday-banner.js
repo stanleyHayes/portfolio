@@ -62,7 +62,6 @@ const BirthdayBanner = () => {
             {!dismissed && confettiPieces.map(p => (
                 <Confetti key={p.id} delay={p.delay} left={p.left} />
             ))}
-
             {/* Banner */}
             <AnimatePresence>
                 {!dismissed && (
@@ -88,7 +87,9 @@ const BirthdayBanner = () => {
                             py: 1.5,
                             boxShadow: "0 12px 40px rgba(245,166,35,0.3)",
                         }}>
-                            <Stack direction="row" alignItems="center" spacing={2}>
+                            <Stack direction="row" spacing={2} sx={{
+                                alignItems: "center"
+                            }}>
                                 <Box
                                     component={motion.div}
                                     animate={{rotate: [0, -15, 15, -15, 0], scale: [1, 1.2, 1]}}

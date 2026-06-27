@@ -1,14 +1,16 @@
 import {Button, Grid, Toolbar} from "@mui/material";
 import React from "react";
 import {Brightness4, Brightness7, Menu} from "@mui/icons-material";
-import {Link} from "react-router-dom";
-import {changeTheme, getUiState} from "../../features/ui/ui-slice";
-import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router";
+import {getUiState} from "../../features/ui/ui-slice";
+import {useSelector} from "react-redux";
+import useThemeTransition from "../../hooks/use-theme-transition";
+import brandLogo from "../../assets/images/logo/logo.png";
 
 const TabletHeader = () => {
 
-    const dispatch = useDispatch();
-    const theme = useSelector(getUiState);
+    const {theme} = useSelector(getUiState);
+    const toggleTheme = useThemeTransition();
 
     return (
         <Toolbar
@@ -20,23 +22,33 @@ const TabletHeader = () => {
                 backdropFilter: "blur(5px)"
             }}
             variant="regular">
-            <Grid container justifyContent="space-between" alignItems="center">
+            <Grid
+                container
+                sx={{
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                }}>
                 <Grid size={{xs: 1}}>
                     <Menu />
                 </Grid>
-                <Grid size={{xs: 7}} container justifyContent="flex-start">
+                <Grid size={{xs: 7}} container sx={{
+                    justifyContent: "flex-start"
+                }}>
                     <Link to="/" >
                         <Button startIcon={
                             <img
 
-                                src="/assets/lightingcolored.svg"
-                                alt="zeus lighting bolt"
-                                title="zeus lighting bolt"
+                                src={brandLogo}
+                                alt="Zeus logo"
+                                title="Zeus logo"
+                                style={{width: 22, height: 22, objectFit: "contain"}}
                             />
                         }  variant="text">Zeus</Button>
                     </Link>
                 </Grid>
-                <Grid size={{xs: 4}} container spacing={3} alignItems="center">
+                <Grid size={{xs: 4}} container spacing={3} sx={{
+                    alignItems: "center"
+                }}>
                     <Grid>
                         <a href="https://github.com/stanleyHayes" rel="noreferrer" target="_blank">
                             <img  src="/assets/github.svg" alt="GitHub logo" title="GitHub Repository"/>
@@ -58,16 +70,16 @@ const TabletHeader = () => {
                     <Grid>
                         {
                             theme === "dark" ?
-                                (<Brightness7  onClick={() => dispatch(changeTheme())}/>)
+                                (<Brightness7  onClick={toggleTheme}/>)
                                 :
-                                (<Brightness4  onClick={() => dispatch(changeTheme())}
+                                (<Brightness4  onClick={toggleTheme}
                                               color="secondary"/>)
                         }
                     </Grid>
                 </Grid>
             </Grid>
         </Toolbar>
-    )
+    );
 }
 
 export default TabletHeader;

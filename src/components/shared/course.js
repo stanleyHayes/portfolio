@@ -52,7 +52,6 @@ const Course = ({course}) => {
             }}
             onMouseEnter={playTick}
             onClick={() => { playClick(); navigate(`/learn/${course.slug}/lessons`); }}>
-
             {/* Creative Header — floating with padding */}
             <Box sx={{p: 1.5, pb: 0}}>
                 <Box sx={{
@@ -145,7 +144,6 @@ const Course = ({course}) => {
                     </Box>
                 </Box>
             </Box>
-
             <CardContent sx={{flexGrow: 1, p: 3}}>
                 <Typography variant="h6" sx={{color: "text.primary", fontWeight: 700, mb: 0.5}}>
                     {course.name}
@@ -153,8 +151,15 @@ const Course = ({course}) => {
                 <Typography variant="body2" sx={{color: "text.secondary", lineHeight: 1.6, mb: 2}}>
                     {course.summary}
                 </Typography>
-                <Stack direction="row" alignItems="center" justifyContent="space-between">
-                    <Stack direction="row" alignItems="center" spacing={0.5}>
+                <Stack
+                    direction="row"
+                    sx={{
+                        alignItems: "center",
+                        justifyContent: "space-between"
+                    }}>
+                    <Stack direction="row" spacing={0.5} sx={{
+                        alignItems: "center"
+                    }}>
                         <Typography variant="body2" sx={{color: accent, fontWeight: 600}}>
                             Start Learning
                         </Typography>
@@ -167,7 +172,7 @@ const Course = ({course}) => {
                 </Stack>
             </CardContent>
         </Card>
-    )
+    );
 }
 
 export default Course;

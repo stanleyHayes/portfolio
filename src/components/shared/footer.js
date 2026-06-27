@@ -1,6 +1,6 @@
 import React, {useRef, useMemo, useState} from "react";
 import {Alert, Box, Button, CircularProgress, Container, Grid, IconButton, Link as MUILink, Snackbar, Stack, TextField, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import {GitHub, LinkedIn, Twitter, Instagram, FavoriteOutlined, TerminalOutlined, SendOutlined, ArrowOutwardOutlined, HomeOutlined, PersonOutlined, WorkOutlined, BuildOutlined, SchoolOutlined, ArticleOutlined, MailOutlined} from "@mui/icons-material";
 import {motion, AnimatePresence} from "framer-motion";
 import {Canvas, useFrame} from "@react-three/fiber";
@@ -59,11 +59,15 @@ const socialConfig = {
 
 const FooterLink = ({to, icon: Icon, children}) => (
     <Link to={to} style={{textDecoration: "none"}}>
-        <Stack direction="row" alignItems="center" spacing={1} sx={{
-            color: "text.secondary",
-            transition: "all 250ms",
-            "&:hover": {color: "colors.accent", "& .link-arrow": {opacity: 1, transform: "translateX(0)"}},
-        }}>
+        <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+                alignItems: "center",
+                color: "text.secondary",
+                transition: "all 250ms",
+                "&:hover": {color: "colors.accent", "& .link-arrow": {opacity: 1, transform: "translateX(0)"}}
+            }}>
             {Icon && <Icon sx={{fontSize: 16, opacity: 0.7}} />}
             <Typography variant="body2">{children}</Typography>
             <ArrowOutwardOutlined className="link-arrow" sx={{fontSize: 12, opacity: 0, transform: "translateX(-4px)", transition: "all 250ms"}} />
@@ -112,7 +116,6 @@ const Footer = () => {
                     <ParticleWave />
                 </Canvas>
             </Box>
-
             <Box sx={{
                 position: "relative", zIndex: 1, pt: 10, pb: 4,
                 backgroundColor: (t) => t.palette.mode === 'dark' ? 'rgba(3,7,18,0.88)' : 'rgba(248,249,250,0.92)',
@@ -201,7 +204,9 @@ const Footer = () => {
                                         initial={{opacity: 0, y: 10}}
                                         animate={{opacity: 1, y: 0}}
                                         transition={{duration: 0.5, type: "spring"}}
-                                        direction="row" spacing={2} alignItems="center">
+                                        direction="row" spacing={2} sx={{
+                                        alignItems: "center"
+                                    }}>
                                         <Box
                                             component={motion.div}
                                             initial={{scale: 0, rotate: -180}}
@@ -294,11 +299,19 @@ const Footer = () => {
 
                     {/* Bottom Bar */}
                     <Box sx={{borderTop: 1, borderColor: "divider", pt: 3}}>
-                        <Stack direction={{xs: "column", sm: "row"}} justifyContent="space-between" alignItems="center" spacing={1}>
+                        <Stack
+                            direction={{xs: "column", sm: "row"}}
+                            spacing={1}
+                            sx={{
+                                justifyContent: "space-between",
+                                alignItems: "center"
+                            }}>
                             <Typography variant="caption" sx={{color: "text.secondary"}}>
                                 &copy; {new Date().getFullYear()} Stanley Hayford. All rights reserved.
                             </Typography>
-                            <Stack direction="row" alignItems="center" spacing={0.5}>
+                            <Stack direction="row" spacing={0.5} sx={{
+                                alignItems: "center"
+                            }}>
                                 <Typography variant="caption" sx={{color: "text.secondary"}}>Built with</Typography>
                                 <FavoriteOutlined sx={{color: "#ef4444", fontSize: 12}} />
                                 <Typography variant="caption" sx={{color: "text.secondary"}}>using React, MUI & Three.js</Typography>
@@ -322,7 +335,7 @@ const Footer = () => {
                 </Alert>
             </Snackbar>
         </Box>
-    )
+    );
 }
 
 export default Footer;

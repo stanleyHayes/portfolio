@@ -1,52 +1,142 @@
-import {IconButton, Stack, Toolbar, Typography} from "@mui/material";
+import {Box, IconButton, Stack, Toolbar, Tooltip, Typography} from "@mui/material";
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import {DarkModeOutlined, LightModeOutlined, Menu} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
-import {changeTheme, getUiState, toggleDrawer} from "../../features/ui/ui-slice";
+import {getUiState, toggleDrawer} from "../../features/ui/ui-slice";
+import useThemeTransition from "../../hooks/use-theme-transition";
+import useSounds from "../../hooks/use-sound";
+import brandLogo from "../../assets/images/logo/logo.png";
 
 const MobileHeader = () => {
 
     const dispatch = useDispatch();
     const {theme} = useSelector(getUiState);
+    const toggleTheme = useThemeTransition();
+    const {playClick} = useSounds();
+
+    const iconButtonSx = {
+        width: 38,
+        height: 38,
+        border: 1,
+        borderColor: "divider",
+        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.72)",
+        color: "colors.accent",
+        "&:hover": {
+            borderColor: "colors.accent",
+            backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}14`,
+        },
+    };
 
     return (
-        <Toolbar variant="dense" sx={{py: 0.5}}>
+        <Toolbar disableGutters variant="dense" sx={{minHeight: 58, pointerEvents: "auto"}}>
             <Stack
-                sx={{width: "100%"}}
                 direction="row"
-                justifyContent="space-between"
-                alignItems="center">
+                sx={{
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    minHeight: 58,
+                    px: 1,
+                    py: 0.75,
+                    border: 1,
+                    borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.18)" : "rgba(15,23,42,0.10)",
+                    borderRadius: "20px",
+                    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(7,11,20,0.76)" : "rgba(255,255,255,0.78)",
 
-                <IconButton size="small" onClick={() => dispatch(toggleDrawer(true))}>
-                    <Menu sx={{color: "colors.accent"}} />
-                </IconButton>
+                    backgroundImage: (t) => t.palette.mode === "dark"
+                        ? "linear-gradient(135deg, rgba(96,165,250,0.13), rgba(245,166,35,0.08))"
+                        : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
 
-                <Link style={{textDecoration: "none"}} to="/">
-                    <Typography
-                        variant="h6"
+                    backdropFilter: "blur(18px) saturate(170%)",
+                    WebkitBackdropFilter: "blur(18px) saturate(170%)",
+
+                    boxShadow: (t) => t.palette.mode === "dark"
+                        ? "0 14px 38px rgba(0,0,0,0.28)"
+                        : "0 14px 34px rgba(15,23,42,0.10)"
+                }}>
+
+                <Box
+                    component={Link}
+                    to="/"
+                    onClick={playClick}
+                    sx={{
+                        minWidth: 0,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 1,
+                        textDecoration: "none",
+                        color: "inherit",
+                    }}>
+                    <Box
                         sx={{
-                            fontWeight: 900,
-                            letterSpacing: 1,
-                            background: (t) => t.palette.mode === "dark"
-                                ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                : "linear-gradient(135deg, #2563eb, #F5A623)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
+                            width: 38,
+                            height: 38,
+                            borderRadius: "14px",
+                            display: "grid",
+                            placeItems: "center",
+                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.12)" : "rgba(245,166,35,0.10)",
+                            border: 1,
+                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.28)" : "rgba(245,166,35,0.22)",
                         }}>
-                        {"<Zeus />"}
-                    </Typography>
-                </Link>
+                        <Box component="img" src={brandLogo} alt="Zeus logo" sx={{width: 28, height: 28, objectFit: "contain"}} />
+                    </Box>
+                    <Box sx={{minWidth: 0}}>
+                        <Typography
+                            variant="subtitle2"
+                            noWrap
+                            sx={{
+                                maxWidth: {xs: 120, sm: 180},
+                                fontWeight: 900,
+                                lineHeight: 1,
+                                color: "text.primary",
+                            }}>
+                            {"<Zeus />"}
+                        </Typography>
+                        <Typography
+                            variant="caption"
+                            noWrap
+                            sx={{
+                                display: "block",
+                                maxWidth: {xs: 120, sm: 180},
+                                color: "text.secondary",
+                                fontSize: "0.66rem",
+                                mt: 0.35,
+                            }}>
+                            Stanley Hayford
+                        </Typography>
+                    </Box>
+                </Box>
 
-                <IconButton size="small" onClick={() => dispatch(changeTheme())}>
-                    {theme === "dark"
-                        ? <LightModeOutlined sx={{color: "colors.accent"}} />
-                        : <DarkModeOutlined sx={{color: "colors.accent"}} />
-                    }
-                </IconButton>
+                <Stack direction="row" spacing={0.75} sx={{
+                    alignItems: "center"
+                }}>
+                    <Tooltip title={theme === "dark" ? "Light mode" : "Dark mode"}>
+                        <IconButton
+                            size="small"
+                            aria-label="Toggle color theme"
+                            onClick={(e) => { playClick(); toggleTheme(e); }}
+                            sx={iconButtonSx}>
+                            {theme === "dark"
+                                ? <LightModeOutlined sx={{fontSize: 18}} />
+                                : <DarkModeOutlined sx={{fontSize: 18}} />
+                            }
+                        </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Menu">
+                        <IconButton
+                            size="small"
+                            aria-label="Open navigation menu"
+                            onClick={() => { playClick(); dispatch(toggleDrawer(true)); }}
+                            sx={iconButtonSx}>
+                            <Menu sx={{fontSize: 20}} />
+                        </IconButton>
+                    </Tooltip>
+                </Stack>
             </Stack>
         </Toolbar>
-    )
+    );
 }
 
 export default MobileHeader;

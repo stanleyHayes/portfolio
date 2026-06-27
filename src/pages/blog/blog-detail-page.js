@@ -5,10 +5,11 @@ import FriendlyError from "../../components/shared/friendly-error";
 import SEO, {articleSchema} from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
+import BannerWatermark from "../../components/shared/banner-watermark";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPostBySlug, selectCurrentPost} from "../../features/data/data-slice";
-import {useParams, Link} from "react-router-dom";
-import {ArrowBackOutlined, CalendarMonthOutlined} from "@mui/icons-material";
+import {useParams, Link} from "react-router";
+import {ArrowBackOutlined, CalendarMonthOutlined, ArticleOutlined} from "@mui/icons-material";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -41,7 +42,13 @@ const BlogDetailPage = () => {
                         <Skeleton variant="rectangular" height={300} sx={{borderRadius: 4, mb: 3}} />
                         <Skeleton variant="text" width="80%" height={40} sx={{mb: 1}} />
                         <Skeleton variant="text" width="60%" height={40} sx={{mb: 3}} />
-                        <Stack direction="row" spacing={2} alignItems="center" sx={{mb: 4}}>
+                        <Stack
+                            direction="row"
+                            spacing={2}
+                            sx={{
+                                alignItems: "center",
+                                mb: 4
+                            }}>
                             <Skeleton variant="circular" width={44} height={44} />
                             <Box>
                                 <Skeleton variant="text" width={120} />
@@ -107,6 +114,7 @@ const BlogDetailPage = () => {
                         </Typography>
                     </Box>
                 )}
+                <BannerWatermark Icon={ArticleOutlined} size={{xs: 140, md: 240}} sx={{right: {sm: 24, md: 96}}} />
                 {/* Gradient overlay */}
                 <Box sx={{
                     position: "absolute",
@@ -179,7 +187,13 @@ const BlogDetailPage = () => {
                         </Typography>
 
                         {/* Author & Date */}
-                        <Stack direction="row" alignItems="center" spacing={2} sx={{mb: 4}}>
+                        <Stack
+                            direction="row"
+                            spacing={2}
+                            sx={{
+                                alignItems: "center",
+                                mb: 4
+                            }}>
                             <Avatar
                                 src={post.author?.avatar}
                                 sx={{width: 44, height: 44, backgroundColor: "colors.accent"}}>
@@ -190,7 +204,9 @@ const BlogDetailPage = () => {
                                     {post.author?.name || "Author"}
                                 </Typography>
                                 {formattedDate && (
-                                    <Stack direction="row" alignItems="center" spacing={0.5}>
+                                    <Stack direction="row" spacing={0.5} sx={{
+                                        alignItems: "center"
+                                    }}>
                                         <CalendarMonthOutlined sx={{fontSize: 14, color: "text.secondary"}} />
                                         <Typography variant="caption" sx={{color: "text.secondary"}}>
                                             {formattedDate}

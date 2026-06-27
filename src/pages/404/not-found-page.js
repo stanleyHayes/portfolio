@@ -5,6 +5,8 @@ import React, {useEffect, useState} from "react";
 import {motion} from "framer-motion";
 import {GlowButton} from "../../components/shared/styled-button";
 import useSounds from "../../hooks/use-sound";
+import BannerWatermark from "../../components/shared/banner-watermark";
+import {ErrorOutlineOutlined} from "@mui/icons-material";
 
 const funnyMessages = [
     "Looks like Zeus's lightning bolt missed this page.",
@@ -110,7 +112,9 @@ const NotFoundPage = () => {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
+                    "& > :not(.banner-watermark)": {position: "relative", zIndex: 1},
                 }}>
+                    <BannerWatermark Icon={ErrorOutlineOutlined} size={{xs: 140, md: 240}} sx={{right: {sm: -16, md: 16}, top: {sm: "44%", md: "48%"}}} />
                     {/* Floating particles */}
                     <Box sx={{position: "relative", width: "100%"}}>
                         {[...Array(8)].map((_, i) => (
@@ -174,7 +178,9 @@ const NotFoundPage = () => {
                         initial={{y: 20, opacity: 0}}
                         animate={{y: 0, opacity: 1}}
                         transition={{duration: 0.6, delay: 0.7}}>
-                        <Stack direction={{xs: "column", sm: "row"}} spacing={2} justifyContent="center">
+                        <Stack direction={{xs: "column", sm: "row"}} spacing={2} sx={{
+                            justifyContent: "center"
+                        }}>
                             <GlowButton to="/" variant="primary" onClick={playClick}>
                                 Back to Olympus
                             </GlowButton>
@@ -197,7 +203,7 @@ const NotFoundPage = () => {
                 </Box>
             </Container>
         </Layout>
-    )
+    );
 }
 
 export default NotFoundPage;

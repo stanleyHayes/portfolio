@@ -30,7 +30,9 @@ const FriendlyError = ({onRetry, message}) => (
         <Typography variant="body2" sx={{color: "text.disabled", mb: 4, maxWidth: 420, mx: "auto"}}>
             Don't worry, your data is safe. This is usually temporary.
         </Typography>
-        <Stack direction="row" spacing={2} justifyContent="center">
+        <Stack direction="row" spacing={2} sx={{
+            justifyContent: "center"
+        }}>
             {onRetry && (
                 <Button
                     variant="contained"

@@ -17,12 +17,12 @@ import {
     useMediaQuery,
     useTheme
 } from "@mui/material";
-import {useNavigate, useParams} from "react-router";
-import {Link} from "react-router-dom";
-import {ViewList, ArrowBackOutlined, ArrowForwardOutlined} from "@mui/icons-material";
+import {Link, useNavigate, useParams} from "react-router";
+import {ViewList, ArrowBackOutlined, ArrowForwardOutlined, SchoolOutlined} from "@mui/icons-material";
 import Lessons from "../../components/shared/lessons";
 import SEO, {breadcrumbSchema} from "../../components/shared/seo";
 import PageBackground from "../../components/shared/page-background";
+import BannerWatermark from "../../components/shared/banner-watermark";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCourseLesson, fetchCourseBySlug, selectCurrentLesson, selectCurrentCourse} from "../../features/data/data-slice";
 import FriendlyError from "../../components/shared/friendly-error";
@@ -60,7 +60,13 @@ const LessonDetailPage = () => {
                 <Box sx={{py: 4}}>
                 <Container maxWidth="xl">
                     {/* Back navigation */}
-                    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{mb: 3}}>
+                    <Stack
+                        direction="row"
+                        sx={{
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            mb: 3
+                        }}>
                         <Link to={`/learn/${cslug}/lessons`} style={{textDecoration: "none"}}>
                             <Button
                                 size="small"
@@ -153,7 +159,7 @@ const LessonDetailPage = () => {
                                         <Typography variant="body2" sx={{color: "text.secondary", mb: 2}}>
                                             {lessons.length} Lessons
                                         </Typography>
-                                        <Divider light={true} sx={{mb: 1}}/>
+                                        <Divider sx={{ mb: 1, opacity: 0.6 }}/>
                                         <Lessons
                                             lessons={lessons}
                                             lslug={lslug}
@@ -169,8 +175,9 @@ const LessonDetailPage = () => {
                             <Card
                                 variant="outlined"
                                 sx={{borderRadius: 2}}>
-                                <CardContent sx={{p: {xs: 3, md: 5}}}>
-                                    <Stack spacing={1} sx={{mb: 3}}>
+                                <CardContent sx={{p: {xs: 3, md: 5}, position: "relative", overflow: "hidden"}}>
+                                    <BannerWatermark Icon={SchoolOutlined} size={{xs: 120, md: 200}} sx={{right: {sm: -24, md: 24}, top: {sm: 100, md: 116}}} />
+                                    <Stack spacing={1} sx={{mb: 3, position: "relative", zIndex: 1}}>
                                         <Typography
                                             variant="overline"
                                             sx={{
@@ -192,7 +199,7 @@ const LessonDetailPage = () => {
                                         </Typography>
                                     </Stack>
 
-                                    <Divider light={true} sx={{my: 3}}/>
+                                    <Divider sx={{ my: 3, opacity: 0.6 }}/>
 
                                     <Typography
                                         variant="body1"
@@ -280,7 +287,7 @@ const LessonDetailPage = () => {
                             }}>
                             {course.name}
                         </Typography>
-                        <Divider light={true} sx={{mb: 1}}/>
+                        <Divider sx={{ mb: 1, opacity: 0.6 }}/>
                         <Lessons
                             lessons={lessons}
                             lslug={lslug}
@@ -294,7 +301,7 @@ const LessonDetailPage = () => {
             </Box>
             </PageBackground>
         </Layout>
-    )
+    );
 }
 
 export default LessonDetailPage;

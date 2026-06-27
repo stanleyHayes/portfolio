@@ -69,7 +69,13 @@ const SkeletonCard = () => (
         p: 2
     }}>
         <Skeleton variant="rectangular" width="100%" height={140} sx={{borderRadius: 4, mb: 2}} />
-        <Stack direction="row" spacing={1.5} alignItems="center" sx={{mb: 1.5}}>
+        <Stack
+            direction="row"
+            spacing={1.5}
+            sx={{
+                alignItems: "center",
+                mb: 1.5
+            }}>
             <Skeleton variant="circular" width={36} height={36} />
             <Skeleton variant="text" width="60%" height={24} />
         </Stack>
@@ -106,8 +112,8 @@ const TimelineVariant = () => (
                     <Stack
                         direction="row"
                         spacing={2}
-                        alignItems="center"
                         sx={{
+                            alignItems: "center",
                             flexDirection: isLeft ? "row" : "row-reverse",
                             textAlign: isLeft ? "left" : "right"
                         }}>
@@ -139,7 +145,13 @@ const DetailVariant = () => (
         animate={{opacity: 1, y: 0, transition: {duration: 0.5}}}
         sx={{maxWidth: 800, mx: "auto", width: "100%"}}>
         <Skeleton variant="rectangular" width="100%" height={320} sx={{borderRadius: 6, mb: 3}} />
-        <Stack direction="row" spacing={2} alignItems="center" sx={{mb: 3}}>
+        <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+                alignItems: "center",
+                mb: 3
+            }}>
             <Skeleton variant="circular" width={48} height={48} />
             <Stack spacing={0.5} sx={{flex: 1}}>
                 <Skeleton variant="text" width="40%" height={28} />
@@ -168,7 +180,9 @@ const ListVariant = () => (
                     p: 2,
                     boxShadow: 1
                 }}>
-                <Stack direction="row" spacing={2} alignItems="center">
+                <Stack direction="row" spacing={2} sx={{
+                    alignItems: "center"
+                }}>
                     <Skeleton variant="circular" width={44} height={44} sx={{flexShrink: 0}} />
                     <Stack spacing={0.5} sx={{flex: 1}}>
                         <Skeleton variant="text" width="55%" height={22} />

@@ -6,8 +6,10 @@ import Project from "../../components/shared/project";
 import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
+import BannerWatermark from "../../components/shared/banner-watermark";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProjects, selectProjects} from "../../features/data/data-slice";
+import {WorkOutlineOutlined} from "@mui/icons-material";
 
 const PROJECTS_PER_PAGE = 9;
 
@@ -40,6 +42,8 @@ const PortfolioPage = () => {
                 <SEO title="Portfolio" description="Portfolio of projects built by Stanley Hayford — web applications, APIs, mobile apps, and more." path="/portfolio" />
                 <Box sx={{py: 8}}>
                     <Container maxWidth="xl">
+                        <Box sx={{position: "relative", overflow: "hidden", py: {xs: 2, md: 4}, mb: 2, "& > :not(.banner-watermark)": {position: "relative", zIndex: 1}}}>
+                        <BannerWatermark Icon={WorkOutlineOutlined} />
                         <Typography
                             variant="body2"
                             align="center"
@@ -54,7 +58,13 @@ const PortfolioPage = () => {
                         </Typography>
 
                         {/* Filters */}
-                        <Stack direction="row" spacing={1} justifyContent="center" sx={{mb: 4}}>
+                        <Stack
+                            direction="row"
+                            spacing={1}
+                            sx={{
+                                justifyContent: "center",
+                                mb: 4
+                            }}>
                             {[
                                 {label: "All", value: "all"},
                                 {label: "Completed", value: "completed"},
@@ -81,8 +91,9 @@ const PortfolioPage = () => {
                                 </Button>
                             ))}
                         </Stack>
+                        </Box>
 
-                        <Divider light={true} sx={{mb: 6}} />
+                        <Divider sx={{ mb: 6, opacity: 0.6 }} />
 
                         {loading ? (
                             <Grid container spacing={4}>
@@ -116,7 +127,11 @@ const PortfolioPage = () => {
 
                                 {/* Pagination */}
                                 {totalPages > 1 && (
-                                    <Stack alignItems="center" sx={{mt: 6}}>
+                                    <Stack
+                                        sx={{
+                                            alignItems: "center",
+                                            mt: 6
+                                        }}>
                                         <Pagination
                                             count={totalPages}
                                             page={page}
@@ -137,7 +152,7 @@ const PortfolioPage = () => {
                 </Box>
             </PageBackground>
         </Layout>
-    )
+    );
 }
 
 export default PortfolioPage;

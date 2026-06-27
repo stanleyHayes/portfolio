@@ -1,37 +1,37 @@
 import {createTheme} from "@mui/material";
 
 // ═══════════════════════════════════════════════════════════════
-// FONT SELECTOR — Change ACTIVE_FONT to swap the entire site font.
-// Options:
-//   "ttsquares"   → TTSquares (blocky, squared, custom)
-//   "silkscreen"  → Silkscreen (pixel art, retro gaming)
-//   "pressstart"  → Press Start 2P (8-bit pixel, very bold)
-//   "sharetech"   → Share Tech Mono (clean monospace, techy)
-//   "vt323"       → VT323 (retro terminal, CRT feel)
-//   "spacemono"   → Space Mono (modern monospace, editorial)
-//   "orbitron"    → Orbitron (futuristic, geometric, sci-fi)
-//   "googlesans"  → Google Sans (clean, modern, default)
+// TYPOGRAPHY — mixed type system:
+//   • Titles (h1–h6, subtitles) → Fraunces  (elegant variable serif)
+//   • Body copy (body1/body2)   → Outfit     (clean geometric sans)
+//   • Everything else           → TTSquares  (blocky, squared, custom)
+//     (buttons, captions, overlines, chips, and any unlisted variant)
 // ═══════════════════════════════════════════════════════════════
-const ACTIVE_FONT = "ttsquares";
+const TITLE_FONT = "'Fraunces', 'TTSquares', Georgia, 'Times New Roman', serif";
+const BODY_FONT  = "'Outfit', 'TTSquares', -apple-system, BlinkMacSystemFont, sans-serif";
+const OTHER_FONT = "'TTSquares', 'Inter', sans-serif";
 
-const FONT_STACKS = {
-    ttsquares:  "'TTSquares', 'Inter', sans-serif",
-    silkscreen: "'Silkscreen', cursive",
-    pressstart: "'Press Start 2P', monospace",
-    sharetech:  "'Share Tech Mono', monospace",
-    vt323:      "'VT323', monospace",
-    spacemono:  "'Space Mono', monospace",
-    orbitron:   "'Orbitron', sans-serif",
-    googlesans: "'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+const typography = {
+    // Default for any variant not overridden below → TTSquares.
+    fontFamily: OTHER_FONT,
+    h1: {fontFamily: TITLE_FONT},
+    h2: {fontFamily: TITLE_FONT},
+    h3: {fontFamily: TITLE_FONT},
+    h4: {fontFamily: TITLE_FONT},
+    h5: {fontFamily: TITLE_FONT},
+    h6: {fontFamily: TITLE_FONT},
+    subtitle1: {fontFamily: TITLE_FONT},
+    subtitle2: {fontFamily: TITLE_FONT},
+    body1: {fontFamily: BODY_FONT},
+    body2: {fontFamily: BODY_FONT},
+    button: {fontFamily: OTHER_FONT},
+    caption: {fontFamily: OTHER_FONT},
+    overline: {fontFamily: OTHER_FONT},
 };
-
-const fontFamily = FONT_STACKS[ACTIVE_FONT] || FONT_STACKS.googlesans;
 
 // Zeus palette: electric blue, lightning gold, stormy darks
 const lightTheme = createTheme({
-    typography: {
-        fontFamily,
-    },
+    typography,
     palette: {
         primary: {
             main: "#FFFFFF"
@@ -78,9 +78,7 @@ const lightTheme = createTheme({
 });
 
 const darkTheme = createTheme({
-    typography: {
-        fontFamily,
-    },
+    typography,
     palette: {
         primary: {
             main: "#0f172a"

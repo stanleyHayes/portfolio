@@ -218,7 +218,7 @@ const PageBackground = ({variant = "cards", children}) => {
     const Pattern = PatternMap[config.pattern] || DotPattern;
 
     return (
-        <Box sx={{position: "relative", overflow: "hidden", minHeight: "100%"}}>
+        <Box sx={{position: "relative", overflow: "hidden", minHeight: "100%", width: "100%", minWidth: 0}}>
             <Pattern />
 
             {/* Radial gradient overlay */}
@@ -245,7 +245,7 @@ const PageBackground = ({variant = "cards", children}) => {
             {config.dots && <ScatteredDots dots={config.dots} />}
 
             {/* Content on top */}
-            <Box sx={{position: "relative", zIndex: 1}}>
+            <Box sx={{position: "relative", zIndex: 1, width: "100%", minWidth: 0}}>
                 {children}
             </Box>
         </Box>

@@ -5,10 +5,11 @@ import FriendlyError from "../../components/shared/friendly-error";
 import SEO from "../../components/shared/seo";
 import {motion} from "framer-motion";
 import PageBackground from "../../components/shared/page-background";
+import BannerWatermark from "../../components/shared/banner-watermark";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPosts, selectPosts} from "../../features/data/data-slice";
-import {Link} from "react-router-dom";
-import {ArrowForwardOutlined, CalendarMonthOutlined, AccessTimeOutlined} from "@mui/icons-material";
+import {Link} from "react-router";
+import {ArrowForwardOutlined, CalendarMonthOutlined, AccessTimeOutlined, ArticleOutlined} from "@mui/icons-material";
 
 const POSTS_PER_PAGE = 9;
 
@@ -196,25 +197,45 @@ const PostCard = ({post, index}) => {
                         {/* Author, Date & Read More */}
                         <Stack spacing={1.5} sx={{mt: "auto"}}>
                             <Divider sx={{opacity: 0.5}} />
-                            <Stack direction="row" alignItems="center" justifyContent="space-between">
-                                <Stack direction="row" alignItems="center" spacing={1}>
+                            <Stack
+                                direction="row"
+                                sx={{
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    gap: 1.5,
+                                    flexWrap: "wrap"
+                                }}>
+                                <Stack direction="row" spacing={1} sx={{
+                                    alignItems: "center",
+                                    flex: "1 1 145px",
+                                    minWidth: 0
+                                }}>
                                     <Avatar
                                         src={post.author?.avatar}
-                                        sx={{width: 26, height: 26, fontSize: "0.7rem", background: accentGradient}}>
+                                        sx={{width: 26, height: 26, fontSize: "0.7rem", background: accentGradient, flexShrink: 0}}>
                                         {post.author?.name?.charAt(0) || "A"}
                                     </Avatar>
-                                    <Stack spacing={0}>
-                                        <Typography variant="caption" sx={{color: "text.primary", fontWeight: 700, fontSize: "0.7rem", lineHeight: 1.2}}>
+                                    <Stack spacing={0} sx={{minWidth: 0}}>
+                                        <Typography noWrap variant="caption" sx={{color: "text.primary", fontWeight: 700, fontSize: "0.7rem", lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis"}}>
                                             {post.author?.name || "Author"}
                                         </Typography>
                                         {formattedDate && (
-                                            <Typography variant="caption" sx={{color: "text.secondary", fontSize: "0.65rem", lineHeight: 1.2}}>
+                                            <Typography noWrap variant="caption" sx={{color: "text.secondary", fontSize: "0.65rem", lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis"}}>
                                                 {formattedDate}
                                             </Typography>
                                         )}
                                     </Stack>
                                 </Stack>
-                                <Stack direction="row" alignItems="center" spacing={0.5} sx={{color: "colors.accent"}}>
+                                <Stack
+                                    direction="row"
+                                    spacing={0.5}
+                                    sx={{
+                                        alignItems: "center",
+                                        color: "colors.accent",
+                                        flexShrink: 0,
+                                        ml: "auto",
+                                        minWidth: "fit-content"
+                                    }}>
                                     <Typography variant="caption" sx={{fontWeight: 700, fontSize: "0.72rem"}}>
                                         Read More
                                     </Typography>
@@ -258,7 +279,9 @@ const BlogPage = () => {
                         component={motion.div}
                         initial={{opacity: 0, y: 20}}
                         animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.6}}>
+                        transition={{duration: 0.6}}
+                        sx={{position: "relative", overflow: "hidden", py: {xs: 2, md: 4}, "& > :not(.banner-watermark)": {position: "relative", zIndex: 1}}}>
+                        <BannerWatermark Icon={ArticleOutlined} />
                         <Typography variant="body2" align="center" sx={{textTransform: "uppercase", color: "colors.accent", fontWeight: 800, mb: 1, letterSpacing: 3}}>
                             Blog
                         </Typography>
@@ -269,7 +292,12 @@ const BlogPage = () => {
                             Exploring ideas in software engineering, web development, and technology.
                         </Typography>
                         {!loading && (
-                            <Stack direction="row" justifyContent="center" sx={{mb: 2}}>
+                            <Stack
+                                direction="row"
+                                sx={{
+                                    justifyContent: "center",
+                                    mb: 2
+                                }}>
                                 <Chip
                                     label={`${allPosts.length} Posts`}
                                     size="small"
@@ -279,7 +307,7 @@ const BlogPage = () => {
                         )}
                     </Box>
 
-                    <Divider light sx={{my: 4}} />
+                    <Divider sx={{ my: 4, opacity: 0.6 }} />
 
                     {loading ? (
                         <Grid container spacing={4}>
@@ -305,7 +333,11 @@ const BlogPage = () => {
                             </Grid>
 
                             {totalPages > 1 && (
-                                <Stack alignItems="center" sx={{mt: 6}}>
+                                <Stack
+                                    sx={{
+                                        alignItems: "center",
+                                        mt: 6
+                                    }}>
                                     <Pagination
                                         count={totalPages}
                                         page={page}

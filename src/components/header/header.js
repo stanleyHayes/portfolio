@@ -9,18 +9,18 @@ const Header = () => {
 
     return (
         <AppBar
+            position="fixed"
+            color="transparent"
             sx={{
-                backgroundColor: theme.palette.mode === "dark"
-                    ? "rgba(17,24,39,0.75)"
-                    : "rgba(255,255,255,0.75)",
-                backdropFilter: "blur(16px) saturate(180%)",
-                WebkitBackdropFilter: "blur(16px) saturate(180%)",
-                borderBottom: 1,
-                borderColor: theme.palette.mode === "dark"
-                    ? "rgba(255,255,255,0.08)"
-                    : "rgba(0,0,0,0.06)",
+                top: {xs: 8, md: 12},
+                left: 0,
+                right: 0,
+                px: {xs: 1.5, sm: 2.5, lg: 4},
+                backgroundColor: "transparent",
+                backgroundImage: "none",
+                boxShadow: "none",
+                pointerEvents: "none",
             }}
-            variant="elevation"
             elevation={0}>
             {isMobile ? <MobileHeader /> : <DesktopHeader />}
         </AppBar>

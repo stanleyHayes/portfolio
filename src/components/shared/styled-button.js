@@ -1,5 +1,5 @@
 import {Box} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import useSounds from "../../hooks/use-sound";
 import {motion} from "framer-motion";
 

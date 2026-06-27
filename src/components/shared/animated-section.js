@@ -5,11 +5,6 @@ const AnimatedSection = ({children, backgroundColor = "background.default"}) => 
     return (
         <Stack
             direction="row"
-            alignItems="center"
-            sx={{
-                backgroundColor,
-                py: 8
-            }}
             whileInView={{
                 y: 0,
                 opacity: 1,
@@ -21,10 +16,15 @@ const AnimatedSection = ({children, backgroundColor = "background.default"}) => 
                 y: "10vh",
                 opacity: 0
             }}
-            component={motion.div}>
+            component={motion.div}
+            sx={{
+                alignItems: "center",
+                backgroundColor,
+                py: 8
+            }}>
             {children}
         </Stack>
-    )
+    );
 }
 
 export default AnimatedSection;

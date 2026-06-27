@@ -1,20 +1,24 @@
 import React, {useEffect} from "react";
 import Layout from "../../components/layout";
 import {Avatar, Box, Button, Card, CardContent, CardMedia, Container, Divider, Grid, Skeleton, Stack, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import SEO, {personSchema} from "../../components/shared/seo";
 import {motion} from "framer-motion";
 
 import TypingAnimation from "../../components/shared/typing-animation";
-import {AccessTimeOutlined, ArrowForwardOutlined, CodeOutlined, DevicesOutlined, SchoolOutlined, WorkOutline} from "@mui/icons-material";
+import {AccessTimeOutlined, ArrowForwardOutlined, CodeOutlined, DevicesOutlined, SchoolOutlined, WorkOutlineOutlined} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchInfo, fetchPosts, selectInfo, selectPosts} from "../../features/data/data-slice";
+import {fetchInfo, fetchPosts, fetchProjects, selectInfo, selectPosts, selectProjects} from "../../features/data/data-slice";
 import {GlowButton} from "../../components/shared/styled-button";
 import {Chip} from "@mui/material";
 import PageBackground from "../../components/shared/page-background";
 import FriendlyError from "../../components/shared/friendly-error";
+import Parallax from "../../components/shared/parallax";
+import Reveal3D from "../../components/shared/reveal-3d";
+import Project from "../../components/shared/project";
+import BannerWatermark from "../../components/shared/banner-watermark";
 
-const statIcons = [WorkOutline, CodeOutlined, DevicesOutlined, SchoolOutlined];
+const statIcons = [WorkOutlineOutlined, CodeOutlined, DevicesOutlined, SchoolOutlined];
 
 const techStack = [
     {name: "Go", icon: "/assets/golang.svg"},
@@ -29,18 +33,60 @@ const techStack = [
     {name: "Rust", icon: "/assets/rust.svg"},
 ];
 
+const HomeSectionHeader = ({eyebrow, title, description, action, align = "left"}) => (
+    <Box
+        component={motion.div}
+        initial={{opacity: 0, y: 30}}
+        whileInView={{opacity: 1, y: 0, transition: {duration: 0.8}}}
+        viewport={{once: true}}>
+        <Stack
+            direction={{xs: "column", md: "row"}}
+            spacing={3}
+            sx={{
+                alignItems: {xs: align === "center" ? "center" : "flex-start", md: "flex-end"},
+                justifyContent: "space-between",
+                textAlign: {xs: align, md: "left"},
+                mb: 5
+            }}>
+            <Box sx={{maxWidth: 660}}>
+                <Typography variant="body2" sx={{textTransform: "uppercase", color: "colors.accent", fontWeight: 800, mb: 1, letterSpacing: 3}}>
+                    {eyebrow}
+                </Typography>
+                <Typography variant="h4" sx={{color: "text.primary", fontWeight: 700, mb: 1}}>
+                    {title}
+                </Typography>
+                <Typography variant="body1" sx={{color: "text.secondary", lineHeight: 1.8}}>
+                    {description}
+                </Typography>
+            </Box>
+            {action && (
+                <Box sx={{display: {xs: "none", md: "block"}, flexShrink: 0}}>
+                    {action}
+                </Box>
+            )}
+        </Stack>
+    </Box>
+);
+
 const HomePage = () => {
 
     const dispatch = useDispatch();
     const {data: info, loading: infoLoading, error: infoError} = useSelector(selectInfo);
     const {data: posts} = useSelector(selectPosts);
+    const {data: projects, loading: projectsLoading, error: projectsError} = useSelector(selectProjects);
 
     useEffect(() => {
         dispatch(fetchInfo());
         dispatch(fetchPosts());
+        dispatch(fetchProjects());
     }, [dispatch]);
 
     const latestPosts = (posts || []).slice(0, 3);
+    const featuredProjects = (projects || [])
+        .filter(project => project?.title && project?.summary)
+        .sort((a, b) => (a.status === "completed" ? -1 : 1) - (b.status === "completed" ? -1 : 1))
+        .slice(0, 3);
+    const infoPending = !infoError && (infoLoading || !info);
 
     const name = info?.name;
     const title = info?.title;
@@ -61,14 +107,22 @@ const HomePage = () => {
             <SEO title={`${name || "Stanley Hayford"} | ${title || "Software Engineer"}`} description={bio} path="/" jsonLd={info ? personSchema(info) : undefined} />
 
             {/* Hero Section */}
-            <Container maxWidth="xl" sx={{minHeight: "88vh", alignItems: "center", display: "flex", py: {xs: 4, lg: 0}}}>
+            <Container maxWidth="xl" sx={{minHeight: "88vh", alignItems: "center", display: "flex", width: "100%", py: {xs: 4, lg: 0}, position: "relative", "& > :not(.banner-watermark)": {position: "relative", zIndex: 1}}}>
+                <BannerWatermark Icon={CodeOutlined} size={{xs: 150, md: 260}} sx={{right: {sm: -42, lg: 38}, top: {sm: "60%", lg: "50%"}}} />
                 {infoError && !info ? (
                     <Box sx={{width: "100%"}}>
                         <FriendlyError onRetry={() => { dispatch(fetchInfo()); dispatch(fetchPosts()); }} />
                     </Box>
                 ) : (
-                <Grid container spacing={5} alignItems="center">
+                <Grid
+                    container
+                    spacing={5}
+                    sx={{
+                        alignItems: "center",
+                        width: "100%"
+                    }}>
                     <Grid size={{xs: 12, md: 5}}>
+                        <Parallax speed={0.14}>
                         <Box
                             component={motion.div}
                             initial={{opacity: 0, scale: 0.92, filter: "blur(8px)"}}
@@ -78,7 +132,7 @@ const HomePage = () => {
                                 component={motion.div}
                                 animate={{y: [0, -8, 0]}}
                                 transition={{duration: 5, repeat: Infinity, ease: "easeInOut"}}
-                                sx={{position: "relative"}}>
+                                sx={{position: "relative", width: "100%", maxWidth: 430, mx: "auto"}}>
                                 {/* Glow behind image */}
                                 <Box
                                     component={motion.div}
@@ -93,13 +147,12 @@ const HomePage = () => {
                                         clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",
                                         filter: "blur(20px)",
                                     }} />
-                                {infoLoading || !profileImage ? (
+                                {infoPending || !profileImage ? (
                                     <Skeleton
                                         variant="rectangular"
-                                        width={400}
-                                        height={400}
+                                        width="100%"
                                         sx={{
-                                            maxWidth: "100%",
+                                            minHeight: {xs: 280, sm: 360, md: 400},
                                             aspectRatio: "1",
                                             clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",
                                         }}
@@ -121,6 +174,7 @@ const HomePage = () => {
                                 )}
                             </Box>
                         </Box>
+                        </Parallax>
                     </Grid>
                     <Grid size={{xs: 12, md: 7}}>
                         <Box component={motion.div} initial="hidden" animate="visible" variants={{hidden: {}, visible: {transition: {staggerChildren: 0.15, delayChildren: 0.3}}}}>
@@ -138,7 +192,7 @@ const HomePage = () => {
                             <Box
                                 component={motion.div}
                                 variants={{hidden: {opacity: 0, y: 25, filter: "blur(6px)"}, visible: {opacity: 1, y: 0, filter: "blur(0px)", transition: {duration: 0.8, ease: [0.22, 1, 0.36, 1]}}}}>
-                                {infoLoading || !name ? (
+                                {infoPending || !name ? (
                                     <Skeleton variant="text" width="80%" height={50} sx={{mb: 1}} />
                                 ) : (
                                     <Typography sx={{color: "text.primary", mb: 1, fontSize: {xs: "1.5rem", sm: "2rem", md: "2.5rem"}}} variant="h3">
@@ -162,7 +216,7 @@ const HomePage = () => {
                             <Box
                                 component={motion.div}
                                 variants={{hidden: {opacity: 0, y: 20, filter: "blur(6px)"}, visible: {opacity: 1, y: 0, filter: "blur(0px)", transition: {duration: 0.8, ease: [0.22, 1, 0.36, 1]}}}}>
-                                {infoLoading || !title ? (
+                                {infoPending || !title ? (
                                     <Skeleton variant="text" width="40%" height={32} />
                                 ) : (
                                     <Typography sx={{color: "colors.accent", fontWeight: 600, textTransform: "uppercase", letterSpacing: 1}} variant="h5">
@@ -174,7 +228,7 @@ const HomePage = () => {
                             <Box
                                 component={motion.div}
                                 variants={{hidden: {opacity: 0, y: 20, filter: "blur(4px)"}, visible: {opacity: 1, y: 0, filter: "blur(0px)", transition: {duration: 0.9, ease: [0.22, 1, 0.36, 1]}}}}>
-                                {infoLoading ? (
+                                {infoPending ? (
                                     <Stack spacing={0.8} sx={{mb: 4, mt: 2, maxWidth: 600}}>
                                         <Skeleton variant="text" width="100%" height={22} />
                                         <Skeleton variant="text" width="95%" height={22} />
@@ -252,7 +306,7 @@ const HomePage = () => {
                 <Container maxWidth="xl" sx={{position: "relative", zIndex: 1}}>
                     <Box component={motion.div} initial={{opacity: 0, y: 30}} whileInView={{opacity: 1, y: 0, transition: {duration: 0.8}}} viewport={{once: true}}>
                         <Grid container spacing={4}>
-                            {infoLoading || !stats ? (
+                            {infoPending || !stats ? (
                                 [...Array(4)].map((_, index) => (
                                     <Grid size={{xs: 6, md: 3}} key={index}>
                                         <Card variant="outlined" sx={{borderRadius: 3, textAlign: "center", py: 2}}>
@@ -268,7 +322,8 @@ const HomePage = () => {
                                 stats.map((stat, index) => {
                                     const StatIcon = stat.icon || statIcons[index % statIcons.length];
                                     return (
-                                        <Grid size={{xs: 6, md: 3}} key={index}>
+                                        <Grid size={{xs: 6, md: 3}} key={stat.label || index}>
+                                            <Reveal3D delay={index * 0.1} origin="bottom" sx={{height: "100%"}}>
                                             <Card variant="outlined" sx={{borderRadius: 3, textAlign: "center", py: 2, position: "relative", overflow: "hidden", "&:hover": {borderColor: "colors.accent", transition: "all 300ms", "& .stat-glow": {opacity: 1}}}}>
                                                 <Box className="stat-glow" sx={{position: "absolute", inset: 0, opacity: 0, transition: "opacity 400ms", background: (t) => `radial-gradient(circle at center, ${t.palette.colors?.accent || "#60a5fa"}08, transparent 70%)`, pointerEvents: "none"}} />
                                                 <CardContent sx={{position: "relative", zIndex: 1}}>
@@ -281,6 +336,7 @@ const HomePage = () => {
                                                     <Typography variant="body2" sx={{color: "text.secondary", mt: 0.5}}>{stat.label}</Typography>
                                                 </CardContent>
                                             </Card>
+                                            </Reveal3D>
                                         </Grid>
                                     );
                                 })
@@ -301,17 +357,23 @@ const HomePage = () => {
                         </Typography>
                     </Box>
                     <Box component={motion.div} initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0, transition: {duration: 0.8, delay: 0.2}}} viewport={{once: true}}>
-                        <Grid container spacing={3} justifyContent="center">
+                        <Grid container spacing={3} sx={{
+                            justifyContent: "center"
+                        }}>
                             {techStack.map((tech, index) => (
-                                <Grid key={index} size="auto">
+                                <Grid key={tech.name} size="auto">
+                                    <Reveal3D delay={(index % 5) * 0.06} origin="bottom">
                                         <Card variant="outlined" sx={{
                                             borderRadius: 3, width: 100, height: 100,
                                             display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
-                                            cursor: "default", "&:hover": {borderColor: "colors.accent", transition: "all 300ms"}
+                                            cursor: "default",
+                                            transition: "transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms",
+                                            "&:hover": {borderColor: "colors.accent", transform: "translateY(-6px) rotateX(8deg)"}
                                         }}>
                                             <CardMedia component="img" src={tech.icon} sx={{width: 40, height: 40, objectFit: "contain", mb: 0.5}} alt={tech.name} />
                                             <Typography variant="caption" sx={{color: "text.secondary", fontSize: 11}}>{tech.name}</Typography>
                                         </Card>
+                                    </Reveal3D>
                                 </Grid>
                             ))}
                         </Grid>
@@ -319,17 +381,88 @@ const HomePage = () => {
                 </Container>
             </Box>
 
+            {/* Featured Work Section */}
+            {(projectsLoading || projectsError || featuredProjects.length > 0) && (
+                <Box sx={{py: 8, backgroundColor: "background.paper", position: "relative", overflow: "hidden"}}>
+                    <Box sx={{
+                        position: "absolute",
+                        inset: 0,
+                        pointerEvents: "none",
+                        opacity: (t) => t.palette.mode === "dark" ? 0.45 : 0.75,
+                        backgroundImage: (t) => {
+                            const accent = t.palette.mode === "dark" ? "rgba(96,165,250,0.08)" : "rgba(37,99,235,0.05)";
+                            const gold = t.palette.mode === "dark" ? "rgba(245,166,35,0.08)" : "rgba(245,166,35,0.06)";
+                            return `linear-gradient(135deg, ${accent} 0 1px, transparent 1px), linear-gradient(45deg, ${gold} 0 1px, transparent 1px)`;
+                        },
+                        backgroundSize: "72px 72px, 96px 96px",
+                    }} />
+                    <Container maxWidth="xl" sx={{position: "relative", zIndex: 1}}>
+                        <HomeSectionHeader
+                            eyebrow="Featured Work"
+                            title="Selected Builds"
+                            description="A quick look at recent products, websites, and platforms shaped from idea to launch."
+                            action={featuredProjects.length > 0 ? (
+                                <GlowButton to="/portfolio" variant="outline">
+                                    View Portfolio <ArrowForwardOutlined sx={{ml: 1, fontSize: 18}} />
+                                </GlowButton>
+                            ) : null}
+                        />
+
+                        {projectsLoading ? (
+                            <Grid container spacing={4}>
+                                {[...Array(3)].map((_, index) => (
+                                    <Grid size={{xs: 12, md: 4}} key={index}>
+                                        <Card variant="outlined" sx={{borderRadius: 3, overflow: "hidden", height: "100%"}}>
+                                            <Box sx={{p: 1.5, pb: 0}}>
+                                                <Skeleton variant="rectangular" height={220} sx={{borderRadius: 4}} />
+                                            </Box>
+                                            <CardContent sx={{p: 3}}>
+                                                <Skeleton variant="text" width="65%" height={32} />
+                                                <Skeleton variant="text" width="100%" />
+                                                <Skeleton variant="text" width="82%" />
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        ) : projectsError ? (
+                            <FriendlyError onRetry={() => dispatch(fetchProjects())} />
+                        ) : (
+                            <>
+                                <Grid container spacing={4}>
+                                    {featuredProjects.map((project, index) => (
+                                        <Grid size={{xs: 12, md: 4}} key={project._id || project.title || index}>
+                                            <Reveal3D delay={index * 0.08} origin="bottom" sx={{height: "100%"}}>
+                                                <Project project={project} />
+                                            </Reveal3D>
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                                <Box sx={{textAlign: "center", mt: 5, display: {xs: "block", md: "none"}}}>
+                                    <GlowButton to="/portfolio" variant="outline">
+                                        View Portfolio <ArrowForwardOutlined sx={{ml: 1, fontSize: 18}} />
+                                    </GlowButton>
+                                </Box>
+                            </>
+                        )}
+                    </Container>
+                </Box>
+            )}
+
             {/* Blog Preview Section */}
             {latestPosts.length > 0 && (
                 <Box sx={{py: 8}}>
                     <Container maxWidth="xl">
-                        <Box component={motion.div} initial={{opacity: 0, y: 30}} whileInView={{opacity: 1, y: 0, transition: {duration: 0.8}}} viewport={{once: true}}>
-                            <Typography variant="body2" align="center" sx={{textTransform: "uppercase", color: "colors.accent", fontWeight: 800, mb: 1, letterSpacing: 3}}>Blog</Typography>
-                            <Typography variant="h4" align="center" sx={{color: "text.primary", fontWeight: 700, mb: 1}}>Latest Thoughts</Typography>
-                            <Typography variant="body1" align="center" sx={{color: "text.secondary", mb: 6, maxWidth: 600, mx: "auto"}}>
-                                Insights on software engineering, system design, and lessons from the field.
-                            </Typography>
-                        </Box>
+                        <HomeSectionHeader
+                            eyebrow="Blog"
+                            title="Latest Thoughts"
+                            description="Insights on software engineering, system design, and lessons from the field."
+                            action={(
+                                <GlowButton to="/blog" variant="outline">
+                                    Read All Posts <ArrowForwardOutlined sx={{ml: 1, fontSize: 18}} />
+                                </GlowButton>
+                            )}
+                        />
                         <Grid container spacing={3} sx={{display: "flex", flexWrap: "wrap"}}>
                             {latestPosts.map((post, index) => {
                                 const accentGradients = [
@@ -461,25 +594,45 @@ const HomePage = () => {
                                                         {/* Author, Date & Read More */}
                                                         <Stack spacing={1.5} sx={{mt: "auto"}}>
                                                             <Divider sx={{opacity: 0.5}} />
-                                                            <Stack direction="row" alignItems="center" justifyContent="space-between">
-                                                                <Stack direction="row" alignItems="center" spacing={1}>
+                                                            <Stack
+                                                                direction="row"
+                                                                sx={{
+                                                                    alignItems: "center",
+                                                                    justifyContent: "space-between",
+                                                                    gap: 1.5,
+                                                                    flexWrap: "wrap"
+                                                                }}>
+                                                                <Stack direction="row" spacing={1} sx={{
+                                                                    alignItems: "center",
+                                                                    flex: "1 1 145px",
+                                                                    minWidth: 0
+                                                                }}>
                                                                     <Avatar
                                                                         src={post.author?.avatar}
-                                                                        sx={{width: 24, height: 24, fontSize: "0.65rem", background: accentGradient}}>
+                                                                        sx={{width: 24, height: 24, fontSize: "0.65rem", background: accentGradient, flexShrink: 0}}>
                                                                         {post.author?.name?.charAt(0) || "A"}
                                                                     </Avatar>
-                                                                    <Stack spacing={0}>
-                                                                        <Typography variant="caption" sx={{color: "text.primary", fontWeight: 700, fontSize: "0.68rem", lineHeight: 1.2}}>
+                                                                    <Stack spacing={0} sx={{minWidth: 0}}>
+                                                                        <Typography noWrap variant="caption" sx={{color: "text.primary", fontWeight: 700, fontSize: "0.68rem", lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis"}}>
                                                                             {post.author?.name || "Author"}
                                                                         </Typography>
                                                                         {formattedDate && (
-                                                                            <Typography variant="caption" sx={{color: "text.secondary", fontSize: "0.62rem", lineHeight: 1.2}}>
+                                                                            <Typography noWrap variant="caption" sx={{color: "text.secondary", fontSize: "0.62rem", lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis"}}>
                                                                                 {formattedDate}
                                                                             </Typography>
                                                                         )}
                                                                     </Stack>
                                                                 </Stack>
-                                                                <Stack direction="row" alignItems="center" spacing={0.5} sx={{color: "colors.accent"}}>
+                                                                <Stack
+                                                                    direction="row"
+                                                                    spacing={0.5}
+                                                                    sx={{
+                                                                        alignItems: "center",
+                                                                        color: "colors.accent",
+                                                                        flexShrink: 0,
+                                                                        ml: "auto",
+                                                                        minWidth: "fit-content"
+                                                                    }}>
                                                                     <Typography variant="caption" sx={{fontWeight: 700, fontSize: "0.72rem"}}>
                                                                         Read More
                                                                     </Typography>
@@ -495,7 +648,7 @@ const HomePage = () => {
                                 );
                             })}
                         </Grid>
-                        <Box sx={{textAlign: "center", mt: 4}}>
+                        <Box sx={{textAlign: "center", mt: 4, display: {xs: "block", md: "none"}}}>
                             <GlowButton to="/blog" variant="outline">
                                 Read All Posts <ArrowForwardOutlined sx={{ml: 1, fontSize: 18}} />
                             </GlowButton>
@@ -512,7 +665,9 @@ const HomePage = () => {
                         <Typography variant="body1" sx={{color: "text.secondary", mb: 4, maxWidth: 500, mx: "auto"}}>
                             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
                         </Typography>
-                        <Stack direction={{xs: "column", sm: "row"}} spacing={2} justifyContent="center">
+                        <Stack direction={{xs: "column", sm: "row"}} spacing={2} sx={{
+                            justifyContent: "center"
+                        }}>
                             <GlowButton to="/contact" variant="gold">Start a Conversation</GlowButton>
                             <GlowButton to="/services" variant="outline">View Services</GlowButton>
                         </Stack>
@@ -521,7 +676,7 @@ const HomePage = () => {
             </Box>
             </PageBackground>
         </Layout>
-    )
+    );
 }
 
 export default HomePage;
