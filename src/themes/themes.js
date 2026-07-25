@@ -30,6 +30,130 @@ const typography = {
 };
 
 // ═══════════════════════════════════════════════════════════════
+// NEUMORPHIC CARDS — soft, extruded surfaces (dual light/dark shadow).
+// Applied globally so every <Card> across the site gets the same vibe.
+// The outlined border is neutralised so cards read as raised, not framed.
+// ═══════════════════════════════════════════════════════════════
+const components = {
+    MuiPaper: {
+        styleOverrides: {
+            outlined: {border: "none"},
+        },
+    },
+    MuiCard: {
+        defaultProps: {elevation: 0},
+        styleOverrides: {
+            root: ({theme}) => {
+                const dark = theme.palette.mode === "dark";
+                return {
+                    border: "none",
+                    borderRadius: 20,
+                    backgroundImage: "none",
+                    backgroundColor: dark ? "#1B1530" : "#F5F1FB",
+                    boxShadow: dark
+                        ? "9px 9px 22px rgba(0,0,0,0.55), -9px -9px 22px rgba(183,167,217,0.05)"
+                        : "9px 9px 22px rgba(124,92,191,0.14), -9px -9px 22px rgba(255,255,255,0.92)",
+                    transition: "box-shadow 320ms ease, transform 320ms ease",
+                    "&:hover": {
+                        transform: "translateY(-4px)",
+                        boxShadow: dark
+                            ? "13px 13px 30px rgba(0,0,0,0.62), -12px -12px 30px rgba(183,167,217,0.07)"
+                            : "13px 13px 30px rgba(124,92,191,0.18), -12px -12px 30px rgba(255,255,255,0.96)",
+                    },
+                };
+            },
+        },
+    },
+    MuiButton: {
+        defaultProps: {disableElevation: true},
+        styleOverrides: {
+            root: ({theme, ownerState}) => {
+                const dark = theme.palette.mode === "dark";
+                const base = {
+                    borderRadius: "999px",
+                    textTransform: "none",
+                    fontWeight: 700,
+                    transition: "box-shadow 280ms ease, transform 200ms ease, color 200ms ease",
+                };
+                // Text buttons stay light (soft press only) so inline links don't become heavy pills.
+                if (ownerState.variant === "text") {
+                    return {...base, "&:active": {transform: "translateY(1px)"}};
+                }
+                return {
+                    ...base,
+                    border: "none",
+                    backgroundColor: dark ? "#1B1530" : "#F1ECF8",
+                    color: dark ? "#B7A7D9" : "#7C5CBF",
+                    boxShadow: dark
+                        ? "6px 6px 14px rgba(0,0,0,0.50), -6px -6px 14px rgba(183,167,217,0.05)"
+                        : "6px 6px 14px rgba(124,92,191,0.16), -6px -6px 14px rgba(255,255,255,0.92)",
+                    "&:hover": {
+                        backgroundColor: dark ? "#1B1530" : "#F1ECF8",
+                        transform: "translateY(-2px)",
+                        boxShadow: dark
+                            ? "8px 8px 18px rgba(0,0,0,0.58), -7px -7px 18px rgba(183,167,217,0.07)"
+                            : "8px 8px 18px rgba(124,92,191,0.20), -7px -7px 18px rgba(255,255,255,0.95)",
+                    },
+                    "&:active": {
+                        transform: "translateY(0)",
+                        boxShadow: dark
+                            ? "inset 4px 4px 10px rgba(0,0,0,0.60), inset -4px -4px 10px rgba(183,167,217,0.05)"
+                            : "inset 4px 4px 10px rgba(124,92,191,0.18), inset -4px -4px 10px rgba(255,255,255,0.90)",
+                    },
+                };
+            },
+        },
+    },
+    MuiIconButton: {
+        styleOverrides: {
+            root: ({theme}) => {
+                const dark = theme.palette.mode === "dark";
+                return {
+                    backgroundColor: dark ? "#1B1530" : "#F1ECF8",
+                    boxShadow: dark
+                        ? "5px 5px 12px rgba(0,0,0,0.50), -5px -5px 12px rgba(183,167,217,0.05)"
+                        : "5px 5px 12px rgba(124,92,191,0.16), -5px -5px 12px rgba(255,255,255,0.92)",
+                    transition: "box-shadow 260ms ease, transform 200ms ease, color 200ms ease",
+                    "&:hover": {
+                        backgroundColor: dark ? "#1B1530" : "#F1ECF8",
+                        transform: "translateY(-2px)",
+                        boxShadow: dark
+                            ? "7px 7px 16px rgba(0,0,0,0.58), -6px -6px 16px rgba(183,167,217,0.07)"
+                            : "7px 7px 16px rgba(124,92,191,0.20), -6px -6px 16px rgba(255,255,255,0.95)",
+                    },
+                    "&:active": {
+                        transform: "translateY(0)",
+                        boxShadow: dark
+                            ? "inset 4px 4px 9px rgba(0,0,0,0.60), inset -4px -4px 9px rgba(183,167,217,0.05)"
+                            : "inset 4px 4px 9px rgba(124,92,191,0.18), inset -4px -4px 9px rgba(255,255,255,0.90)",
+                    },
+                };
+            },
+        },
+    },
+    MuiFab: {
+        styleOverrides: {
+            root: ({theme}) => {
+                const dark = theme.palette.mode === "dark";
+                return {
+                    backgroundColor: dark ? "#1B1530" : "#F1ECF8",
+                    color: dark ? "#B7A7D9" : "#7C5CBF",
+                    boxShadow: dark
+                        ? "7px 7px 16px rgba(0,0,0,0.55), -6px -6px 16px rgba(183,167,217,0.06)"
+                        : "7px 7px 16px rgba(124,92,191,0.18), -6px -6px 16px rgba(255,255,255,0.94)",
+                    "&:hover": {
+                        backgroundColor: dark ? "#1B1530" : "#F1ECF8",
+                        boxShadow: dark
+                            ? "9px 9px 20px rgba(0,0,0,0.62), -8px -8px 20px rgba(183,167,217,0.08)"
+                            : "9px 9px 20px rgba(124,92,191,0.22), -8px -8px 20px rgba(255,255,255,0.97)",
+                    },
+                };
+            },
+        },
+    },
+};
+
+// ═══════════════════════════════════════════════════════════════
 // LAVENDER DREAMS palette
 //   soft lavender  #B7A7D9   light tints  #E6D9F2 / #F7F3FE
 //   vibrant plum   #7C5CBF   deep purple  #4B3F73
@@ -37,6 +161,7 @@ const typography = {
 // ═══════════════════════════════════════════════════════════════
 const lightTheme = createTheme({
     typography,
+    components,
     palette: {
         primary: {
             main: "#7C5CBF"
@@ -84,6 +209,7 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
     typography,
+    components,
     palette: {
         primary: {
             main: "#B7A7D9"
