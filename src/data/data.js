@@ -159,7 +159,7 @@ export const getProjects = () => {
             title: "Stanley Hayford",
             summary: "Tech-savvy Full Stack Web Developer proficient in fundamental front-end languages and server-side languages.",
             categories: ["React", "Material UI", 'Redux'],
-            link: "https://hayfordstanley.vercel.app",
+            link: "https://www.stanleyhayford.com",
             status: 'completed',
             source: "https://github.com/bookbae",
             image: profile
