@@ -24,7 +24,7 @@ const supportLinks = [
         icon: CardGiftcardOutlined,
         href: "https://paypal.me/stanleyhayford",
         color: "#00457C",
-        bg: "#f5f6fa",
+        bg: "#F6F4FB",
     },
 ];
 
@@ -104,15 +104,15 @@ const SupportButton = () => {
                         width: 52,
                         height: 52,
                         background: open
-                            ? "linear-gradient(135deg, #ef4444, #7c3aed)"
-                            : "linear-gradient(135deg, #F5A623, #ef4444)",
+                            ? "linear-gradient(135deg, #ef4444, #7C5CBF)"
+                            : "linear-gradient(135deg, #C77DFF, #ef4444)",
                         color: "white",
                         boxShadow: open
                             ? "0 8px 25px rgba(239,68,68,0.35)"
-                            : "0 8px 25px rgba(245,166,35,0.35)",
+                            : "0 8px 25px rgba(199,125,255,0.35)",
                         transition: "all 300ms",
                         "&:hover": {
-                            boxShadow: "0 12px 35px rgba(245,166,35,0.45)",
+                            boxShadow: "0 12px 35px rgba(199,125,255,0.45)",
                         },
                     }}>
                     {open

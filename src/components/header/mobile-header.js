@@ -20,11 +20,11 @@ const MobileHeader = () => {
         height: 38,
         border: 1,
         borderColor: "divider",
-        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.72)",
+        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.72)" : "rgba(255,255,255,0.72)",
         color: "colors.accent",
         "&:hover": {
             borderColor: "colors.accent",
-            backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}14`,
+            backgroundColor: (t) => `${t.palette.colors?.accent || "#B7A7D9"}14`,
         },
     };
 
@@ -40,20 +40,20 @@ const MobileHeader = () => {
                     px: 1,
                     py: 0.75,
                     border: 1,
-                    borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.18)" : "rgba(15,23,42,0.10)",
+                    borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.18)" : "rgba(27,21,48,0.10)",
                     borderRadius: "20px",
                     backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(7,11,20,0.76)" : "rgba(255,255,255,0.78)",
 
                     backgroundImage: (t) => t.palette.mode === "dark"
-                        ? "linear-gradient(135deg, rgba(96,165,250,0.13), rgba(245,166,35,0.08))"
-                        : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
+                        ? "linear-gradient(135deg, rgba(183,167,217,0.13), rgba(199,125,255,0.08))"
+                        : "linear-gradient(135deg, rgba(124,92,191,0.08), rgba(199,125,255,0.06))",
 
                     backdropFilter: "blur(18px) saturate(170%)",
                     WebkitBackdropFilter: "blur(18px) saturate(170%)",
 
                     boxShadow: (t) => t.palette.mode === "dark"
                         ? "0 14px 38px rgba(0,0,0,0.28)"
-                        : "0 14px 34px rgba(15,23,42,0.10)"
+                        : "0 14px 34px rgba(27,21,48,0.10)"
                 }}>
 
                 <Box
@@ -75,9 +75,9 @@ const MobileHeader = () => {
                             borderRadius: "14px",
                             display: "grid",
                             placeItems: "center",
-                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.12)" : "rgba(245,166,35,0.10)",
+                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(199,125,255,0.12)" : "rgba(199,125,255,0.10)",
                             border: 1,
-                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.28)" : "rgba(245,166,35,0.22)",
+                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(199,125,255,0.28)" : "rgba(199,125,255,0.22)",
                         }}>
                         <Box component="img" src={brandLogo} alt="Zeus logo" sx={{width: 28, height: 28, objectFit: "contain"}} />
                     </Box>

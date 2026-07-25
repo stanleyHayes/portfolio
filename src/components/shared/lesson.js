@@ -6,7 +6,7 @@ import useSounds from "../../hooks/use-sound";
 
 // Unique color from lesson number
 const getLessonColor = (num) => {
-    const colors = ["#2563eb", "#7c3aed", "#F5A623", "#06b6d4", "#ef4444", "#10b981"];
+    const colors = ["#7C5CBF", "#7C5CBF", "#C77DFF", "#06b6d4", "#ef4444", "#10b981"];
     const idx = parseInt(num || "0", 10) % colors.length;
     return colors[idx];
 };

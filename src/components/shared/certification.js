@@ -3,9 +3,9 @@ import {Box, Button, Card, CardContent, Chip, Divider, Stack, Typography} from "
 import {OpenInNew, SchoolOutlined, VerifiedOutlined, WorkspacePremiumOutlined} from "@mui/icons-material";
 
 const palettes = [
-    {color: "#2563eb", accent: "#60a5fa", mark: "PRO"},
-    {color: "#7c3aed", accent: "#a78bfa", mark: "LAB"},
-    {color: "#F5A623", accent: "#fbbf24", mark: "CRT"},
+    {color: "#7C5CBF", accent: "#B7A7D9", mark: "PRO"},
+    {color: "#7C5CBF", accent: "#a78bfa", mark: "LAB"},
+    {color: "#C77DFF", accent: "#fbbf24", mark: "CRT"},
     {color: "#06b6d4", accent: "#67e8f9", mark: "DEV"},
     {color: "#ef4444", accent: "#fca5a5", mark: "SYS"},
     {color: "#10b981", accent: "#6ee7b7", mark: "OPS"},
@@ -27,19 +27,19 @@ const Certification = ({certification, index = 0}) => {
                 flexDirection: "column",
                 overflow: "hidden",
                 position: "relative",
-                borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(15,23,42,0.10)",
-                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.86)",
+                borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(27,21,48,0.10)",
+                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.72)" : "rgba(255,255,255,0.86)",
                 backgroundImage: (t) => t.palette.mode === "dark"
-                    ? `linear-gradient(135deg, ${palette.color}18, rgba(15,23,42,0) 34%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
+                    ? `linear-gradient(135deg, ${palette.color}18, rgba(27,21,48,0) 34%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
                     : `linear-gradient(135deg, ${palette.color}10, rgba(255,255,255,0) 34%), linear-gradient(180deg, rgba(255,255,255,0.90), rgba(248,250,252,0.72))`,
-                boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 48px rgba(0,0,0,0.22)" : "0 18px 42px rgba(15,23,42,0.08)",
+                boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 48px rgba(0,0,0,0.22)" : "0 18px 42px rgba(27,21,48,0.08)",
                 transition: "transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease",
                 "&:hover": {
                     transform: "translateY(-6px)",
                     borderColor: palette.color,
                     boxShadow: (t) => t.palette.mode === "dark"
                         ? `0 22px 60px rgba(0,0,0,0.32), 0 0 0 1px ${palette.color}45`
-                        : `0 24px 58px rgba(15,23,42,0.12), 0 0 0 1px ${palette.color}35`,
+                        : `0 24px 58px rgba(27,21,48,0.12), 0 0 0 1px ${palette.color}35`,
                     "& .cert-seal": {
                         transform: "translateY(-2px) rotate(-4deg)",
                     },
@@ -105,7 +105,7 @@ const Certification = ({certification, index = 0}) => {
                     </Box>
                 </Stack>
 
-                <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(15,23,42,0.08)", mb: 2.5}} />
+                <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(27,21,48,0.08)", mb: 2.5}} />
 
                 <Stack spacing={1.5} sx={{mt: "auto"}}>
                     <Stack direction="row" spacing={1.2} sx={{alignItems: "center", minWidth: 0}}>
@@ -130,7 +130,7 @@ const Certification = ({certification, index = 0}) => {
                                 height: 26,
                                 borderRadius: 1.5,
                                 color: "text.secondary",
-                                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "rgba(15,23,42,0.04)",
+                                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "rgba(27,21,48,0.04)",
                                 border: 1,
                                 borderColor: "divider",
                                 fontWeight: 650,

@@ -27,7 +27,7 @@ const Orb = ({top, left, right, bottom, size = 120, delay = 0, color}) => (
     <Box component={motion.div} animate={pulseAnim(delay)} sx={{
         position: "absolute", top, left, right, bottom,
         width: size, height: size, borderRadius: "50%",
-        background: color || ((t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(96,165,250,0.15)" : "rgba(37,99,235,0.08)"}, transparent 70%)`),
+        background: color || ((t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(183,167,217,0.15)" : "rgba(124,92,191,0.08)"}, transparent 70%)`),
         pointerEvents: "none", zIndex: 0,
     }} />
 );
@@ -36,7 +36,7 @@ const GoldOrb = ({top, left, right, bottom, size = 100, delay = 0}) => (
     <Box component={motion.div} animate={pulseAnim(delay)} sx={{
         position: "absolute", top, left, right, bottom,
         width: size, height: size, borderRadius: "50%",
-        background: (t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(245,166,35,0.12)" : "rgba(245,166,35,0.06)"}, transparent 70%)`,
+        background: (t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(199,125,255,0.12)" : "rgba(199,125,255,0.06)"}, transparent 70%)`,
         pointerEvents: "none", zIndex: 0,
     }} />
 );
@@ -49,12 +49,12 @@ const FloatingShape = ({top, left, right, bottom, size = 60, delay = 0, shape = 
         transform: shape === "diamond" ? "rotate(45deg)" : undefined,
         border: borderOnly
             ? (t) => `1.5px solid ${gold
-                ? (t.palette.mode === "dark" ? "rgba(245,166,35,0.2)" : "rgba(245,166,35,0.12)")
-                : (t.palette.mode === "dark" ? "rgba(96,165,250,0.18)" : "rgba(37,99,235,0.12)")}`
+                ? (t.palette.mode === "dark" ? "rgba(199,125,255,0.2)" : "rgba(199,125,255,0.12)")
+                : (t.palette.mode === "dark" ? "rgba(183,167,217,0.18)" : "rgba(124,92,191,0.12)")}`
             : "none",
         backgroundColor: borderOnly ? "transparent" : (t) => gold
-            ? (t.palette.mode === "dark" ? "rgba(245,166,35,0.06)" : "rgba(245,166,35,0.04)")
-            : (t.palette.mode === "dark" ? "rgba(96,165,250,0.06)" : "rgba(37,99,235,0.04)"),
+            ? (t.palette.mode === "dark" ? "rgba(199,125,255,0.06)" : "rgba(199,125,255,0.04)")
+            : (t.palette.mode === "dark" ? "rgba(183,167,217,0.06)" : "rgba(124,92,191,0.04)"),
         pointerEvents: "none", zIndex: 0,
     }} />
 );
@@ -63,7 +63,7 @@ const GridPattern = () => (
     <Box sx={{
         position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, opacity: 0.4,
         backgroundImage: (t) => {
-            const c = t.palette.mode === "dark" ? "rgba(96,165,250,0.04)" : "rgba(37,99,235,0.03)";
+            const c = t.palette.mode === "dark" ? "rgba(183,167,217,0.04)" : "rgba(124,92,191,0.03)";
             return `linear-gradient(${c} 1px, transparent 1px), linear-gradient(90deg, ${c} 1px, transparent 1px)`;
         },
         backgroundSize: "60px 60px",
@@ -74,7 +74,7 @@ const DotPattern = () => (
     <Box sx={{
         position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, opacity: 0.5,
         backgroundImage: (t) => {
-            const c = t.palette.mode === "dark" ? "rgba(96,165,250,0.08)" : "rgba(37,99,235,0.05)";
+            const c = t.palette.mode === "dark" ? "rgba(183,167,217,0.08)" : "rgba(124,92,191,0.05)";
             return `radial-gradient(${c} 1px, transparent 1px)`;
         },
         backgroundSize: "24px 24px",
@@ -85,7 +85,7 @@ const CrosshatchPattern = () => (
     <Box sx={{
         position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, opacity: 0.3,
         backgroundImage: (t) => {
-            const c = t.palette.mode === "dark" ? "rgba(96,165,250,0.06)" : "rgba(37,99,235,0.04)";
+            const c = t.palette.mode === "dark" ? "rgba(183,167,217,0.06)" : "rgba(124,92,191,0.04)";
             return `repeating-linear-gradient(45deg, ${c} 0px, ${c} 1px, transparent 1px, transparent 40px), repeating-linear-gradient(-45deg, ${c} 0px, ${c} 1px, transparent 1px, transparent 40px)`;
         },
     }} />
@@ -95,7 +95,7 @@ const SpinningRing = ({top, right, left, bottom, size = 80, delay = 0}) => (
     <Box component={motion.div} animate={rotateAnim(delay)} sx={{
         position: "absolute", top, right, left, bottom,
         width: size, height: size, borderRadius: "50%",
-        border: (t) => `1.5px dashed ${t.palette.mode === "dark" ? "rgba(96,165,250,0.12)" : "rgba(37,99,235,0.08)"}`,
+        border: (t) => `1.5px dashed ${t.palette.mode === "dark" ? "rgba(183,167,217,0.12)" : "rgba(124,92,191,0.08)"}`,
         pointerEvents: "none", zIndex: 0,
     }} />
 );
@@ -120,8 +120,8 @@ const ScatteredDots = ({dots}) => (
                 position: "absolute", top: d.top, left: d.left,
                 width: d.size || 5, height: d.size || 5, borderRadius: "50%",
                 backgroundColor: (t) => d.gold
-                    ? `${t.palette.colors?.gold || "#F5A623"}40`
-                    : `${t.palette.colors?.accent || "#60a5fa"}35`,
+                    ? `${t.palette.colors?.gold || "#C77DFF"}40`
+                    : `${t.palette.colors?.accent || "#B7A7D9"}35`,
                 pointerEvents: "none", zIndex: 0,
             }} />
         ))}
@@ -225,8 +225,8 @@ const PageBackground = ({variant = "cards", children}) => {
             <Box sx={{
                 position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
                 background: (t) => {
-                    const c = t.palette.mode === "dark" ? "rgba(96,165,250," : "rgba(37,99,235,";
-                    const g = t.palette.mode === "dark" ? "rgba(245,166,35," : "rgba(245,166,35,";
+                    const c = t.palette.mode === "dark" ? "rgba(183,167,217," : "rgba(124,92,191,";
+                    const g = t.palette.mode === "dark" ? "rgba(199,125,255," : "rgba(199,125,255,";
                     return `radial-gradient(ellipse at 20% 20%, ${c}0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, ${g}0.04) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, ${c}0.02) 0%, transparent 60%)`;
                 },
             }} />

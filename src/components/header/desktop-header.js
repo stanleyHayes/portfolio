@@ -4,15 +4,21 @@ import {Box, Button, Container, IconButton, Stack, Toolbar, Tooltip, Typography}
 import {Link} from "react-router";
 import {getUiState} from "../../features/ui/ui-slice";
 import {
+    ArticleOutlined,
+    BuildOutlined,
     DarkModeOutlined,
     GitHub,
+    HomeOutlined,
     Instagram,
     LightModeOutlined,
     LinkedIn,
     MailOutlineOutlined,
+    PersonOutlined,
+    SchoolOutlined,
     Twitter,
     VolumeOffOutlined,
     VolumeUpOutlined,
+    WorkOutlineOutlined,
 } from "@mui/icons-material";
 import {useSelector} from "react-redux";
 import NavigationLink from "../shared/navigation-link";
@@ -44,13 +50,13 @@ const DesktopHeader = () => {
         height: 38,
         border: 1,
         borderColor: "divider",
-        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.72)",
+        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.72)" : "rgba(255,255,255,0.72)",
         color: "text.secondary",
         transition: "transform 240ms ease, border-color 240ms ease, background-color 240ms ease, color 240ms ease",
         "&:hover": {
             transform: "translateY(-2px)",
             borderColor: "colors.accent",
-            backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}16`,
+            backgroundColor: (t) => `${t.palette.colors?.accent || "#B7A7D9"}16`,
             color: "colors.accent",
         },
     };
@@ -68,20 +74,20 @@ const DesktopHeader = () => {
                         px: {md: 1, lg: 1.25},
                         py: 0.75,
                         border: 1,
-                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.18)" : "rgba(15,23,42,0.10)",
+                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.18)" : "rgba(27,21,48,0.10)",
                         borderRadius: "24px",
                         backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(7,11,20,0.72)" : "rgba(255,255,255,0.76)",
 
                         backgroundImage: (t) => t.palette.mode === "dark"
-                            ? "linear-gradient(135deg, rgba(96,165,250,0.12), rgba(245,166,35,0.08))"
-                            : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
+                            ? "linear-gradient(135deg, rgba(183,167,217,0.12), rgba(199,125,255,0.08))"
+                            : "linear-gradient(135deg, rgba(124,92,191,0.08), rgba(199,125,255,0.06))",
 
                         backdropFilter: "blur(18px) saturate(170%)",
                         WebkitBackdropFilter: "blur(18px) saturate(170%)",
 
                         boxShadow: (t) => t.palette.mode === "dark"
                             ? "0 18px 50px rgba(0,0,0,0.28)"
-                            : "0 18px 45px rgba(15,23,42,0.10)"
+                            : "0 18px 45px rgba(27,21,48,0.10)"
                     }}>
                     <Box
                         component={Link}
@@ -102,10 +108,10 @@ const DesktopHeader = () => {
                                 borderRadius: "14px",
                                 display: "grid",
                                 placeItems: "center",
-                                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.12)" : "rgba(245,166,35,0.10)",
+                                backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(199,125,255,0.12)" : "rgba(199,125,255,0.10)",
                                 border: 1,
-                                borderColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.28)" : "rgba(245,166,35,0.22)",
-                                boxShadow: "0 0 24px rgba(245,166,35,0.18)",
+                                borderColor: (t) => t.palette.mode === "dark" ? "rgba(199,125,255,0.28)" : "rgba(199,125,255,0.22)",
+                                boxShadow: "0 0 24px rgba(199,125,255,0.18)",
                             }}>
                             <Box component="img" src={brandLogo} alt="Zeus logo" sx={{width: 29, height: 29, objectFit: "contain"}} />
                         </Box>
@@ -148,15 +154,15 @@ const DesktopHeader = () => {
                             p: 0.4,
                             borderRadius: "999px",
                             border: 1,
-                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(15,23,42,0.08)",
-                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.62)" : "rgba(248,250,252,0.74)"
+                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(27,21,48,0.08)",
+                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.62)" : "rgba(248,250,252,0.74)"
                         }}>
-                        <NavigationLink path="/" label="Home"/>
-                        <NavigationLink path="/about" label="About"/>
-                        <NavigationLink path="/learn" label="Learn"/>
-                        <NavigationLink path="/portfolio" label="Portfolio"/>
-                        <NavigationLink path="/blog" label="Blog"/>
-                        <NavigationLink path="/services" label="Services"/>
+                        <NavigationLink path="/" label="Home" Icon={HomeOutlined}/>
+                        <NavigationLink path="/about" label="About" Icon={PersonOutlined}/>
+                        <NavigationLink path="/learn" label="Learn" Icon={SchoolOutlined}/>
+                        <NavigationLink path="/portfolio" label="Portfolio" Icon={WorkOutlineOutlined}/>
+                        <NavigationLink path="/blog" label="Blog" Icon={ArticleOutlined}/>
+                        <NavigationLink path="/services" label="Services" Icon={BuildOutlined}/>
                     </Stack>
 
                     <Stack
@@ -241,9 +247,9 @@ const DesktopHeader = () => {
                                     fontSize: "0.76rem",
                                     textTransform: "uppercase",
                                     background: (t) => t.palette.mode === "dark"
-                                        ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                        : "linear-gradient(135deg, #2563eb, #F5A623)",
-                                    boxShadow: (t) => `0 10px 28px ${t.palette.colors?.accent || "#60a5fa"}24`,
+                                        ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                        : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
+                                    boxShadow: (t) => `0 10px 28px ${t.palette.colors?.accent || "#B7A7D9"}24`,
                                     transition: "transform 240ms ease, box-shadow 240ms ease",
                                     "& .MuiButton-startIcon": {
                                         mr: {md: 0, lg: 0.8},
@@ -251,7 +257,7 @@ const DesktopHeader = () => {
                                     },
                                     "&:hover": {
                                         transform: "translateY(-2px)",
-                                        boxShadow: (t) => `0 14px 34px ${t.palette.colors?.accent || "#60a5fa"}34`,
+                                        boxShadow: (t) => `0 14px 34px ${t.palette.colors?.accent || "#B7A7D9"}34`,
                                     },
                                 }}>
                                 <Box component="span" sx={{display: {md: "none", lg: "inline"}}}>Contact</Box>

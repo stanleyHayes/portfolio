@@ -35,7 +35,7 @@ const ParticleWave = () => {
             <bufferGeometry>
                 <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
             </bufferGeometry>
-            <pointsMaterial size={0.04} color="#60a5fa" transparent opacity={0.6} sizeAttenuation blending={THREE.AdditiveBlending} depthWrite={false} />
+            <pointsMaterial size={0.04} color="#B7A7D9" transparent opacity={0.6} sizeAttenuation blending={THREE.AdditiveBlending} depthWrite={false} />
         </points>
     );
 };
@@ -130,8 +130,8 @@ const Footer = () => {
                                 <Typography variant="h5" sx={{
                                     fontWeight: 900, letterSpacing: 1,
                                     background: (t) => t.palette.mode === "dark"
-                                        ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                        : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                        ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                        : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
                                     WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
                                 }}>
                                     {"<Zeus />"}
@@ -236,8 +236,8 @@ const Footer = () => {
                                             Get notified when I ship
                                             <Box component="span" sx={{
                                                 background: (t) => t.palette.mode === "dark"
-                                                    ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                                    : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                                    ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                                    : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
                                                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
                                             }}> something new.</Box>
                                         </Typography>
@@ -252,7 +252,7 @@ const Footer = () => {
                                                     slotProps={{input: {sx: {
                                                         borderRadius: 2,
                                                         backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
-                                                        border: 1, borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.12)" : "rgba(37,99,235,0.08)",
+                                                        border: 1, borderColor: (t) => t.palette.mode === "dark" ? "rgba(183,167,217,0.12)" : "rgba(124,92,191,0.08)",
                                                         "&:hover": {borderColor: "colors.accent"},
                                                     }}}}
                                                 />
@@ -263,7 +263,7 @@ const Footer = () => {
                                                         slotProps={{input: {sx: {
                                                             borderRadius: 2,
                                                             backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
-                                                            border: 1, borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.12)" : "rgba(37,99,235,0.08)",
+                                                            border: 1, borderColor: (t) => t.palette.mode === "dark" ? "rgba(183,167,217,0.12)" : "rgba(124,92,191,0.08)",
                                                             "&:hover": {borderColor: "colors.accent"},
                                                         }}}}
                                                     />
@@ -278,10 +278,10 @@ const Footer = () => {
                                                             fontWeight: 700, fontSize: "0.75rem", letterSpacing: 1, textTransform: "uppercase",
                                                             color: "white", display: "flex", alignItems: "center", gap: 0.5,
                                                             background: (t) => t.palette.mode === "dark"
-                                                                ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                                                : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                                                ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                                                : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
                                                             transition: "box-shadow 300ms",
-                                                            "&:hover": {boxShadow: "0 4px 20px rgba(37,99,235,0.35)"},
+                                                            "&:hover": {boxShadow: "0 4px 20px rgba(124,92,191,0.35)"},
                                                         }}>
                                                         {subLoading
                                                             ? <CircularProgress size={16} sx={{color: "white"}} />

@@ -33,8 +33,8 @@ export const GlowButton = ({to, href, children, variant = "primary", fullWidth =
                         color: "white", cursor: "pointer",
                         borderRadius: "999px",
                         background: (t) => t.palette.mode === "dark"
-                            ? "linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #c084fc 100%)"
-                            : "linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%)",
+                            ? "linear-gradient(135deg, #B7A7D9 0%, #818cf8 50%, #c084fc 100%)"
+                            : "linear-gradient(135deg, #7C5CBF 0%, #4f46e5 50%, #7C5CBF 100%)",
                         backgroundSize: "200% 200%",
                         animation: "gradientShift 4s ease infinite",
                         "@keyframes gradientShift": {
@@ -43,14 +43,14 @@ export const GlowButton = ({to, href, children, variant = "primary", fullWidth =
                             "100%": {backgroundPosition: "0% 50%"},
                         },
                         boxShadow: (t) => t.palette.mode === "dark"
-                            ? "0 4px 20px rgba(96,165,250,0.3)"
-                            : "0 4px 20px rgba(37,99,235,0.25)",
+                            ? "0 4px 20px rgba(183,167,217,0.3)"
+                            : "0 4px 20px rgba(124,92,191,0.25)",
                         position: "relative", overflow: "hidden",
                         transition: "box-shadow 300ms",
                         "&:hover": {
                             boxShadow: (t) => t.palette.mode === "dark"
-                                ? "0 8px 35px rgba(96,165,250,0.45)"
-                                : "0 8px 35px rgba(37,99,235,0.4)",
+                                ? "0 8px 35px rgba(183,167,217,0.45)"
+                                : "0 8px 35px rgba(124,92,191,0.4)",
                         },
                         "&::before": {
                             content: '""', position: "absolute", top: 0, left: "-100%",
@@ -80,16 +80,16 @@ export const GlowButton = ({to, href, children, variant = "primary", fullWidth =
                         display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 1,
                         px: 4, py: 1.5, width: fullWidth ? "100%" : "auto",
                         fontWeight: 700, fontSize: "0.85rem", letterSpacing: 1.5, textTransform: "uppercase",
-                        color: "#0f172a", cursor: "pointer",
+                        color: "#1B1530", cursor: "pointer",
                         borderRadius: "999px",
-                        background: "linear-gradient(135deg, #F5A623 0%, #fbbf24 50%, #f59e0b 100%)",
+                        background: "linear-gradient(135deg, #C77DFF 0%, #fbbf24 50%, #C77DFF 100%)",
                         backgroundSize: "200% 200%",
                         animation: "gradientShift 4s ease infinite",
-                        boxShadow: "0 4px 20px rgba(245,166,35,0.3)",
+                        boxShadow: "0 4px 20px rgba(199,125,255,0.3)",
                         position: "relative", overflow: "hidden",
                         transition: "box-shadow 300ms",
                         "&:hover": {
-                            boxShadow: "0 8px 35px rgba(245,166,35,0.45)",
+                            boxShadow: "0 8px 35px rgba(199,125,255,0.45)",
                         },
                         "&::before": {
                             content: '""', position: "absolute", top: 0, left: "-100%",
@@ -121,8 +121,8 @@ export const GlowButton = ({to, href, children, variant = "primary", fullWidth =
                     // Outer gradient border
                     padding: "2px",
                     background: (t) => t.palette.mode === "dark"
-                        ? "linear-gradient(135deg, #60a5fa, #F5A623, #c084fc)"
-                        : "linear-gradient(135deg, #2563eb, #F5A623, #7c3aed)",
+                        ? "linear-gradient(135deg, #B7A7D9, #C77DFF, #c084fc)"
+                        : "linear-gradient(135deg, #7C5CBF, #C77DFF, #7C5CBF)",
                     backgroundSize: "300% 300%",
                     animation: "borderGradient 5s ease infinite",
                     "@keyframes borderGradient": {
@@ -133,8 +133,8 @@ export const GlowButton = ({to, href, children, variant = "primary", fullWidth =
                     transition: "box-shadow 300ms",
                     "&:hover": {
                         boxShadow: (t) => t.palette.mode === "dark"
-                            ? "0 8px 30px rgba(96,165,250,0.25)"
-                            : "0 8px 30px rgba(37,99,235,0.2)",
+                            ? "0 8px 30px rgba(183,167,217,0.25)"
+                            : "0 8px 30px rgba(124,92,191,0.2)",
                     },
                 }}>
                 {/* Inner fill */}
@@ -149,8 +149,8 @@ export const GlowButton = ({to, href, children, variant = "primary", fullWidth =
                     transition: "all 300ms",
                     "&:hover": {
                         backgroundColor: (t) => t.palette.mode === "dark"
-                            ? "rgba(96,165,250,0.08)"
-                            : "rgba(37,99,235,0.04)",
+                            ? "rgba(183,167,217,0.08)"
+                            : "rgba(124,92,191,0.04)",
                     },
                 }}>
                     {children}

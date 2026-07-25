@@ -104,7 +104,7 @@ const BlogDetailPage = () => {
                     <Box sx={{
                         width: "100%",
                         height: "100%",
-                        background: (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#2563eb"}22, ${t.palette.secondary.main}44)`,
+                        background: (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#7C5CBF"}22, ${t.palette.secondary.main}44)`,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -236,7 +236,7 @@ const BlogDetailPage = () => {
                             "& li": {mb: 0.5, lineHeight: 1.7},
                             "& hr": {border: "none", borderTop: 1, borderColor: "divider", my: 4},
                             "& table": {width: "100%", borderCollapse: "collapse", my: 3, "& th, & td": {border: 1, borderColor: "divider", px: 2, py: 1, textAlign: "left"}, "& th": {backgroundColor: "background.paper", fontWeight: 700, color: "text.primary"}, "& td": {color: "text.secondary"}},
-                            "& code:not(pre code)": {backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.1)" : "rgba(37,99,235,0.08)", color: "colors.accent", px: 0.8, py: 0.2, borderRadius: 2, fontSize: "0.88rem", fontFamily: "'Fira Code', 'Consolas', monospace"},
+                            "& code:not(pre code)": {backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(183,167,217,0.1)" : "rgba(124,92,191,0.08)", color: "colors.accent", px: 0.8, py: 0.2, borderRadius: 2, fontSize: "0.88rem", fontFamily: "'Fira Code', 'Consolas', monospace"},
                             "& .syntax-highlighter-wrapper": {my: 3, borderRadius: 4, overflow: "hidden"},
                         }}>
                         <ReactMarkdown

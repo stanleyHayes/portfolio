@@ -19,7 +19,7 @@ const Confetti = ({delay, left}) => (
             left: `${left}%`,
             width: 8 + Math.random() * 6,
             height: 8 + Math.random() * 6,
-            backgroundColor: ["#F5A623", "#2563eb", "#7c3aed", "#ef4444", "#10b981", "#06b6d4"][Math.floor(Math.random() * 6)],
+            backgroundColor: ["#C77DFF", "#7C5CBF", "#7C5CBF", "#ef4444", "#10b981", "#06b6d4"][Math.floor(Math.random() * 6)],
             borderRadius: Math.random() > 0.5 ? "50%" : 0,
             zIndex: 9999,
             pointerEvents: "none",
@@ -81,11 +81,11 @@ const BirthdayBanner = () => {
                             maxWidth: 600,
                         }}>
                         <Box sx={{
-                            background: "linear-gradient(135deg, #F5A623, #ef4444, #7c3aed, #2563eb)",
+                            background: "linear-gradient(135deg, #C77DFF, #ef4444, #7C5CBF, #7C5CBF)",
                             borderRadius: "999px",
                             px: 4,
                             py: 1.5,
-                            boxShadow: "0 12px 40px rgba(245,166,35,0.3)",
+                            boxShadow: "0 12px 40px rgba(199,125,255,0.3)",
                         }}>
                             <Stack direction="row" spacing={2} sx={{
                                 alignItems: "center"

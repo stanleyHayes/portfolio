@@ -142,8 +142,8 @@ const HomePage = () => {
                                         position: "absolute",
                                         inset: -8,
                                         background: (t) => t.palette.mode === "dark"
-                                            ? "linear-gradient(135deg, rgba(96,165,250,0.2), rgba(245,166,35,0.15))"
-                                            : "linear-gradient(135deg, rgba(37,99,235,0.12), rgba(245,166,35,0.1))",
+                                            ? "linear-gradient(135deg, rgba(183,167,217,0.2), rgba(199,125,255,0.15))"
+                                            : "linear-gradient(135deg, rgba(124,92,191,0.12), rgba(199,125,255,0.1))",
                                         clipPath: "polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%)",
                                         filter: "blur(20px)",
                                     }} />
@@ -265,21 +265,21 @@ const HomePage = () => {
                 {/* Background doodles — higher contrast */}
                 <Box sx={{position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0}}>
                     {/* Large pulsing circles */}
-                    <Box component={motion.div} animate={{scale: [1, 1.2, 1], opacity: [0.12, 0.06, 0.12], transition: {duration: 4, repeat: Infinity}}} sx={{position: "absolute", top: "-15%", left: "-5%", width: 300, height: 300, borderRadius: "50%", border: (t) => `2px solid ${t.palette.colors?.accent || "#60a5fa"}`, opacity: 0.12}} />
-                    <Box component={motion.div} animate={{scale: [1, 1.15, 1], opacity: [0.1, 0.04, 0.1], transition: {duration: 5, repeat: Infinity, delay: 1}}} sx={{position: "absolute", bottom: "-20%", right: "-3%", width: 350, height: 350, borderRadius: "50%", background: (t) => `radial-gradient(circle, ${t.palette.colors?.accent || "#60a5fa"}20, transparent 70%)`}} />
+                    <Box component={motion.div} animate={{scale: [1, 1.2, 1], opacity: [0.12, 0.06, 0.12], transition: {duration: 4, repeat: Infinity}}} sx={{position: "absolute", top: "-15%", left: "-5%", width: 300, height: 300, borderRadius: "50%", border: (t) => `2px solid ${t.palette.colors?.accent || "#B7A7D9"}`, opacity: 0.12}} />
+                    <Box component={motion.div} animate={{scale: [1, 1.15, 1], opacity: [0.1, 0.04, 0.1], transition: {duration: 5, repeat: Infinity, delay: 1}}} sx={{position: "absolute", bottom: "-20%", right: "-3%", width: 350, height: 350, borderRadius: "50%", background: (t) => `radial-gradient(circle, ${t.palette.colors?.accent || "#B7A7D9"}20, transparent 70%)`}} />
 
                     {/* Floating geometric shapes */}
-                    <Box component={motion.div} animate={{y: [0, -15, 0], rotate: [0, 45, 0], transition: {duration: 6, repeat: Infinity, ease: "easeInOut"}}} sx={{position: "absolute", top: "15%", right: "8%", width: 50, height: 50, border: (t) => `2px solid ${t.palette.colors?.gold || "#F5A623"}40`, borderRadius: 3, transform: "rotate(15deg)"}} />
-                    <Box component={motion.div} animate={{y: [0, 10, 0], transition: {duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5}}} sx={{position: "absolute", bottom: "20%", left: "6%", width: 35, height: 35, borderRadius: "50%", backgroundColor: (t) => `${t.palette.colors?.gold || "#F5A623"}15`, border: (t) => `1.5px solid ${t.palette.colors?.gold || "#F5A623"}30`}} />
-                    <Box component={motion.div} animate={{y: [0, -8, 0], transition: {duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5}}} sx={{position: "absolute", top: "30%", left: "15%", width: 24, height: 24, backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}12`, borderRadius: "50%", border: (t) => `1.5px solid ${t.palette.colors?.accent || "#60a5fa"}25`}} />
+                    <Box component={motion.div} animate={{y: [0, -15, 0], rotate: [0, 45, 0], transition: {duration: 6, repeat: Infinity, ease: "easeInOut"}}} sx={{position: "absolute", top: "15%", right: "8%", width: 50, height: 50, border: (t) => `2px solid ${t.palette.colors?.gold || "#C77DFF"}40`, borderRadius: 3, transform: "rotate(15deg)"}} />
+                    <Box component={motion.div} animate={{y: [0, 10, 0], transition: {duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5}}} sx={{position: "absolute", bottom: "20%", left: "6%", width: 35, height: 35, borderRadius: "50%", backgroundColor: (t) => `${t.palette.colors?.gold || "#C77DFF"}15`, border: (t) => `1.5px solid ${t.palette.colors?.gold || "#C77DFF"}30`}} />
+                    <Box component={motion.div} animate={{y: [0, -8, 0], transition: {duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5}}} sx={{position: "absolute", top: "30%", left: "15%", width: 24, height: 24, backgroundColor: (t) => `${t.palette.colors?.accent || "#B7A7D9"}12`, borderRadius: "50%", border: (t) => `1.5px solid ${t.palette.colors?.accent || "#B7A7D9"}25`}} />
 
                     {/* Spinning dashed rings */}
-                    <Box component={motion.div} animate={{rotate: [0, 360], transition: {duration: 25, repeat: Infinity, ease: "linear"}}} sx={{position: "absolute", top: "10%", left: "40%", width: 120, height: 120, borderRadius: "50%", border: (t) => `1.5px dashed ${t.palette.colors?.accent || "#60a5fa"}18`}} />
-                    <Box component={motion.div} animate={{rotate: [360, 0], transition: {duration: 30, repeat: Infinity, ease: "linear"}}} sx={{position: "absolute", bottom: "5%", right: "30%", width: 80, height: 80, borderRadius: "50%", border: (t) => `1.5px dashed ${t.palette.colors?.gold || "#F5A623"}20`}} />
+                    <Box component={motion.div} animate={{rotate: [0, 360], transition: {duration: 25, repeat: Infinity, ease: "linear"}}} sx={{position: "absolute", top: "10%", left: "40%", width: 120, height: 120, borderRadius: "50%", border: (t) => `1.5px dashed ${t.palette.colors?.accent || "#B7A7D9"}18`}} />
+                    <Box component={motion.div} animate={{rotate: [360, 0], transition: {duration: 30, repeat: Infinity, ease: "linear"}}} sx={{position: "absolute", bottom: "5%", right: "30%", width: 80, height: 80, borderRadius: "50%", border: (t) => `1.5px dashed ${t.palette.colors?.gold || "#C77DFF"}20`}} />
 
                     {/* Crosshatch lines */}
                     <Box sx={{position: "absolute", inset: 0, opacity: 0.35, backgroundImage: (t) => {
-                        const c = t.palette.mode === "dark" ? "rgba(96,165,250,0.06)" : "rgba(37,99,235,0.04)";
+                        const c = t.palette.mode === "dark" ? "rgba(183,167,217,0.06)" : "rgba(124,92,191,0.04)";
                         return `repeating-linear-gradient(45deg, ${c} 0px, ${c} 1px, transparent 1px, transparent 60px), repeating-linear-gradient(-45deg, ${c} 0px, ${c} 1px, transparent 1px, transparent 60px)`;
                     }}} />
 
@@ -294,7 +294,7 @@ const HomePage = () => {
                         {top: "80%", left: "85%", size: 5, color: "accent", delay: 1.2},
                         {top: "10%", left: "90%", size: 7, color: "gold", delay: 0.3},
                     ].map((dot, i) => (
-                        <Box key={i} component={motion.div} animate={{opacity: [0.2, 0.5, 0.2], scale: [1, 1.3, 1], transition: {duration: 3, repeat: Infinity, delay: dot.delay}}} sx={{position: "absolute", top: dot.top, left: dot.left, width: dot.size, height: dot.size, borderRadius: "50%", backgroundColor: (t) => dot.color === "accent" ? `${t.palette.colors?.accent || "#60a5fa"}40` : `${t.palette.colors?.gold || "#F5A623"}35`}} />
+                        <Box key={i} component={motion.div} animate={{opacity: [0.2, 0.5, 0.2], scale: [1, 1.3, 1], transition: {duration: 3, repeat: Infinity, delay: dot.delay}}} sx={{position: "absolute", top: dot.top, left: dot.left, width: dot.size, height: dot.size, borderRadius: "50%", backgroundColor: (t) => dot.color === "accent" ? `${t.palette.colors?.accent || "#B7A7D9"}40` : `${t.palette.colors?.gold || "#C77DFF"}35`}} />
                     ))}
 
                     {/* Code bracket decorations */}
@@ -325,7 +325,7 @@ const HomePage = () => {
                                         <Grid size={{xs: 6, md: 3}} key={stat.label || index}>
                                             <Reveal3D delay={index * 0.1} origin="bottom" sx={{height: "100%"}}>
                                             <Card variant="outlined" sx={{borderRadius: 3, textAlign: "center", py: 2, position: "relative", overflow: "hidden", "&:hover": {borderColor: "colors.accent", transition: "all 300ms", "& .stat-glow": {opacity: 1}}}}>
-                                                <Box className="stat-glow" sx={{position: "absolute", inset: 0, opacity: 0, transition: "opacity 400ms", background: (t) => `radial-gradient(circle at center, ${t.palette.colors?.accent || "#60a5fa"}08, transparent 70%)`, pointerEvents: "none"}} />
+                                                <Box className="stat-glow" sx={{position: "absolute", inset: 0, opacity: 0, transition: "opacity 400ms", background: (t) => `radial-gradient(circle at center, ${t.palette.colors?.accent || "#B7A7D9"}08, transparent 70%)`, pointerEvents: "none"}} />
                                                 <CardContent sx={{position: "relative", zIndex: 1}}>
                                                     {typeof StatIcon === 'function' || typeof StatIcon === 'object' ? (
                                                         <StatIcon sx={{fontSize: 40, color: "colors.accent", mb: 1, padding: 1, borderRadius: 2, backgroundColor: "icon.accentBackground"}} />
@@ -390,8 +390,8 @@ const HomePage = () => {
                         pointerEvents: "none",
                         opacity: (t) => t.palette.mode === "dark" ? 0.45 : 0.75,
                         backgroundImage: (t) => {
-                            const accent = t.palette.mode === "dark" ? "rgba(96,165,250,0.08)" : "rgba(37,99,235,0.05)";
-                            const gold = t.palette.mode === "dark" ? "rgba(245,166,35,0.08)" : "rgba(245,166,35,0.06)";
+                            const accent = t.palette.mode === "dark" ? "rgba(183,167,217,0.08)" : "rgba(124,92,191,0.05)";
+                            const gold = t.palette.mode === "dark" ? "rgba(199,125,255,0.08)" : "rgba(199,125,255,0.06)";
                             return `linear-gradient(135deg, ${accent} 0 1px, transparent 1px), linear-gradient(45deg, ${gold} 0 1px, transparent 1px)`;
                         },
                         backgroundSize: "72px 72px, 96px 96px",
@@ -466,17 +466,17 @@ const HomePage = () => {
                         <Grid container spacing={3} sx={{display: "flex", flexWrap: "wrap"}}>
                             {latestPosts.map((post, index) => {
                                 const accentGradients = [
-                                    (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#2563eb"}, ${t.palette.colors?.blue || "#60a5fa"})`,
-                                    (t) => `linear-gradient(135deg, ${t.palette.colors?.gold || "#f5a623"}, #f59e0b)`,
-                                    (t) => `linear-gradient(135deg, ${t.palette.colors?.blue || "#60a5fa"}, #818cf8)`,
+                                    (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#7C5CBF"}, ${t.palette.colors?.blue || "#B7A7D9"})`,
+                                    (t) => `linear-gradient(135deg, ${t.palette.colors?.gold || "#C77DFF"}, #C77DFF)`,
+                                    (t) => `linear-gradient(135deg, ${t.palette.colors?.blue || "#B7A7D9"}, #818cf8)`,
                                 ];
                                 const accentGradient = accentGradients[index % accentGradients.length];
                                 const readingTime = Math.ceil(post.content?.length / 1000) || 3;
                                 const formattedDate = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("en-US", {month: "short", day: "numeric", year: "numeric"}) : "";
                                 const tagColors = [
                                     {bg: "light.accent", color: "colors.accent"},
-                                    {bg: (t) => t.palette.colors?.gold ? `${t.palette.colors.gold}18` : "#f5a62318", color: "colors.gold"},
-                                    {bg: (t) => t.palette.colors?.blue ? `${t.palette.colors.blue}18` : "#60a5fa18", color: "colors.blue"},
+                                    {bg: (t) => t.palette.colors?.gold ? `${t.palette.colors.gold}18` : "#C77DFF18", color: "colors.gold"},
+                                    {bg: (t) => t.palette.colors?.blue ? `${t.palette.colors.blue}18` : "#B7A7D918", color: "colors.blue"},
                                 ];
 
                                 return (
@@ -503,7 +503,7 @@ const HomePage = () => {
                                                     "&:hover": {
                                                         transform: "translateY(-8px)",
                                                         boxShadow: (t) => {
-                                                            const accent = t.palette.colors?.accent || "#2563eb";
+                                                            const accent = t.palette.colors?.accent || "#7C5CBF";
                                                             return t.palette.mode === "dark"
                                                                 ? `0 20px 60px rgba(0,0,0,0.5), 0 0 30px ${accent}25`
                                                                 : `0 20px 60px rgba(0,0,0,0.1), 0 0 30px ${accent}20`;
@@ -531,7 +531,7 @@ const HomePage = () => {
                                                                 className="post-image"
                                                                 sx={{
                                                                     width: "100%", height: "100%",
-                                                                    background: (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#2563eb"}22, ${t.palette.secondary.main}44)`,
+                                                                    background: (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#7C5CBF"}22, ${t.palette.secondary.main}44)`,
                                                                     transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
                                                                 }}
                                                             />

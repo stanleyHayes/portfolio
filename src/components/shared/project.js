@@ -37,6 +37,8 @@ const Project = ({project}) => {
     const {bg, accent} = getGradient(project.title);
     const initials = getInitials(project.title);
     const hasImage = project.image && !project.image.includes("placehold.co");
+    // Some projects are source-only (unreleased, or client work with no public URL).
+    const hasLiveDemo = Boolean(project.link) && project.link !== "#";
 
     return (
         <Card
@@ -184,17 +186,23 @@ const Project = ({project}) => {
                         justifyContent: "space-between",
                         width: "100%"
                     }}>
-                    <Button
-                        size="small"
-                        endIcon={<LaunchOutlined sx={{fontSize: 14}} />}
-                        sx={{color: accent, textTransform: "none", fontWeight: 600}}
-                        component={MUILink}
-                        href={project.link}
-                        underline="none"
-                        rel="noreferrer noopener"
-                        target="_blank">
-                        Live Demo
-                    </Button>
+                    {hasLiveDemo ? (
+                        <Button
+                            size="small"
+                            endIcon={<LaunchOutlined sx={{fontSize: 14}} />}
+                            sx={{color: accent, textTransform: "none", fontWeight: 600}}
+                            component={MUILink}
+                            href={project.link}
+                            underline="none"
+                            rel="noreferrer noopener"
+                            target="_blank">
+                            Live Demo
+                        </Button>
+                    ) : (
+                        <Typography variant="caption" sx={{color: "text.disabled", fontWeight: 600}}>
+                            {project.source ? "Source only" : ""}
+                        </Typography>
+                    )}
                     {project.source && (
                         <IconButton
                             size="small"

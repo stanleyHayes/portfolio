@@ -40,9 +40,9 @@ const BannerWatermark = ({Icon, anchor = "right", size = {xs: 132, md: 220}, sx 
                     color: "colors.accent",
                     opacity: (t) => t.palette.mode === "dark" ? 0.28 : 0.18,
                     background: (t) => t.palette.mode === "dark"
-                        ? "radial-gradient(circle, rgba(96,165,250,0.12), transparent 68%)"
-                        : "radial-gradient(circle, rgba(37,99,235,0.10), transparent 68%)",
-                    border: (t) => `1px solid ${t.palette.mode === "dark" ? "rgba(96,165,250,0.16)" : "rgba(37,99,235,0.12)"}`,
+                        ? "radial-gradient(circle, rgba(183,167,217,0.12), transparent 68%)"
+                        : "radial-gradient(circle, rgba(124,92,191,0.10), transparent 68%)",
+                    border: (t) => `1px solid ${t.palette.mode === "dark" ? "rgba(183,167,217,0.16)" : "rgba(124,92,191,0.12)"}`,
                 }}>
                 <Icon sx={{fontSize: {xs: 96, md: 168}, opacity: 0.42}} />
             </Box>

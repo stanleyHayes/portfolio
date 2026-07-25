@@ -28,7 +28,7 @@ const iconMap = {
     BuildOutlined,
 };
 
-const colorPalette = ["#2563eb", "#F5A623", "#7c3aed", "#ef4444", "#06b6d4", "#f59e0b"];
+const colorPalette = ["#7C5CBF", "#C77DFF", "#7C5CBF", "#ef4444", "#06b6d4", "#C77DFF"];
 
 const ServicesPage = () => {
 

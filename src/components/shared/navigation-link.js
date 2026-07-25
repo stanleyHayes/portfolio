@@ -7,7 +7,7 @@ import {motion} from "framer-motion";
 
 const pillTransition = {type: "spring", stiffness: 420, damping: 34, mass: 0.7};
 
-const NavigationLink = ({path, label}) => {
+const NavigationLink = ({path, label, Icon}) => {
 
     const {pathname} = useLocation();
     const dispatch = useDispatch();
@@ -22,8 +22,8 @@ const NavigationLink = ({path, label}) => {
             to={path}
             sx={{
                 minHeight: 36,
-                minWidth: {md: label.length > 6 ? 92 : 76, lg: label.length > 6 ? 108 : 84},
-                px: {md: 1.15, lg: 1.45},
+                minWidth: {md: label.length > 6 ? 96 : 82, lg: label.length > 6 ? 116 : 94},
+                px: {md: 1.15, lg: 1.5},
                 py: 0.75,
                 display: "inline-flex",
                 alignItems: "center",
@@ -35,6 +35,7 @@ const NavigationLink = ({path, label}) => {
                 "&:hover": {
                     transform: "translateY(-1px)",
                     "& .nav-label": {color: isActive ? "colors.accent" : "text.primary"},
+                    "& .nav-icon": {color: isActive ? "colors.accent" : "text.primary"},
                 },
             }}>
             {/* Shared layout indicator — slides between nav items on route change */}
@@ -50,41 +51,52 @@ const NavigationLink = ({path, label}) => {
                         border: 1,
                         borderColor: "colors.accent",
                         background: (t) => t.palette.mode === "dark"
-                            ? "linear-gradient(135deg, rgba(96,165,250,0.18), rgba(245,166,35,0.10))"
-                            : "linear-gradient(135deg, rgba(37,99,235,0.12), rgba(245,166,35,0.08))",
+                            ? "linear-gradient(135deg, rgba(183,167,217,0.18), rgba(199,125,255,0.10))"
+                            : "linear-gradient(135deg, rgba(124,92,191,0.12), rgba(199,125,255,0.08))",
                         zIndex: 0,
                     }}>
-                    {/* Gold underline travels with the pill */}
+                    {/* Orchid dot travels with the pill */}
                     <Box
                         sx={{
                             position: "absolute",
-                            bottom: 5,
+                            bottom: 4,
                             left: "50%",
-                            width: 18,
-                            height: 2,
-                            borderRadius: 2,
+                            width: 5,
+                            height: 5,
+                            borderRadius: "50%",
                             transform: "translateX(-50%)",
                             backgroundColor: "colors.gold",
+                            boxShadow: (t) => `0 0 8px ${t.palette.colors?.gold || "#C77DFF"}`,
                         }}
                     />
                 </Box>
             )}
-            <Typography
-                className="nav-label"
-                variant="body2"
-                sx={{
-                    position: "relative",
-                    zIndex: 1,
-                    fontWeight: isActive ? 800 : 650,
-                    color: isActive ? "colors.accent" : "text.secondary",
-                    textTransform: "uppercase",
-                    fontSize: {md: "0.68rem", lg: "0.72rem"},
-                    lineHeight: 1,
-                    transition: "color 220ms ease",
-                    whiteSpace: "nowrap",
-                }}>
-                {label}
-            </Typography>
+            <Box sx={{position: "relative", zIndex: 1, display: "inline-flex", alignItems: "center", gap: 0.7}}>
+                {Icon && (
+                    <Icon
+                        className="nav-icon"
+                        sx={{
+                            fontSize: 16,
+                            color: isActive ? "colors.accent" : "text.secondary",
+                            transition: "color 220ms ease",
+                        }}
+                    />
+                )}
+                <Typography
+                    className="nav-label"
+                    variant="body2"
+                    sx={{
+                        fontWeight: isActive ? 800 : 650,
+                        color: isActive ? "colors.accent" : "text.secondary",
+                        textTransform: "uppercase",
+                        fontSize: {md: "0.65rem", lg: "0.70rem"},
+                        lineHeight: 1,
+                        transition: "color 220ms ease",
+                        whiteSpace: "nowrap",
+                    }}>
+                    {label}
+                </Typography>
+            </Box>
         </Box>
     )
 }

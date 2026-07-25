@@ -211,13 +211,13 @@ const AboutPage = () => {
                             <Box sx={{
                                 position: "absolute", inset: 0,
                                 background: (t) => t.palette.mode === "dark"
-                                    ? "linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(245,166,35,0.05) 50%, rgba(124,58,237,0.06) 100%)"
-                                    : "linear-gradient(135deg, rgba(37,99,235,0.04) 0%, rgba(245,166,35,0.03) 50%, rgba(124,58,237,0.04) 100%)",
+                                    ? "linear-gradient(135deg, rgba(124,92,191,0.08) 0%, rgba(199,125,255,0.05) 50%, rgba(124,58,237,0.06) 100%)"
+                                    : "linear-gradient(135deg, rgba(124,92,191,0.04) 0%, rgba(199,125,255,0.03) 50%, rgba(124,58,237,0.04) 100%)",
                             }} />
                             {/* Dot pattern */}
                             <Box sx={{
                                 position: "absolute", inset: 0,
-                                backgroundImage: (t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(96,165,250,0.06)" : "rgba(37,99,235,0.04)"} 1px, transparent 1px)`,
+                                backgroundImage: (t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(183,167,217,0.06)" : "rgba(124,92,191,0.04)"} 1px, transparent 1px)`,
                                 backgroundSize: "24px 24px",
                             }} />
 
@@ -236,8 +236,8 @@ const AboutPage = () => {
                                                 position: "absolute", inset: -6,
                                                 borderRadius: "50%",
                                                 background: (t) => t.palette.mode === "dark"
-                                                    ? "linear-gradient(135deg, #60a5fa, #F5A623, #7c3aed)"
-                                                    : "linear-gradient(135deg, #2563eb, #F5A623, #7c3aed)",
+                                                    ? "linear-gradient(135deg, #B7A7D9, #C77DFF, #7C5CBF)"
+                                                    : "linear-gradient(135deg, #7C5CBF, #C77DFF, #7C5CBF)",
                                                 opacity: 0.3,
                                                 filter: "blur(16px)",
                                             }} />
@@ -263,7 +263,7 @@ const AboutPage = () => {
                                                         objectFit: "cover",
                                                         borderRadius: "50%",
                                                         border: 3,
-                                                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.3)" : "rgba(37,99,235,0.2)",
+                                                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(183,167,217,0.3)" : "rgba(124,92,191,0.2)",
                                                     }}
                                                     src={profileImage}
                                                 />
@@ -289,8 +289,8 @@ const AboutPage = () => {
                                                     fontWeight: 900,
                                                     fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
                                                     background: (t) => t.palette.mode === "dark"
-                                                        ? "linear-gradient(135deg, #e2e8f0, #60a5fa)"
-                                                        : "linear-gradient(135deg, #0f172a, #2563eb)",
+                                                        ? "linear-gradient(135deg, #e2e8f0, #B7A7D9)"
+                                                        : "linear-gradient(135deg, #1B1530, #7C5CBF)",
                                                     WebkitBackgroundClip: "text",
                                                     WebkitTextFillColor: "transparent",
                                                 }}>
@@ -316,10 +316,10 @@ const AboutPage = () => {
                                                         display: "inline-flex", alignItems: "center", gap: 1,
                                                         px: 2, py: 0.7, borderRadius: "999px",
                                                         background: (t) => t.palette.mode === "dark"
-                                                            ? "linear-gradient(135deg, rgba(96,165,250,0.15), rgba(245,166,35,0.1))"
-                                                            : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.06))",
+                                                            ? "linear-gradient(135deg, rgba(183,167,217,0.15), rgba(199,125,255,0.1))"
+                                                            : "linear-gradient(135deg, rgba(124,92,191,0.08), rgba(199,125,255,0.06))",
                                                         border: 1,
-                                                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.2)" : "rgba(37,99,235,0.15)",
+                                                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(183,167,217,0.2)" : "rgba(124,92,191,0.15)",
                                                     }}>
                                                         <Box sx={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "colors.accent" }} />
                                                         <Typography variant="body2" sx={{ color: "colors.accent", fontWeight: 700, letterSpacing: 0.5 }}>
@@ -353,9 +353,9 @@ const AboutPage = () => {
                                                         <Skeleton key={i} variant="rounded" width={120} height={36} sx={{ borderRadius: "999px" }} />
                                                     ))
                                                 ) : [
-                                                    { icon: <WorkOutlineOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Experience", value: yearsOfExperience ? `${yearsOfExperience}+ yrs` : "", color: "#2563eb" },
+                                                    { icon: <WorkOutlineOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Experience", value: yearsOfExperience ? `${yearsOfExperience}+ yrs` : "", color: "#7C5CBF" },
                                                     { icon: <LocationOnOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Location", value: location || "", color: "#16a34a" },
-                                                    { icon: <CheckCircleOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Status", value: "Available", color: "#f59e0b" },
+                                                    { icon: <CheckCircleOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Status", value: "Available", color: "#C77DFF" },
                                                 ].map((stat, i) => (
                                                     <Box key={i} sx={{
                                                         display: "inline-flex", alignItems: "center", gap: { xs: 0.5, sm: 0.8 },
@@ -411,13 +411,13 @@ const AboutPage = () => {
                                                                             display: "flex", alignItems: "center", justifyContent: "center", gap: 1,
                                                                             px: 3, py: 1.2, borderRadius: "999px", width: "100%", height: 44,
                                                                             background: (t) => t.palette.mode === "dark"
-                                                                                ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                                                                : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                                                                ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                                                                : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
                                                                             color: "white", fontWeight: 700, fontSize: "0.8rem",
                                                                             letterSpacing: 1, textTransform: "uppercase",
                                                                             cursor: "pointer", transition: "all 300ms",
                                                                             position: "relative", overflow: "hidden",
-                                                                            "&:hover": { transform: "translateY(-2px)", boxShadow: "0 8px 25px rgba(37,99,235,0.3)" },
+                                                                            "&:hover": { transform: "translateY(-2px)", boxShadow: "0 8px 25px rgba(124,92,191,0.3)" },
                                                                             "&::before": { content: '""', position: "absolute", top: 0, left: "-100%", width: "100%", height: "100%", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)", transition: "left 500ms" },
                                                                             "&:hover::before": { left: "100%" },
                                                                         }}>
@@ -432,12 +432,12 @@ const AboutPage = () => {
                                                                             px: 3, borderRadius: "999px", width: "100%", height: 44,
                                                                             position: "relative",
                                                                             background: (t) => t.palette.mode === "dark"
-                                                                                ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                                                                : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                                                                ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                                                                : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
                                                                             cursor: "pointer", transition: "all 300ms",
                                                                             "&:hover": {
                                                                                 transform: "translateY(-2px)",
-                                                                                boxShadow: "0 8px 25px rgba(37,99,235,0.15)",
+                                                                                boxShadow: "0 8px 25px rgba(124,92,191,0.15)",
                                                                             },
                                                                         }}>
                                                                             <Box sx={{
@@ -450,8 +450,8 @@ const AboutPage = () => {
                                                                                 fontWeight: 700, fontSize: "0.8rem",
                                                                                 letterSpacing: 1, textTransform: "uppercase",
                                                                                 background: (t) => t.palette.mode === "dark"
-                                                                                    ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                                                                    : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                                                                    ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                                                                    : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
                                                                                 WebkitBackgroundClip: "text",
                                                                                 WebkitTextFillColor: "transparent",
                                                                                 backgroundClip: "text",
@@ -496,7 +496,7 @@ const AboutPage = () => {
                                     { label: "Certifications", icon: "Cert" },
                                 ].map((tab, i) => {
                                     const isActive = index === i;
-                                    const accentColors = ["#2563eb", "#7c3aed", "#F5A623", "#06b6d4"];
+                                    const accentColors = ["#7C5CBF", "#7C5CBF", "#C77DFF", "#06b6d4"];
                                     const activeColor = accentColors[i];
                                     return (
                                         <Box
@@ -626,14 +626,28 @@ const AboutPage = () => {
                                     <Grid container spacing={4}>
                                         {(skills || []).map((category, catIndex) => {
                                             const palettes = [
-                                                { color: "#2563eb", gradient: "linear-gradient(135deg, #2563eb, #1d4ed8)", icon: "{ }", note: "Core language and platform fluency for robust application work." },
-                                                { color: "#7c3aed", gradient: "linear-gradient(135deg, #7c3aed, #6d28d9)", icon: "~/", note: "System design, APIs, queues, storage, and service foundations." },
-                                                { color: "#F5A623", gradient: "linear-gradient(135deg, #F5A623, #d97706)", icon: "</>", note: "Interfaces, product experiences, and fast-moving frontend stacks." },
+                                                { color: "#7C5CBF", gradient: "linear-gradient(135deg, #7C5CBF, #1d4ed8)", icon: "{ }", note: "Core language and platform fluency for robust application work." },
+                                                { color: "#7C5CBF", gradient: "linear-gradient(135deg, #7C5CBF, #6d28d9)", icon: "~/", note: "System design, APIs, queues, storage, and service foundations." },
+                                                { color: "#C77DFF", gradient: "linear-gradient(135deg, #C77DFF, #9D5BD2)", icon: "</>", note: "Interfaces, product experiences, and fast-moving frontend stacks." },
                                                 { color: "#06b6d4", gradient: "linear-gradient(135deg, #06b6d4, #0891b2)", icon: ">>", note: "Infrastructure, deployment, observability, and delivery workflow." },
                                                 { color: "#ef4444", gradient: "linear-gradient(135deg, #ef4444, #dc2626)", icon: "&&", note: "Performance, resilience, testing, and deeper engineering practice." },
                                                 { color: "#10b981", gradient: "linear-gradient(135deg, #10b981, #059669)", icon: "::", note: "Emerging technical interests and cross-discipline exploration." },
                                             ];
+                                            // Colours still cycle by position, but the blurb is matched to the
+                                            // category itself so renaming or reordering categories cannot
+                                            // leave a card describing something it does not contain.
+                                            const notesByCategory = {
+                                                "Languages": "Core language and platform fluency for robust application work.",
+                                                "Backend": "System design, APIs, queues, storage, and service foundations.",
+                                                "Messaging & Data": "Brokers, databases, and caches behind event-driven systems.",
+                                                "Infrastructure": "Containers, orchestration, cloud, and delivery pipelines.",
+                                                "Observability": "Metrics, logs, and distributed tracing for systems in production.",
+                                                "Frontend & Mobile": "Interfaces, product experiences, and fast-moving frontend stacks.",
+                                                "Blockchain": "Smart contracts and on-chain development across Ethereum and Solana.",
+                                                "Special Interests": "Emerging technical interests and cross-discipline exploration.",
+                                            };
                                             const p = palettes[catIndex % palettes.length];
+                                            const note = notesByCategory[category.category] || p.note;
                                             const items = (category.items || []).map(s => typeof s === "string" ? s : s.name || s);
 
                                             return (
@@ -643,19 +657,19 @@ const AboutPage = () => {
                                                         borderRadius: 2,
                                                         overflow: "hidden",
                                                         position: "relative",
-                                                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(15,23,42,0.10)",
-                                                        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.88)",
+                                                        borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(27,21,48,0.10)",
+                                                        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.72)" : "rgba(255,255,255,0.88)",
                                                         backgroundImage: (t) => t.palette.mode === "dark"
-                                                            ? `linear-gradient(135deg, ${p.color}18, rgba(15,23,42,0) 38%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
+                                                            ? `linear-gradient(135deg, ${p.color}18, rgba(27,21,48,0) 38%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
                                                             : `linear-gradient(135deg, ${p.color}10, rgba(255,255,255,0) 38%), linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.70))`,
-                                                        boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 46px rgba(0,0,0,0.20)" : "0 18px 42px rgba(15,23,42,0.08)",
+                                                        boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 46px rgba(0,0,0,0.20)" : "0 18px 42px rgba(27,21,48,0.08)",
                                                         transition: "transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease",
                                                         "&:hover": {
                                                             transform: "translateY(-6px)",
                                                             borderColor: p.color,
                                                             boxShadow: (t) => t.palette.mode === "dark"
                                                                 ? `0 22px 60px rgba(0,0,0,0.32), 0 0 0 1px ${p.color}35`
-                                                                : `0 24px 58px rgba(15,23,42,0.12), 0 0 0 1px ${p.color}28`,
+                                                                : `0 24px 58px rgba(27,21,48,0.12), 0 0 0 1px ${p.color}28`,
                                                             "& .skill-mark": {
                                                                 transform: "translateY(-2px) rotate(-4deg)",
                                                             },
@@ -684,7 +698,7 @@ const AboutPage = () => {
                                                                 inset: 0,
                                                                 opacity: 0.34,
                                                                 backgroundImage: (t) => {
-                                                                    const line = t.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.05)";
+                                                                    const line = t.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "rgba(27,21,48,0.05)";
                                                                     return `linear-gradient(90deg, ${line} 1px, transparent 1px), linear-gradient(${line} 1px, transparent 1px)`;
                                                                 },
                                                                 backgroundSize: "24px 24px",
@@ -718,7 +732,7 @@ const AboutPage = () => {
                                                                         {category.category}
                                                                     </Typography>
                                                                     <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.55, maxWidth: 300 }}>
-                                                                        {p.note}
+                                                                        {note}
                                                                     </Typography>
                                                                 </Stack>
                                                                 <Box className="skill-mark" sx={{
@@ -740,7 +754,7 @@ const AboutPage = () => {
                                                             </Stack>
                                                         </Box>
 
-                                                        <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(15,23,42,0.08)"}} />
+                                                        <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(27,21,48,0.08)"}} />
 
                                                         <CardContent sx={{ p: 2.4 }}>
                                                             <Stack
@@ -773,7 +787,7 @@ const AboutPage = () => {
                                                                             fontSize: "0.75rem",
                                                                             fontWeight: 700,
                                                                             borderRadius: 1.6,
-                                                                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.04)" : "rgba(15,23,42,0.035)",
+                                                                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(255,255,255,0.04)" : "rgba(27,21,48,0.035)",
                                                                             color: "text.primary",
                                                                             border: `1px solid ${p.color}1f`,
                                                                             transition: "transform 220ms ease, background-color 220ms ease, border-color 220ms ease",
@@ -802,7 +816,7 @@ const AboutPage = () => {
                                     degree: edu.title,
                                     school: edu.institution,
                                     period: `${edu.startDate} - ${edu.endDate || 'Present'}`,
-                                    color: ["#2563eb", "#3b82f6", "#8b5cf6", "#f59e0b"][i % 4],
+                                    color: ["#7C5CBF", "#8B6DC7", "#7C5CBF", "#C77DFF"][i % 4],
                                     icon: edu.title?.includes("MSc") ? "MSc" : edu.title?.includes("BSc") ? "BSc" : "Edu",
                                     highlights: edu.summary ? (Array.isArray(edu.summary) ? edu.summary : [edu.summary]) : []
                                 }))} />
@@ -813,7 +827,7 @@ const AboutPage = () => {
                                     company: exp.company,
                                     role: exp.title,
                                     period: `${exp.startDate} - ${exp.endDate || 'Present'}`,
-                                    color: ["#2563eb", "#3b82f6", "#8b5cf6", "#f59e0b", "#06b6d4", "#ef4444"][i % 6],
+                                    color: ["#7C5CBF", "#8B6DC7", "#7C5CBF", "#C77DFF", "#06b6d4", "#ef4444"][i % 6],
                                     current: !exp.endDate || exp.endDate === 'Present',
                                     location: exp.location || "",
                                     summary: typeof exp.summary === 'string' ? exp.summary : "",

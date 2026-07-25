@@ -56,10 +56,10 @@ const socialMeta = {
 const panelSx = {
     borderRadius: 3,
     border: 1,
-    borderColor: (t) => t.palette.mode === "dark" ? "rgba(96,165,250,0.16)" : "rgba(37,99,235,0.10)",
-    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.78)",
+    borderColor: (t) => t.palette.mode === "dark" ? "rgba(183,167,217,0.16)" : "rgba(124,92,191,0.10)",
+    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.72)" : "rgba(255,255,255,0.78)",
     backdropFilter: "blur(18px)",
-    boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 60px rgba(0,0,0,0.28)" : "0 18px 50px rgba(15,23,42,0.08)",
+    boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 60px rgba(0,0,0,0.28)" : "0 18px 50px rgba(27,21,48,0.08)",
 };
 
 const ContactPage = () => {
@@ -100,21 +100,21 @@ const ContactPage = () => {
             label: "Phone",
             value: info.phone,
             href: info.phone ? `tel:${info.phone}` : null,
-            color: "#2563eb"
+            color: "#7C5CBF"
         },
         {
             icon: MailOutlineOutlined,
             label: "Email",
             value: info.email,
             href: info.email ? `mailto:${info.email}` : null,
-            color: "#F5A623"
+            color: "#C77DFF"
         },
         {
             icon: LocationOnOutlined,
             label: "Location",
             value: info.location,
             href: null,
-            color: "#7c3aed"
+            color: "#7C5CBF"
         }
     ].filter(c => c.value) : [];
 
@@ -155,8 +155,8 @@ const ContactPage = () => {
                                 p: {xs: 3, md: 5},
                                 mb: 5,
                                 backgroundImage: (t) => t.palette.mode === "dark"
-                                    ? "linear-gradient(135deg, rgba(96,165,250,0.11), rgba(245,166,35,0.07), rgba(15,23,42,0.72))"
-                                    : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.08), rgba(255,255,255,0.82))",
+                                    ? "linear-gradient(135deg, rgba(183,167,217,0.11), rgba(199,125,255,0.07), rgba(27,21,48,0.72))"
+                                    : "linear-gradient(135deg, rgba(124,92,191,0.08), rgba(199,125,255,0.08), rgba(255,255,255,0.82))",
                             }}>
                             <BannerWatermark Icon={MailOutlineOutlined} size={{xs: 150, md: 260}} sx={{right: {sm: -28, md: 42}}} />
                             <Grid container spacing={4} sx={{position: "relative", zIndex: 1, alignItems: "center"}}>
@@ -378,7 +378,7 @@ const ContactPage = () => {
                                         overflow: "hidden",
                                         position: "relative",
                                     }}>
-                                    <Box sx={{height: 4, background: (t) => t.palette.mode === "dark" ? "linear-gradient(90deg, #60a5fa, #F5A623, #c084fc)" : "linear-gradient(90deg, #2563eb, #F5A623, #7c3aed)"}} />
+                                    <Box sx={{height: 4, background: (t) => t.palette.mode === "dark" ? "linear-gradient(90deg, #B7A7D9, #C77DFF, #c084fc)" : "linear-gradient(90deg, #7C5CBF, #C77DFF, #7C5CBF)"}} />
                                     <Box sx={{p: {xs: 3, md: 4.5}}}>
                                         <Stack direction={{xs: "column", md: "row"}} spacing={2} sx={{justifyContent: "space-between", mb: 3}}>
                                             <Box>
@@ -512,12 +512,12 @@ const ContactPage = () => {
                                                         letterSpacing: 1.3,
                                                         textTransform: "uppercase",
                                                         background: (t) => t.palette.mode === "dark"
-                                                            ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                                            : "linear-gradient(135deg, #2563eb, #F5A623)",
-                                                        boxShadow: "0 12px 30px rgba(37,99,235,0.25)",
+                                                            ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                                            : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
+                                                        boxShadow: "0 12px 30px rgba(124,92,191,0.25)",
                                                         "&:hover": {
                                                             transform: "translateY(-2px)",
-                                                            boxShadow: "0 18px 38px rgba(37,99,235,0.34)",
+                                                            boxShadow: "0 18px 38px rgba(124,92,191,0.34)",
                                                         },
                                                         "&.Mui-disabled": {
                                                             color: "rgba(255,255,255,0.75)",

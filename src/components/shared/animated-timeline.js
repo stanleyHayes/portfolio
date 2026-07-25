@@ -16,19 +16,19 @@ const glassCardSx = (color) => ({
     borderRadius: 2,
     overflow: "hidden",
     position: "relative",
-    borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(15,23,42,0.10)",
-    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.70)" : "rgba(255,255,255,0.88)",
+    borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(27,21,48,0.10)",
+    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.70)" : "rgba(255,255,255,0.88)",
     backgroundImage: (t) => t.palette.mode === "dark"
-        ? `linear-gradient(135deg, ${color}18, rgba(15,23,42,0) 34%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
+        ? `linear-gradient(135deg, ${color}18, rgba(27,21,48,0) 34%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
         : `linear-gradient(135deg, ${color}10, rgba(255,255,255,0) 36%), linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.70))`,
-    boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 46px rgba(0,0,0,0.22)" : "0 18px 42px rgba(15,23,42,0.08)",
+    boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 46px rgba(0,0,0,0.22)" : "0 18px 42px rgba(27,21,48,0.08)",
     transition: "transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease",
     "&:hover": {
         transform: "translateY(-5px)",
         borderColor: color,
         boxShadow: (t) => t.palette.mode === "dark"
             ? `0 22px 60px rgba(0,0,0,0.32), 0 0 0 1px ${color}35`
-            : `0 24px 58px rgba(15,23,42,0.12), 0 0 0 1px ${color}28`,
+            : `0 24px 58px rgba(27,21,48,0.12), 0 0 0 1px ${color}28`,
         "& .timeline-symbol": {
             transform: "translateY(-2px) rotate(-3deg)",
         },
@@ -180,7 +180,7 @@ const ExperienceCard = ({item}) => {
 
             {hasDetails && (
                 <>
-                    <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(15,23,42,0.08)"}} />
+                    <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(27,21,48,0.08)"}} />
                     <Box sx={{px: {xs: 2, md: 3}, py: 1.25}}>
                         <Button
                             fullWidth
@@ -317,7 +317,7 @@ const EducationCard = ({item}) => (
 
                     {(item.highlights || []).length > 0 && (
                         <>
-                            <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(15,23,42,0.08)", mb: 2}} />
+                            <Divider sx={{borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.14)" : "rgba(27,21,48,0.08)", mb: 2}} />
                             <Stack spacing={1}>
                                 {(item.highlights || []).map((highlight, i) => (
                                     <Stack key={i} direction="row" spacing={1.1} sx={{alignItems: "flex-start"}}>

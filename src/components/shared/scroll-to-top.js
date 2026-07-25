@@ -46,13 +46,13 @@ const ScrollToTop = () => {
                         onClick={scrollToTop}
                         sx={{
                             background: (t) => t.palette.mode === "dark"
-                                ? "linear-gradient(135deg, #60a5fa, #F5A623)"
-                                : "linear-gradient(135deg, #2563eb, #F5A623)",
+                                ? "linear-gradient(135deg, #B7A7D9, #C77DFF)"
+                                : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
                             color: "white",
-                            boxShadow: "0 4px 20px rgba(37,99,235,0.3)",
+                            boxShadow: "0 4px 20px rgba(124,92,191,0.3)",
                             "&:hover": {
                                 transform: "translateY(-2px)",
-                                boxShadow: "0 8px 30px rgba(37,99,235,0.4)",
+                                boxShadow: "0 8px 30px rgba(124,92,191,0.4)",
                             },
                             transition: "all 300ms",
                         }}>

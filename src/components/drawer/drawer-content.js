@@ -40,7 +40,7 @@ const navItems = [
 ];
 
 const socialIconMap = {github: GitHub, linkedin: LinkedIn, twitter: Twitter, instagram: Instagram};
-const socialColorMap = {github: "#f8fafc", linkedin: "#0A66C2", twitter: "#1DA1F2", instagram: "#E4405F"};
+const socialColorMap = {github: "#F7F5FC", linkedin: "#0A66C2", twitter: "#1DA1F2", instagram: "#E4405F"};
 const fallbackSocialLinks = {
     github: "https://github.com/stanleyHayes",
     linkedin: "https://www.linkedin.com/in/stanley-asoku-hayford-320b67106/",
@@ -49,8 +49,8 @@ const fallbackSocialLinks = {
 
 const panelSx = {
     border: 1,
-    borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(15,23,42,0.10)",
-    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.62)" : "rgba(255,255,255,0.74)",
+    borderColor: (t) => t.palette.mode === "dark" ? "rgba(148,163,184,0.16)" : "rgba(27,21,48,0.10)",
+    backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.62)" : "rgba(255,255,255,0.74)",
     backdropFilter: "blur(18px) saturate(170%)",
     WebkitBackdropFilter: "blur(18px) saturate(170%)",
 };
@@ -93,14 +93,14 @@ const DrawerContent = () => {
         height: 42,
         border: 1,
         borderColor: "divider",
-        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(15,23,42,0.72)" : "rgba(255,255,255,0.72)",
+        backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(27,21,48,0.72)" : "rgba(255,255,255,0.72)",
         color: "text.secondary",
         transition: "transform 220ms ease, border-color 220ms ease, color 220ms ease, background-color 220ms ease",
         "&:hover": {
             transform: "translateY(-2px)",
             borderColor: "colors.accent",
             color: "colors.accent",
-            backgroundColor: (t) => `${t.palette.colors?.accent || "#60a5fa"}14`,
+            backgroundColor: (t) => `${t.palette.colors?.accent || "#B7A7D9"}14`,
         },
     };
 
@@ -116,9 +116,9 @@ const DrawerContent = () => {
                 flexDirection: "column",
                 position: "relative",
                 overflow: "hidden",
-                backgroundColor: (t) => t.palette.mode === "dark" ? "#070b14" : "#f8fafc",
+                backgroundColor: (t) => t.palette.mode === "dark" ? "#120F1F" : "#F7F5FC",
                 backgroundImage: (t) => {
-                    const grid = t.palette.mode === "dark" ? "rgba(96,165,250,0.045)" : "rgba(37,99,235,0.04)";
+                    const grid = t.palette.mode === "dark" ? "rgba(183,167,217,0.045)" : "rgba(124,92,191,0.04)";
                     return `linear-gradient(${grid} 1px, transparent 1px), linear-gradient(90deg, ${grid} 1px, transparent 1px)`;
                 },
                 backgroundSize: "42px 42px",
@@ -131,7 +131,7 @@ const DrawerContent = () => {
                 height: 360,
                 borderRadius: "50%",
                 pointerEvents: "none",
-                background: (t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(96,165,250,0.22)" : "rgba(37,99,235,0.12)"}, transparent 68%)`,
+                background: (t) => `radial-gradient(circle, ${t.palette.mode === "dark" ? "rgba(183,167,217,0.22)" : "rgba(124,92,191,0.12)"}, transparent 68%)`,
             }} />
             <Box sx={{
                 position: "absolute",
@@ -141,7 +141,7 @@ const DrawerContent = () => {
                 height: 320,
                 borderRadius: "50%",
                 pointerEvents: "none",
-                background: "radial-gradient(circle, rgba(245,166,35,0.16), transparent 68%)",
+                background: "radial-gradient(circle, rgba(199,125,255,0.16), transparent 68%)",
             }} />
 
             <Box sx={{position: "relative", zIndex: 1, px: 2, pt: 2, pb: 1.5}}>
@@ -165,9 +165,9 @@ const DrawerContent = () => {
                             display: "grid",
                             placeItems: "center",
                             border: 1,
-                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.28)" : "rgba(245,166,35,0.22)",
-                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(245,166,35,0.12)" : "rgba(245,166,35,0.10)",
-                            boxShadow: "0 0 28px rgba(245,166,35,0.16)",
+                            borderColor: (t) => t.palette.mode === "dark" ? "rgba(199,125,255,0.28)" : "rgba(199,125,255,0.22)",
+                            backgroundColor: (t) => t.palette.mode === "dark" ? "rgba(199,125,255,0.12)" : "rgba(199,125,255,0.10)",
+                            boxShadow: "0 0 28px rgba(199,125,255,0.16)",
                         }}>
                             <Box component="img" src={brandLogo} alt="Zeus logo" sx={{width: 30, height: 30, objectFit: "contain"}} />
                         </Box>
@@ -231,7 +231,7 @@ const DrawerContent = () => {
                         position: "relative",
                         mb: 2,
                     }}>
-                    <Box sx={{position: "absolute", inset: 0, background: (t) => t.palette.mode === "dark" ? "linear-gradient(135deg, rgba(96,165,250,0.12), rgba(245,166,35,0.07))" : "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,166,35,0.08))", pointerEvents: "none"}} />
+                    <Box sx={{position: "absolute", inset: 0, background: (t) => t.palette.mode === "dark" ? "linear-gradient(135deg, rgba(183,167,217,0.12), rgba(199,125,255,0.07))" : "linear-gradient(135deg, rgba(124,92,191,0.08), rgba(199,125,255,0.08))", pointerEvents: "none"}} />
                     <Stack direction="row" spacing={1.5} sx={{alignItems: "center", position: "relative", zIndex: 1}}>
                         <Box sx={{position: "relative", flexShrink: 0}}>
                             <Avatar
@@ -242,7 +242,7 @@ const DrawerContent = () => {
                                     height: 66,
                                     border: 2,
                                     borderColor: "colors.accent",
-                                    boxShadow: (t) => `0 0 28px ${t.palette.colors?.accent || "#60a5fa"}34`,
+                                    boxShadow: (t) => `0 0 28px ${t.palette.colors?.accent || "#B7A7D9"}34`,
                                 }}>
                                 {name?.charAt(0)}
                             </Avatar>
@@ -300,8 +300,8 @@ const DrawerContent = () => {
                             letterSpacing: 1.1,
                             textTransform: "uppercase",
                             fontSize: "0.72rem",
-                            background: (t) => t.palette.mode === "dark" ? "linear-gradient(135deg, #60a5fa, #F5A623)" : "linear-gradient(135deg, #2563eb, #F5A623)",
-                            boxShadow: (t) => `0 12px 30px ${t.palette.colors?.accent || "#60a5fa"}24`,
+                            background: (t) => t.palette.mode === "dark" ? "linear-gradient(135deg, #B7A7D9, #C77DFF)" : "linear-gradient(135deg, #7C5CBF, #C77DFF)",
+                            boxShadow: (t) => `0 12px 30px ${t.palette.colors?.accent || "#B7A7D9"}24`,
                         }}>
                         Contact
                     </Button>
@@ -363,7 +363,7 @@ const DrawerContent = () => {
                                             overflow: "hidden",
                                             borderColor: isActive ? "colors.accent" : panelSx.borderColor,
                                             backgroundImage: isActive
-                                                ? (t) => t.palette.mode === "dark" ? "linear-gradient(135deg, rgba(96,165,250,0.18), rgba(245,166,35,0.09))" : "linear-gradient(135deg, rgba(37,99,235,0.12), rgba(245,166,35,0.08))"
+                                                ? (t) => t.palette.mode === "dark" ? "linear-gradient(135deg, rgba(183,167,217,0.18), rgba(199,125,255,0.09))" : "linear-gradient(135deg, rgba(124,92,191,0.12), rgba(199,125,255,0.08))"
                                                 : "none",
                                             transition: "transform 220ms ease, border-color 220ms ease, background-color 220ms ease",
                                             "&:hover": {
@@ -383,7 +383,7 @@ const DrawerContent = () => {
                                                     height: 8,
                                                     borderRadius: "50%",
                                                     backgroundColor: "colors.gold",
-                                                    boxShadow: "0 0 18px rgba(245,166,35,0.65)",
+                                                    boxShadow: "0 0 18px rgba(199,125,255,0.65)",
                                                 }}
                                             />
                                         )}
@@ -451,7 +451,7 @@ const DrawerContent = () => {
                                                 transform: "translateY(-2px)",
                                                 borderColor: social.color,
                                                 backgroundColor: social.color,
-                                                color: social.color === "#f8fafc" ? "#0f172a" : "white",
+                                                color: social.color === "#F7F5FC" ? "#1B1530" : "white",
                                             },
                                         }}>
                                         <social.Icon sx={{fontSize: 18}} />

@@ -14,9 +14,9 @@ import {ArrowForwardOutlined, CalendarMonthOutlined, AccessTimeOutlined, Article
 const POSTS_PER_PAGE = 9;
 
 const ACCENT_GRADIENTS = [
-    (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#2563eb"}, ${t.palette.colors?.blue || "#60a5fa"})`,
-    (t) => `linear-gradient(135deg, ${t.palette.colors?.gold || "#f5a623"}, #f59e0b)`,
-    (t) => `linear-gradient(135deg, ${t.palette.colors?.blue || "#60a5fa"}, #818cf8)`,
+    (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#7C5CBF"}, ${t.palette.colors?.blue || "#B7A7D9"})`,
+    (t) => `linear-gradient(135deg, ${t.palette.colors?.gold || "#C77DFF"}, #C77DFF)`,
+    (t) => `linear-gradient(135deg, ${t.palette.colors?.blue || "#B7A7D9"}, #818cf8)`,
 ];
 
 const PostCard = ({post, index}) => {
@@ -52,7 +52,7 @@ const PostCard = ({post, index}) => {
                     "&:hover": {
                         transform: "translateY(-8px)",
                         boxShadow: (t) => {
-                            const accent = t.palette.colors?.accent || "#2563eb";
+                            const accent = t.palette.colors?.accent || "#7C5CBF";
                             return t.palette.mode === "dark"
                                 ? `0 20px 60px rgba(0,0,0,0.5), 0 0 30px ${accent}25`
                                 : `0 20px 60px rgba(0,0,0,0.1), 0 0 30px ${accent}20`;
@@ -94,7 +94,7 @@ const PostCard = ({post, index}) => {
                                 sx={{
                                     width: "100%",
                                     height: "100%",
-                                    background: (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#2563eb"}22, ${t.palette.secondary.main}44)`,
+                                    background: (t) => `linear-gradient(135deg, ${t.palette.colors?.accent || "#7C5CBF"}22, ${t.palette.secondary.main}44)`,
                                     transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
                                 }}
                             />
@@ -154,8 +154,8 @@ const PostCard = ({post, index}) => {
                                 {post.tags.slice(0, 3).map((tag, i) => {
                                     const tagColors = [
                                         {bg: "light.accent", color: "colors.accent"},
-                                        {bg: (t) => t.palette.colors?.gold ? `${t.palette.colors.gold}18` : "#f5a62318", color: "colors.gold"},
-                                        {bg: (t) => t.palette.colors?.blue ? `${t.palette.colors.blue}18` : "#60a5fa18", color: "colors.blue"},
+                                        {bg: (t) => t.palette.colors?.gold ? `${t.palette.colors.gold}18` : "#C77DFF18", color: "colors.gold"},
+                                        {bg: (t) => t.palette.colors?.blue ? `${t.palette.colors.blue}18` : "#B7A7D918", color: "colors.blue"},
                                     ];
                                     const tc = tagColors[i % tagColors.length];
                                     return (

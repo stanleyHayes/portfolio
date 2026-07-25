@@ -57,11 +57,11 @@ const Layout = ({children}) => {
                     paper: {
                         sx: {
                             width: {xs: "100%", sm: 380},
-                            backgroundColor: (t) => t.palette.mode === "dark" ? "#0A1628" : "#ffffff",
+                            backgroundColor: (t) => t.palette.mode === "dark" ? "#171226" : "#ffffff",
                             backgroundImage: (t) => t.palette.mode === "dark"
-                                ? "linear-gradient(160deg, #0A1628 0%, #111827 60%, #0A1628 100%)"
-                                : "linear-gradient(160deg, #f8fafc 0%, #ffffff 60%, #f1f5f9 100%)",
-                            borderLeft: (t) => `1px solid ${t.palette.mode === "dark" ? "rgba(96,165,250,0.15)" : "rgba(37,99,235,0.1)"}`,
+                                ? "linear-gradient(160deg, #171226 0%, #1B1530 60%, #171226 100%)"
+                                : "linear-gradient(160deg, #F7F5FC 0%, #ffffff 60%, #EDE9F6 100%)",
+                            borderLeft: (t) => `1px solid ${t.palette.mode === "dark" ? "rgba(183,167,217,0.15)" : "rgba(124,92,191,0.1)"}`,
                         }
                     }
                 }}>

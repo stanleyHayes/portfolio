@@ -25,15 +25,15 @@ const LightningBolt = () => (
         component={motion.div}
         animate={{
             opacity: [0.3, 1, 0.3],
-            filter: ["drop-shadow(0 0 8px rgba(96,165,250,0.3))", "drop-shadow(0 0 25px rgba(245,166,35,0.8))", "drop-shadow(0 0 8px rgba(96,165,250,0.3))"],
+            filter: ["drop-shadow(0 0 8px rgba(183,167,217,0.3))", "drop-shadow(0 0 25px rgba(199,125,255,0.8))", "drop-shadow(0 0 8px rgba(183,167,217,0.3))"],
         }}
         transition={{duration: 2, repeat: Infinity, ease: "easeInOut"}}
         sx={{width: {xs: 120, md: 180}, mx: "auto"}}>
         <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="bolt-gradient" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="50%" stopColor="#F5A623" />
+                    <stop offset="0%" stopColor="#B7A7D9" />
+                    <stop offset="50%" stopColor="#C77DFF" />
                     <stop offset="100%" stopColor="#c084fc" />
                 </linearGradient>
             </defs>
@@ -69,7 +69,7 @@ const Particle = ({delay, x, size}) => (
             width: size,
             height: size,
             borderRadius: "50%",
-            background: ["#60a5fa", "#F5A623", "#c084fc"][Math.floor(Math.random() * 3)],
+            background: ["#B7A7D9", "#C77DFF", "#c084fc"][Math.floor(Math.random() * 3)],
             bottom: "30%",
             left: "50%",
             pointerEvents: "none",
@@ -148,8 +148,8 @@ const NotFoundPage = () => {
                                 lineHeight: 1,
                                 mb: 1,
                                 background: (t) => t.palette.mode === "dark"
-                                    ? "linear-gradient(135deg, #60a5fa, #F5A623, #c084fc)"
-                                    : "linear-gradient(135deg, #2563eb, #F5A623, #7c3aed)",
+                                    ? "linear-gradient(135deg, #B7A7D9, #C77DFF, #c084fc)"
+                                    : "linear-gradient(135deg, #7C5CBF, #C77DFF, #7C5CBF)",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                                 userSelect: "none",
