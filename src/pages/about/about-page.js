@@ -96,6 +96,7 @@ const AboutPage = () => {
     const resumeUrl = info?.resumeUrl;
     const coverLetterUrl = info?.coverLetterUrl;
     const socialLinks = info?.socialLinks || {};
+    const yearsOfExperience = info?.stats?.years;
     const aboutBannerDescription = bio
         ? `${bio.split(".").filter(Boolean).slice(0, 2).join(". ")}.`
         : "Software engineer building reliable products across backend systems, web platforms, and education technology.";
@@ -352,7 +353,7 @@ const AboutPage = () => {
                                                         <Skeleton key={i} variant="rounded" width={120} height={36} sx={{ borderRadius: "999px" }} />
                                                     ))
                                                 ) : [
-                                                    { icon: <WorkOutlineOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Experience", value: "7+ yrs", color: "#2563eb" },
+                                                    { icon: <WorkOutlineOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Experience", value: yearsOfExperience ? `${yearsOfExperience}+ yrs` : "", color: "#2563eb" },
                                                     { icon: <LocationOnOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Location", value: location || "", color: "#16a34a" },
                                                     { icon: <CheckCircleOutlined sx={{ fontSize: { xs: 14, sm: 16 } }} />, label: "Status", value: "Available", color: "#f59e0b" },
                                                 ].map((stat, i) => (
