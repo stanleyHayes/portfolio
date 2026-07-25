@@ -24,3 +24,8 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
+
+# Raven local tooling state (ephemeral session/cache; not project config)
+.raven/.cache/
+.raven/state/
+.raven/.model-session.json
