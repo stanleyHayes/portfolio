@@ -32,14 +32,15 @@ const Certification = ({certification, index = 0}) => {
                 backgroundImage: (t) => t.palette.mode === "dark"
                     ? `linear-gradient(135deg, ${palette.color}18, rgba(27,21,48,0) 34%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0))`
                     : `linear-gradient(135deg, ${palette.color}10, rgba(255,255,255,0) 34%), linear-gradient(180deg, rgba(255,255,255,0.90), rgba(248,250,252,0.72))`,
-                boxShadow: (t) => t.palette.mode === "dark" ? "0 18px 48px rgba(0,0,0,0.22)" : "0 18px 42px rgba(27,21,48,0.08)",
-                transition: "transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease",
+                boxShadow: (t) => t.palette.mode === "dark"
+                    ? "9px 9px 22px rgba(0,0,0,0.55), -9px -9px 22px rgba(183,167,217,0.05)"
+                    : "9px 9px 22px rgba(124,92,191,0.14), -9px -9px 22px rgba(255,255,255,0.92)",
+                transition: "transform 260ms ease, box-shadow 260ms ease",
                 "&:hover": {
                     transform: "translateY(-6px)",
-                    borderColor: palette.color,
                     boxShadow: (t) => t.palette.mode === "dark"
-                        ? `0 22px 60px rgba(0,0,0,0.32), 0 0 0 1px ${palette.color}45`
-                        : `0 24px 58px rgba(27,21,48,0.12), 0 0 0 1px ${palette.color}35`,
+                        ? `13px 13px 30px rgba(0,0,0,0.62), -12px -12px 30px rgba(183,167,217,0.07), inset 0 0 0 1px ${palette.color}35`
+                        : `13px 13px 30px rgba(124,92,191,0.18), -12px -12px 30px rgba(255,255,255,0.96), inset 0 0 0 1px ${palette.color}28`,
                     "& .cert-seal": {
                         transform: "translateY(-2px) rotate(-4deg)",
                     },

@@ -40,10 +40,11 @@ const PostCard = ({post, index}) => {
                     width: "100%",
                     borderRadius: 6,
                     overflow: "hidden",
-                    backgroundColor: "background.paper",
+                    backgroundColor: (t) => t.palette.mode === "dark" ? "#1B1530" : "#F5F1FB",
+                    // neumorphic: soft, extruded surface (dual light/dark shadow)
                     boxShadow: (t) => t.palette.mode === "dark"
-                        ? "0 4px 24px rgba(0,0,0,0.4)"
-                        : "0 4px 24px rgba(0,0,0,0.06)",
+                        ? "9px 9px 22px rgba(0,0,0,0.55), -9px -9px 22px rgba(183,167,217,0.05)"
+                        : "9px 9px 22px rgba(124,92,191,0.14), -9px -9px 22px rgba(255,255,255,0.92)",
                     transition: "all 400ms cubic-bezier(0.4, 0, 0.2, 1)",
                     cursor: "pointer",
                     display: "flex",
@@ -51,12 +52,9 @@ const PostCard = ({post, index}) => {
                     position: "relative",
                     "&:hover": {
                         transform: "translateY(-8px)",
-                        boxShadow: (t) => {
-                            const accent = t.palette.colors?.accent || "#7C5CBF";
-                            return t.palette.mode === "dark"
-                                ? `0 20px 60px rgba(0,0,0,0.5), 0 0 30px ${accent}25`
-                                : `0 20px 60px rgba(0,0,0,0.1), 0 0 30px ${accent}20`;
-                        },
+                        boxShadow: (t) => t.palette.mode === "dark"
+                            ? "14px 14px 34px rgba(0,0,0,0.62), -13px -13px 34px rgba(183,167,217,0.08)"
+                            : "14px 14px 34px rgba(124,92,191,0.20), -13px -13px 34px rgba(255,255,255,0.96)",
                         "& .post-image": {
                             transform: "scale(1.08)",
                         },
